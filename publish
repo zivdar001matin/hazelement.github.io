@@ -1,8 +1,4 @@
 #!/bin/bash
-clear
 pelican content -o output -s pelicanconf.py
 ghp-import output
-git checkout gh-pages
-git rebase master
 git push ssh://git@github.com/hazelement/hazelement.github.io.git gh-pages:master
-git checkout master
