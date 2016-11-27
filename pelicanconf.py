@@ -10,7 +10,7 @@ SITEURL = 'https://hazelement.github.io/'
 
 PATH = 'content'
 
-TIMEZONE = 'Europe/Paris'
+TIMEZONE = 'America/Chihuahua'
 
 DEFAULT_LANG = u'en'
 
