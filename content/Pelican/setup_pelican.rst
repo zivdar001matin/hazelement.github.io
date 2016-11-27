@@ -24,34 +24,34 @@ Installation
 
 To install pelican with pip:
 
-.. code-block:: python
+.. code-block:: bash
 
 	pip install pelican
 
-If you are suing markdown, you can install it with pip too:
+If we are using markdown, we can install it with pip too:
 
-.. code-block:: python
+.. code-block:: bash
 
 	pip install markdown
 
 Create a project
 ----------------
-A directory must be created for you new project:
+A directory must be created for our new project:
 
-.. code-block:: guess
+.. code-block:: bash
 	
 	mkdir -p ~/pelican_tutorial
 	cd pelican_tutorial
 
-Once your are in your project directory, you can create a project using the following command:
+Once we are in our project directory, we can create a project using the following command:
 
-.. code-block:: guess
+.. code-block:: bash
 
 	pelican-quickstart
 
-Pelican then will ask you a few questions regarding your website. If you are not sure, you can answer anything and all these options can be changed afterwards. An example of these questions are here:
+Pelican then will ask us a few questions regarding your website. Don't worry if we are not sure on some of these questions, all these options can be changed afterwards. An example of these questions are here:
 
-.. code-block:: guess
+.. code-block:: bash
 
 	Welcome to pelican-quickstart v3.6.3.
 
@@ -82,26 +82,26 @@ Create an articles with category
 --------------------------------
 Next we are going to create our first post with a category specified. In plelican, each post is a rst file stored within the cotent directory. 
 
-.. code-block:: guess
+.. code-block:: bash
 
 	~/pelican_tutorial/content
 
 Although, categories can be specified within rst file similar to a tag. I prefer to take advantage of folders to put my rst files into each category. In the content folder, if we created folders and put our rst file in each sub folder. Then each folder will be considered as a category. 
 
-.. code-block:: guess
+.. code-block:: bash
 
 	~/pelican_tutorial/tutorial
 
 We just created a tutorial category. And let's create our first post under this category. 
 
-.. code-block:: guess
+.. code-block:: bash
 
 	cd ~/pelican_tutorial/tutorial
 	touch myfirst_tutorial.rst
 
 We can then input content to this rst file. For example:
 
-.. code-block:: guess
+.. code-block:: rest
 
 	My first tutorial
 	########################
@@ -123,13 +123,13 @@ Generate site
 -------------
 From site root directory
 
-.. code-block:: guess
+.. code-block:: bash
 
 	cd ~/pelican_tutorial
 
 Run the following code to generate your site:
 
-.. code-block:: guess
+.. code-block:: bash
 
 	pelican content
 
@@ -137,31 +137,32 @@ A folder called output will be generated. This is where our site sits.
 
 To see how our site looks like, enter output directory:
 
-.. code-block:: guess
+.. code-block:: bash
 
 	cd output
 
 Run the local pelican server:
 
-.. code-block:: guess
+.. code-block:: bash
 
 	python -m pelican.server
 
-Open up your web browser, and type in http://localhost:8000/, you should see your website served from your local directory.
+Open up web browser, and type in http://localhost:8000/, we should see the website served from local directory.
 
 Some tips
 =========
 
 Autosite updates
 ----------------
-Usually we would like to see our website updates while we changing the rst file contents, especially during development. This can be achieved by running the following command. 
+Usually we would like to see our website updates live while we changing the rst file contents, especially during development. This can be achieved by running the following command. 
 
-.. code-block:: guess
+.. code-block:: bash
 
 	make regenerate
 
 "make" is a script at the project root folder. Don't close terminal after running this command as the script is monitoring our project folder to detect any changes. We can continous editing and saving your rst file. All changes will be reflected on your local website. Althought we need to refresh the page of course. One drawback with this script is that if we have a syntax error in the rst file, it will likely crash the script and we would have to restart it again after fixing the syntax. For popular rst syntax, check out my other post, `reStructured Text Syntax <{filename}/reStructuredText/rst_syntax.rst>`_.
 
+Next up, setup Pelican to work with github page.
 
 
 
