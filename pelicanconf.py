@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 AUTHOR = u'Haze'
 SITENAME = u'On Coding'
 SIDEBAR_DIGEST = u'All about coding'
-SITEURL = ''
+SITEURL = 'http://localhost:8000/'
 
 PATH = 'content'
 
