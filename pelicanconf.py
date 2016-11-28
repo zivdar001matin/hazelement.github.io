@@ -5,8 +5,8 @@ from __future__ import unicode_literals
 AUTHOR = u'Haze'
 SITENAME = u'On Coding'
 SIDEBAR_DIGEST = u'All about coding'
-# SITEURL = 'https://hazelement.github.io/'
-SITEURL = 'http://localhost:8000'
+SITEURL = 'https://hazelement.github.io/'
+# SITEURL = 'http://localhost:8000'
 
 PATH = 'content'
 
@@ -56,8 +56,8 @@ THEME = "themes/pelican-blue"
 # THEME = "simple"
 
 # Following items are often useful when publishing
-
-DISQUS_SITENAME = "https-hazelement-github-io.disqus.com"
+# DISQUS_SITENAME = ""
+# DISQUS_SITENAME = "https-hazelement-github-io.disqus.com"
 #GOOGLE_ANALYTICS = ""
 
 IDEBAR_DIGEST = 'Programmer and Web Developer'

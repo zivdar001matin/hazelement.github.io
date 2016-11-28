@@ -146,11 +146,15 @@ False  True   True
 True   True   True 
 =====  =====  ======
 
-.. External hyperlinks, like Python_.
-.. .. _Python: http://www.python.org/
+
+.. _Python: http://www.python.org/
+
+External hyperlinks, like Python_.
 
 
-.. Internal crossreferences, like example_.
-.. .. _example:
+.. _example:
+
+Internal crossreferences, like example_.
+
 
 .. This is an example crossreference target.

@@ -162,9 +162,6 @@ Usually we would like to see our website updates live while we changing the rst 
 
 "make" is a script at the project root folder. Don't close terminal after running this command as the script is monitoring our project folder to detect any changes. We can continous editing and saving your rst file. All changes will be reflected on your local website. Althought we need to refresh the page of course. One drawback with this script is that if we have a syntax error in the rst file, it will likely crash the script and we would have to restart it again after fixing the syntax. For popular rst syntax, check out my other post, `reStructured Text Syntax <{filename}/reStructuredText/rst_syntax.rst>`_.
 
-Next up, setup Pelican to work with github page.
-
-
-
+Next up, `Setup Pelican for Github User Pages <{filename}/Pelican/pelican_ghpage.rst>`_.
 
 
