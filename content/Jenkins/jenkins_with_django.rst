@@ -248,9 +248,101 @@ Our lastest code should show up in the webapps directory. This is also where apa
 
 Now, we should be able to see the site under 8888 port, try localhost:8888 or 127.0.0.1:8888 in our web browser. 
 
-
 Setup Jenkins to Link Everything
 ================================
+
+First thing first, let's install Jenkins. Follow the instructions on the website, https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Ubuntu. 
+
+.. code-block:: bash
+
+	wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
+	sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+	sudo apt-get update
+	sudo apt-get install jenkins
+
+Jenkins need JDK and JRE installed to run, install them first if your machine doesn't have them.
+
+After installation, check status of Jekins and make sure it's running,
+
+.. code-block:: bash
+
+	sudo service jenkins status
+
+If Jekins is not running, start it with,
+
+
+.. code-block:: bash
+	
+	sudo service jenkins start
+
+Now, open up browser and go to localhost:8080, this is where Jenkins is served. At first time, Jenkins will ask your to create an admin account, just follow the steps to create the admin account. 
+
+Create a New Build Configuration
+--------------------------------
+
+At Jenkins's home page, click **New Item** to create an entry for our project. Enter "hellow world" for the item name and select **Freestyle project**.
+
+On the next pages, where are a few tabs we need to go through. 
+
+Under **Source Code Management**, select **Git**. A new sub window will appear. Enter "/git_repo/hello_world.git" for *Repository URL**. This is where we setup our git repository. 
+
+Leave **Credentials** as "none" as we don't have authentification to access this repository. Leave **Brances to build** as "*/master".
+
+Under **Build Triggers**, check **Build periodically**, and enter "H/10 * * * *" fpr **Schedule**, this will check for any changes every 10 minutes. Also check **Build when a change is pushed to GitHub**, this will trigger Jenkins to run whenever a change checked in.
+
+Under **Build**, this is where we will be entering our build script, type in the following,
+
+.. code-block:: bash 
+
+	cd /webapps/hello_world
+	python manage.py migrate
+	python manage.py test --noinput hello_world polls
+	sudo systemctl restart apache2
+
+This is also where we can run our test scripts before make our changes live. 
+
+Click **save** and we should be good.
+
+In the next page, which is also where our project dash board, click **Build Now** and once its finished, we can see the latest build result under **Build History**.
+
+
+Make a Simple Change and See It Becomes Live
+--------------------------------------------
+
+Let's make a change to our source code and test if our Jenkins does the job. 
+
+.. code-block:: bash
+
+	cd ~/django_hello_world/hello_world/polls
+
+In the "views.py" file, we had the code as following, 
+
+.. code-block:: python
+
+	from django.http import HttpResponse
+
+	def index(request):
+    	return HttpResponse("Hello, world. You're at the polls index.")
+
+.. code-block:: python
+
+	from django.http import HttpResponse
+
+
+	def index(request):
+	    return HttpResponse("Hello, world. You're at the polls index. An update on the polls index from Jenkins")
+
+Commit and push the new changes,
+
+.. code-block:: bash
+
+	git commit -a
+	git push
+
+Now go to localhost:8888, we should be able to see our change becomes live once Jenkins finish the new build. 
+
+And that's it, we just setup our first continous integration system.
+
 
 
 
