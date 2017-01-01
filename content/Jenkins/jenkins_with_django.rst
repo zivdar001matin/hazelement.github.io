@@ -223,6 +223,7 @@ This will setup a local git repository under /git_repo called hello_world.git. N
 Make our first commit by typing,
 
 .. code-block:: bash
+
 	git status
 	git add --all
 	git commit -a
