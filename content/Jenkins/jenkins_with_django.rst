@@ -263,13 +263,13 @@ First thing first, let's install Jenkins. Follow the instructions on the website
 
 Jenkins need JDK and JRE installed to run, install them first if your machine doesn't have them.
 
-After installation, check status of Jekins and make sure it's running,
+After installation, check status of Jenkins and make sure it's running,
 
 .. code-block:: bash
 
 	sudo service jenkins status
 
-If Jekins is not running, start it with,
+If Jenkins is not running, start it with,
 
 
 .. code-block:: bash
@@ -287,9 +287,9 @@ On the next pages, where are a few tabs we need to go through.
 
 Under **Source Code Management**, select **Git**. A new sub window will appear. Enter "/git_repo/hello_world.git" for *Repository URL**. This is where we setup our git repository. 
 
-Leave **Credentials** as "none" as we don't have authentification to access this repository. Leave **Brances to build** as "*/master".
+Leave **Credentials** as "none" as we don't have authentification to access this repository. Leave **Brances to build** as "\*/master".
 
-Under **Build Triggers**, check **Build periodically**, and enter "H/10 * * * *" fpr **Schedule**, this will check for any changes every 10 minutes. Also check **Build when a change is pushed to GitHub**, this will trigger Jenkins to run whenever a change checked in.
+Under **Build Triggers**, check **Build periodically**, and enter "H/10 \* \* \* \*" fpr **Schedule**, this will check for any changes every 10 minutes. Also check **Build when a change is pushed to GitHub**, this will trigger Jenkins to run whenever a change checked in.
 
 Under **Build**, this is where we will be entering our build script, type in the following,
 
