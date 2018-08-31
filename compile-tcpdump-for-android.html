@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en" itemscope itemtype="http://schema.org/Person">
+<head>
+  <meta charset="utf-8">
+  <!-- Site Meta Data -->
+  <title>Compile tcpdump for android.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Haze">
+
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- schema.org -->
+  <meta itemprop="name" content="On Coding">
+  <meta itemprop="image" content="">
+  <meta itemprop="description" content="">
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+  <!-- Style Meta Data -->
+  <link rel="stylesheet" href="https://hazelement.github.io/theme/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="https://hazelement.github.io/theme/css/pygments.css" type="text/css" />
+
+  <!-- Feed Meta Data -->
+
+  <!-- Twitter Feed -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="">
+  <meta name="twitter:image" content="">
+
+<!-- <meta name="twitter:creator" content="">
+<meta name="twitter:url" content="https://hazelement.github.io/compile-tcpdump-for-android.html">
+<meta name="twitter:title" content="On Coding ~ Compile tcpdump for android.">
+<meta name="twitter:description" content="<p>There are many ways to sniff network traffic on android, VPN, proxy and etc. Today we are gonna look into using compiling tcpdump for Android which can be used with netcat to sniff network traffic later.</p>
+<div class="section" id="the-linux-binaries">
+<h2>The Linux binaries</h2>
+<p>We will be using two Linux binaries to achive this, tcpdump …</p></div>">
+
+<!- Facebook Meta Data -->
+<!-- <meta property="og:title" content="On Coding ~ Compile tcpdump for android." />
+<meta property="og:description" content="<p>There are many ways to sniff network traffic on android, VPN, proxy and etc. Today we are gonna look into using compiling tcpdump for Android which can be used with netcat to sniff network traffic later.</p>
+<div class="section" id="the-linux-binaries">
+<h2>The Linux binaries</h2>
+<p>We will be using two Linux binaries to achive this, tcpdump …</p></div>" />
+<meta property="og:image" content="" /> --> 
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <aside>
+    <!--<center><a href="https://hazelement.github.io"><img id="avatar" src=""></a></center>-->
+    <h1>On Coding</h1>
+      <p>All about coding</p>
+    <br>
+
+
+    <nav class="nav">
+      <ul class="list-bare">
+      
+   
+          <li><a class="nav__link" href="https://hazelement.github.io/">Home</a></li>
+
+         
+            <li><a class="nav__link" href="https://hazelement.github.io/pages/about.html">About</a></li>
+            <li><a class="nav__link" href="https://hazelement.github.io/pages/contact.html">Contact</a></li>
+            <li><a class="nav__link" href="https://hazelement.github.io/pages/markdownsample.html">MarkDownSample</a></li>
+            <li><a class="nav__link" href="https://hazelement.github.io/pages/rstsample.html">RSTSample</a></li>
+         
+      </ul>
+    </nav>
+
+    <br>
+    <form id="searchform" action="/search" onsubmit="return (this.elements['q'].value.length > 0)">
+      <input id="searchbox" type="text" name="q" size="12" placeholder="Search">
+    </form>
+    <br>
+
+    <div>
+      <b>Tags</b><br>
+                <a href="https://hazelement.github.io/tag/pelican.html"><font color="white">Pelican</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/github.html"><font color="white">github</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/networking.html"><font color="white">networking</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/python.html"><font color="white">python</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/django.html"><font color="white">Django</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/rst.html"><font color="white">rst</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/ssh.html"><font color="white">ssh</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/continous-deployment.html"><font color="white">Continous Deployment</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/jenkins.html"><font color="white">Jenkins</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/android.html"><font color="white">Android</font>
+               </a>
+    </div>
+
+    <br>
+    <div>
+      <b>Categories</b><br>
+                <a href="https://hazelement.github.io/category/android.html"><font color="white">Android</font>
+               </a>
+                <a href="https://hazelement.github.io/category/jenkins.html"><font color="white">Jenkins</font>
+               </a>
+                <a href="https://hazelement.github.io/category/pelican.html"><font color="white">Pelican</font>
+               </a>
+                <a href="https://hazelement.github.io/category/restructuredtext.html"><font color="white">reStructuredText</font>
+               </a>
+    </div>
+
+    <p class="social">
+        <a href="https://github.com/hazelement" target="_blank" ><img src="https://hazelement.github.io/theme/images/icons/github.png"></a>
+    </p>
+
+    <!--
+    <h2>Categories</h2>
+    <ul class="navbar">
+      <li class="active"><a href="https://hazelement.github.io/category/android.html">Android</a></li>
+      <li><a href="https://hazelement.github.io/category/jenkins.html">Jenkins</a></li>
+      <li><a href="https://hazelement.github.io/category/pelican.html">Pelican</a></li>
+      <li><a href="https://hazelement.github.io/category/restructuredtext.html">reStructuredText</a></li>
+    </ul> 
+    -->
+  </aside>
+
+  <!-- Content -->
+  <article>
+<section id="content">
+    <article>
+        <h2 class="post_title post_detail"><a href="https://hazelement.github.io/compile-tcpdump-for-android.html" rel="bookmark" title="Permalink to Compile tcpdump for android.">Compile tcpdump for android.</a></h2>
+
+        <div class="post_list">
+            <span>By </span>
+            <a href="https://hazelement.github.io/author/harry-zheng.html">@Harry Zheng</a>
+            <span> in </span>
+            <span class="post_category"><a href="https://hazelement.github.io/category/android.html" rel="bookmark" title="Permalink to Android">[ Android ]</a></span>
+            <div>
+                <span class="post_date">Wed 28 December 2016</span>
+                <span>Tags : </span>
+                    <span><a href="https://hazelement.github.io/tag/android.html">#Android, </a></span>
+                    <span><a href="https://hazelement.github.io/tag/tcpdump.html">#tcpdump, </a></span>
+                    <span><a href="https://hazelement.github.io/tag/networking.html">#networking, </a></span>
+            </div>
+        </div>
+
+        <div class="entry-content blog-post">
+            <p>There are many ways to sniff network traffic on android, VPN, proxy and etc. Today we are gonna look into using compiling tcpdump for Android which can be used with netcat to sniff network traffic later.</p>
+<div class="section" id="the-linux-binaries">
+<h2>The Linux binaries</h2>
+<p>We will be using two Linux binaries to achive this, tcpdump and netcat. Tcpdump is a popular tool in Linux to capture net traffic. Netcat is another Linux binary that are commonly used to listen on a socket. We will be using these two binaries along with Java coded android apps to demonstrate the technique.</p>
+</div>
+<div class="section" id="a-rooted-android-phone">
+<h2>A Rooted Android Phone</h2>
+<p>First thing first, this technique requires a rooted android phone. If your phone is not rooted, check out some posts and root your device first.</p>
+</div>
+<div class="section" id="compile-tcpdump-and-netcat-binaries-for-android">
+<h2>Compile Tcpdump and Netcat Binaries for Android</h2>
+<p>Like any other binaries written in C, we need to compile them differerntly if we want to run them on differernt platforms.</p>
+<p>Let's start by installing our android compiler, assuming we are compiling for arm processor architecture. Execute the following command in your Ubuntu shell.</p>
+<div class="highlight"><pre><span></span>sudo apt-get install gcc-arm-linux-gnueabi
+sudo apt-get install byacc
+sudo apt-get install flex
+</pre></div>
+<p>This will install gcc for arm architectre and other support tools for compiling.</p>
+<p>Next, create a folder named &quot;compile_for_android&quot;, this is where we will be performing all the compiling.</p>
+<div class="highlight"><pre><span></span>mkdir compile_for_android
+<span class="nb">cd</span> compile_for_android
+</pre></div>
+<p>Now let's download tcpdump source code.</p>
+<div class="highlight"><pre><span></span>wget http://www.tcpdump.org/release/tcpdump-4.8.1.tar.gz
+</pre></div>
+<p>Tcpdump depends on libpcap, so we need to download and compile libpcap source code as well.</p>
+<div class="highlight"><pre><span></span>wget http://www.tcpdump.org/release/libpcap-1.8.1.tar.gz
+</pre></div>
+<p>Extract these two packages.</p>
+<div class="highlight"><pre><span></span>tar zxvf tcpdump-4.8.1.tar.gz
+tar zxvf libpcap-1.8.1.tar.gz
+</pre></div>
+<p>Now we are ready to compile our tcpdump.</p>
+<p>First, let's make sure our compiler is the android compiler.</p>
+<div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CC</span><span class="o">=</span>arm-linux-gnueabi-gcc
+</pre></div>
+<p>Compiler libpcap first.</p>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> libpcap-1.8.1
+./configure --host<span class="o">=</span>arm-linux --with-pcap<span class="o">=</span>linux
+make
+</pre></div>
+<p>This should compiler the libpcap library for us. Now let's go to our tcpdump directory.</p>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> ..
+<span class="nb">cd</span> tcpdump-4.8.1
+</pre></div>
+<p>Before we perform the same thing above, there is a few things we need to do.</p>
+<p>Figure out what major version our Ubuntu we have,</p>
+<div class="highlight"><pre><span></span>uname -a
+</pre></div>
+<p>This will give out something like this.</p>
+<div class="highlight"><pre><span></span><span class="m">4</span>.2.0-42-generic
+</pre></div>
+<p>In this case, our major version is 4 and we set a variable in command.</p>
+<div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">ac_cs_linux_vers</span><span class="o">=</span><span class="m">4</span>
+</pre></div>
+<p>Set the following variables to make our binary self contained (ie. not reliant on other libraries).</p>
+<div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CFLAGS</span><span class="o">=</span>-static
+<span class="nb">export</span> <span class="nv">CPPFLAGS</span><span class="o">=</span>-static
+<span class="nb">export</span> <span class="nv">LDFLAGS</span><span class="o">=</span>-static
+</pre></div>
+<p>And configure the directory,</p>
+<div class="highlight"><pre><span></span>./configure --host<span class="o">=</span>arm-linux --disable-ipv6
+</pre></div>
+<p>And then make it,</p>
+<div class="highlight"><pre><span></span>make
+</pre></div>
+<p>Strip the symbol information to make binary smaller. These symbols are only useful in debugging the application.</p>
+<div class="highlight"><pre><span></span>arm-linux-gnueabi-strip tcpdump
+</pre></div>
+</div>
+
+        </div>
+        <div class="post_list">
+            <div class="entry-social">
+                <span class="twitter"><a target="_blank" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=700');return false;" title="Twitter" href="https://twitter.com/share?url=https://hazelement.github.io/compile-tcpdump-for-android.html&text=Compile tcpdump for android.&via="><img src="https://hazelement.github.io/theme/images/icons/twitter-s.png"></a></span>
+
+                <span class="gplus"><a target="_blank" title="Google +" href="https://plus.google.com/share?url=https://hazelement.github.io/compile-tcpdump-for-android.html&hl=fr" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=450,width=650');return false;"><img src="https://hazelement.github.io/theme/images/icons/google-s.png"></a></span>
+
+                <span class="facebook"><a target="_blank" title="Facebook" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;" href="https://www.facebook.com/sharer.php?u=https://hazelement.github.io/compile-tcpdump-for-android.html&t=Compile tcpdump for android."><img src="https://hazelement.github.io/theme/images/icons/facebook-s.png"></a></span>
+
+                <a  target="_blank" title="Linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://hazelement.github.io/compile-tcpdump-for-android.html&title=Compile tcpdump for android." rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=450,width=650');return false;"><img src="https://hazelement.github.io/theme/images/icons/linkedin-s.png"></a>
+
+                <span class="mail"><a href="mailto:?subject=Compile tcpdump for android.&amp;body=Check out this article from Haze. https://hazelement.github.io/compile-tcpdump-for-android.html" title="Share by Email" target="_blank"><img src="https://hazelement.github.io/theme/images/icons/mail-s.png"></a></span>
+            </div>
+        </div>
+        <div class="comments">
+            <h2>Comments</h2>
+            
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+            var disqus_identifier = "compile-tcpdump-for-android.html";
+            (function() {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//https-hazelement-github-io.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] ||
+                 document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </article>
+</section>
+  </article>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      Blog powered by <a href="http://getpelican.com/">Pelican</a>, 
+      which takes great advantage of <a href="http://python.org">Python</a>.
+      Theme <a href="https://github.com/parbhat/pelican-blue">Pelican-Blue</a> by <a href="https://parbhatpuri.com/">@parbhat</a>.
+    </p>
+  </footer>
+
+
+</body>
+</html>
