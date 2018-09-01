@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en" itemscope itemtype="http://schema.org/Person">
+<head>
+  <meta charset="utf-8">
+  <!-- Site Meta Data -->
+  <title>Non-transparent proxy with Squid and Docker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Haze">
+
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- schema.org -->
+  <meta itemprop="name" content="On Coding">
+  <meta itemprop="image" content="">
+  <meta itemprop="description" content="">
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+  <!-- Style Meta Data -->
+  <link rel="stylesheet" href="https://hazelement.github.io/theme/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="https://hazelement.github.io/theme/css/pygments.css" type="text/css" />
+
+  <!-- Feed Meta Data -->
+
+  <!-- Twitter Feed -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="">
+  <meta name="twitter:image" content="">
+
+<!-- <meta name="twitter:creator" content="">
+<meta name="twitter:url" content="https://hazelement.github.io/non-transparent-proxy-with-squid-and-docker.html">
+<meta name="twitter:title" content="On Coding ~ Non-transparent proxy with Squid and Docker">
+<meta name="twitter:description" content="<p>deploy non-transparent squid in docker for network monitoring and filtering</p>">
+
+<!- Facebook Meta Data -->
+<!-- <meta property="og:title" content="On Coding ~ Non-transparent proxy with Squid and Docker" />
+<meta property="og:description" content="<p>deploy non-transparent squid in docker for network monitoring and filtering</p>" />
+<meta property="og:image" content="" /> --> 
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <aside>
+    <!--<center><a href="https://hazelement.github.io"><img id="avatar" src=""></a></center>-->
+    <h1>On Coding</h1>
+      <p>All about coding</p>
+    <br>
+
+
+    <nav class="nav">
+      <ul class="list-bare">
+      
+   
+          <li><a class="nav__link" href="https://hazelement.github.io/">Home</a></li>
+
+         
+            <li><a class="nav__link" href="https://hazelement.github.io/pages/about.html">About</a></li>
+            <li><a class="nav__link" href="https://hazelement.github.io/pages/contact.html">Contact</a></li>
+            <li><a class="nav__link" href="https://hazelement.github.io/pages/markdownsample.html">MarkDownSample</a></li>
+            <li><a class="nav__link" href="https://hazelement.github.io/pages/rstsample.html">RSTSample</a></li>
+         
+      </ul>
+    </nav>
+
+    <br>
+    <form id="searchform" action="/search" onsubmit="return (this.elements['q'].value.length > 0)">
+      <input id="searchbox" type="text" name="q" size="12" placeholder="Search">
+    </form>
+    <br>
+
+    <div>
+      <b>Tags</b><br>
+                <a href="https://hazelement.github.io/tag/squid.html"><font color="white">squid</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/proxy.html"><font color="white">proxy</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/http.html"><font color="white">http</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/https.html"><font color="white">https</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/ssl.html"><font color="white">ssl</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/docker.html"><font color="white">docker</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/android.html"><font color="white">Android</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/tcpdump.html"><font color="white">tcpdump</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/networking.html"><font color="white">networking</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/jenkins.html"><font color="white">Jenkins</font>
+               </a>
+    </div>
+
+    <br>
+    <div>
+      <b>Categories</b><br>
+                <a href="https://hazelement.github.io/category/android.html"><font color="white">Android</font>
+               </a>
+                <a href="https://hazelement.github.io/category/jenkins.html"><font color="white">Jenkins</font>
+               </a>
+                <a href="https://hazelement.github.io/category/networking.html"><font color="white">Networking</font>
+               </a>
+                <a href="https://hazelement.github.io/category/pelican.html"><font color="white">Pelican</font>
+               </a>
+                <a href="https://hazelement.github.io/category/restructuredtext.html"><font color="white">reStructuredText</font>
+               </a>
+    </div>
+
+    <p class="social">
+        <a href="https://github.com/hazelement" target="_blank" ><img src="https://hazelement.github.io/theme/images/icons/github.png"></a>
+    </p>
+
+    <!--
+    <h2>Categories</h2>
+    <ul class="navbar">
+      <li><a href="https://hazelement.github.io/category/android.html">Android</a></li>
+      <li><a href="https://hazelement.github.io/category/jenkins.html">Jenkins</a></li>
+      <li class="active"><a href="https://hazelement.github.io/category/networking.html">Networking</a></li>
+      <li><a href="https://hazelement.github.io/category/pelican.html">Pelican</a></li>
+      <li><a href="https://hazelement.github.io/category/restructuredtext.html">reStructuredText</a></li>
+    </ul> 
+    -->
+  </aside>
+
+  <!-- Content -->
+  <article>
+<section id="content">
+    <article>
+        <h2 class="post_title post_detail"><a href="https://hazelement.github.io/non-transparent-proxy-with-squid-and-docker.html" rel="bookmark" title="Permalink to Non-transparent proxy with Squid and Docker">Non-transparent proxy with Squid and Docker</a></h2>
+
+        <div class="post_list">
+            <span>By </span>
+            <a href="https://hazelement.github.io/author/finite-elemente.html">@Finite Elemente</a>
+            <span> in </span>
+            <span class="post_category"><a href="https://hazelement.github.io/category/networking.html" rel="bookmark" title="Permalink to Networking">[ Networking ]</a></span>
+            <div>
+                <span class="post_date">Thu 30 August 2018</span>
+                <span>Tags : </span>
+                    <span><a href="https://hazelement.github.io/tag/squid.html">#squid, </a></span>
+                    <span><a href="https://hazelement.github.io/tag/proxy.html">#proxy, </a></span>
+                    <span><a href="https://hazelement.github.io/tag/http.html">#http, </a></span>
+                    <span><a href="https://hazelement.github.io/tag/https.html">#https, </a></span>
+                    <span><a href="https://hazelement.github.io/tag/ssl.html">#ssl, </a></span>
+                    <span><a href="https://hazelement.github.io/tag/docker.html">#docker, </a></span>
+            </div>
+        </div>
+
+        <div class="entry-content blog-post">
+            <p>We are looking to create a non-transparent proxy server using Squid for networking sniffing. The end product should be able to sniff both HTTP and HTTPS traffic. </p>
+<h1>Transparent proxy server vs non-transparent proxy server</h1>
+<p>Both types proxy servers are able to relay traffic from client machine. Transparent proxy is the easier setup. It allows quick access to the web for everyone without configuration from client side. </p>
+<p>The down side of a transparent proxy is that it provides limited function to perform network traffic monitoring and filtering. Only HTTP traffic can be monitored. </p>
+<p>A non-transparent proxy on the other hand, provides a much more powerful and flexiable proxying service. It can relay HTTPS traffic as a man-in-the-middle proxy by forging its own SSL certificate. However, in order to achive this, server's CA certificate must be installed and trusted as a root certificate on client's machine. </p>
+<p>In this project, we will explorer setting up a non-transparent proxy server using squid and containerize it into a docker. This container can later be used with an ICAP service to perform network traffic filtering in the future. </p>
+<h1>Squid docker</h1>
+<p>A popular proxy software, <a href="http://www.squid-cache.org/">link</a>. The <code>Dockerfile</code> is created and the content is as followed.</p>
+<div class="highlight"><pre><span></span>FROM ubuntu:18.04
+
+ENV SQUID_VERSION=3.5.27 \
+    SQUID_DIR=/usr/local/squid \
+    SQUID_USER=proxy
+
+RUN apt-get update
+RUN apt-get install build-essential openssl libssl1.0-dev wget -y
+
+WORKDIR /tmp
+RUN wget http://www.squid-cache.org/Versions/v3/3.5/squid-<span class="cp">${</span><span class="n">SQUID_VERSION</span><span class="cp">}</span>.tar.gz
+RUN tar -xzf squid-<span class="cp">${</span><span class="n">SQUID_VERSION</span><span class="cp">}</span>.tar.gz
+WORKDIR /tmp/squid-<span class="cp">${</span><span class="n">SQUID_VERSION</span><span class="cp">}</span>
+
+RUN chmod +x configure
+RUN ./configure \
+        --datadir=/usr/share/squid \
+        --sysconfdir=/etc/squid \
+        --libexecdir=/usr/lib/squid \
+        --with-pidfile=/var/run/squid.pid \
+        --with-filedescriptors=65536 \
+        --with-large-files \
+        --enable-delay-pools \
+        --enable-cache-digests \
+        --enable-icap-client \
+        --enable-ssl \
+        --enable-ssl-crtd \
+        --with-openssl \
+        --enable-follow-x-forwarded-for \
+        --with-default-user=<span class="cp">${</span><span class="n">SQUID_USER</span><span class="cp">}</span>
+RUN make
+RUN make install
+
+ENV PATH=<span class="nv">$PATH</span>:/usr/local/squid/sbin
+RUN /usr/lib/squid/ssl_crtd -c -s /var/lib/ssl_db # SSL certificate database directory
+
+RUN mkdir -p <span class="cp">${</span><span class="n">SQUID_DIR</span><span class="cp">}</span>
+RUN chmod -R 755 <span class="cp">${</span><span class="n">SQUID_DIR</span><span class="cp">}</span>
+RUN chown -R <span class="cp">${</span><span class="n">SQUID_USER</span><span class="cp">}</span>:<span class="cp">${</span><span class="n">SQUID_USER</span><span class="cp">}</span> <span class="cp">${</span><span class="n">SQUID_DIR</span><span class="cp">}</span>
+RUN chown -R <span class="cp">${</span><span class="n">SQUID_USER</span><span class="cp">}</span>:<span class="cp">${</span><span class="n">SQUID_USER</span><span class="cp">}</span> /usr/lib/squid/ssl_crtd
+
+EXPOSE 3128/tcp
+</pre></div>
+
+
+<p>In addition to the <code>Dockerfile</code>, there are 5 more files that are important. </p>
+<div class="highlight"><pre><span></span>/usr/local/squid/var/cache  # cache
+/usr/local/squid/var/logs   # logs
+/etc/squid/squid.conf       # squid configuration file
+/usr/local/squid/ca.crt     # ssl certificate
+/usr/local/squid/ca.key     # ssl private key
+</pre></div>
+
+
+<p>These files will be mapped to the host system in <code>docker-compose.yml</code> file. </p>
+<p><code>ca.crt</code> and <code>ca.key</code> are our server SSL certificate and keys. They can be generated using this script. </p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+
+openssl genrsa -out ca.key <span class="m">2048</span>
+openssl req -new -x509 -days <span class="m">3650</span> -key ca.key -out ca.crt -subj <span class="s2">&quot;/CN=XXXXX CA&quot;</span>
+openssl genrsa -out cert.key <span class="m">2048</span>
+</pre></div>
+</td></tr></table>
+
+<p>Replace <code>XXXXX</code> with the name at your choice. </p>
+<p><code>squid.conf</code> is squid configuration file. Here is an example</p>
+<div class="highlight"><pre><span></span>#defaults
+acl localnet src 10.0.0.0/8
+acl localnet src 172.16.0.0/12
+acl localnet src 192.168.0.0/16
+acl localnet src fc00::/7
+acl localnet src fe80::/10
+acl SSL_ports port 443
+acl Safe_ports port 80
+acl Safe_ports port 21
+acl Safe_ports port 443
+acl Safe_ports port 70
+acl Safe_ports port 210
+acl Safe_ports port 1025-65535
+acl Safe_ports port 280
+acl Safe_ports port 488
+acl Safe_ports port 591
+acl Safe_ports port 777
+acl CONNECT method CONNECT
+
+http_access allow manager localhost
+http_access deny manager
+http_access deny !Safe_ports
+http_access deny CONNECT !SSL_ports
+http_access allow localnet
+http_access allow localhost     # allow traffic from localhost
+
+
+# to allow other client IP, set them up above
+http_access deny all
+
+
+#
+# INSERT YOUR OWN RULE(S) HERE TO ALLOW ACCESS FROM YOUR CLIENTS
+#
+
+cache_effective_user proxy
+cache_effective_group proxy
+
+# this work for both http and https traffic
+http_port 3128 ssl-bump generate-host-certificates=on \
+    dynamic_cert_mem_cache_size=4MB \
+    cert=/usr/local/squid/ca.crt \
+    key=/usr/local/squid/ca.key
+
+#always_direct allow all
+ssl_bump server-first all
+
+#sslproxy_cert_error deny all
+sslproxy_flags DONT_VERIFY_PEER
+
+sslcrtd_program /usr/lib/squid/ssl_crtd -s /var/lib/ssl_db -M 4MB
+sslcrtd_children 8 startup=1 idle=1
+
+# icap filtering service
+icap_enable on
+icap_preview_enable on
+
+# request filtering, set bypass to 0 to enforce
+icap_service service_req reqmod_precache bypass=1 icap://icap:1344
+adaptation_access service_req allow all
+
+# response filtering, set bypass to 0 to enforce
+icap_service service_resp respmod_precache bypass=1 icap://icap:1344
+adaptation_access service_resp allow all
+
+#
+# Add any of your own refresh_pattern entries above these.
+#
+refresh_pattern ^ftp:       1440    20% 10080
+refresh_pattern ^gopher:    1440    0%  1440
+refresh_pattern -i (/cgi-bin/|\?) 0 0%  0
+refresh_pattern .       0   20% 4320
+
+shutdown_lifetime 1 second
+</pre></div>
+
+
+<p>At last, the <code>docker-compose.yml</code> that puts everything together. </p>
+<div class="highlight"><pre><span></span>version: &#39;3&#39;
+
+services:
+  squid:
+    build: ./
+    ports:
+      - &quot;8888:3128&quot;
+    volumes:
+      - ./cache:/usr/local/squid/var/cache
+      - ./logs:/usr/local/squid/var/logs
+      - ./squid.conf:/etc/squid/squid.conf
+      - ./ca.crt:/usr/local/squid/ca.crt
+      - ./ca.key:/usr/local/squid/ca.key
+    restart: always
+    command: squid -f /etc/squid/squid.conf -NYCd 1
+</pre></div>
+
+
+<p>The folder structure should look like this:</p>
+<div class="highlight"><pre><span></span>squid/
+    ca.crt
+    ca.key
+    cert.key
+    docker-compose.yml
+    Dockerfile
+    squid.conf
+    cache/
+    logs/
+</pre></div>
+
+
+<p>Start the squid docker by running <code>docker-compose up</code>. Docker should start building the docker image. At the very end, the console should have a print out like this. </p>
+<div class="highlight"><pre><span></span><span class="nt">Creating</span> <span class="nt">squid_squid_1</span> <span class="o">...</span> <span class="nt">done</span>                                                                                                        
+<span class="nt">Attaching</span> <span class="nt">to</span> <span class="nt">squid_squid_1</span>                                                                                                             
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">Current</span> <span class="nt">Directory</span> <span class="nt">is</span> <span class="o">/</span><span class="nt">tmp</span><span class="o">/</span><span class="nt">squid-3</span><span class="p">.</span><span class="nc">5</span><span class="p">.</span><span class="nc">27</span>                                                                 
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">Starting</span> <span class="nt">Squid</span> <span class="nt">Cache</span> <span class="nt">version</span> <span class="nt">3</span><span class="p">.</span><span class="nc">5</span><span class="p">.</span><span class="nc">27</span> <span class="nt">for</span> <span class="nt">x86_64-pc-linux-gnu</span><span class="o">...</span>                                         
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">Service</span> <span class="nt">Name</span><span class="o">:</span> <span class="nt">squid</span>                                                                                    
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">Process</span> <span class="nt">ID</span> <span class="nt">1</span>                                                                                           
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">Process</span> <span class="nt">Roles</span><span class="o">:</span> <span class="nt">master</span> <span class="nt">worker</span>                                                                           
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">With</span> <span class="nt">1048576</span> <span class="nt">file</span> <span class="nt">descriptors</span> <span class="nt">available</span>                                                                
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">Initializing</span> <span class="nt">IP</span> <span class="nt">Cache</span><span class="o">...</span>                                                                               
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">DNS</span> <span class="nt">Socket</span> <span class="nt">created</span> <span class="nt">at</span> <span class="cp">[</span><span class="p">::</span><span class="cp">]</span><span class="o">,</span> <span class="nt">FD</span> <span class="nt">9</span>                                                                       
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">DNS</span> <span class="nt">Socket</span> <span class="nt">created</span> <span class="nt">at</span> <span class="nt">0</span><span class="p">.</span><span class="nc">0</span><span class="p">.</span><span class="nc">0</span><span class="p">.</span><span class="nc">0</span><span class="o">,</span> <span class="nt">FD</span> <span class="nt">10</span>                                                                   
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">Adding</span> <span class="nt">nameserver</span> <span class="nt">127</span><span class="p">.</span><span class="nc">0</span><span class="p">.</span><span class="nc">0</span><span class="p">.</span><span class="nc">11</span> <span class="nt">from</span> <span class="o">/</span><span class="nt">etc</span><span class="o">/</span><span class="nt">resolv</span><span class="p">.</span><span class="nc">conf</span>                                                     
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">Adding</span> <span class="nt">ndots</span> <span class="nt">1</span> <span class="nt">from</span> <span class="o">/</span><span class="nt">etc</span><span class="o">/</span><span class="nt">resolv</span><span class="p">.</span><span class="nc">conf</span>                                                                   
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">helperOpenServers</span><span class="o">:</span> <span class="nt">Starting</span> <span class="nt">1</span><span class="o">/</span><span class="nt">8</span> <span class="s1">&#39;ssl_crtd&#39;</span> <span class="nt">processes</span>                                                   
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">Logfile</span><span class="o">:</span> <span class="nt">opening</span> <span class="nt">log</span> <span class="nt">daemon</span><span class="o">:/</span><span class="nt">usr</span><span class="o">/</span><span class="nt">local</span><span class="o">/</span><span class="nt">squid</span><span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">logs</span><span class="o">/</span><span class="nt">access</span><span class="p">.</span><span class="nc">log</span>                                       
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">Logfile</span> <span class="nt">Daemon</span><span class="o">:</span> <span class="nt">opening</span> <span class="nt">log</span> <span class="o">/</span><span class="nt">usr</span><span class="o">/</span><span class="nt">local</span><span class="o">/</span><span class="nt">squid</span><span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">logs</span><span class="o">/</span><span class="nt">access</span><span class="p">.</span><span class="nc">log</span>                                       
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">Local</span> <span class="nt">cache</span> <span class="nt">digest</span> <span class="nt">enabled</span><span class="o">;</span> <span class="nt">rebuild</span><span class="o">/</span><span class="nt">rewrite</span> <span class="nt">every</span> <span class="nt">3600</span><span class="o">/</span><span class="nt">3600</span> <span class="nt">sec</span>                                        
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">Store</span> <span class="nt">logging</span> <span class="nt">disabled</span>                                                                                 
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">Swap</span> <span class="nt">maxSize</span> <span class="nt">0</span> <span class="o">+</span> <span class="nt">262144</span> <span class="nt">KB</span><span class="o">,</span> <span class="nt">estimated</span> <span class="nt">20164</span> <span class="nt">objects</span>                                                    
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">Target</span> <span class="nt">number</span> <span class="nt">of</span> <span class="nt">buckets</span><span class="o">:</span> <span class="nt">1008</span>                                                                         
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">Using</span> <span class="nt">8192</span> <span class="nt">Store</span> <span class="nt">buckets</span>                                                                               
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">Max</span> <span class="nt">Mem</span>  <span class="nt">size</span><span class="o">:</span> <span class="nt">262144</span> <span class="nt">KB</span>                                                                               
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">Max</span> <span class="nt">Swap</span> <span class="nt">size</span><span class="o">:</span> <span class="nt">0</span> <span class="nt">KB</span>                                                                                    
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">Using</span> <span class="nt">Least</span> <span class="nt">Load</span> <span class="nt">store</span> <span class="nt">dir</span> <span class="nt">selection</span>                                                                   
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">Current</span> <span class="nt">Directory</span> <span class="nt">is</span> <span class="o">/</span><span class="nt">tmp</span><span class="o">/</span><span class="nt">squid-3</span><span class="p">.</span><span class="nc">5</span><span class="p">.</span><span class="nc">27</span>                                                                 
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">Finished</span> <span class="nt">loading</span> <span class="nt">MIME</span> <span class="nt">types</span> <span class="nt">and</span> <span class="nt">icons</span><span class="o">.</span>                                                                 
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">HTCP</span> <span class="nt">Disabled</span><span class="o">.</span>                                                                                         
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">Squid</span> <span class="nt">plugin</span> <span class="nt">modules</span> <span class="nt">loaded</span><span class="o">:</span> <span class="nt">0</span>                                                                         
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">Adaptation</span> <span class="nt">support</span> <span class="nt">is</span> <span class="nt">on</span>                                                                               
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">39</span><span class="o">|</span> <span class="nt">Accepting</span> <span class="nt">SSL</span> <span class="nt">bumped</span> <span class="nt">HTTP</span> <span class="nt">Socket</span> <span class="nt">connections</span> <span class="nt">at</span> <span class="nt">local</span><span class="o">=</span><span class="cp">[</span><span class="p">::</span><span class="cp">]</span><span class="p">:</span><span class="nd">3128</span> <span class="nt">remote</span><span class="o">=</span><span class="cp">[</span><span class="p">::</span><span class="cp">]</span> <span class="nt">FD</span> <span class="nt">16</span> <span class="nt">flags</span><span class="o">=</span><span class="nt">9</span>              
+<span class="nt">squid_1</span>  <span class="o">|</span> <span class="nt">2018</span><span class="o">/</span><span class="nt">09</span><span class="o">/</span><span class="nt">01</span> <span class="nt">02</span><span class="p">:</span><span class="nd">33</span><span class="p">:</span><span class="nd">40</span><span class="o">|</span> <span class="nt">storeLateRelease</span><span class="o">:</span> <span class="nt">released</span> <span class="nt">0</span> <span class="nt">objects</span>                                                                   
+</pre></div>
+
+
+<h1>Client setup</h1>
+<p>On client machine, install the server certificate <code>ca.crt</code> as Trusted Root Certification Authorities, <a href="https://success.outsystems.com/Support/Enterprise_Customers/Installation/Install_a_trusted_root_CA__or_self-signed_certificate">Windows and Linux</a>, <a href="https://pubs.vmware.com/flex-1/index.jsp?topic=%2Fcom.vmware.horizon.flex.admin.doc%2FGUID-9201A917-D476-40EF-B1F4-BBF14AB83D94.html">Mac</a>.</p>
+<p>Configure the proxy setting on your machine to ip <code>localhost</code> and port <code>8888</code>. If the client is on a different machine, you need to open port <code>8888</code> on the server side and configure client to the server's ip and port <code>8888</code>. </p>
+<p>Once everything configured, go to google.ca and check its SSL certificate, the certificate should say its issued by XXXXX instead of Google. But all certificate encryption and signiture should be valid as we have trusted our own CA certificate on the client machine. </p>
+        </div>
+        <div class="post_list">
+            <div class="entry-social">
+                <span class="twitter"><a target="_blank" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=700');return false;" title="Twitter" href="https://twitter.com/share?url=https://hazelement.github.io/non-transparent-proxy-with-squid-and-docker.html&text=Non-transparent proxy with Squid and Docker&via="><img src="https://hazelement.github.io/theme/images/icons/twitter-s.png"></a></span>
+
+                <span class="gplus"><a target="_blank" title="Google +" href="https://plus.google.com/share?url=https://hazelement.github.io/non-transparent-proxy-with-squid-and-docker.html&hl=fr" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=450,width=650');return false;"><img src="https://hazelement.github.io/theme/images/icons/google-s.png"></a></span>
+
+                <span class="facebook"><a target="_blank" title="Facebook" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;" href="https://www.facebook.com/sharer.php?u=https://hazelement.github.io/non-transparent-proxy-with-squid-and-docker.html&t=Non-transparent proxy with Squid and Docker"><img src="https://hazelement.github.io/theme/images/icons/facebook-s.png"></a></span>
+
+                <a  target="_blank" title="Linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://hazelement.github.io/non-transparent-proxy-with-squid-and-docker.html&title=Non-transparent proxy with Squid and Docker" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=450,width=650');return false;"><img src="https://hazelement.github.io/theme/images/icons/linkedin-s.png"></a>
+
+                <span class="mail"><a href="mailto:?subject=Non-transparent proxy with Squid and Docker&amp;body=Check out this article from Haze. https://hazelement.github.io/non-transparent-proxy-with-squid-and-docker.html" title="Share by Email" target="_blank"><img src="https://hazelement.github.io/theme/images/icons/mail-s.png"></a></span>
+            </div>
+        </div>
+        <div class="comments">
+            <h2>Comments</h2>
+            
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+            var disqus_identifier = "non-transparent-proxy-with-squid-and-docker.html";
+            (function() {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//https-hazelement-github-io.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] ||
+                 document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </article>
+</section>
+  </article>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      Blog powered by <a href="http://getpelican.com/">Pelican</a>, 
+      which takes great advantage of <a href="http://python.org">Python</a>.
+      Theme <a href="https://github.com/parbhat/pelican-blue">Pelican-Blue</a> by <a href="https://parbhatpuri.com/">@parbhat</a>.
+    </p>
+  </footer>
+
+
+</body>
+</html>
