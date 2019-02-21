@@ -70,25 +70,25 @@
 
     <div>
       <b>Tags</b><br>
-                <a href="https://hazelement.github.io/tag/squid.html"><font color="white">squid</font>
+                <a href="https://hazelement.github.io/tag/pelican.html"><font color="white">Pelican</font>
                </a>
-                <a href="https://hazelement.github.io/tag/proxy.html"><font color="white">proxy</font>
+                <a href="https://hazelement.github.io/tag/github.html"><font color="white">github</font>
                </a>
                 <a href="https://hazelement.github.io/tag/http.html"><font color="white">http</font>
                </a>
-                <a href="https://hazelement.github.io/tag/https.html"><font color="white">https</font>
+                <a href="https://hazelement.github.io/tag/python.html"><font color="white">python</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/squid.html"><font color="white">squid</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/django.html"><font color="white">Django</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/rst.html"><font color="white">rst</font>
                </a>
                 <a href="https://hazelement.github.io/tag/ssl.html"><font color="white">ssl</font>
                </a>
-                <a href="https://hazelement.github.io/tag/docker.html"><font color="white">docker</font>
+                <a href="https://hazelement.github.io/tag/proxy.html"><font color="white">proxy</font>
                </a>
-                <a href="https://hazelement.github.io/tag/android.html"><font color="white">Android</font>
-               </a>
-                <a href="https://hazelement.github.io/tag/tcpdump.html"><font color="white">tcpdump</font>
-               </a>
-                <a href="https://hazelement.github.io/tag/networking.html"><font color="white">networking</font>
-               </a>
-                <a href="https://hazelement.github.io/tag/jenkins.html"><font color="white">Jenkins</font>
+                <a href="https://hazelement.github.io/tag/https.html"><font color="white">https</font>
                </a>
     </div>
 
@@ -370,7 +370,7 @@ services:
 
 
 <h1>Client setup</h1>
-<p>On client machine, install the server certificate <code>ca.crt</code> as Trusted Root Certification Authorities, <a href="https://success.outsystems.com/Support/Enterprise_Customers/Installation/Install_a_trusted_root_CA__or_self-signed_certificate">Windows and Linux</a>, <a href="https://pubs.vmware.com/flex-1/index.jsp?topic=%2Fcom.vmware.horizon.flex.admin.doc%2FGUID-9201A917-D476-40EF-B1F4-BBF14AB83D94.html">Mac</a>.</p>
+<p>On client machine, install the server certificate <code>ca.crt</code> as Trusted Root Certification Authorities, refer to <a href="https://success.outsystems.com/Support/Enterprise_Customers/Installation/Install_a_trusted_root_CA__or_self-signed_certificate">Windows and Linux</a>, and <a href="https://pubs.vmware.com/flex-1/index.jsp?topic=%2Fcom.vmware.horizon.flex.admin.doc%2FGUID-9201A917-D476-40EF-B1F4-BBF14AB83D94.html">Mac</a>.</p>
 <p>Configure the proxy setting on your machine to ip <code>localhost</code> and port <code>8888</code>. If the client is on a different machine, you need to open port <code>8888</code> on the server side and configure client to the server's ip and port <code>8888</code>. </p>
 <p>Once everything configured, go to google.ca and check its SSL certificate, the certificate should say its issued by XXXXX instead of Google. But all certificate encryption and signiture should be valid as we have trusted our own CA certificate on the client machine. </p>
         </div>
