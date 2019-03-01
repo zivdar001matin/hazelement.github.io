@@ -175,7 +175,7 @@ Hello Kubernetes!
 </pre></div>
 
 
-<h1>Change deployment replica</h1>
+<h1>Scale deployment</h1>
 <p>To change the number of replicas in the deployment object. use this command:</p>
 <div class="highlight"><pre><span></span>$ kubectl scale deployments/hello-world --replicas<span class="o">=</span><span class="m">8</span>
 deployment.extensions <span class="s2">&quot;hello-world&quot;</span> scaled
@@ -196,6 +196,15 @@ hello-world-5b446dd74b-vrm4r   <span class="m">1</span>/1       Running   <span 
 
 
 <p><code>hello-world</code> is the pod we are running and it's a <code>Deployment</code>, hence <code>deployments/hello-world</code></p>
+<h1>Delete service and deployment</h1>
+<p>To delete the Service, enter this command:</p>
+<div class="highlight"><pre><span></span>kubectl delete services my-service
+</pre></div>
+
+
+<p>To delete the Deployment, the ReplicaSet, and the Pods that are running the Hello World application, enter this command:</p>
+<div class="highlight"><pre><span></span>kubectl delete deployment hello-world
+</pre></div>
         </div>
         <div class="post_list">
             <div class="entry-social">
