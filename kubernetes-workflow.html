@@ -142,8 +142,8 @@
 
         <div class="entry-content blog-post">
             <p>This article summarizes the basic workflow when working with a kubernetes cluster</p>
-<h1>Basic deployment</h1>
-<h2>Run a node</h2>
+<h2>Basic deployment</h2>
+<h3>Run a node</h3>
 <p>To run the node using a an image, run this command </p>
 <div class="highlight"><pre><span></span>kubectl run hello-world --replicas=5 --labels=&quot;run=load-balancer-example&quot; --image=gcr.io/google-samples/node-hello:1.0  --port=8080
 </pre></div>
@@ -156,7 +156,7 @@ kubectl describe deployments hello-world
 </pre></div>
 
 
-<h2>Use a service to expose the deployment</h2>
+<h3>Use a service to expose the deployment</h3>
 <p>Create a service to expose the <code>Deployment</code>:</p>
 <div class="highlight"><pre><span></span>kubectl expose deployment hello-world --type=LoadBalancer --name=my-service
 </pre></div>
@@ -175,7 +175,7 @@ Hello Kubernetes!
 </pre></div>
 
 
-<h1>Scale deployment</h1>
+<h2>Scale deployment</h2>
 <p>To change the number of replicas in the deployment object. use this command:</p>
 <div class="highlight"><pre><span></span>$ kubectl scale deployments/hello-world --replicas<span class="o">=</span><span class="m">8</span>
 deployment.extensions <span class="s2">&quot;hello-world&quot;</span> scaled
@@ -196,7 +196,7 @@ hello-world-5b446dd74b-vrm4r   <span class="m">1</span>/1       Running   <span 
 
 
 <p><code>hello-world</code> is the pod we are running and it's a <code>Deployment</code>, hence <code>deployments/hello-world</code></p>
-<h1>Delete service and deployment</h1>
+<h2>Delete service and deployment</h2>
 <p>To delete the Service, enter this command:</p>
 <div class="highlight"><pre><span></span>kubectl delete services my-service
 </pre></div>
