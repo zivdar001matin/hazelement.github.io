@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en" itemscope itemtype="http://schema.org/Person">
+<head>
+  <meta charset="utf-8">
+  <!-- Site Meta Data -->
+  <title>Kubernetes Workflow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Haze">
+
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- schema.org -->
+  <meta itemprop="name" content="Coding Digests">
+  <meta itemprop="image" content="">
+  <meta itemprop="description" content="">
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+  <!-- Style Meta Data -->
+  <link rel="stylesheet" href="https://hazelement.github.io/theme/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="https://hazelement.github.io/theme/css/pygments.css" type="text/css" />
+
+  <!-- Feed Meta Data -->
+
+  <!-- Twitter Feed -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="">
+  <meta name="twitter:image" content="">
+
+<!-- <meta name="twitter:creator" content="">
+<meta name="twitter:url" content="https://hazelement.github.io/kubernetes-workflow.html">
+<meta name="twitter:title" content="Coding Digests ~ Kubernetes Workflow">
+<meta name="twitter:description" content="<p>Typical workflow for a kubernetes cluster deployment</p>">
+
+<!- Facebook Meta Data -->
+<!-- <meta property="og:title" content="Coding Digests ~ Kubernetes Workflow" />
+<meta property="og:description" content="<p>Typical workflow for a kubernetes cluster deployment</p>" />
+<meta property="og:image" content="" /> --> 
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <aside>
+    <!--<center><a href="https://hazelement.github.io"><img id="avatar" src=""></a></center>-->
+    <h1>Coding Digests</h1>
+      <p>A bit from everyday</p>
+    <br>
+
+
+    <nav class="nav">
+      <ul class="list-bare">
+      
+   
+          <li><a class="nav__link" href="https://hazelement.github.io/">Home</a></li>
+
+         
+            <li><a class="nav__link" href="https://hazelement.github.io/pages/about.html">About</a></li>
+            <li><a class="nav__link" href="https://hazelement.github.io/pages/contact.html">Contact</a></li>
+         
+      </ul>
+    </nav>
+
+    <br>
+    <form id="searchform" action="/search" onsubmit="return (this.elements['q'].value.length > 0)">
+      <input id="searchbox" type="text" name="q" size="12" placeholder="Search">
+    </form>
+    <br>
+
+    <div>
+      <b>Tags</b><br>
+                <a href="https://hazelement.github.io/tag/pelican.html"><font color="white">Pelican</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/github.html"><font color="white">github</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/networking.html"><font color="white">networking</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/kubernetes.html"><font color="white">Kubernetes</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/python.html"><font color="white">python</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/cicd.html"><font color="white">CI/CD</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/django.html"><font color="white">Django</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/rst.html"><font color="white">rst</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/ssh.html"><font color="white">ssh</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/continous-deployment.html"><font color="white">Continous Deployment</font>
+               </a>
+    </div>
+
+    <br>
+    <div>
+      <b>Categories</b><br>
+                <a href="https://hazelement.github.io/category/android.html"><font color="white">Android</font>
+               </a>
+                <a href="https://hazelement.github.io/category/jenkins.html"><font color="white">Jenkins</font>
+               </a>
+                <a href="https://hazelement.github.io/category/kubernetes.html"><font color="white">Kubernetes</font>
+               </a>
+                <a href="https://hazelement.github.io/category/pelican.html"><font color="white">Pelican</font>
+               </a>
+                <a href="https://hazelement.github.io/category/restructuredtext.html"><font color="white">reStructuredText</font>
+               </a>
+    </div>
+
+    <p class="social">
+        <a href="https://github.com/hazelement" target="_blank" ><img src="https://hazelement.github.io/theme/images/icons/github.png"></a>
+    </p>
+
+    <!--
+    <h2>Categories</h2>
+    <ul class="navbar">
+      <li><a href="https://hazelement.github.io/category/android.html">Android</a></li>
+      <li><a href="https://hazelement.github.io/category/jenkins.html">Jenkins</a></li>
+      <li class="active"><a href="https://hazelement.github.io/category/kubernetes.html">Kubernetes</a></li>
+      <li><a href="https://hazelement.github.io/category/pelican.html">Pelican</a></li>
+      <li><a href="https://hazelement.github.io/category/restructuredtext.html">reStructuredText</a></li>
+    </ul> 
+    -->
+  </aside>
+
+  <!-- Content -->
+  <article>
+<section id="content">
+    <article>
+        <h2 class="post_title post_detail"><a href="https://hazelement.github.io/kubernetes-workflow.html" rel="bookmark" title="Permalink to Kubernetes Workflow">Kubernetes Workflow</a></h2>
+
+        <div class="post_list">
+            <span>By </span>
+            <a href="https://hazelement.github.io/author/harry-zheng.html">@Harry Zheng</a>
+            <span> in </span>
+            <span class="post_category"><a href="https://hazelement.github.io/category/kubernetes.html" rel="bookmark" title="Permalink to Kubernetes">[ Kubernetes ]</a></span>
+            <div>
+                <span class="post_date">Fri 01 March 2019</span>
+                <span>Tags : </span>
+                    <span><a href="https://hazelement.github.io/tag/kubernetes.html">#Kubernetes, </a></span>
+                    <span><a href="https://hazelement.github.io/tag/cicd.html">#CI/CD, </a></span>
+            </div>
+        </div>
+
+        <div class="entry-content blog-post">
+            <p>This article summarizes the basic workflow when working with a kubernetes cluster</p>
+<h2>Basic deployment</h2>
+<h3>Run a node</h3>
+<p>To run the node using a an image, run this command </p>
+<div class="highlight"><pre><span></span>kubectl run hello-world --replicas=5 --labels=&quot;run=load-balancer-example&quot; --image=gcr.io/google-samples/node-hello:1.0  --port=8080
+</pre></div>
+
+
+<p>This will create a <code>hello-world</code> <code>Deployment</code> object with 5 replicas. </p>
+<p>Display information about the <code>Deployment</code>. </p>
+<div class="highlight"><pre><span></span>kubectl get deployments hello-world
+kubectl describe deployments hello-world
+</pre></div>
+
+
+<h2>Use a service to expose the deployment</h2>
+<p>Create a service to expose the <code>Deployment</code>:</p>
+<div class="highlight"><pre><span></span>kubectl expose deployment hello-world --type=LoadBalancer --name=my-service
+</pre></div>
+
+
+<p>This will create a <code>LoadBalance</code> service that manages the <code>hello-world</code> replicas and expose port <code>8080</code> to outside world. </p>
+<div class="highlight"><pre><span></span>kubectl get services my-service
+NAME         TYPE        CLUSTER-IP     EXTERNAL-IP      PORT(S)    AGE
+my-service   ClusterIP   10.3.245.137   104.198.205.71   8080/TCP   54s
+</pre></div>
+
+
+<p>Try access the service from outside using. </p>
+<div class="highlight"><pre><span></span>curl http://&lt;external-ip&gt;:&lt;port&gt;
+Hello Kubernetes!
+</pre></div>
+
+
+<h1>Change deployment replica</h1>
+<p>To change the number of replicas in the deployment object. use this command:</p>
+<div class="highlight"><pre><span></span>$ kubectl scale deployments/hello-world --replicas<span class="o">=</span><span class="m">8</span>
+deployment.extensions <span class="s2">&quot;hello-world&quot;</span> scaled
+$ kubectl get deployments
+NAME          DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+hello-world   <span class="m">8</span>         <span class="m">8</span>         <span class="m">8</span>            <span class="m">8</span>           15m
+$ kubectl get pods
+NAME                           READY     STATUS    RESTARTS   AGE
+hello-world-5b446dd74b-72jp4   <span class="m">1</span>/1       Running   <span class="m">0</span>          16m
+hello-world-5b446dd74b-7xh77   <span class="m">1</span>/1       Running   <span class="m">0</span>          9s
+hello-world-5b446dd74b-87hlb   <span class="m">1</span>/1       Running   <span class="m">0</span>          16m
+hello-world-5b446dd74b-c4q4t   <span class="m">1</span>/1       Running   <span class="m">0</span>          9s
+hello-world-5b446dd74b-jzp9d   <span class="m">1</span>/1       Running   <span class="m">0</span>          16m
+hello-world-5b446dd74b-plvrp   <span class="m">1</span>/1       Running   <span class="m">0</span>          9s
+hello-world-5b446dd74b-pxg2w   <span class="m">1</span>/1       Running   <span class="m">0</span>          16m
+hello-world-5b446dd74b-vrm4r   <span class="m">1</span>/1       Running   <span class="m">0</span>          16m
+</pre></div>
+
+
+<p><code>hello-world</code> is the pod we are running and it's a <code>Deployment</code>, hence <code>deployments/hello-world</code></p>
+        </div>
+        <div class="post_list">
+            <div class="entry-social">
+                <span class="twitter"><a target="_blank" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=700');return false;" title="Twitter" href="https://twitter.com/share?url=https://hazelement.github.io/kubernetes-workflow.html&text=Kubernetes Workflow&via="><img src="https://hazelement.github.io/theme/images/icons/twitter-s.png"></a></span>
+
+                <span class="gplus"><a target="_blank" title="Google +" href="https://plus.google.com/share?url=https://hazelement.github.io/kubernetes-workflow.html&hl=fr" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=450,width=650');return false;"><img src="https://hazelement.github.io/theme/images/icons/google-s.png"></a></span>
+
+                <span class="facebook"><a target="_blank" title="Facebook" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;" href="https://www.facebook.com/sharer.php?u=https://hazelement.github.io/kubernetes-workflow.html&t=Kubernetes Workflow"><img src="https://hazelement.github.io/theme/images/icons/facebook-s.png"></a></span>
+
+                <a  target="_blank" title="Linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://hazelement.github.io/kubernetes-workflow.html&title=Kubernetes Workflow" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=450,width=650');return false;"><img src="https://hazelement.github.io/theme/images/icons/linkedin-s.png"></a>
+
+                <span class="mail"><a href="mailto:?subject=Kubernetes Workflow&amp;body=Check out this article from Haze. https://hazelement.github.io/kubernetes-workflow.html" title="Share by Email" target="_blank"><img src="https://hazelement.github.io/theme/images/icons/mail-s.png"></a></span>
+            </div>
+        </div>
+        <div class="comments">
+            <h2>Comments</h2>
+            
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+            var disqus_identifier = "kubernetes-workflow.html";
+            (function() {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//https-hazelement-github-io.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] ||
+                 document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </article>
+</section>
+  </article>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      Blog powered by <a href="http://getpelican.com/">Pelican</a>, 
+      which takes great advantage of <a href="http://python.org">Python</a>.
+      Theme <a href="https://github.com/parbhat/pelican-blue">Pelican-Blue</a> by <a href="https://parbhatpuri.com/">@parbhat</a>.
+    </p>
+  </footer>
+
+
+</body>
+</html>
