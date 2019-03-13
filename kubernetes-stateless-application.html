@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en" itemscope itemtype="http://schema.org/Person">
+<head>
+  <meta charset="utf-8">
+  <!-- Site Meta Data -->
+  <title>Kubernetes Stateless Application</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Haze">
+
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- schema.org -->
+  <meta itemprop="name" content="Coding Digests">
+  <meta itemprop="image" content="">
+  <meta itemprop="description" content="">
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+  <!-- Style Meta Data -->
+  <link rel="stylesheet" href="https://hazelement.github.io/theme/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="https://hazelement.github.io/theme/css/pygments.css" type="text/css" />
+
+  <!-- Feed Meta Data -->
+
+  <!-- Twitter Feed -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="">
+  <meta name="twitter:image" content="">
+
+<!-- <meta name="twitter:creator" content="">
+<meta name="twitter:url" content="https://hazelement.github.io/kubernetes-stateless-application.html">
+<meta name="twitter:title" content="Coding Digests ~ Kubernetes Stateless Application">
+<meta name="twitter:description" content="<p>Deploy a Kubernetes stateless application</p>">
+
+<!- Facebook Meta Data -->
+<!-- <meta property="og:title" content="Coding Digests ~ Kubernetes Stateless Application" />
+<meta property="og:description" content="<p>Deploy a Kubernetes stateless application</p>" />
+<meta property="og:image" content="" /> --> 
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <aside>
+    <!--<center><a href="https://hazelement.github.io"><img id="avatar" src=""></a></center>-->
+    <h1>Coding Digests</h1>
+      <p>A bit from everyday</p>
+    <br>
+
+
+    <nav class="nav">
+      <ul class="list-bare">
+      
+   
+          <li><a class="nav__link" href="https://hazelement.github.io/">Home</a></li>
+
+         
+            <li><a class="nav__link" href="https://hazelement.github.io/pages/about.html">About</a></li>
+            <li><a class="nav__link" href="https://hazelement.github.io/pages/contact.html">Contact</a></li>
+         
+      </ul>
+    </nav>
+
+    <br>
+    <form id="searchform" action="/search" onsubmit="return (this.elements['q'].value.length > 0)">
+      <input id="searchbox" type="text" name="q" size="12" placeholder="Search">
+    </form>
+    <br>
+
+    <div>
+      <b>Tags</b><br>
+                <a href="https://hazelement.github.io/tag/pelican.html"><font color="white">Pelican</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/github.html"><font color="white">github</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/networking.html"><font color="white">networking</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/kubernetes.html"><font color="white">Kubernetes</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/python.html"><font color="white">python</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/cicd.html"><font color="white">CI/CD</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/django.html"><font color="white">Django</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/rst.html"><font color="white">rst</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/ssh.html"><font color="white">ssh</font>
+               </a>
+                <a href="https://hazelement.github.io/tag/continous-deployment.html"><font color="white">Continous Deployment</font>
+               </a>
+    </div>
+
+    <br>
+    <div>
+      <b>Categories</b><br>
+                <a href="https://hazelement.github.io/category/android.html"><font color="white">Android</font>
+               </a>
+                <a href="https://hazelement.github.io/category/jenkins.html"><font color="white">Jenkins</font>
+               </a>
+                <a href="https://hazelement.github.io/category/kubernetes.html"><font color="white">Kubernetes</font>
+               </a>
+                <a href="https://hazelement.github.io/category/pelican.html"><font color="white">Pelican</font>
+               </a>
+                <a href="https://hazelement.github.io/category/restructuredtext.html"><font color="white">reStructuredText</font>
+               </a>
+    </div>
+
+    <p class="social">
+        <a href="https://github.com/hazelement" target="_blank" ><img src="https://hazelement.github.io/theme/images/icons/github.png"></a>
+    </p>
+
+    <!--
+    <h2>Categories</h2>
+    <ul class="navbar">
+      <li><a href="https://hazelement.github.io/category/android.html">Android</a></li>
+      <li><a href="https://hazelement.github.io/category/jenkins.html">Jenkins</a></li>
+      <li class="active"><a href="https://hazelement.github.io/category/kubernetes.html">Kubernetes</a></li>
+      <li><a href="https://hazelement.github.io/category/pelican.html">Pelican</a></li>
+      <li><a href="https://hazelement.github.io/category/restructuredtext.html">reStructuredText</a></li>
+    </ul> 
+    -->
+  </aside>
+
+  <!-- Content -->
+  <article>
+<section id="content">
+    <article>
+        <h2 class="post_title post_detail"><a href="https://hazelement.github.io/kubernetes-stateless-application.html" rel="bookmark" title="Permalink to Kubernetes Stateless Application">Kubernetes Stateless Application</a></h2>
+
+        <div class="post_list">
+            <span>By </span>
+            <a href="https://hazelement.github.io/author/harry-zheng.html">@Harry Zheng</a>
+            <span> in </span>
+            <span class="post_category"><a href="https://hazelement.github.io/category/kubernetes.html" rel="bookmark" title="Permalink to Kubernetes">[ Kubernetes ]</a></span>
+            <div>
+                <span class="post_date">Wed 13 March 2019</span>
+                <span>Tags : </span>
+                    <span><a href="https://hazelement.github.io/tag/kubernetes.html">#Kubernetes, </a></span>
+                    <span><a href="https://hazelement.github.io/tag/cicd.html">#CI/CD, </a></span>
+            </div>
+        </div>
+
+        <div class="entry-content blog-post">
+            <p>This article is a summary of the tutorial at <code>https://kubernetes.io/docs/tutorials/stateless-application/guestbook/</code>. It utilizes manifest file to create deployments and services. </p>
+<p>A stateless application doesn't save its data to hard drive, thus every time the application is restarted. It returns back to its original state. </p>
+<h2>Objective</h2>
+<p>This tutorial covers basic steps to setup a guest book in stateless manner. It's a guest book application with redis backend.</p>
+<ol>
+<li>Start up redis master. </li>
+<li>Start up redis slave.</li>
+<li>Start up guest book front end.</li>
+<li>Expose and view the Frontend service. </li>
+<li>Clean up.</li>
+</ol>
+<h2>redis backend service</h2>
+<h3>Redis master</h3>
+<p>Create a redis master service has 2 steps.</p>
+<ol>
+<li>Create redis master deployment</li>
+<li>Create redis master service based on the deployment in step 1. </li>
+</ol>
+<h4>Create redis master deployment</h4>
+<p>To create a redis master deployment, use the following manifest file, <code>redis-master-deployment.yaml</code>. </p>
+<div class="highlight"><pre><span></span><span class="n">apiVersion</span><span class="o">:</span> <span class="n">apps</span><span class="sr">/v1 # for versions before 1.9.0 use apps/</span><span class="n">v1beta2</span>
+<span class="n">kind</span><span class="o">:</span> <span class="n">Deployment</span>
+<span class="n">metadata</span><span class="o">:</span>
+  <span class="n">name</span><span class="o">:</span> <span class="n">redis</span><span class="o">-</span><span class="n">master</span>
+  <span class="n">labels</span><span class="o">:</span>
+    <span class="n">app</span><span class="o">:</span> <span class="n">redis</span>
+<span class="n">spec</span><span class="o">:</span>
+  <span class="n">selector</span><span class="o">:</span>
+    <span class="n">matchLabels</span><span class="o">:</span>
+      <span class="n">app</span><span class="o">:</span> <span class="n">redis</span>
+      <span class="n">role</span><span class="o">:</span> <span class="n">master</span>
+      <span class="n">tier</span><span class="o">:</span> <span class="n">backend</span>
+  <span class="n">replicas</span><span class="o">:</span> <span class="mi">1</span>
+  <span class="n">template</span><span class="o">:</span>
+    <span class="n">metadata</span><span class="o">:</span>
+      <span class="n">labels</span><span class="o">:</span>
+        <span class="n">app</span><span class="o">:</span> <span class="n">redis</span>
+        <span class="n">role</span><span class="o">:</span> <span class="n">master</span>
+        <span class="n">tier</span><span class="o">:</span> <span class="n">backend</span>
+    <span class="n">spec</span><span class="o">:</span>
+      <span class="n">containers</span><span class="o">:</span>
+      <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">master</span>
+        <span class="n">image</span><span class="o">:</span> <span class="n">k8s</span><span class="o">.</span><span class="na">gcr</span><span class="o">.</span><span class="na">io</span><span class="o">/</span><span class="n">redis</span><span class="o">:</span><span class="n">e2e</span>  <span class="err">#</span> <span class="n">or</span> <span class="n">just</span> <span class="n">image</span><span class="o">:</span> <span class="n">redis</span>
+        <span class="n">resources</span><span class="o">:</span>
+          <span class="n">requests</span><span class="o">:</span>
+            <span class="n">cpu</span><span class="o">:</span> <span class="mi">100</span><span class="n">m</span>
+            <span class="n">memory</span><span class="o">:</span> <span class="mi">100</span><span class="n">Mi</span>
+        <span class="n">ports</span><span class="o">:</span>
+        <span class="o">-</span> <span class="n">containerPort</span><span class="o">:</span> <span class="mi">6379</span>
+</pre></div>
+
+
+<p>In terminal, issue this command <code>kubectl apply -f redis-master-deployment.yaml</code>. </p>
+<p>Ensure the deployment is running. </p>
+<div class="highlight"><pre><span></span>$ kubectl get pods
+NAME                            READY     STATUS              RESTARTS   AGE
+redis-master-55db5f7567-wmrjk   <span class="m">0</span>/1       ContainerCreating   <span class="m">0</span>          8s
+</pre></div>
+
+
+<p>To view the logs of the master pod:</p>
+<div class="highlight"><pre><span></span>$ kubectl logs -f redis-master-55db5f7567-wmrjk
+                _._
+           _.-<span class="sb">``</span>__ <span class="s1">&#39;&#39;</span>-._
+      _.-<span class="sb">``</span>    <span class="sb">`</span>.  <span class="sb">`</span>_.  <span class="s1">&#39;&#39;</span>-._           Redis <span class="m">2</span>.8.19 <span class="o">(</span><span class="m">00000000</span>/0<span class="o">)</span> <span class="m">64</span> bit
+  .-<span class="sb">``</span> .-<span class="sb">```</span>.  <span class="sb">```</span><span class="se">\/</span>    _.,_ <span class="s1">&#39;&#39;</span>-._
+ <span class="o">(</span>    <span class="s1">&#39;      ,       .-`  | `,    )     Running in stand alone mode</span>
+<span class="s1"> |`-._`-...-` __...-.``-._|&#39;</span><span class="sb">`</span> _.-<span class="s1">&#39;|     Port: 6379</span>
+<span class="s1"> |    `-._   `._    /     _.-&#39;</span>    <span class="p">|</span>     PID: <span class="m">1</span>
+  <span class="sb">`</span>-._    <span class="sb">`</span>-._  <span class="sb">`</span>-./  _.-<span class="s1">&#39;    _.-&#39;</span>
+ <span class="p">|</span><span class="sb">`</span>-._<span class="sb">`</span>-._    <span class="sb">`</span>-.__.-<span class="s1">&#39;    _.-&#39;</span>_.-<span class="s1">&#39;|</span>
+<span class="s1"> |    `-._`-._        _.-&#39;</span>_.-<span class="s1">&#39;    |           http://redis.io</span>
+<span class="s1">  `-._    `-._`-.__.-&#39;</span>_.-<span class="s1">&#39;    _.-&#39;</span>
+ <span class="p">|</span><span class="sb">`</span>-._<span class="sb">`</span>-._    <span class="sb">`</span>-.__.-<span class="s1">&#39;    _.-&#39;</span>_.-<span class="s1">&#39;|</span>
+<span class="s1"> |    `-._`-._        _.-&#39;</span>_.-<span class="s1">&#39;    |</span>
+<span class="s1">  `-._    `-._`-.__.-&#39;</span>_.-<span class="s1">&#39;    _.-&#39;</span>
+      <span class="sb">`</span>-._    <span class="sb">`</span>-.__.-<span class="s1">&#39;    _.-&#39;</span>
+          <span class="sb">`</span>-._        _.-<span class="s1">&#39;</span>
+<span class="s1">              `-.__.-&#39;</span>
+
+<span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="m">13</span> Mar <span class="m">20</span>:29:20.725 <span class="c1"># Server started, Redis version 2.8.19</span>
+<span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="m">13</span> Mar <span class="m">20</span>:29:20.726 <span class="c1"># WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command &#39;echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled&#39; as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.</span>
+<span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="m">13</span> Mar <span class="m">20</span>:29:20.726 <span class="c1"># WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.</span>
+<span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="m">13</span> Mar <span class="m">20</span>:29:20.726 * The server is now ready to accept connections on port <span class="m">6379</span>
+</pre></div>
+
+
+<h4>Create redis master service</h4>
+<p>For other applications to communicate with redis master, we need to apply a <code>Service</code> to proxy the traffic to the redis master pod. Use the following manifest file, <code>redis-master-service.yaml</code>, to define a <code>Service</code>. </p>
+<div class="highlight"><pre><span></span><span class="n">apiVersion</span><span class="o">:</span> <span class="n">v1</span>
+<span class="n">kind</span><span class="o">:</span> <span class="n">Service</span>
+<span class="n">metadata</span><span class="o">:</span>
+  <span class="n">name</span><span class="o">:</span> <span class="n">redis</span><span class="o">-</span><span class="n">master</span>
+  <span class="n">labels</span><span class="o">:</span>
+    <span class="n">app</span><span class="o">:</span> <span class="n">redis</span>
+    <span class="n">role</span><span class="o">:</span> <span class="n">master</span>
+    <span class="n">tier</span><span class="o">:</span> <span class="n">backend</span>
+<span class="n">spec</span><span class="o">:</span>
+  <span class="n">ports</span><span class="o">:</span>
+  <span class="o">-</span> <span class="n">port</span><span class="o">:</span> <span class="mi">6379</span>
+    <span class="n">targetPort</span><span class="o">:</span> <span class="mi">6379</span>
+  <span class="n">selector</span><span class="o">:</span>
+    <span class="n">app</span><span class="o">:</span> <span class="n">redis</span>
+    <span class="n">role</span><span class="o">:</span> <span class="n">master</span>
+    <span class="n">tier</span><span class="o">:</span> <span class="n">backend</span>
+</pre></div>
+
+
+<p>Start the service using the <code>apply</code> method. </p>
+<div class="highlight"><pre><span></span>kubectl apply -f redis-master-service.yaml
+</pre></div>
+
+
+<p>Make sure the service is running:</p>
+<div class="highlight"><pre><span></span>$ kubectl get service
+NAME           TYPE        CLUSTER-IP       EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>    AGE
+kubernetes     ClusterIP   <span class="m">10</span>.96.0.1        &lt;none&gt;        <span class="m">443</span>/TCP    19d
+redis-master   ClusterIP   <span class="m">10</span>.110.130.106   &lt;none&gt;        <span class="m">6379</span>/TCP   5s
+</pre></div>
+
+
+<h4>Create redis slave deployment</h4>
+<p>To create a redis slave deployment, use the following manifest file, <code>redis-slave-deployment.yaml</code>. </p>
+<div class="highlight"><pre><span></span><span class="n">apiVersion</span><span class="o">:</span> <span class="n">apps</span><span class="sr">/v1 # for versions before 1.9.0 use apps/</span><span class="n">v1beta2</span>
+<span class="n">kind</span><span class="o">:</span> <span class="n">Deployment</span>
+<span class="n">metadata</span><span class="o">:</span>
+  <span class="n">name</span><span class="o">:</span> <span class="n">redis</span><span class="o">-</span><span class="n">slave</span>
+  <span class="n">labels</span><span class="o">:</span>
+    <span class="n">app</span><span class="o">:</span> <span class="n">redis</span>
+<span class="n">spec</span><span class="o">:</span>
+  <span class="n">selector</span><span class="o">:</span>
+    <span class="n">matchLabels</span><span class="o">:</span>
+      <span class="n">app</span><span class="o">:</span> <span class="n">redis</span>
+      <span class="n">role</span><span class="o">:</span> <span class="n">slave</span>
+      <span class="n">tier</span><span class="o">:</span> <span class="n">backend</span>
+  <span class="n">replicas</span><span class="o">:</span> <span class="mi">2</span>
+  <span class="n">template</span><span class="o">:</span>
+    <span class="n">metadata</span><span class="o">:</span>
+      <span class="n">labels</span><span class="o">:</span>
+        <span class="n">app</span><span class="o">:</span> <span class="n">redis</span>
+        <span class="n">role</span><span class="o">:</span> <span class="n">slave</span>
+        <span class="n">tier</span><span class="o">:</span> <span class="n">backend</span>
+    <span class="n">spec</span><span class="o">:</span>
+      <span class="n">containers</span><span class="o">:</span>
+      <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">slave</span>
+        <span class="n">image</span><span class="o">:</span> <span class="n">gcr</span><span class="o">.</span><span class="na">io</span><span class="sr">/google_samples/g</span><span class="n">b</span><span class="o">-</span><span class="n">redisslave</span><span class="o">:</span><span class="n">v1</span>
+        <span class="n">resources</span><span class="o">:</span>
+          <span class="n">requests</span><span class="o">:</span>
+            <span class="n">cpu</span><span class="o">:</span> <span class="mi">100</span><span class="n">m</span>
+            <span class="n">memory</span><span class="o">:</span> <span class="mi">100</span><span class="n">Mi</span>
+        <span class="n">env</span><span class="o">:</span>
+        <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">GET_HOSTS_FROM</span>
+          <span class="n">value</span><span class="o">:</span> <span class="n">dns</span>
+          <span class="err">#</span> <span class="n">Using</span> <span class="err">`</span><span class="n">GET_HOSTS_FROM</span><span class="o">=</span><span class="n">dns</span><span class="err">`</span> <span class="n">requires</span> <span class="n">your</span> <span class="n">cluster</span> <span class="n">to</span>
+          <span class="err">#</span> <span class="n">provide</span> <span class="n">a</span> <span class="n">dns</span> <span class="n">service</span><span class="o">.</span> <span class="n">As</span> <span class="n">of</span> <span class="n">Kubernetes</span> <span class="mf">1.3</span><span class="o">,</span> <span class="n">DNS</span> <span class="k">is</span> <span class="n">a</span> <span class="n">built</span><span class="o">-</span><span class="k">in</span>
+          <span class="err">#</span> <span class="n">service</span> <span class="n">launched</span> <span class="n">automatically</span><span class="o">.</span> <span class="n">However</span><span class="o">,</span> <span class="k">if</span> <span class="n">the</span> <span class="n">cluster</span> <span class="n">you</span> <span class="n">are</span> <span class="n">using</span>
+          <span class="err">#</span> <span class="n">does</span> <span class="n">not</span> <span class="n">have</span> <span class="n">a</span> <span class="n">built</span><span class="o">-</span><span class="k">in</span> <span class="n">DNS</span> <span class="n">service</span><span class="o">,</span> <span class="n">you</span> <span class="n">can</span> <span class="n">instead</span>
+          <span class="err">#</span> <span class="n">access</span> <span class="n">an</span> <span class="n">environment</span> <span class="n">variable</span> <span class="n">to</span> <span class="n">find</span> <span class="n">the</span> <span class="n">master</span>
+          <span class="err">#</span> <span class="n">service</span><span class="s1">&#39;s host. To do so, comment out the &#39;</span><span class="n">value</span><span class="o">:</span> <span class="n">dns</span><span class="err">&#39;</span> <span class="n">line</span> <span class="n">above</span><span class="o">,</span> <span class="n">and</span>
+          <span class="err">#</span> <span class="n">uncomment</span> <span class="n">the</span> <span class="n">line</span> <span class="n">below</span><span class="o">:</span>
+          <span class="err">#</span> <span class="n">value</span><span class="o">:</span> <span class="n">env</span>
+        <span class="n">ports</span><span class="o">:</span>
+        <span class="o">-</span> <span class="n">containerPort</span><span class="o">:</span> <span class="mi">6379</span>
+</pre></div>
+
+
+<p>Start up the deployment,</p>
+<div class="highlight"><pre><span></span>kubectl apply -f redis-slave-deployment.yaml
+</pre></div>
+
+
+<p>Check running pods, </p>
+<div class="highlight"><pre><span></span>$ kubectl get pods
+NAME                            READY     STATUS              RESTARTS   AGE
+redis-master-55db5f7567-wmrjk   <span class="m">1</span>/1       Running             <span class="m">0</span>          23m
+redis-slave-584c66c5b5-ghrsz    <span class="m">0</span>/1       ContainerCreating   <span class="m">0</span>          5s
+redis-slave-584c66c5b5-tpd4l    <span class="m">0</span>/1       ContainerCreating   <span class="m">0</span>          5s
+</pre></div>
+
+
+<h4>Create redis slave service</h4>
+<p>To open up slave deployment for other applications to communicate, we use a <code>Service</code> like the master deployment, <code>redis-slave-service.yaml</code>. </p>
+<div class="highlight"><pre><span></span><span class="n">apiVersion</span><span class="o">:</span> <span class="n">v1</span>
+<span class="n">kind</span><span class="o">:</span> <span class="n">Service</span>
+<span class="n">metadata</span><span class="o">:</span>
+  <span class="n">name</span><span class="o">:</span> <span class="n">redis</span><span class="o">-</span><span class="n">slave</span>
+  <span class="n">labels</span><span class="o">:</span>
+    <span class="n">app</span><span class="o">:</span> <span class="n">redis</span>
+    <span class="n">role</span><span class="o">:</span> <span class="n">slave</span>
+    <span class="n">tier</span><span class="o">:</span> <span class="n">backend</span>
+<span class="n">spec</span><span class="o">:</span>
+  <span class="n">ports</span><span class="o">:</span>
+  <span class="o">-</span> <span class="n">port</span><span class="o">:</span> <span class="mi">6379</span>
+  <span class="n">selector</span><span class="o">:</span>
+    <span class="n">app</span><span class="o">:</span> <span class="n">redis</span>
+    <span class="n">role</span><span class="o">:</span> <span class="n">slave</span>
+    <span class="n">tier</span><span class="o">:</span> <span class="n">backend</span>
+</pre></div>
+
+
+<p>Start the service, <code>kubectl apply -f redis-slave-service.yaml</code>. </p>
+<p>Check running services,</p>
+<div class="highlight"><pre><span></span>$ kubectl get services
+NAME           TYPE        CLUSTER-IP       EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>    AGE
+kubernetes     ClusterIP   <span class="m">10</span>.96.0.1        &lt;none&gt;        <span class="m">443</span>/TCP    19d
+redis-master   ClusterIP   <span class="m">10</span>.110.130.106   &lt;none&gt;        <span class="m">6379</span>/TCP   3m
+redis-slave    ClusterIP   <span class="m">10</span>.108.183.147   &lt;none&gt;        <span class="m">6379</span>/TCP   7s
+</pre></div>
+
+
+<h2>PHP guestbook frontend</h2>
+<h3>Create frontend deployment</h3>
+<p>To create a deployment, use the manifest file, <code>frontend-deployment.yaml</code>. </p>
+<div class="highlight"><pre><span></span><span class="n">apiVersion</span><span class="o">:</span> <span class="n">apps</span><span class="sr">/v1 # for versions before 1.9.0 use apps/</span><span class="n">v1beta2</span>
+<span class="n">kind</span><span class="o">:</span> <span class="n">Deployment</span>
+<span class="n">metadata</span><span class="o">:</span>
+  <span class="n">name</span><span class="o">:</span> <span class="n">frontend</span>
+  <span class="n">labels</span><span class="o">:</span>
+    <span class="n">app</span><span class="o">:</span> <span class="n">guestbook</span>
+<span class="n">spec</span><span class="o">:</span>
+  <span class="n">selector</span><span class="o">:</span>
+    <span class="n">matchLabels</span><span class="o">:</span>
+      <span class="n">app</span><span class="o">:</span> <span class="n">guestbook</span>
+      <span class="n">tier</span><span class="o">:</span> <span class="n">frontend</span>
+  <span class="n">replicas</span><span class="o">:</span> <span class="mi">3</span>
+  <span class="n">template</span><span class="o">:</span>
+    <span class="n">metadata</span><span class="o">:</span>
+      <span class="n">labels</span><span class="o">:</span>
+        <span class="n">app</span><span class="o">:</span> <span class="n">guestbook</span>
+        <span class="n">tier</span><span class="o">:</span> <span class="n">frontend</span>
+    <span class="n">spec</span><span class="o">:</span>
+      <span class="n">containers</span><span class="o">:</span>
+      <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">php</span><span class="o">-</span><span class="n">redis</span>
+        <span class="n">image</span><span class="o">:</span> <span class="n">gcr</span><span class="o">.</span><span class="na">io</span><span class="sr">/google-samples/g</span><span class="n">b</span><span class="o">-</span><span class="n">frontend</span><span class="o">:</span><span class="n">v4</span>
+        <span class="n">resources</span><span class="o">:</span>
+          <span class="n">requests</span><span class="o">:</span>
+            <span class="n">cpu</span><span class="o">:</span> <span class="mi">100</span><span class="n">m</span>
+            <span class="n">memory</span><span class="o">:</span> <span class="mi">100</span><span class="n">Mi</span>
+        <span class="n">env</span><span class="o">:</span>
+        <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">GET_HOSTS_FROM</span>
+          <span class="n">value</span><span class="o">:</span> <span class="n">dns</span>
+          <span class="err">#</span> <span class="n">Using</span> <span class="err">`</span><span class="n">GET_HOSTS_FROM</span><span class="o">=</span><span class="n">dns</span><span class="err">`</span> <span class="n">requires</span> <span class="n">your</span> <span class="n">cluster</span> <span class="n">to</span>
+          <span class="err">#</span> <span class="n">provide</span> <span class="n">a</span> <span class="n">dns</span> <span class="n">service</span><span class="o">.</span> <span class="n">As</span> <span class="n">of</span> <span class="n">Kubernetes</span> <span class="mf">1.3</span><span class="o">,</span> <span class="n">DNS</span> <span class="k">is</span> <span class="n">a</span> <span class="n">built</span><span class="o">-</span><span class="k">in</span>
+          <span class="err">#</span> <span class="n">service</span> <span class="n">launched</span> <span class="n">automatically</span><span class="o">.</span> <span class="n">However</span><span class="o">,</span> <span class="k">if</span> <span class="n">the</span> <span class="n">cluster</span> <span class="n">you</span> <span class="n">are</span> <span class="n">using</span>
+          <span class="err">#</span> <span class="n">does</span> <span class="n">not</span> <span class="n">have</span> <span class="n">a</span> <span class="n">built</span><span class="o">-</span><span class="k">in</span> <span class="n">DNS</span> <span class="n">service</span><span class="o">,</span> <span class="n">you</span> <span class="n">can</span> <span class="n">instead</span>
+          <span class="err">#</span> <span class="n">access</span> <span class="n">an</span> <span class="n">environment</span> <span class="n">variable</span> <span class="n">to</span> <span class="n">find</span> <span class="n">the</span> <span class="n">master</span>
+          <span class="err">#</span> <span class="n">service</span><span class="s1">&#39;s host. To do so, comment out the &#39;</span><span class="n">value</span><span class="o">:</span> <span class="n">dns</span><span class="err">&#39;</span> <span class="n">line</span> <span class="n">above</span><span class="o">,</span> <span class="n">and</span>
+          <span class="err">#</span> <span class="n">uncomment</span> <span class="n">the</span> <span class="n">line</span> <span class="n">below</span><span class="o">:</span>
+          <span class="err">#</span> <span class="n">value</span><span class="o">:</span> <span class="n">env</span>
+        <span class="n">ports</span><span class="o">:</span>
+        <span class="o">-</span> <span class="n">containerPort</span><span class="o">:</span> <span class="mi">80</span>
+</pre></div>
+
+
+<p>Start the deployment, </p>
+<div class="highlight"><pre><span></span>kubectl apply -f frontend-deployment.yaml
+</pre></div>
+
+
+<p>Quest the list of pods to verify the frontend replicas are running:</p>
+<div class="highlight"><pre><span></span>$ kubectl get pods -l <span class="nv">app</span><span class="o">=</span>guestbook -l <span class="nv">tier</span><span class="o">=</span>frontend
+NAME                        READY     STATUS              RESTARTS   AGE
+frontend-5c548f4769-bsjjv   <span class="m">0</span>/1       ContainerCreating   <span class="m">0</span>          9s
+frontend-5c548f4769-mjq4h   <span class="m">0</span>/1       ContainerCreating   <span class="m">0</span>          9s
+frontend-5c548f4769-sljfb   <span class="m">0</span>/1       ContainerCreating   <span class="m">0</span>          9s
+</pre></div>
+
+
+<h3>Create frontend service</h3>
+<p>The <code>redis-slave</code> and <code>redis-master</code> services are only accessible within the container cluster because default type for a service is CluterIP. <code>ClusterIP</code> provides a single IP address for the set of Pods the Service is pointing to. This IP address is accessible only within the cluster.</p>
+<p>To allow guests to be able to access the guestbook, we need to configure the frontend service to the external internet. This is achived through <code>type: NodePort</code> or <code>type: LoadBalancer</code>. We use <code>LoadBalancer</code> here as an example. <code>frontend-service.yaml</code>. </p>
+<div class="highlight"><pre><span></span><span class="n">apiVersion</span><span class="o">:</span> <span class="n">v1</span>
+<span class="n">kind</span><span class="o">:</span> <span class="n">Service</span>
+<span class="n">metadata</span><span class="o">:</span>
+  <span class="n">name</span><span class="o">:</span> <span class="n">frontend</span>
+  <span class="n">labels</span><span class="o">:</span>
+    <span class="n">app</span><span class="o">:</span> <span class="n">guestbook</span>
+    <span class="n">tier</span><span class="o">:</span> <span class="n">frontend</span>
+<span class="n">spec</span><span class="o">:</span>
+  <span class="err">#</span> <span class="n">comment</span> <span class="n">or</span> <span class="n">delete</span> <span class="n">the</span> <span class="n">following</span> <span class="n">line</span> <span class="k">if</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">use</span> <span class="n">a</span> <span class="n">LoadBalancer</span>
+  <span class="err">#</span> <span class="n">type</span><span class="o">:</span> <span class="n">NodePort</span> 
+  <span class="err">#</span> <span class="k">if</span> <span class="n">your</span> <span class="n">cluster</span> <span class="n">supports</span> <span class="n">it</span><span class="o">,</span> <span class="n">uncomment</span> <span class="n">the</span> <span class="n">following</span> <span class="n">to</span> <span class="n">automatically</span> <span class="n">create</span>
+  <span class="err">#</span> <span class="n">an</span> <span class="n">external</span> <span class="n">load</span><span class="o">-</span><span class="n">balanced</span> <span class="n">IP</span> <span class="k">for</span> <span class="n">the</span> <span class="n">frontend</span> <span class="n">service</span><span class="o">.</span>
+  <span class="n">type</span><span class="o">:</span> <span class="n">LoadBalancer</span>
+  <span class="n">ports</span><span class="o">:</span>
+  <span class="o">-</span> <span class="n">port</span><span class="o">:</span> <span class="mi">80</span>
+  <span class="n">selector</span><span class="o">:</span>
+    <span class="n">app</span><span class="o">:</span> <span class="n">guestbook</span>
+    <span class="n">tier</span><span class="o">:</span> <span class="n">frontend</span>
+</pre></div>
+
+
+<p>Start a the service, </p>
+<div class="highlight"><pre><span></span>kubectl apply -f frontend-service.yaml
+</pre></div>
+
+
+<p>List running services to verify, </p>
+<div class="highlight"><pre><span></span>$ kubectl get services
+NAME           TYPE        CLUSTER-IP       EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>        AGE
+frontend       LoadBalancer    <span class="m">10</span>.100.241.58    localhost        <span class="m">80</span>:31546/TCP   32s
+kubernetes     ClusterIP   <span class="m">10</span>.96.0.1        &lt;none&gt;        <span class="m">443</span>/TCP        19d
+redis-master   ClusterIP   <span class="m">10</span>.110.130.106   &lt;none&gt;        <span class="m">6379</span>/TCP       6m
+redis-slave    ClusterIP   <span class="m">10</span>.108.183.147   &lt;none&gt;        <span class="m">6379</span>/TCP       3m
+</pre></div>
+
+
+<h2>View the front end</h2>
+<p>To view the frontend, go to <code>localhost:80</code> on the browser and the frontend website should show up. </p>
+<h2>Scale the web frontend</h2>
+<p>Run the following command to scale up the number of frontend Pods,</p>
+<div class="highlight"><pre><span></span>kubectl scale deployment frontend --replicas=5
+</pre></div>
+
+
+<p>Query the list of Pods to verify the number of frontend Pods running, </p>
+<div class="highlight"><pre><span></span>$ kubectl get pods
+NAME                            READY     STATUS    RESTARTS   AGE
+frontend-3823415956-70qj5       <span class="m">1</span>/1       Running   <span class="m">0</span>          5s
+frontend-3823415956-dsvc5       <span class="m">1</span>/1       Running   <span class="m">0</span>          54m
+frontend-3823415956-k22zn       <span class="m">1</span>/1       Running   <span class="m">0</span>          54m
+frontend-3823415956-w9gbt       <span class="m">1</span>/1       Running   <span class="m">0</span>          54m
+frontend-3823415956-x2pld       <span class="m">1</span>/1       Running   <span class="m">0</span>          5s
+redis-master-1068406935-3lswp   <span class="m">1</span>/1       Running   <span class="m">0</span>          56m
+redis-slave-2005841000-fpvqc    <span class="m">1</span>/1       Running   <span class="m">0</span>          55m
+redis-slave-2005841000-phfv9    <span class="m">1</span>/1       Running   <span class="m">0</span>          55m
+</pre></div>
+
+
+<p>To scale down the number of frontend Pods:</p>
+<div class="highlight"><pre><span></span>kubectl scale deployment frontend --replicas=2
+</pre></div>
+
+
+<p>To verify,</p>
+<div class="highlight"><pre><span></span>$ kubectl get pods
+NAME                            READY     STATUS    RESTARTS   AGE
+frontend-3823415956-k22zn       <span class="m">1</span>/1       Running   <span class="m">0</span>          1h
+frontend-3823415956-w9gbt       <span class="m">1</span>/1       Running   <span class="m">0</span>          1h
+redis-master-1068406935-3lswp   <span class="m">1</span>/1       Running   <span class="m">0</span>          1h
+redis-slave-2005841000-fpvqc    <span class="m">1</span>/1       Running   <span class="m">0</span>          1h
+redis-slave-2005841000-phfv9    <span class="m">1</span>/1       Running   <span class="m">0</span>          1h
+</pre></div>
+
+
+<h2>Clean up</h2>
+<p>Run the following commands to delete all Pods, Deployments and Services, </p>
+<div class="highlight"><pre><span></span>$ kubectl delete deployment -l <span class="nv">app</span><span class="o">=</span>redis
+deployment.extensions <span class="s2">&quot;redis-master&quot;</span> deleted
+deployment.extensions <span class="s2">&quot;redis-slave&quot;</span> deleted
+$ kubectl delete service -l <span class="nv">app</span><span class="o">=</span>redis
+service <span class="s2">&quot;redis-master&quot;</span> deleted
+service <span class="s2">&quot;redis-slave&quot;</span> deleted
+$ kubectl delete deployment -l <span class="nv">app</span><span class="o">=</span>guestbook
+deployment.extensions <span class="s2">&quot;frontend&quot;</span> deleted
+$ kubectl delete service -l <span class="nv">app</span><span class="o">=</span>guestbook
+service <span class="s2">&quot;frontend&quot;</span> deleted
+</pre></div>
+
+
+<p>Query the list of Pods to verify all pods are terminated,</p>
+<div class="highlight"><pre><span></span>$ kubectl get pods
+No resources found.
+</pre></div>
+        </div>
+        <div class="post_list">
+            <div class="entry-social">
+                <span class="twitter"><a target="_blank" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=700');return false;" title="Twitter" href="https://twitter.com/share?url=https://hazelement.github.io/kubernetes-stateless-application.html&text=Kubernetes Stateless Application&via="><img src="https://hazelement.github.io/theme/images/icons/twitter-s.png"></a></span>
+
+                <span class="gplus"><a target="_blank" title="Google +" href="https://plus.google.com/share?url=https://hazelement.github.io/kubernetes-stateless-application.html&hl=fr" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=450,width=650');return false;"><img src="https://hazelement.github.io/theme/images/icons/google-s.png"></a></span>
+
+                <span class="facebook"><a target="_blank" title="Facebook" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;" href="https://www.facebook.com/sharer.php?u=https://hazelement.github.io/kubernetes-stateless-application.html&t=Kubernetes Stateless Application"><img src="https://hazelement.github.io/theme/images/icons/facebook-s.png"></a></span>
+
+                <a  target="_blank" title="Linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://hazelement.github.io/kubernetes-stateless-application.html&title=Kubernetes Stateless Application" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=450,width=650');return false;"><img src="https://hazelement.github.io/theme/images/icons/linkedin-s.png"></a>
+
+                <span class="mail"><a href="mailto:?subject=Kubernetes Stateless Application&amp;body=Check out this article from Haze. https://hazelement.github.io/kubernetes-stateless-application.html" title="Share by Email" target="_blank"><img src="https://hazelement.github.io/theme/images/icons/mail-s.png"></a></span>
+            </div>
+        </div>
+        <div class="comments">
+            <h2>Comments</h2>
+            
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+            var disqus_identifier = "kubernetes-stateless-application.html";
+            (function() {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//https-hazelement-github-io.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] ||
+                 document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </article>
+</section>
+  </article>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      Blog powered by <a href="http://getpelican.com/">Pelican</a>, 
+      which takes great advantage of <a href="http://python.org">Python</a>.
+      Theme <a href="https://github.com/parbhat/pelican-blue">Pelican-Blue</a> by <a href="https://parbhatpuri.com/">@parbhat</a>.
+    </p>
+  </footer>
+
+
+</body>
+</html>
