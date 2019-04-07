@@ -350,25 +350,10 @@ wordpress   LoadBalancer   <span class="m">10</span>.110.116.160   localhost    
 <p>Check <code>localhost</code> on the browser and a WordPress page should show up. </p>
 <h2>Cleaning up</h2>
 <ol>
-<li>Run the following command to delete Secret, </li>
+<li>Run the following command to delete Secret, <code>kubectl delete secret mysql-pass</code></li>
+<li>Run following command to delete all Deployments and Services, <code>kubectl delete deployment -l app=wordpress; kubectl delete service -l app=wordpress</code></li>
+<li>Run the following commands to delete the PersistentVolumeClaims. <code>kubectl delete pvc -l app=wordpress</code></li>
 </ol>
-<div class="highlight"><pre><span></span>kubectl delete secret mysql-pass
-</pre></div>
-
-
-<ol>
-<li>Run following command to delete all Deployments and Services,</li>
-</ol>
-<div class="highlight"><pre><span></span>kubectl delete deployment -l app=wordpress
-kubectl delete service -l app=wordpress
-</pre></div>
-
-
-<ol>
-<li>Run the following commands to delete the PersistentVolumeClaims. </li>
-</ol>
-<div class="highlight"><pre><span></span>kubectl delete pvc -l app=wordpress
-</pre></div>
         </div>
         <div class="post_list">
             <div class="entry-social">
