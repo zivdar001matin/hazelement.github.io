@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en" itemscope itemtype="http://schema.org/Person">
+<head>
+  <meta charset="utf-8">
+  <!-- Site Meta Data -->
+  <title>Kubernetes Persistent Volume</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Haze">
+
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- schema.org -->
+  <meta itemprop="name" content="Coding Digests">
+  <meta itemprop="image" content="">
+  <meta itemprop="description" content="">
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+  <!-- Style Meta Data -->
+  <link rel="stylesheet" href="./theme/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="./theme/css/pygments.css" type="text/css" />
+
+  <!-- Feed Meta Data -->
+
+  <!-- Twitter Feed -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="">
+  <meta name="twitter:image" content="">
+
+<!-- <meta name="twitter:creator" content="">
+<meta name="twitter:url" content="./kubernetes-persistent-volume.html">
+<meta name="twitter:title" content="Coding Digests ~ Kubernetes Persistent Volume">
+<meta name="twitter:description" content="<p>Deploying WordPress and MySQL with Persistent Volumes</p>">
+
+<!- Facebook Meta Data -->
+<!-- <meta property="og:title" content="Coding Digests ~ Kubernetes Persistent Volume" />
+<meta property="og:description" content="<p>Deploying WordPress and MySQL with Persistent Volumes</p>" />
+<meta property="og:image" content="" /> --> 
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <aside>
+    <!--<center><a href="."><img id="avatar" src=""></a></center>-->
+    <h1>Coding Digests</h1>
+      <p>A bit from everyday</p>
+    <br>
+
+
+    <nav class="nav">
+      <ul class="list-bare">
+      
+   
+          <li><a class="nav__link" href="/">Home</a></li>
+
+         
+            <li><a class="nav__link" href="./pages/about.html">About</a></li>
+            <li><a class="nav__link" href="./pages/contact.html">Contact</a></li>
+         
+      </ul>
+    </nav>
+
+    <br>
+    <form id="searchform" action="/search" onsubmit="return (this.elements['q'].value.length > 0)">
+      <input id="searchbox" type="text" name="q" size="12" placeholder="Search">
+    </form>
+    <br>
+
+    <div>
+      <b>Tags</b><br>
+                <a href="./tag/pelican.html"><font color="white">Pelican</font>
+               </a>
+                <a href="./tag/github.html"><font color="white">github</font>
+               </a>
+                <a href="./tag/networking.html"><font color="white">networking</font>
+               </a>
+                <a href="./tag/kubernetes.html"><font color="white">Kubernetes</font>
+               </a>
+                <a href="./tag/python.html"><font color="white">python</font>
+               </a>
+                <a href="./tag/cicd.html"><font color="white">CI/CD</font>
+               </a>
+                <a href="./tag/django.html"><font color="white">Django</font>
+               </a>
+                <a href="./tag/rst.html"><font color="white">rst</font>
+               </a>
+                <a href="./tag/ssh.html"><font color="white">ssh</font>
+               </a>
+                <a href="./tag/jenkins.html"><font color="white">Jenkins</font>
+               </a>
+    </div>
+
+    <br>
+    <div>
+      <b>Categories</b><br>
+                <a href="./category/android.html"><font color="white">Android</font>
+               </a>
+                <a href="./category/jenkins.html"><font color="white">Jenkins</font>
+               </a>
+                <a href="./category/kubernetes.html"><font color="white">Kubernetes</font>
+               </a>
+                <a href="./category/pelican.html"><font color="white">Pelican</font>
+               </a>
+                <a href="./category/pihole.html"><font color="white">pihole</font>
+               </a>
+                <a href="./category/restructuredtext.html"><font color="white">reStructuredText</font>
+               </a>
+    </div>
+
+    <p class="social">
+        <a href="https://github.com/hazelement" target="_blank" ><img src="./theme/images/icons/github.png"></a>
+    </p>
+
+    <!--
+    <h2>Categories</h2>
+    <ul class="navbar">
+      <li><a href="./category/android.html">Android</a></li>
+      <li><a href="./category/jenkins.html">Jenkins</a></li>
+      <li class="active"><a href="./category/kubernetes.html">Kubernetes</a></li>
+      <li><a href="./category/pelican.html">Pelican</a></li>
+      <li><a href="./category/pihole.html">pihole</a></li>
+      <li><a href="./category/restructuredtext.html">reStructuredText</a></li>
+    </ul> 
+    -->
+  </aside>
+
+  <!-- Content -->
+  <article>
+<section id="content">
+    <article>
+        <h2 class="post_title post_detail"><a href="./kubernetes-persistent-volume.html" rel="bookmark" title="Permalink to Kubernetes Persistent Volume">Kubernetes Persistent Volume</a></h2>
+
+        <div class="post_list">
+            <span>By </span>
+            <a href="./author/harry-zheng.html">@Harry Zheng</a>
+            <span> in </span>
+            <span class="post_category"><a href="./category/kubernetes.html" rel="bookmark" title="Permalink to Kubernetes">[ Kubernetes ]</a></span>
+            <div>
+                <span class="post_date">Mon 25 March 2019</span>
+                <span>Tags : </span>
+                    <span><a href="./tag/kubernetes.html">#Kubernetes, </a></span>
+            </div>
+        </div>
+
+        <div class="entry-content blog-post">
+            <p>This article is a summary of the <a href="https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/">tutorial</a>. It utilizes manifest file to create deployments and services. </p>
+<h2>Objectives</h2>
+<p>In this tutorial, we will deploy a WordPress and MySQL service using persistent volumes for data storage.  </p>
+<p>A <strong>PersistentVolume (PV)</strong> is a piece of storage in the cluster that has been manually provisioned by an administrator, or dynamically provisioned by Kubernetes using a <strong>StorageClass</strong>. A <strong>PersistentVolumeClaim</strong> (PVC) is a request for storage by a user that can be fulfilled by a PV. PersistentVolumes and PersistentVolumeClaims are independent from Pod lifecycles and preserve data through restarting, rescheduling, and even deleting Pods.</p>
+<h2>Create PersistentVolumeClaims and PersistentVolumes</h2>
+<p>MySQL and Wordpress each require a PersistentVolume to store data. Their PersistentVolumeClaims will be created at the deployment step.</p>
+<p>Many cluster environments have a default StorageClass installed. When a StorageClass is not specified in the PersistentVolumeClaim, the cluster’s default StorageClass is used instead.</p>
+<p>When a PersistentVolumeClaim is created, a PersistentVolume is dynamically provisioned based on the StorageClass configuration.</p>
+<h2>Create a Secret for MySQL Password</h2>
+<p>A <strong>Secret</strong> is an object that stores a piece of senstive information like a password or a key. Once a <strong>Secret</strong> is created, it can be refer to in manifest files like an environment variable. </p>
+<p>Create a Secret object using the following command, replacing <strong>YOUR_PASSWORD</strong> with your own password. </p>
+<div class="highlight"><pre><span></span>kubectl create secret generic mysql-pass --from-literal=password=YOUR_PASSWORD
+</pre></div>
+
+
+<p>This creates a <code>mysql-pass</code> object with key value pair <code>password</code> and <code>YOUR_PASSWORD</code>. </p>
+<p>Verify the Secret exists using the following command, </p>
+<div class="highlight"><pre><span></span>$ kubectl get secrets
+NAME                  TYPE                    DATA      AGE
+mysql-pass            Opaque                  <span class="m">1</span>         42s
+</pre></div>
+
+
+<p>Notice that the content is not shown. </p>
+<h2>Deploy MySQl</h2>
+<p>The following manifest, <code>mysql-deployment.yaml</code>, describes a single-instance MySQL Deployment. The MySQL container mounts the PersistentVolume at /var/lib/mysql. The <strong>MYSQL_ROOT_PASSWORD</strong> environment variable sets the database password from the Secret.</p>
+<div class="highlight"><pre><span></span><span class="n">apiVersion</span><span class="o">:</span> <span class="n">v1</span>
+<span class="n">kind</span><span class="o">:</span> <span class="n">Service</span>
+<span class="n">metadata</span><span class="o">:</span>
+  <span class="n">name</span><span class="o">:</span> <span class="n">wordpress</span><span class="o">-</span><span class="n">mysql</span>
+  <span class="n">labels</span><span class="o">:</span>
+    <span class="n">app</span><span class="o">:</span> <span class="n">wordpress</span>
+<span class="n">spec</span><span class="o">:</span>
+  <span class="n">ports</span><span class="o">:</span>
+    <span class="o">-</span> <span class="n">port</span><span class="o">:</span> <span class="mi">3306</span>
+  <span class="n">selector</span><span class="o">:</span>
+    <span class="n">app</span><span class="o">:</span> <span class="n">wordpress</span>
+    <span class="n">tier</span><span class="o">:</span> <span class="n">mysql</span>
+  <span class="n">clusterIP</span><span class="o">:</span> <span class="n">None</span>
+<span class="o">---</span>
+<span class="n">apiVersion</span><span class="o">:</span> <span class="n">v1</span>
+<span class="n">kind</span><span class="o">:</span> <span class="n">PersistentVolumeClaim</span>
+<span class="n">metadata</span><span class="o">:</span>
+  <span class="n">name</span><span class="o">:</span> <span class="n">mysql</span><span class="o">-</span><span class="n">pv</span><span class="o">-</span><span class="n">claim</span>
+  <span class="n">labels</span><span class="o">:</span>
+    <span class="n">app</span><span class="o">:</span> <span class="n">wordpress</span>
+<span class="n">spec</span><span class="o">:</span>
+  <span class="n">accessModes</span><span class="o">:</span>
+    <span class="o">-</span> <span class="n">ReadWriteOnce</span>
+  <span class="n">resources</span><span class="o">:</span>
+    <span class="n">requests</span><span class="o">:</span>
+      <span class="n">storage</span><span class="o">:</span> <span class="mi">20</span><span class="n">Gi</span>
+<span class="o">---</span>
+<span class="n">apiVersion</span><span class="o">:</span> <span class="n">apps</span><span class="sr">/v1 # for versions before 1.9.0 use apps/</span><span class="n">v1beta2</span>
+<span class="n">kind</span><span class="o">:</span> <span class="n">Deployment</span>
+<span class="n">metadata</span><span class="o">:</span>
+  <span class="n">name</span><span class="o">:</span> <span class="n">wordpress</span><span class="o">-</span><span class="n">mysql</span>
+  <span class="n">labels</span><span class="o">:</span>
+    <span class="n">app</span><span class="o">:</span> <span class="n">wordpress</span>
+<span class="n">spec</span><span class="o">:</span>
+  <span class="n">selector</span><span class="o">:</span>
+    <span class="n">matchLabels</span><span class="o">:</span>
+      <span class="n">app</span><span class="o">:</span> <span class="n">wordpress</span>
+      <span class="n">tier</span><span class="o">:</span> <span class="n">mysql</span>
+  <span class="n">strategy</span><span class="o">:</span>
+    <span class="n">type</span><span class="o">:</span> <span class="n">Recreate</span>
+  <span class="n">template</span><span class="o">:</span>
+    <span class="n">metadata</span><span class="o">:</span>
+      <span class="n">labels</span><span class="o">:</span>
+        <span class="n">app</span><span class="o">:</span> <span class="n">wordpress</span>
+        <span class="n">tier</span><span class="o">:</span> <span class="n">mysql</span>
+    <span class="n">spec</span><span class="o">:</span>
+      <span class="n">containers</span><span class="o">:</span>
+      <span class="o">-</span> <span class="n">image</span><span class="o">:</span> <span class="n">mysql</span><span class="o">:</span><span class="mf">5.6</span>
+        <span class="n">name</span><span class="o">:</span> <span class="n">mysql</span>
+        <span class="n">env</span><span class="o">:</span>
+        <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">MYSQL_ROOT_PASSWORD</span>
+          <span class="n">valueFrom</span><span class="o">:</span>
+            <span class="n">secretKeyRef</span><span class="o">:</span>
+              <span class="n">name</span><span class="o">:</span> <span class="n">mysql</span><span class="o">-</span><span class="n">pass</span>  <span class="err">#</span> <span class="n">Secret</span> <span class="n">object</span>
+              <span class="n">key</span><span class="o">:</span> <span class="n">password</span>  <span class="err">#</span> <span class="n">key</span> <span class="n">value</span> <span class="n">pair</span> <span class="n">value</span>
+        <span class="n">ports</span><span class="o">:</span>
+        <span class="o">-</span> <span class="n">containerPort</span><span class="o">:</span> <span class="mi">3306</span>
+          <span class="n">name</span><span class="o">:</span> <span class="n">mysql</span>
+        <span class="n">volumeMounts</span><span class="o">:</span>
+        <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">mysql</span><span class="o">-</span><span class="n">persistent</span><span class="o">-</span><span class="n">storage</span>
+          <span class="n">mountPath</span><span class="o">:</span> <span class="sr">/var/lib/</span><span class="n">mysql</span>
+      <span class="n">volumes</span><span class="o">:</span>
+      <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">mysql</span><span class="o">-</span><span class="n">persistent</span><span class="o">-</span><span class="n">storage</span>
+        <span class="n">persistentVolumeClaim</span><span class="o">:</span>
+          <span class="n">claimName</span><span class="o">:</span> <span class="n">mysql</span><span class="o">-</span><span class="n">pv</span><span class="o">-</span><span class="n">claim</span>
+</pre></div>
+
+
+<p>Deploy MySQL using the yaml file, </p>
+<div class="highlight"><pre><span></span>$ kubectl create -f mysql-deployment.yaml
+</pre></div>
+
+
+<p>Verify that a PersistentVolume got dynamically provisioned,</p>
+<div class="highlight"><pre><span></span>$ kubectl get pvc
+NAME             STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+mysql-pv-claim   Bound     pvc-9ac5609d-4f32-11e9-9123-025000000001   20Gi       RWO            hostpath       8s
+</pre></div>
+
+
+<p>Verify pods is running,</p>
+<div class="highlight"><pre><span></span>$ kubectl get pods
+NAME                              READY     STATUS    RESTARTS   AGE
+wordpress-mysql-bcc89f687-b5vb2   <span class="m">1</span>/1       Running   <span class="m">0</span>          1m
+</pre></div>
+
+
+<h2>Deploy WordPress</h2>
+<p>The following manifest file, <code>wordpress-deployment.yaml</code>, describes a single-instance WordPress Deployment and Service. It uses PVC for persistent storage and a Secret for password. It also use <code>type: LoadBalancer</code>. This setting exposes WordPress to traffic from outside of the cluter. </p>
+<div class="highlight"><pre><span></span><span class="n">apiVersion</span><span class="o">:</span> <span class="n">v1</span>
+<span class="n">kind</span><span class="o">:</span> <span class="n">Service</span>
+<span class="n">metadata</span><span class="o">:</span>
+  <span class="n">name</span><span class="o">:</span> <span class="n">wordpress</span>
+  <span class="n">labels</span><span class="o">:</span>
+    <span class="n">app</span><span class="o">:</span> <span class="n">wordpress</span>
+<span class="n">spec</span><span class="o">:</span>
+  <span class="n">ports</span><span class="o">:</span>
+    <span class="o">-</span> <span class="n">port</span><span class="o">:</span> <span class="mi">80</span>
+  <span class="n">selector</span><span class="o">:</span>
+    <span class="n">app</span><span class="o">:</span> <span class="n">wordpress</span>
+    <span class="n">tier</span><span class="o">:</span> <span class="n">frontend</span>
+  <span class="n">type</span><span class="o">:</span> <span class="n">LoadBalancer</span>
+<span class="o">---</span>
+<span class="n">apiVersion</span><span class="o">:</span> <span class="n">v1</span>
+<span class="n">kind</span><span class="o">:</span> <span class="n">PersistentVolumeClaim</span>
+<span class="n">metadata</span><span class="o">:</span>
+  <span class="n">name</span><span class="o">:</span> <span class="n">wp</span><span class="o">-</span><span class="n">pv</span><span class="o">-</span><span class="n">claim</span>
+  <span class="n">labels</span><span class="o">:</span>
+    <span class="n">app</span><span class="o">:</span> <span class="n">wordpress</span>
+<span class="n">spec</span><span class="o">:</span>
+  <span class="n">accessModes</span><span class="o">:</span>
+    <span class="o">-</span> <span class="n">ReadWriteOnce</span>
+  <span class="n">resources</span><span class="o">:</span>
+    <span class="n">requests</span><span class="o">:</span>
+      <span class="n">storage</span><span class="o">:</span> <span class="mi">20</span><span class="n">Gi</span>
+<span class="o">---</span>
+<span class="n">apiVersion</span><span class="o">:</span> <span class="n">apps</span><span class="sr">/v1 # for versions before 1.9.0 use apps/</span><span class="n">v1beta2</span>
+<span class="n">kind</span><span class="o">:</span> <span class="n">Deployment</span>
+<span class="n">metadata</span><span class="o">:</span>
+  <span class="n">name</span><span class="o">:</span> <span class="n">wordpress</span>
+  <span class="n">labels</span><span class="o">:</span>
+    <span class="n">app</span><span class="o">:</span> <span class="n">wordpress</span>
+<span class="n">spec</span><span class="o">:</span>
+  <span class="n">selector</span><span class="o">:</span>
+    <span class="n">matchLabels</span><span class="o">:</span>
+      <span class="n">app</span><span class="o">:</span> <span class="n">wordpress</span>
+      <span class="n">tier</span><span class="o">:</span> <span class="n">frontend</span>
+  <span class="n">strategy</span><span class="o">:</span>
+    <span class="n">type</span><span class="o">:</span> <span class="n">Recreate</span>
+  <span class="n">template</span><span class="o">:</span>
+    <span class="n">metadata</span><span class="o">:</span>
+      <span class="n">labels</span><span class="o">:</span>
+        <span class="n">app</span><span class="o">:</span> <span class="n">wordpress</span>
+        <span class="n">tier</span><span class="o">:</span> <span class="n">frontend</span>
+    <span class="n">spec</span><span class="o">:</span>
+      <span class="n">containers</span><span class="o">:</span>
+      <span class="o">-</span> <span class="n">image</span><span class="o">:</span> <span class="n">wordpress</span><span class="o">:</span><span class="mf">4.8</span><span class="o">-</span><span class="n">apache</span>
+        <span class="n">name</span><span class="o">:</span> <span class="n">wordpress</span>
+        <span class="n">env</span><span class="o">:</span>
+        <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">WORDPRESS_DB_HOST</span>
+          <span class="n">value</span><span class="o">:</span> <span class="n">wordpress</span><span class="o">-</span><span class="n">mysql</span>
+        <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">WORDPRESS_DB_PASSWORD</span>
+          <span class="n">valueFrom</span><span class="o">:</span>
+            <span class="n">secretKeyRef</span><span class="o">:</span>
+              <span class="n">name</span><span class="o">:</span> <span class="n">mysql</span><span class="o">-</span><span class="n">pass</span>
+              <span class="n">key</span><span class="o">:</span> <span class="n">password</span>
+        <span class="n">ports</span><span class="o">:</span>
+        <span class="o">-</span> <span class="n">containerPort</span><span class="o">:</span> <span class="mi">80</span>
+          <span class="n">name</span><span class="o">:</span> <span class="n">wordpress</span>
+        <span class="n">volumeMounts</span><span class="o">:</span>
+        <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">wordpress</span><span class="o">-</span><span class="n">persistent</span><span class="o">-</span><span class="n">storage</span>
+          <span class="n">mountPath</span><span class="o">:</span> <span class="sr">/var/www/</span><span class="n">html</span>
+      <span class="n">volumes</span><span class="o">:</span>
+      <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">wordpress</span><span class="o">-</span><span class="n">persistent</span><span class="o">-</span><span class="n">storage</span>
+        <span class="n">persistentVolumeClaim</span><span class="o">:</span>
+          <span class="n">claimName</span><span class="o">:</span> <span class="n">wp</span><span class="o">-</span><span class="n">pv</span><span class="o">-</span><span class="n">claim</span>
+</pre></div>
+
+
+<p>Create a WordPress Service and Deployment form the file <code>wordpress-deployment.yaml</code> file, </p>
+<div class="highlight"><pre><span></span>kubectl create -f wordpress-deployment.yaml
+</pre></div>
+
+
+<p>Verify that a PersistentVolume got dynamically provisioned, </p>
+<div class="highlight"><pre><span></span>$ kubectl get pvc
+NAME             STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+mysql-pv-claim   Bound     pvc-9ac5609d-4f32-11e9-9123-025000000001   20Gi       RWO            hostpath       8m
+wp-pv-claim      Bound     pvc-cf4a8bdc-4f33-11e9-9123-025000000001   20Gi       RWO            hostpath       12s
+</pre></div>
+
+
+<p>Verify that Service is running, </p>
+<div class="highlight"><pre><span></span>$ kubectl get services wordpress
+NAME        TYPE           CLUSTER-IP       EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>        AGE
+wordpress   LoadBalancer   <span class="m">10</span>.110.116.160   localhost     <span class="m">80</span>:31111/TCP   50s
+</pre></div>
+
+
+<p>Check <code>localhost</code> on the browser and a WordPress page should show up. </p>
+<h2>Cleaning up</h2>
+<ol>
+<li>Run the following command to delete Secret, </li>
+</ol>
+<div class="highlight"><pre><span></span>kubectl delete secret mysql-pass
+</pre></div>
+
+
+<ol>
+<li>Run following command to delete all Deployments and Services,</li>
+</ol>
+<div class="highlight"><pre><span></span>kubectl delete deployment -l app=wordpress
+kubectl delete service -l app=wordpress
+</pre></div>
+
+
+<ol>
+<li>Run the following commands to delete the PersistentVolumeClaims. </li>
+</ol>
+<div class="highlight"><pre><span></span>kubectl delete pvc -l app=wordpress
+</pre></div>
+        </div>
+        <div class="post_list">
+            <div class="entry-social">
+                <span class="twitter"><a target="_blank" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=700');return false;" title="Twitter" href="https://twitter.com/share?url=./kubernetes-persistent-volume.html&text=Kubernetes Persistent Volume&via="><img src="./theme/images/icons/twitter-s.png"></a></span>
+
+                <span class="gplus"><a target="_blank" title="Google +" href="https://plus.google.com/share?url=./kubernetes-persistent-volume.html&hl=fr" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=450,width=650');return false;"><img src="./theme/images/icons/google-s.png"></a></span>
+
+                <span class="facebook"><a target="_blank" title="Facebook" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;" href="https://www.facebook.com/sharer.php?u=./kubernetes-persistent-volume.html&t=Kubernetes Persistent Volume"><img src="./theme/images/icons/facebook-s.png"></a></span>
+
+                <a  target="_blank" title="Linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=./kubernetes-persistent-volume.html&title=Kubernetes Persistent Volume" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=450,width=650');return false;"><img src="./theme/images/icons/linkedin-s.png"></a>
+
+                <span class="mail"><a href="mailto:?subject=Kubernetes Persistent Volume&amp;body=Check out this article from Haze. ./kubernetes-persistent-volume.html" title="Share by Email" target="_blank"><img src="./theme/images/icons/mail-s.png"></a></span>
+            </div>
+        </div>
+        <div class="comments">
+            <h2>Comments</h2>
+            
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+            var disqus_identifier = "kubernetes-persistent-volume.html";
+            (function() {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//https-hazelement-github-io.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] ||
+                 document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </article>
+</section>
+  </article>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      Blog powered by <a href="http://getpelican.com/">Pelican</a>, 
+      which takes great advantage of <a href="http://python.org">Python</a>.
+      Theme <a href="https://github.com/parbhat/pelican-blue">Pelican-Blue</a> by <a href="https://parbhatpuri.com/">@parbhat</a>.
+    </p>
+  </footer>
+
+
+</body>
+</html>
