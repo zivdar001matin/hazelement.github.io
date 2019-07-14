@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en" itemscope itemtype="http://schema.org/Person">
+<head>
+  <meta charset="utf-8">
+  <!-- Site Meta Data -->
+  <title>Distributed Task with Celery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Haze">
+
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- schema.org -->
+  <meta itemprop="name" content="Coding Digests">
+  <meta itemprop="image" content="">
+  <meta itemprop="description" content="">
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+  <!-- Style Meta Data -->
+  <link rel="stylesheet" href="./theme/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="./theme/css/pygments.css" type="text/css" />
+
+  <!-- Feed Meta Data -->
+
+  <!-- Twitter Feed -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="">
+  <meta name="twitter:image" content="">
+
+<!-- <meta name="twitter:creator" content="">
+<meta name="twitter:url" content="./distributed-task-with-celery.html">
+<meta name="twitter:title" content="Coding Digests ~ Distributed Task with Celery">
+<meta name="twitter:description" content="<p>Node and code based setup to create flexible Celery worker system.</p>">
+
+<!- Facebook Meta Data -->
+<!-- <meta property="og:title" content="Coding Digests ~ Distributed Task with Celery" />
+<meta property="og:description" content="<p>Node and code based setup to create flexible Celery worker system.</p>" />
+<meta property="og:image" content="" /> --> 
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <aside>
+    <!--<center><a href="."><img id="avatar" src=""></a></center>-->
+    <h1>Coding Digests</h1>
+      <p>A bit from everyday</p>
+    <br>
+
+
+    <nav class="nav">
+      <ul class="list-bare">
+      
+   
+          <li><a class="nav__link" href="/">Home</a></li>
+
+         
+            <li><a class="nav__link" href="./pages/contact.html">Contact</a></li>
+         
+      </ul>
+    </nav>
+
+    <br>
+    <form id="searchform" action="/search" onsubmit="return (this.elements['q'].value.length > 0)">
+      <input id="searchbox" type="text" name="q" size="12" placeholder="Search">
+    </form>
+    <br>
+
+    <div>
+      <b>Tags</b><br>
+                <a href="./tag/celery.html"><font color="white">Celery</font>
+               </a>
+                <a href="./tag/distributed-task.html"><font color="white">Distributed Task</font>
+               </a>
+                <a href="./tag/pihole.html"><font color="white">Pihole</font>
+               </a>
+                <a href="./tag/windows-10-update.html"><font color="white">Windows 10 update</font>
+               </a>
+                <a href="./tag/kubernetes.html"><font color="white">Kubernetes</font>
+               </a>
+                <a href="./tag/cicd.html"><font color="white">CI/CD</font>
+               </a>
+                <a href="./tag/squid.html"><font color="white">squid</font>
+               </a>
+                <a href="./tag/proxy.html"><font color="white">proxy</font>
+               </a>
+                <a href="./tag/http.html"><font color="white">http</font>
+               </a>
+                <a href="./tag/https.html"><font color="white">https</font>
+               </a>
+    </div>
+
+    <br>
+    <div>
+      <b>Categories</b><br>
+                <a href="./category/android.html"><font color="white">Android</font>
+               </a>
+                <a href="./category/celery.html"><font color="white">celery</font>
+               </a>
+                <a href="./category/jenkins.html"><font color="white">Jenkins</font>
+               </a>
+                <a href="./category/kubernetes.html"><font color="white">Kubernetes</font>
+               </a>
+                <a href="./category/networking.html"><font color="white">Networking</font>
+               </a>
+                <a href="./category/pelican.html"><font color="white">Pelican</font>
+               </a>
+                <a href="./category/pihole.html"><font color="white">pihole</font>
+               </a>
+                <a href="./category/restructuredtext.html"><font color="white">reStructuredText</font>
+               </a>
+    </div>
+
+    <p class="social">
+        <a href="https://github.com/hazelement" target="_blank" ><img src="./theme/images/icons/github.png"></a>
+    </p>
+
+    <!--
+    <h2>Categories</h2>
+    <ul class="navbar">
+      <li><a href="./category/android.html">Android</a></li>
+      <li class="active"><a href="./category/celery.html">celery</a></li>
+      <li><a href="./category/jenkins.html">Jenkins</a></li>
+      <li><a href="./category/kubernetes.html">Kubernetes</a></li>
+      <li><a href="./category/networking.html">Networking</a></li>
+      <li><a href="./category/pelican.html">Pelican</a></li>
+      <li><a href="./category/pihole.html">pihole</a></li>
+      <li><a href="./category/restructuredtext.html">reStructuredText</a></li>
+    </ul> 
+    -->
+  </aside>
+
+  <!-- Content -->
+  <article>
+<section id="content">
+    <article>
+        <h2 class="post_title post_detail"><a href="./distributed-task-with-celery.html" rel="bookmark" title="Permalink to Distributed Task with Celery">Distributed Task with Celery</a></h2>
+
+        <div class="post_list">
+            <span>By </span>
+            <a href="./author/harry-zheng.html">@Harry Zheng</a>
+            <span> in </span>
+            <span class="post_category"><a href="./category/celery.html" rel="bookmark" title="Permalink to celery">[ celery ]</a></span>
+            <div>
+                <span class="post_date">Thu 11 July 2019</span>
+                <span>Tags : </span>
+                    <span><a href="./tag/celery.html">#Celery, </a></span>
+                    <span><a href="./tag/distributed-task.html">#Distributed Task, </a></span>
+            </div>
+        </div>
+
+        <div class="entry-content blog-post">
+            <p>This article discusses code base setup and typical worker Nodes configurations for a distributed Celery worker system. </p>
+<h2>Introduction</h2>
+<p>Celery is a asynchronous task queue/job queue system that facilitates communications between Producer system and Consumer system. A typical setup can be shown as below. </p>
+<p><img alt="Pelican" src="../images/celery_setup.svg"></p>
+<p>An advantage of this setup is that it enables separation of heavy loading operation from rest of application layers. It's easier to maintain and perform updates without affecting the entire system, essentially decouples system components.</p>
+<h2>Challenges</h2>
+<h3>Task definition</h3>
+<p>Task definition must be seen by both producer and consumer. But we would like to separate task implementation from producer to consumer. This is achieved through a shared celery task configuration code base between producer and consumer. </p>
+<h3>Task queue configuration</h3>
+<p>Different workers needs to be run on different host or queue. Otherwise worker might receive wrong task which were intended for other workers. </p>
+<p>Solution here is to use different queues for different tasks. </p>
+<h2>Code base solutions</h2>
+<h3>Git setup</h3>
+<p>Let's assume there are 2 git repos, one for <code>Producer</code> and one for <code>Consumer</code>. In order to shared <code>Task</code> definition, along with celery configuration, between <code>Producer</code> and <code>Consumer</code>, we create a 3rd git repo and add it as submodule for <code>Producer</code> and <code>Consumer</code>. So the setup looks like this. </p>
+<div class="highlight"><pre><span></span># producer git repo
+producer/
+    src/
+        ...
+    celery_tasks/  # shared repo as submodule
+        celery_config.py
+        tasks.py
+        utils.py
+        ...
+    ...
+
+# consumer git repo
+consumer/
+    src/
+        ...
+    celery_tasks/  # shared repo as submodule
+        celery_config.py
+        tasks.py
+        utils.py
+        ...
+    ...
+
+# shared celery task git repo
+celery_tasks/
+    celery_config.py
+    tasks.py
+    utils.py
+    ...
+</pre></div>
+
+
+<p><code>celery_config.py</code> contains celery worker configurations which we will use to create celery app object. For example</p>
+<div class="highlight"><pre><span></span><span class="c1"># celery_config.py</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">celery_tasks.rabbitmq_config</span> <span class="kn">import</span> <span class="n">RABBITMQ_PORT</span><span class="p">,</span> <span class="n">RABBITMQ_PWD</span><span class="p">,</span> <span class="n">RABBITMQ_USER</span><span class="p">,</span> <span class="n">RABBITMQ_HOST</span>
+
+<span class="c1">## Broker settings.</span>
+<span class="n">broker_url</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;pyamqp://{RABBITMQ_USER}:{RABBITMQ_PWD}@{RABBITMQ_HOST}:{RABBITMQ_PORT}&#39;</span>
+<span class="n">result_backend</span> <span class="o">=</span> <span class="s1">&#39;rpc://&#39;</span>
+</pre></div>
+
+
+<h3>Shared Task definition</h3>
+<p><code>celery_tasks</code> repo contains dummy task class definitions. These classes needs to define class name, unique name of the task, run method and its arguments. These classes are defined in <code>tasks.py</code>. </p>
+<p>For example,</p>
+<div class="highlight"><pre><span></span><span class="c1"># tasks.py</span>
+
+<span class="kn">import</span> <span class="nn">celery</span>
+
+<span class="k">class</span> <span class="nc">MagicCeleryTask</span><span class="p">(</span><span class="n">celery</span><span class="o">.</span><span class="n">Task</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;unique_magic_task&#39;</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="n">arg3</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        place holder method</span>
+<span class="sd">        :param arg1: arg1 is for this</span>
+<span class="sd">        :type arg1: int</span>
+<span class="sd">        :param arg2: arg2 is for that</span>
+<span class="sd">        :type arg2: int</span>
+<span class="sd">        :param arg3: arg3 is for another</span>
+<span class="sd">        :type arg3: int</span>
+<span class="sd">        :return: result</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</pre></div>
+
+
+<p>Consumers will inherit these classes and provide actual implementations, the <code>run</code> method, which enables it to perform real computations. Producers will utilize these dummy method to send tasks to celery backend. </p>
+<p>For example, in consumer code base, inherit <code>MagicCeleryTask</code> and implement actual computation. </p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">celery_tasks.tasks</span> <span class="kn">import</span> <span class="n">MagicCeleryTask</span>
+
+<span class="k">class</span> <span class="nc">ActualMagicCeleryTask</span><span class="p">(</span><span class="n">MagicCeleryTask</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="n">arg3</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; actual implementation &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">arg1</span> <span class="o">+</span> <span class="n">arg2</span> <span class="o">+</span> <span class="n">arg3</span>
+</pre></div>
+
+
+<p>In producer, we can import the class directly. </p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">celery_tasks.tasks</span> <span class="kn">import</span> <span class="n">MagicCeleryTask</span>
+</pre></div>
+
+
+<h3>Celery app queue configuration</h3>
+<p>Queue is configured based on task name to avoid worker conflicts. In <code>celery_tasks</code>, we created a <code>create_worker_from</code> method defined in <code>utils.py</code>. </p>
+<div class="highlight"><pre><span></span># utils.py
+
+def create_worker_from(WorkerClass, celery_config=&#39;celery_tasks.celery_config&#39;):
+    &quot;&quot;&quot;
+    Create worker instance given WorkerClass
+    :param WorkerClass: WorkerClass to perform task
+    :type WorkerClass: subclass of celery.Task
+    :param celery_config: celery config module, default &#39;celery_tasks.celery_config&#39;. This depends on
+                            project path
+    :type celery_config: str
+    :return: celery app instance and worker task instance
+    :rtype: tuple of (app, worker_task)
+    &quot;&quot;&quot;
+    assert issubclass(WorkerClass, celery.Task)
+    app = celery.Celery()
+    app.config_from_object(celery_config)
+    app.conf.update(task_default_queue=WorkerClass.name)  # update worker queue
+    worker_task = app.register_task(WorkerClass())
+
+    return app, worker_task
+</pre></div>
+
+
+<p>In producer and consumer, we use this method and task class to create celery app and worker class instances for each task. Worker class instances are used to produce and consume tasks. </p>
+<p>For example, in consumer, </p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">celery_tasks.tasks</span> <span class="kn">import</span> <span class="n">MagicCeleryTask</span>
+<span class="kn">from</span> <span class="nn">celery_tasks.utils</span> <span class="kn">import</span> <span class="n">create_worker_from</span>
+
+<span class="k">class</span> <span class="nc">ActualMagicCeleryTask</span><span class="p">(</span><span class="n">MagicCeleryTask</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="n">arg3</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; actual implementation &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">arg1</span> <span class="o">+</span> <span class="n">arg2</span> <span class="o">+</span> <span class="n">arg3</span>
+
+<span class="c1"># create celery app</span>
+<span class="n">app</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">create_worker_from</span><span class="p">(</span><span class="n">MagicCeleryTask</span><span class="p">)</span>
+
+<span class="c1"># start worker</span>
+<span class="n">args</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;--without-gossip&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;--without-mingle&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;--without-heartbeat&#39;</span>
+
+<span class="p">]</span>
+<span class="n">app</span><span class="o">.</span><span class="n">worker_main</span><span class="p">(</span><span class="n">argv</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
+</pre></div>
+
+
+<p>For example, in producer,</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">celery_tasks.tasks</span> <span class="kn">import</span> <span class="n">MagicCeleryTask</span>
+<span class="kn">from</span> <span class="nn">celery_tasks.utils</span> <span class="kn">import</span> <span class="n">create_worker_from</span>
+
+<span class="c1"># create worker</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">worker</span> <span class="o">=</span> <span class="n">create_worker_from</span><span class="p">(</span><span class="n">MagicCeleryTask</span><span class="p">)</span>
+
+<span class="c1"># send task to queue and get result</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">worker</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</pre></div>
+        </div>
+        <div class="post_list">
+            <div class="entry-social">
+                <span class="twitter"><a target="_blank" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=700');return false;" title="Twitter" href="https://twitter.com/share?url=./distributed-task-with-celery.html&text=Distributed Task with Celery&via="><img src="./theme/images/icons/twitter-s.png"></a></span>
+
+                <span class="gplus"><a target="_blank" title="Google +" href="https://plus.google.com/share?url=./distributed-task-with-celery.html&hl=fr" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=450,width=650');return false;"><img src="./theme/images/icons/google-s.png"></a></span>
+
+                <span class="facebook"><a target="_blank" title="Facebook" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;" href="https://www.facebook.com/sharer.php?u=./distributed-task-with-celery.html&t=Distributed Task with Celery"><img src="./theme/images/icons/facebook-s.png"></a></span>
+
+                <a  target="_blank" title="Linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=./distributed-task-with-celery.html&title=Distributed Task with Celery" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=450,width=650');return false;"><img src="./theme/images/icons/linkedin-s.png"></a>
+
+                <span class="mail"><a href="mailto:?subject=Distributed Task with Celery&amp;body=Check out this article from Haze. ./distributed-task-with-celery.html" title="Share by Email" target="_blank"><img src="./theme/images/icons/mail-s.png"></a></span>
+            </div>
+        </div>
+        <div class="comments">
+            <h2>Comments</h2>
+            
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+            var disqus_identifier = "distributed-task-with-celery.html";
+            (function() {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//https-hazelement-github-io.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] ||
+                 document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </article>
+</section>
+  </article>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      Blog powered by <a href="http://getpelican.com/">Pelican</a>, 
+      which takes great advantage of <a href="http://python.org">Python</a>.
+      Theme <a href="https://github.com/parbhat/pelican-blue">Pelican-Blue</a> by <a href="https://parbhatpuri.com/">@parbhat</a>.
+    </p>
+  </footer>
+
+
+</body>
+</html>
