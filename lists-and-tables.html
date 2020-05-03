@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./theme/css/custom.css" media="screen">
+
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+        <meta name="author" content="Google" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="writing, Writing, " />
+
+<meta property="og:title" content="Lists and tables "/>
+<meta property="og:url" content="./lists-and-tables.html" />
+<meta property="og:description" content="Lists and tables" />
+<meta property="og:site_name" content="Coding Digests" />
+<meta property="og:article:author" content="Google" />
+<meta property="og:article:published_time" content="2020-04-15T00:00:00-06:00" />
+<meta property="og:article:modified_time" content="2020-04-15T00:00:00-06:00" />
+<meta name="twitter:title" content="Lists and tables ">
+<meta name="twitter:description" content="Lists and tables">
+
+        <title>Lists and tables  · Coding Digests
+</title>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-137819228-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="./"><span class=site-name>Coding Digests</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       .
+                                    >Home</a>
+                                </li>
+                                <li ><a href="./pages/contact.html">Contact</a></li>
+                                <li ><a href="./categories.html">Categories</a></li>
+                                <li ><a href="./tags.html">Tags</a></li>
+                                <li ><a href="./archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="./lists-and-tables.html">
+                Lists and tables
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <p>Copied from, https://developers.google.com/tech-writing. </p>
+<h1>Lists and tables</h1>
+<p><strong>Estimated Time:</strong> 15 minutes</p>
+<p>Good lists can transform technical chaos into something orderly. Technical readers generally love lists. Therefore, when writing, seek opportunities to convert prose into lists.</p>
+<h2>Choose the correct type of list</h2>
+<p>The following types of lists dominate technical writing:</p>
+<ul>
+<li>bulleted lists</li>
+<li>numbered lists</li>
+<li>embedded lists</li>
+</ul>
+<p>Use a <strong>bulleted list</strong> for <em>unordered</em> items; use a <strong>numbered list</strong> for <em>ordered</em> items. In other words:</p>
+<ul>
+<li>If you rearrange the items in a <em>bulleted</em> list, the list's meaning does not change.</li>
+<li>If you rearrange the items in a <em>numbered</em> list, the list's meaning <em>changes</em>.</li>
+</ul>
+<p>For example, we've made the following a bulleted list because rearranging its items does not change the list's meaning:</p>
+<blockquote>
+<p>Bash provides the following string manipulation mechanisms:</p>
+<ul>
+<li>deleting a substring from the start of a string</li>
+<li>reading an entire file into one string variable</li>
+</ul>
+</blockquote>
+<p>The following list, by contrast, must be a numbered list because rearranging its items would change the list's meaning:</p>
+<blockquote>
+<p>Take the following steps to reconfigure the server:</p>
+<ol>
+<li>Stop the server.</li>
+<li>Edit the configuration file.</li>
+<li>Restart the server.</li>
+</ol>
+</blockquote>
+<p>An <strong>embedded list</strong> (sometimes called a <strong>run-in</strong> list) contains items stuffed within a sentence. For example, the following sentence contains an embedded list with four items.</p>
+<blockquote>
+<p>The llamacatcher API enables callers to create and query llamas, analyze alpacas, delete vicugnas, and track dromedaries.</p>
+</blockquote>
+<p>Generally speaking, embedded lists are a poor way to present technical information. Try to transform embedded lists into either bulleted lists or numbered lists. For example, you should convert the sentence containing the embedded list into the following passage:</p>
+<blockquote>
+<p>The llamacatcher API enables callers to do the following:</p>
+<ul>
+<li>Create and query llamas.</li>
+<li>Analyze alpacas.</li>
+<li>Delete vicugnas.</li>
+<li>Track dromedaries.</li>
+</ul>
+</blockquote>
+<h3>Exercise</h3>
+<p>Convert the following paragraph into one or more lists:</p>
+<blockquote>
+<p>Today at work, I have to code three unit tests, write a design document, and review Janet's latest document. After work, I have to wash my car without using any water and then dry it without using any towels.</p>
+</blockquote>
+<p>Don't forget to introduce your list(s).</p>
+<h4>Click the icon to see the answer.</h4>
+<p>Here's one possible answer:</p>
+<blockquote>
+<p>I must do the following at work today:</p>
+<ul>
+<li>Code three unit tests.</li>
+<li>Write a design document.</li>
+<li>Review Janet's latest document.</li>
+</ul>
+<p>After work, I must do the following:</p>
+<ol>
+<li>Wash my car without using any water.</li>
+<li>Dry my car without using any towels.</li>
+</ol>
+</blockquote>
+<p>The following is an alternative answer:</p>
+<blockquote>
+<p>I must do the following tasks today:</p>
+<ul>
+<li>At work:<ul>
+<li>Code three unit tests.</li>
+<li>Write a design document.</li>
+<li>Review Janet's latest document.</li>
+</ul>
+</li>
+<li>After work:<ol>
+<li>Wash my car without using any water.</li>
+<li>Dry my car without using any towels.</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<hr>
+<h2>Keep list items parallel</h2>
+<p>What separates effective lists from defective lists? Effective lists are parallel; defective lists tend to be nonparallel. All items in a <strong>parallel</strong> list look like they "belong" together. That is, all items in a parallel list match along the following parameters:</p>
+<ul>
+<li>grammar</li>
+<li>logical category</li>
+<li>capitalization</li>
+<li>punctuation</li>
+</ul>
+<p>Conversely, at least one item in a <strong>nonparallel</strong> list fails at least one of the preceding consistency checks.</p>
+<p>For example, the following list is parallel because all the items are plural nouns (grammar), edible (logical category), lower case (capitalization), and without periods or commas (punctuation).</p>
+<ul>
+<li>carrots</li>
+<li>potatoes</li>
+<li>cabbages</li>
+</ul>
+<p>By contrast, the following list is painfully nonparallel along all four parameters:</p>
+<ul>
+<li>carrots</li>
+<li>potatoes</li>
+<li>The summer light obscures all memories of winter.</li>
+</ul>
+<p>The following list is parallel because all the items are complete sentences with complete sentence capitalization and punctuation:</p>
+<ul>
+<li>Carrots contain lots of Vitamin A.</li>
+<li>Potatoes taste delicious.</li>
+<li>Cabbages provide oodles of Vitamin K.</li>
+</ul>
+<p>The first item in a list establishes a pattern that readers expect to see repeated in subsequent items.</p>
+<h3>Exercise</h3>
+<p>Is the following list parallel or nonparallel?</p>
+<ul>
+<li>Broccoli inspires feelings of love or hate.</li>
+<li>Potatoes taste delicious.</li>
+<li>Cabbages.</li>
+</ul>
+<h4>Click the icon to see the answer.</h4>
+<p>The list is nonparallel. The first two items are complete sentences, but the third item is not a sentence. (Don't be fooled by the capitalization and punctuation of the third item.)</p>
+<hr>
+<h3>Exercise</h3>
+<p>Is the following list parallel or nonparallel?</p>
+<ul>
+<li>The red dots represent sick trees.</li>
+<li>Immature trees are represented by the blue dots.</li>
+<li>The green dots represent healthy trees.</li>
+</ul>
+<h4>Click the icon to see the answer.</h4>
+<p>This is a nonparallel list. The first and third items are in active voice, but the second item is in passive voice.</p>
+<hr>
+<h2>Start numbered list items with imperative verbs</h2>
+<p>Consider starting all items in a numbered list with an imperative verb. An <strong>imperative verb</strong> is a command, such as <strong>open</strong> or <strong>start</strong>. For example, notice how all of the items in the following parallel numbered list begin with an imperative verb:</p>
+<ol>
+<li>Download the Frambus app from Google Play or iTunes.</li>
+<li>Configure the Frambus app's settings.</li>
+<li>Start the Frambus app.</li>
+</ol>
+<p>The following numbered list is nonparallel because two of the sentences start with an imperative verb, but the third item does not:</p>
+<ol>
+<li>Instantiate the Froobus class.</li>
+<li>Invoke the Froobus.Salmonella() method.</li>
+<li>The process stalls.</li>
+</ol>
+<h3>Exercise</h3>
+<p>Make the following list parallel. Ensure that each element in the result list begins with an imperative verb:</p>
+<ol>
+<li>Stop Früvous</li>
+<li>The key configuration file is <code>/moxy/fruvous</code>. Open this file with an ASCII text editor.</li>
+<li>In this file, you will see a parameter named Carambola, which is currently set to the default value (32). Change this value to 64.</li>
+<li>When you are finished setting this parameter, save and close the configuration file</li>
+<li>now, start Früvous again.</li>
+</ol>
+<h4>Click the icon to see the answer.</h4>
+<p>The following is one possible answer:</p>
+<ol>
+<li>Stop Früvous.</li>
+<li>Open the key configuration file, <code>/moxy/fruvous</code>, with an ASCII text editor.</li>
+<li>Change the Carambola parameter from its default value (32) to 64.</li>
+<li>Save and close the configuration file.</li>
+<li>Restart Früvous.</li>
+</ol>
+<hr>
+<h2>Punctuate items appropriately</h2>
+<p>If the list item is a sentence, use sentence capitalization and punctuation. Otherwise, do not use sentence capitalization and punctuation. For example, the following list item is a sentence, so we capitalized the <strong>M</strong> in <strong>Most</strong> and put a period at the end of the sentence:</p>
+<ul>
+<li>Most carambolas have five ridges.</li>
+</ul>
+<p>However, the following list item is not a sentence, so we left the <strong>t</strong> in <strong>the</strong> in lowercase and omitted a period:</p>
+<ul>
+<li>the color of lemons</li>
+</ul>
+<h2>Create useful tables</h2>
+<p>Analytic minds tend to love tables. Given a page containing multiple paragraphs and a single table, engineers' eyes zoom towards the table.</p>
+<p>Consider the following guidelines when creating tables:</p>
+<ul>
+<li>Label each column with a meaningful header. Don't make readers guess what each column holds.</li>
+<li>Avoid putting too much text into a table cell. If a table cell holds more than two sentences, ask yourself whether that information belongs in some other format.</li>
+<li>Although different columns can hold different types of data, strive for parallelism <em>within</em> individual columns. For instance, the cells within a particular table column should not be a mixture of numerical data and famous circus elephants.</li>
+</ul>
+<p><strong>Note:</strong> Some tables don't render well across all form factors. For example, a table that looks great on your laptop may look awful on your phone.</p>
+<h2>Introduce each list and table</h2>
+<p>We recommend introducing each list and table with a sentence that tells readers what the list or table represents. In other words, give the list or table context. Terminate the introductory sentence with a colon rather than a period.</p>
+<p>Although not a requirement, we recommend putting the word <strong>following</strong> into the introductory sentence. For example, consider the following introductory sentences:</p>
+<blockquote>
+<p>The following list identifies key performance parameters:</p>
+<p>Take the following steps to install the Frambus package:</p>
+<p>The following table summarizes our product's features against our key competitors' features:</p>
+</blockquote>
+<h3>Exercise</h3>
+<p>Write an introductory sentence for the following table:</p>
+<table>
+<thead>
+<tr>
+<th>Languages</th>
+<th>Inventor</th>
+<th>Year Introduced</th>
+<th>Key Feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lisp</td>
+<td>John McCarthy</td>
+<td>1958</td>
+<td>recursion</td>
+</tr>
+<tr>
+<td>C++</td>
+<td>Bjarne Stroustrup</td>
+<td>1979</td>
+<td>OOP</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>Guido van Rossum</td>
+<td>1994</td>
+<td>simplicity</td>
+</tr>
+</tbody>
+</table>
+<h4>Click the icon to see the answer.</h4>
+<p>Here are a couple of possible introductory sentences for the table:</p>
+<blockquote>
+<p>The following table contains a few key facts about some popular programming languages:</p>
+<p>The following table identifies the inventor, year of invention, and key feature of three popular programming languages:</p>
+</blockquote>
+
+
+             
+ 
+            
+            
+            
+
+
+
+
+
+
+
+<section>
+    <h6 style="display:none;">Comments</h6>
+    <p id="comment-message"> </p>
+
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle disqus-comment-count comment-count collapsed"
+                   data-toggle="collapse"
+                   data-parent="#accordion2"
+                   data-disqus-identifier="./lists-and-tables.html"
+                   href="./lists-and-tables.html#comment_thread"
+                   id="comment-accordion-toggle">
+                    Comments
+                </a>
+            </div>
+            <div id="comment_thread" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="comments">
+                        <div id="disqus_thread"></div>
+                        <script>
+    var disqus_shortname = 'https-hazelement-github-io.disqus.com';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+
+    var disqus_identifier = './lists-and-tables.html';
+    var disqus_url = './lists-and-tables.html';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+            <hr/>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2020-04-15T00:00:00-06:00">Wed 15 April 2020</time>
+
+            <h4>Category</h4>
+            <a class="category-link" href="./categories.html#writing-ref">Writing</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="./tags.html#writing-ref">writing
+                    <span class="superscript">14</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="https://github.com/hazelement" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1B1817"/><path fill="#fff" d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+    </a>
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="./theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>

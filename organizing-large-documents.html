@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./theme/css/custom.css" media="screen">
+
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+        <meta name="author" content="Google" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="writing, Writing, " />
+
+<meta property="og:title" content="Organizing large documents "/>
+<meta property="og:url" content="./organizing-large-documents.html" />
+<meta property="og:description" content="Organizing large documents" />
+<meta property="og:site_name" content="Coding Digests" />
+<meta property="og:article:author" content="Google" />
+<meta property="og:article:published_time" content="2020-04-15T00:00:00-06:00" />
+<meta property="og:article:modified_time" content="2020-04-15T00:00:00-06:00" />
+<meta name="twitter:title" content="Organizing large documents ">
+<meta name="twitter:description" content="Organizing large documents">
+
+        <title>Organizing large documents  · Coding Digests
+</title>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-137819228-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="./"><span class=site-name>Coding Digests</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       .
+                                    >Home</a>
+                                </li>
+                                <li ><a href="./pages/contact.html">Contact</a></li>
+                                <li ><a href="./categories.html">Categories</a></li>
+                                <li ><a href="./tags.html">Tags</a></li>
+                                <li ><a href="./archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="./organizing-large-documents.html">
+                Organizing large documents
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <p>Copied from, https://developers.google.com/tech-writing. </p>
+<h1>Organizing large documents</h1>
+<p><strong>Estimated Time:</strong> 20 minutes</p>
+<p>How do you organize a large collection of information into a cohesive document or website? Alternatively, how do you reorganize an existing messy document or website into something approachable and useful? The following tactics can help:</p>
+<ul>
+<li>Organizing a document</li>
+<li>Adding navigation</li>
+<li>Disclosing information progressively</li>
+</ul>
+<h2>When to write large documents</h2>
+<p>You can organize a collection of information into longer standalone documents or a set of shorter interconnected documents. A set of shorter interconnected documents is often published as a website, wiki, or similar structured format.</p>
+<p>Some readers respond more positively than others to longer documents. Consider the following perspectives from two hypothetical readers you're writing documentation for:</p>
+<ul>
+<li>Hong finds reading long documents difficult and disorientating. He prefers to use site search to find answers to his questions.</li>
+<li>Rose is comfortable navigating large documents. She often uses the built-in page search feature in her web browser to find useful information on the current page.</li>
+</ul>
+<p>So, should you organize your material into a single document or into a set of documents in a website? Consider the following guidelines:</p>
+<ul>
+<li>How-to guides, introductory overviews, and conceptual guides often work better as shorter documents when aimed at readers who are new to the subject matter. For example, a reader who is completely new to your subject matter might struggle to remember lots of new terms, concepts, and facts. Remember that your audience might be reading your documentation to gain a quick and general overview of the topic.</li>
+<li>In-depth tutorials, best practice guides, and command-line reference pages can work well as lengthier documents, especially when aimed at readers who already have some experience with the tools and subject matter.</li>
+<li>A great tutorial can rely on a narrative to lead the reader through a series of related tasks in a longer document. However, even large tutorials can sometimes benefit from being broken up into smaller parts.</li>
+<li>Many longer documents aren't designed to be read in one sitting. For example, users typically scan through a reference page to search for an explanation of a command or flag.</li>
+</ul>
+<p>The remainder of this unit covers techniques that can be useful for writing longer documents, such as tutorials and some conceptual guides.</p>
+<h2>Organize a document</h2>
+<p>This section suggests some techniques for planning a longer document, including creating an outline and drafting an introduction. After you've completed the first draft of a document, you can review it against your outline and introduction to make sure you haven't missed anything you originally intended to cover.</p>
+<h3>Outline a document</h3>
+<p>Starting with a structured, high-level outline can help you group topics and determine where more detail is needed. The outline helps you move topics around before you get down to writing.</p>
+<p>You might find it useful to think of an outline as the narrative for your document. There is no standard approach to writing an outline, but the following guidelines provide practical tips you might find useful:</p>
+<ul>
+<li>Before you ask your reader to perform a task, explain to them why they are doing it. For example, the following bullet points illustrate a section of an outline from a tutorial about auditing and improving the accessibility of web pages:<ul>
+<li>Introduce the browser plugin; explain that we'll use the results of the audit report to fix several bugs.</li>
+<li>List the steps to run the plugin and audit the accessibility of a web page.</li>
+</ul>
+</li>
+<li>Limit each step of your outline to describing a concept or completing a specific task.</li>
+<li>Structure your outline so that your document introduces information when it's most relevant to your reader. For example, your reader probably doesn't need to know (or want to know) about the history of the project in the introductory sections of your document when they're just getting started with the basics. If you feel the history of the project is useful, then include a link to this type of information at the end of your document.</li>
+<li>Documents that alternate between conceptual information and practical steps can be a particularly engaging way to learn. Consider explaining a concept and then demonstrating how the reader can apply it in either a sample project or in their own work.</li>
+<li>Outlines are especially useful if you're working with a team of contributors who are going to review and test your document. Before you start drafting, share your outline with your contributors to check if they have any suggestions.</li>
+</ul>
+<h3>Outline exercise</h3>
+<p>For this exercise, review and update the following high-level outline of an introduction to a long tutorial. You can rearrange, add, and remove topics.</p>
+<div class="highlight"><pre><span></span><span class="o">##</span> <span class="n">The</span> <span class="n">history</span> <span class="k">of</span> <span class="n">the</span> <span class="n">project</span>
+
+<span class="n">Describes</span> <span class="n">the</span> <span class="n">history</span> <span class="k">of</span> <span class="n">the</span> <span class="n">development</span> <span class="k">of</span> <span class="n">the</span> <span class="n">project</span><span class="p">.</span>
+
+<span class="o">##</span> <span class="n">Prerequisites</span>
+
+<span class="n">Lists</span> <span class="n">concepts</span> <span class="n">the</span> <span class="n">reader</span> <span class="n">should</span> <span class="n">be</span> <span class="n">familiar</span> <span class="k">with</span> <span class="k">prior</span> <span class="k">to</span> <span class="n">starting</span><span class="p">,</span> <span class="k">as</span> <span class="n">well</span> <span class="k">as</span>
+<span class="k">any</span> <span class="n">software</span> <span class="k">or</span> <span class="n">hardware</span> <span class="n">requirements</span><span class="p">.</span>
+
+<span class="o">##</span> <span class="n">The</span> <span class="n">design</span> <span class="k">of</span> <span class="n">the</span> <span class="k">system</span>
+
+<span class="n">Describes</span> <span class="n">how</span> <span class="n">the</span> <span class="k">system</span> <span class="n">works</span><span class="p">.</span>
+
+<span class="o">##</span> <span class="n">Audience</span>
+
+<span class="n">Describes</span> <span class="n">who</span> <span class="n">the</span> <span class="n">tutorial</span> <span class="k">is</span> <span class="n">aimed</span> <span class="k">at</span><span class="p">.</span>
+
+<span class="o">##</span> <span class="n">Setting</span> <span class="n">up</span> <span class="n">the</span> <span class="n">tutorial</span>
+
+<span class="n">Explains</span> <span class="n">how</span> <span class="k">to</span> <span class="n">configure</span> <span class="n">your</span> <span class="n">environment</span> <span class="k">to</span> <span class="n">follow</span> <span class="n">the</span> <span class="n">tutorial</span><span class="p">.</span>
+
+<span class="o">##</span> <span class="n">Troubleshooting</span>
+
+<span class="n">Explains</span> <span class="n">how</span> <span class="k">to</span> <span class="n">diagnose</span> <span class="k">and</span> <span class="n">solve</span> <span class="n">potential</span> <span class="n">problems</span> <span class="n">that</span> <span class="n">might</span> <span class="n">occur</span> <span class="k">when</span>
+<span class="n">working</span> <span class="n">through</span> <span class="n">the</span> <span class="n">tutorial</span><span class="p">.</span>
+
+<span class="o">##</span> <span class="n">Useful</span> <span class="n">terminology</span>
+
+<span class="n">Lists</span> <span class="n">definitions</span> <span class="k">of</span> <span class="n">terms</span> <span class="n">that</span> <span class="n">the</span> <span class="n">reader</span> <span class="n">needs</span> <span class="k">to</span> <span class="n">know</span> <span class="k">to</span> <span class="n">follow</span> <span class="n">the</span>
+<span class="n">tutorial</span><span class="p">.</span>
+</pre></div>
+
+
+<h4>Click the icon to see the answer.</h4>
+<p>The following is one possible solution:</p>
+<div class="highlight"><pre><span></span><span class="o">##</span> <span class="n">Audience</span>
+
+<span class="n">Describes</span> <span class="n">who</span> <span class="n">the</span> <span class="n">tutorial</span> <span class="k">is</span> <span class="n">aimed</span> <span class="k">at</span><span class="p">.</span>
+
+<span class="o">##</span> <span class="n">Prerequisites</span>
+
+<span class="n">Lists</span> <span class="n">concepts</span> <span class="n">the</span> <span class="n">reader</span> <span class="n">should</span> <span class="n">be</span> <span class="n">familiar</span> <span class="k">with</span> <span class="k">prior</span> <span class="k">to</span> <span class="n">starting</span><span class="p">,</span> <span class="k">as</span> <span class="n">well</span> <span class="k">as</span>
+<span class="k">any</span> <span class="n">software</span> <span class="k">or</span> <span class="n">hardware</span> <span class="n">requirements</span><span class="p">.</span>
+
+<span class="o">##</span> <span class="n">Setting</span> <span class="n">up</span> <span class="n">the</span> <span class="n">tutorial</span>
+
+<span class="n">Explains</span> <span class="n">how</span> <span class="k">to</span> <span class="n">configure</span> <span class="n">your</span> <span class="n">environment</span> <span class="k">to</span> <span class="n">follow</span> <span class="n">the</span> <span class="n">tutorial</span><span class="p">.</span>
+
+<span class="o">##</span> <span class="n">Useful</span> <span class="n">terminology</span>
+
+<span class="n">Lists</span> <span class="n">definitions</span> <span class="k">of</span> <span class="n">terms</span> <span class="n">that</span> <span class="n">the</span> <span class="n">reader</span> <span class="n">needs</span> <span class="k">to</span> <span class="n">know</span> <span class="k">to</span> <span class="n">follow</span> <span class="n">the</span>
+<span class="n">tutorial</span><span class="p">.</span>
+</pre></div>
+
+
+<hr>
+<h3>Introduce a document</h3>
+<p>If readers of your documentation can't find relevance in the subject, they are likely to ignore it. To set the ground rules for your users, we recommend providing an introduction that includes the following information:</p>
+<ul>
+<li>What the document covers.</li>
+<li>What prior knowledge you expect readers to have.</li>
+<li>What the document doesn't cover.</li>
+</ul>
+<p>Remember that you want to keep your documentation easy to maintain, so don't try to cover everything in the introduction.</p>
+<p>The following paragraph demonstrates the ideas from the preceding list as an overview for a hypothetical document publishing platform called Froobus:</p>
+<div class="highlight"><pre><span></span><span class="err">This document explains how to publish Markdown files using the Froobus system.</span>
+<span class="err">Froobus is a publishing system that runs on a Linux server and converts</span>
+<span class="err">Markdown files into HTML pages. This document is intended for people who are</span>
+<span class="err">familiar with Markdown syntax. To learn about the syntax, see the Markdown</span>
+<span class="err">reference. You also need to be comfortable running simple commands in a</span>
+<span class="err">Linux terminal. This document doesn&#39;t include information about installing or</span>
+<span class="err">configuring a Froobus publishing system. For information on installing Froobus,</span>
+<span class="err">see Getting started.</span>
+</pre></div>
+
+
+<p>After you've completed the first draft, check your entire document against the expectations you set in your overview. Does your introduction provide an accurate overview of the topics you cover? You might find it useful to think of this review as a form of documentation quality assurance (QA).</p>
+<h3>Introduction exercise</h3>
+<p>For this exercise, review and revise the following introduction for a best practices guide for a hypothetical programming language called F@. Remove any information you feel is irrelevant in this context and add any information you feel is missing.</p>
+<div class="highlight"><pre><span></span><span class="err">This guide lists best practices for working with the F@ programming language.</span>
+<span class="err">F@ was developed in 2011 as an open source community project. This guide</span>
+<span class="err">supplements the F@ style guide. In addition to the best practices in this guide,</span>
+<span class="err">make sure you also install and run the F@ command-line linter on your code.  The</span>
+<span class="err">programming language is widely adopted in the health industry. If you have</span>
+<span class="err">suggestions for additions to the list of best practices, file an issue in the</span>
+<span class="err">F@ documentation repository.</span>
+</pre></div>
+
+
+<h4>Click the icon to see the answer.</h4>
+<p>The following is one possible solution:</p>
+<div class="highlight"><pre><span></span><span class="err">This guide lists best practices for working with the F@ programming language.</span>
+<span class="err">Before you review this guide, complete the introductory tutorial for new F@</span>
+<span class="err">developers. This guide supplements the F@ style guide. In addition to the best</span>
+<span class="err">practices in this guide, make sure you also install and run the F@ command-line</span>
+<span class="err">linter on your code. If you have suggestions for additions to the list of best</span>
+<span class="err">practices, file an issue in the F@ documentation repository.</span>
+</pre></div>
+
+
+<hr>
+<h2>Add navigation</h2>
+<p>Providing navigation and signposting for your readers ensures they can find what they are looking for and the information they need to get unstuck.</p>
+<p>Clear navigation includes:</p>
+<ul>
+<li>introduction and summary sections</li>
+<li>a clear, logical development of the subject</li>
+<li>headings and subheadings that help users understand the subject</li>
+<li>overviews that introduce the tool</li>
+<li>a table of contents menu that shows users where they are in the document</li>
+<li>links to related resources or more in-depth information</li>
+<li>links to what to learn next</li>
+</ul>
+<p>The tips in the following sections can help you plan the headings in your documentation.</p>
+<h3>Prefer task-based headings</h3>
+<p>Choose a heading that describes the task your reader is working on. Avoid headings that rely on unfamiliar terminology or tools. For example, suppose you are documenting the process for creating a new website. To create the site, the reader must initialize the Froobus framework. To initialize the Froobus framework, the reader must run the <code>carambola</code> command-line tool. At first glance, it might seem logical to add either of the following headings to the instructions:</p>
+<ul>
+<li>Running the carambola command</li>
+<li>Initializing the Froobus framework</li>
+</ul>
+<p>Unless your readers are already very experienced with the terminology and concepts for this topic, a more familiar heading might be preferable, such as <em>Creating the site</em>.</p>
+<h3>Provide text under each heading</h3>
+<p>Most readers appreciate at least a brief introduction under each heading to provide some context. Avoid placing a level three heading immediately after a level two heading, as in the following example:</p>
+<div class="highlight"><pre><span></span><span class="err">## Creating the site</span>
+<span class="err">### Running the carambola command</span>
+</pre></div>
+
+
+<p>In this example, a brief introduction can help orient the reader:</p>
+<div class="highlight"><pre><span></span><span class="c1">## Creating the site</span>
+
+<span class="k">To</span> <span class="k">create</span> <span class="n">the</span> <span class="n">site</span><span class="p">,</span> <span class="n">you</span> <span class="n">run</span> <span class="n">the</span> <span class="ss">`carambola`</span> <span class="n">command</span><span class="o">-</span><span class="n">line</span> <span class="n">tool</span><span class="p">.</span> <span class="n">The</span> <span class="n">command</span>
+<span class="n">displays</span> <span class="n">a</span> <span class="n">series</span> <span class="n">of</span> <span class="n">prompts</span> <span class="k">to</span> <span class="n">help</span> <span class="n">you</span> <span class="n">configure</span> <span class="n">the</span> <span class="n">site</span><span class="p">.</span>
+
+<span class="c1">### Running the carambola command</span>
+</pre></div>
+
+
+<h3>Heading exercise</h3>
+<p>Helping readers navigate through your documentation helps them find the information they need to successfully use your tool. Often, a clear and well-organized table of contents or outline acts like a map that helps your users navigate the functionality of your tool.</p>
+<p>For this exercise, improve the following outline. You can rearrange, add, and delete topics and create secondary entries too.</p>
+<div class="highlight"><pre><span></span><span class="err">About this tutorial</span>
+<span class="err">Advanced topics</span>
+<span class="err">Build the asset navigation tree</span>
+<span class="err">Define resource paths</span>
+<span class="err">Defining and building projects</span>
+<span class="err">Launch the development environment</span>
+<span class="err">Defining and building resources</span>
+<span class="err">What&#39;s next</span>
+<span class="err">Define image resources</span>
+<span class="err">Audience</span>
+<span class="err">See also</span>
+<span class="err">Build an image resource</span>
+<span class="err">Define an image project</span>
+<span class="err">Build an image project</span>
+<span class="err">Setting up the tutorial</span>
+<span class="err">Select the tutorial asset root</span>
+<span class="err">About this guide</span>
+</pre></div>
+
+
+<h4>Click the icon to see the answer.</h4>
+<p>The following is one possible solution:</p>
+<div class="highlight"><pre><span></span><span class="o">##</span> <span class="n">About</span> <span class="n">this</span> <span class="n">tutorial</span>
+
+<span class="o">###</span> <span class="n">Audience</span>
+
+<span class="o">###</span> <span class="n">About</span> <span class="n">this</span> <span class="n">guide</span>
+
+<span class="o">###</span> <span class="n">Advanced</span> <span class="n">topics</span>
+
+<span class="o">##</span> <span class="n">Setting</span> <span class="n">up</span> <span class="n">the</span> <span class="n">tutorial</span>
+
+<span class="o">###</span> <span class="k">Select</span> <span class="n">the</span> <span class="n">tutorial</span> <span class="n">asset</span> <span class="n">root</span>
+
+<span class="o">###</span> <span class="n">Launch</span> <span class="n">the</span> <span class="n">development</span> <span class="n">environment</span>
+
+<span class="o">###</span> <span class="n">Build</span> <span class="n">the</span> <span class="n">asset</span> <span class="n">navigation</span> <span class="n">tree</span>
+
+<span class="o">###</span> <span class="n">Define</span> <span class="n">resource</span> <span class="n">paths</span>
+
+<span class="o">##</span> <span class="n">Defining</span> <span class="k">and</span> <span class="n">building</span> <span class="n">resources</span>
+
+<span class="o">###</span> <span class="n">Define</span> <span class="n">image</span> <span class="n">resources</span>
+
+<span class="o">###</span> <span class="n">Build</span> <span class="n">an</span> <span class="n">image</span> <span class="n">resource</span>
+
+<span class="o">##</span> <span class="n">Defining</span> <span class="k">and</span> <span class="n">building</span> <span class="n">projects</span>
+
+<span class="o">###</span> <span class="n">Define</span> <span class="n">an</span> <span class="n">image</span> <span class="n">project</span>
+
+<span class="o">###</span> <span class="n">Build</span> <span class="n">an</span> <span class="n">image</span> <span class="n">project</span>
+
+<span class="o">##</span> <span class="n">Defining</span> <span class="k">and</span> <span class="n">building</span> <span class="n">databases</span>
+
+<span class="o">###</span> <span class="n">Define</span> <span class="n">a</span> <span class="k">database</span>
+
+<span class="o">###</span> <span class="n">Build</span> <span class="n">a</span> <span class="k">database</span>
+
+<span class="o">##</span> <span class="n">Pushing</span><span class="p">,</span> <span class="n">publishing</span><span class="p">,</span> <span class="k">and</span> <span class="n">viewing</span> <span class="n">a</span> <span class="k">database</span>
+
+<span class="o">###</span> <span class="n">Push</span> <span class="n">a</span> <span class="k">database</span>
+
+<span class="o">###</span> <span class="n">Publish</span> <span class="n">a</span> <span class="k">database</span>
+
+<span class="o">###</span> <span class="k">View</span> <span class="n">a</span> <span class="k">database</span>
+
+<span class="o">##</span> <span class="n">Configuring</span> <span class="n">display</span> <span class="n">rules</span> <span class="k">for</span> <span class="n">point</span> <span class="k">data</span>
+
+<span class="o">###</span> <span class="n">Define</span><span class="p">,</span> <span class="n">configure</span><span class="p">,</span> <span class="k">and</span> <span class="n">build</span> <span class="n">vector</span> <span class="k">data</span>
+
+<span class="o">##</span> <span class="n">See</span> <span class="n">also</span>
+
+<span class="o">###</span> <span class="n">Sample</span> <span class="k">data</span> <span class="n">files</span>
+
+<span class="o">##</span> <span class="n">What</span><span class="err">&#39;</span><span class="n">s</span> <span class="k">next</span>
+</pre></div>
+
+
+<hr>
+<h2>Disclose information progressively</h2>
+<p>Learning new concepts, ideas, and techniques can be a rewarding experience for many readers who are comfortable reading through documentation at their own pace. However, being confronted with too many new concepts and instructions too quickly can be overwhelming. Readers are more likely to be receptive to longer documents that progressively disclose new information to them when they need it. The following techniques can help you incorporate progressive disclosure in your documents:</p>
+<ul>
+<li>Where possible, try introducing new terminology and concepts near to the instructions that rely on them.</li>
+<li>Break up large walls of text. To avoid multiple large paragraphs on a single page, aim to introduce tables, diagrams, lists, and headings where appropriate.</li>
+<li>Break up large series of steps. If you have a particularly long list of complicated steps, try to re-arrange them into shorter lists that explain how to complete sub-tasks.</li>
+<li>Start with simple examples and instructions, and add progressively more interesting and complicated techniques. For example, in a tutorial for creating forms, start by explaining how to handle text responses, and then introduce other techniques to handle multiple choice, images, and other response types.</li>
+</ul>
+
+
+             
+ 
+            
+            
+            
+
+
+
+
+
+
+
+<section>
+    <h6 style="display:none;">Comments</h6>
+    <p id="comment-message"> </p>
+
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle disqus-comment-count comment-count collapsed"
+                   data-toggle="collapse"
+                   data-parent="#accordion2"
+                   data-disqus-identifier="./organizing-large-documents.html"
+                   href="./organizing-large-documents.html#comment_thread"
+                   id="comment-accordion-toggle">
+                    Comments
+                </a>
+            </div>
+            <div id="comment_thread" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="comments">
+                        <div id="disqus_thread"></div>
+                        <script>
+    var disqus_shortname = 'https-hazelement-github-io.disqus.com';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+
+    var disqus_identifier = './organizing-large-documents.html';
+    var disqus_url = './organizing-large-documents.html';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+            <hr/>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2020-04-15T00:00:00-06:00">Wed 15 April 2020</time>
+
+            <h4>Category</h4>
+            <a class="category-link" href="./categories.html#writing-ref">Writing</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="./tags.html#writing-ref">writing
+                    <span class="superscript">14</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="https://github.com/hazelement" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1B1817"/><path fill="#fff" d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+    </a>
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="./theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>

@@ -1,158 +1,496 @@
-<!doctype html>
-<html lang="en" itemscope itemtype="http://schema.org/Person">
-<head>
-  <meta charset="utf-8">
-  <!-- Site Meta Data -->
-  <title> Coding Digests | A bit from everyday </title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="Haze">
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./theme/css/custom.css" media="screen">
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
 
-  <link rel="shortcut icon" href="/favicon.ico">
+        <meta name="author" content="Haze" />
 
-  <!-- schema.org -->
-  <meta itemprop="name" content="Coding Digests">
-  <meta itemprop="image" content="">
-  <meta itemprop="description" content="">
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
 
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
-  <!-- Style Meta Data -->
-  <link rel="stylesheet" href="./theme/css/style.css" type="text/css" />
-  <link rel="stylesheet" href="./theme/css/pygments.css" type="text/css" />
+<meta property="og:title" content="All Categories · Coding Digests"/>
+<meta name="twitter:title" content="All Categories · Coding Digests">
+<meta property="og:url" content="./categories.html" />
+<meta property="og:description" content="All categories of the Coding Digests blog" />
+<meta name="twitter:description" content="All categories of the Coding Digests blog">
+<meta property="og:site_name" content="Coding Digests" />
+<meta property="og:article:author" content="Haze" />
+        <title>All Categories · Coding Digests
+</title>
 
-  <!-- Feed Meta Data -->
-
-  <!-- Twitter Feed -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="">
-  <meta name="twitter:image" content="">
-
-<meta name="twitter:creator" content="">
-<meta name="twitter:url" content="./categories.html">
-<meta name="twitter:title" content="Coding Digests ~ Catégories">
-<meta name="twitter:description" content="Coding Digests ~ Catégories du site">
-
-<!-- Facebook Meta Data -->
-<meta property="og:title" content="Coding Digests ~ Catégories" />
-<meta property="og:description" content="Coding Digests ~ Catégories" />
-<meta property="og:image" content="" />
-</head>
-
-<body>
-  <!-- Sidebar -->
-  <aside>
-    <!--<center><a href="."><img id="avatar" src=""></a></center>-->
-    <h1>Coding Digests</h1>
-      <p>A bit from everyday</p>
-    <br>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-137819228-1', 'auto');
+    ga('send', 'pageview');
+</script>
 
 
-    <nav class="nav">
-      <ul class="list-bare">
-      
-   
-          <li><a class="nav__link" href="/">Home</a></li>
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="./"><span class=site-name>Coding Digests</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       .
+                                    >Home</a>
+                                </li>
+                                <li ><a href="./pages/contact.html">Contact</a></li>
+                                <li  class="active"><a href="./categories.html">Categories</a></li>
+                                <li ><a href="./tags.html">Tags</a></li>
+                                <li ><a href="./archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="./categories.html">All Categories</a></h1>
+    </header>
+</div>
 
-         
-            <li><a class="nav__link" href="./pages/contact.html">Contact</a></li>
-         
-      </ul>
-    </nav>
 
-    <br>
-    <form id="searchform" action="/search" onsubmit="return (this.elements['q'].value.length > 0)">
-      <input id="searchbox" type="text" name="q" size="12" placeholder="Search">
-    </form>
-    <br>
-
-    <div>
-      <b>Tags</b><br>
-                <a href="./tag/celery.html"><font color="white">Celery</font>
-               </a>
-                <a href="./tag/distributed-task.html"><font color="white">Distributed Task</font>
-               </a>
-                <a href="./tag/pihole.html"><font color="white">Pihole</font>
-               </a>
-                <a href="./tag/windows-10-update.html"><font color="white">Windows 10 update</font>
-               </a>
-                <a href="./tag/kubernetes.html"><font color="white">Kubernetes</font>
-               </a>
-                <a href="./tag/cicd.html"><font color="white">CI/CD</font>
-               </a>
-                <a href="./tag/squid.html"><font color="white">squid</font>
-               </a>
-                <a href="./tag/proxy.html"><font color="white">proxy</font>
-               </a>
-                <a href="./tag/http.html"><font color="white">http</font>
-               </a>
-                <a href="./tag/https.html"><font color="white">https</font>
-               </a>
+<div class="row-fluid">
+    <div class="span8 offset2">
+        <div class="accordion" id="accordion2">
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle category-title-inside-accordion collapsed" data-toggle="collapse" data-parent="#accordion2" href="#android-ref">
+                        Android<span class="superscript">1</span>
+                    </a>
+                </div>
+                <div id="android-ref" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <ul class="list-articles-under-tag-category">
+                            <li itemscope>
+                                    <a href="./compile-tcpdump-for-android.html">
+                                        Compile tcpdump for android.
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2016-12-28T00:00:00-07:00">
+                                    Wed 28 December 2016
+                                </time>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle category-title-inside-accordion collapsed" data-toggle="collapse" data-parent="#accordion2" href="#celery-ref">
+                        celery<span class="superscript">1</span>
+                    </a>
+                </div>
+                <div id="celery-ref" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <ul class="list-articles-under-tag-category">
+                            <li itemscope>
+                                    <a href="./distributed-task-with-celery.html">
+                                        Distributed Task with Celery
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2019-07-11T00:00:00-06:00">
+                                    Thu 11 July 2019
+                                </time>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle category-title-inside-accordion collapsed" data-toggle="collapse" data-parent="#accordion2" href="#data_analysis-ref">
+                        data_analysis<span class="superscript">1</span>
+                    </a>
+                </div>
+                <div id="data_analysis-ref" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <ul class="list-articles-under-tag-category">
+                            <li itemscope>
+                                    <a href="./coronavirus-2019-analysis.html">
+                                        Coronavirus 2019 Analysis
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2020-03-15T00:00:00-07:00">
+                                    Sun 15 March 2020
+                                </time>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle category-title-inside-accordion collapsed" data-toggle="collapse" data-parent="#accordion2" href="#jenkins-ref">
+                        Jenkins<span class="superscript">1</span>
+                    </a>
+                </div>
+                <div id="jenkins-ref" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <ul class="list-articles-under-tag-category">
+                            <li itemscope>
+                                    <a href="./setup-jenkins-with-django-for-continous-deployment.html">
+                                        Setup Jenkins with Django for Continous Deployment
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2016-12-28T00:00:00-07:00">
+                                    Wed 28 December 2016
+                                </time>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle category-title-inside-accordion collapsed" data-toggle="collapse" data-parent="#accordion2" href="#kubernetes-ref">
+                        Kubernetes<span class="superscript">5</span>
+                    </a>
+                </div>
+                <div id="kubernetes-ref" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <ul class="list-articles-under-tag-category">
+                            <li itemscope>
+                                    <a href="./kubernetes-persistent-volume.html">
+                                        Kubernetes Persistent Volume
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2019-03-25T00:00:00-07:00">
+                                    Mon 25 March 2019
+                                </time>
+                            </li>
+                            <li itemscope>
+                                    <a href="./kubernetes-stateful-application.html">
+                                        Kubernetes Stateful Application
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2019-03-14T00:00:00-07:00">
+                                    Thu 14 March 2019
+                                </time>
+                            </li>
+                            <li itemscope>
+                                    <a href="./kubernetes-stateless-application.html">
+                                        Kubernetes Stateless Application
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2019-03-13T00:00:00-07:00">
+                                    Wed 13 March 2019
+                                </time>
+                            </li>
+                            <li itemscope>
+                                    <a href="./kubernetes-workflow.html">
+                                        Kubernetes Workflow
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2019-03-01T00:00:00-07:00">
+                                    Fri 01 March 2019
+                                </time>
+                            </li>
+                            <li itemscope>
+                                    <a href="./kubernetes-basics.html">
+                                        Kubernetes Basics
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2019-02-21T00:00:00-07:00">
+                                    Thu 21 February 2019
+                                </time>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle category-title-inside-accordion collapsed" data-toggle="collapse" data-parent="#accordion2" href="#networking-ref">
+                        Networking<span class="superscript">1</span>
+                    </a>
+                </div>
+                <div id="networking-ref" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <ul class="list-articles-under-tag-category">
+                            <li itemscope>
+                                    <a href="./non-transparent-proxy-with-squid-and-docker.html">
+                                        Non-transparent proxy with Squid and Docker
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2018-08-30T00:00:00-06:00">
+                                    Thu 30 August 2018
+                                </time>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle category-title-inside-accordion collapsed" data-toggle="collapse" data-parent="#accordion2" href="#pelican-ref">
+                        Pelican<span class="superscript">2</span>
+                    </a>
+                </div>
+                <div id="pelican-ref" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <ul class="list-articles-under-tag-category">
+                            <li itemscope>
+                                    <a href="./setup-pelican-for-github-user-pages.html">
+                                        Setup Pelican for Github User Pages
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2016-11-27T00:00:00-07:00">
+                                    Sun 27 November 2016
+                                </time>
+                            </li>
+                            <li itemscope>
+                                    <a href="./using-pelican-for-blogging.html">
+                                        Using Pelican for Blogging
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2016-11-27T00:00:00-07:00">
+                                    Sun 27 November 2016
+                                </time>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle category-title-inside-accordion collapsed" data-toggle="collapse" data-parent="#accordion2" href="#pihole-ref">
+                        pihole<span class="superscript">1</span>
+                    </a>
+                </div>
+                <div id="pihole-ref" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <ul class="list-articles-under-tag-category">
+                            <li itemscope>
+                                    <a href="./use-pihole-to-prevent-windows-10-auto-update.html">
+                                        Use Pihole to Prevent Windows 10 Auto Update
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2019-04-07T00:00:00-07:00">
+                                    Sun 07 April 2019
+                                </time>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle category-title-inside-accordion collapsed" data-toggle="collapse" data-parent="#accordion2" href="#restructuredtext-ref">
+                        reStructuredText<span class="superscript">1</span>
+                    </a>
+                </div>
+                <div id="restructuredtext-ref" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <ul class="list-articles-under-tag-category">
+                            <li itemscope>
+                                    <a href="./restructured-text-syntax.html">
+                                        reStructured Text Syntax
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2016-11-19T11:30:00-07:00">
+                                    Sat 19 November 2016
+                                </time>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle category-title-inside-accordion collapsed" data-toggle="collapse" data-parent="#accordion2" href="#vm-ref">
+                        VM<span class="superscript">1</span>
+                    </a>
+                </div>
+                <div id="vm-ref" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <ul class="list-articles-under-tag-category">
+                            <li itemscope>
+                                    <a href="./macos-onedrive-using-vm.html">
+                                        MacOS OneDrive using VM
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2020-05-02T00:00:00-06:00">
+                                    Sat 02 May 2020
+                                </time>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle category-title-inside-accordion collapsed" data-toggle="collapse" data-parent="#accordion2" href="#writing-ref">
+                        Writing<span class="superscript">14</span>
+                    </a>
+                </div>
+                <div id="writing-ref" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <ul class="list-articles-under-tag-category">
+                            <li itemscope>
+                                    <a href="./active-voice-vs-passive-voice.html">
+                                        Active voice vs passive voice
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2020-04-15T00:00:00-06:00">
+                                    Wed 15 April 2020
+                                </time>
+                            </li>
+                            <li itemscope>
+                                    <a href="./audience.html">
+                                        Audience
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2020-04-15T00:00:00-06:00">
+                                    Wed 15 April 2020
+                                </time>
+                            </li>
+                            <li itemscope>
+                                    <a href="./clear-sentences.html">
+                                        Clear sentences
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2020-04-15T00:00:00-06:00">
+                                    Wed 15 April 2020
+                                </time>
+                            </li>
+                            <li itemscope>
+                                    <a href="./creating-sample-code.html">
+                                        Creating sample code
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2020-04-15T00:00:00-06:00">
+                                    Wed 15 April 2020
+                                </time>
+                            </li>
+                            <li itemscope>
+                                    <a href="./documents.html">
+                                        Documents
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2020-04-15T00:00:00-06:00">
+                                    Wed 15 April 2020
+                                </time>
+                            </li>
+                            <li itemscope>
+                                    <a href="./illustrating.html">
+                                        Illustrating
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2020-04-15T00:00:00-06:00">
+                                    Wed 15 April 2020
+                                </time>
+                            </li>
+                            <li itemscope>
+                                    <a href="./just-enough-grammar.html">
+                                        Just enough grammar
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2020-04-15T00:00:00-06:00">
+                                    Wed 15 April 2020
+                                </time>
+                            </li>
+                            <li itemscope>
+                                    <a href="./lists-and-tables.html">
+                                        Lists and tables
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2020-04-15T00:00:00-06:00">
+                                    Wed 15 April 2020
+                                </time>
+                            </li>
+                            <li itemscope>
+                                    <a href="./organizing-large-documents.html">
+                                        Organizing large documents
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2020-04-15T00:00:00-06:00">
+                                    Wed 15 April 2020
+                                </time>
+                            </li>
+                            <li itemscope>
+                                    <a href="./paragraphs.html">
+                                        Paragraphs
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2020-04-15T00:00:00-06:00">
+                                    Wed 15 April 2020
+                                </time>
+                            </li>
+                            <li itemscope>
+                                    <a href="./punctuation.html">
+                                        Punctuation
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2020-04-15T00:00:00-06:00">
+                                    Wed 15 April 2020
+                                </time>
+                            </li>
+                            <li itemscope>
+                                    <a href="./self-editing.html">
+                                        Self-editing
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2020-04-15T00:00:00-06:00">
+                                    Wed 15 April 2020
+                                </time>
+                            </li>
+                            <li itemscope>
+                                    <a href="./short-sentences.html">
+                                        Short sentences
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2020-04-15T00:00:00-06:00">
+                                    Wed 15 April 2020
+                                </time>
+                            </li>
+                            <li itemscope>
+                                    <a href="./words.html">
+                                        Words
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2020-04-15T00:00:00-06:00">
+                                    Wed 15 April 2020
+                                </time>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
 
-    <br>
-    <div>
-      <b>Categories</b><br>
-                <a href="./category/android.html"><font color="white">Android</font>
-               </a>
-                <a href="./category/celery.html"><font color="white">celery</font>
-               </a>
-                <a href="./category/jenkins.html"><font color="white">Jenkins</font>
-               </a>
-                <a href="./category/kubernetes.html"><font color="white">Kubernetes</font>
-               </a>
-                <a href="./category/networking.html"><font color="white">Networking</font>
-               </a>
-                <a href="./category/pelican.html"><font color="white">Pelican</font>
-               </a>
-                <a href="./category/pihole.html"><font color="white">pihole</font>
-               </a>
-                <a href="./category/restructuredtext.html"><font color="white">reStructuredText</font>
-               </a>
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
     </div>
+</footer>        <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="./theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
 
-    <p class="social">
-        <a href="https://github.com/hazelement" target="_blank" ><img src="./theme/images/icons/github.png"></a>
-    </p>
+<script>
+    function uncollapse() {
+            $(window.location.hash).collapse({
+                toggle: true
+            })
+    }
+</script>
 
-    <!--
-    <h2>Categories</h2>
-    <ul class="navbar">
-      <li><a href="./category/android.html">Android</a></li>
-      <li><a href="./category/celery.html">celery</a></li>
-      <li><a href="./category/jenkins.html">Jenkins</a></li>
-      <li><a href="./category/kubernetes.html">Kubernetes</a></li>
-      <li><a href="./category/networking.html">Networking</a></li>
-      <li><a href="./category/pelican.html">Pelican</a></li>
-      <li><a href="./category/pihole.html">pihole</a></li>
-      <li><a href="./category/restructuredtext.html">reStructuredText</a></li>
-    </ul> 
-    -->
-  </aside>
-
-  <!-- Content -->
-  <article>
-<h2>Categories</h2>
-<ul class="category_folder">
-	<li><a href="category/android.html">Android</a></li>
-	<li><a href="category/celery.html">celery</a></li>
-	<li><a href="category/jenkins.html">Jenkins</a></li>
-	<li><a href="category/kubernetes.html">Kubernetes</a></li>
-	<li><a href="category/networking.html">Networking</a></li>
-	<li><a href="category/pelican.html">Pelican</a></li>
-	<li><a href="category/pihole.html">pihole</a></li>
-	<li><a href="category/restructuredtext.html">reStructuredText</a></li>
-</ul>
-  </article>
-
-  <!-- Footer -->
-  <footer>
-    <p>
-      Blog powered by <a href="http://getpelican.com/">Pelican</a>, 
-      which takes great advantage of <a href="http://python.org">Python</a>.
-      Theme <a href="https://github.com/parbhat/pelican-blue">Pelican-Blue</a> by <a href="https://parbhatpuri.com/">@parbhat</a>.
-    </p>
-  </footer>
-
-
-</body>
+<script>
+    uncollapse();
+</script>
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
 </html>

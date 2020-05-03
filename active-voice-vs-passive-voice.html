@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./theme/css/custom.css" media="screen">
+
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+        <meta name="author" content="Google" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="writing, Writing, " />
+
+<meta property="og:title" content="Active voice vs passive voice "/>
+<meta property="og:url" content="./active-voice-vs-passive-voice.html" />
+<meta property="og:description" content="Active voice vs passive voice" />
+<meta property="og:site_name" content="Coding Digests" />
+<meta property="og:article:author" content="Google" />
+<meta property="og:article:published_time" content="2020-04-15T00:00:00-06:00" />
+<meta property="og:article:modified_time" content="2020-04-15T00:00:00-06:00" />
+<meta name="twitter:title" content="Active voice vs passive voice ">
+<meta name="twitter:description" content="Active voice vs passive voice">
+
+        <title>Active voice vs passive voice  · Coding Digests
+</title>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-137819228-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="./"><span class=site-name>Coding Digests</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       .
+                                    >Home</a>
+                                </li>
+                                <li ><a href="./pages/contact.html">Contact</a></li>
+                                <li ><a href="./categories.html">Categories</a></li>
+                                <li ><a href="./tags.html">Tags</a></li>
+                                <li ><a href="./archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="./active-voice-vs-passive-voice.html">
+                Active voice vs passive voice
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <p>Copied from, https://developers.google.com/tech-writing. </p>
+<h1>Active voice vs. passive voice</h1>
+<p><strong>Estimated Time:</strong> 15 minutes</p>
+<p>The vast majority of sentences in technical writing should be in active voice. This unit teaches you how to do the following:</p>
+<ul>
+<li>Distinguish passive voice from active voice.</li>
+<li>Convert passive voice to active voice because active voice is usually clearer.</li>
+</ul>
+<p>First, watch this video, just to get the ball rolling^<a href="https://developers.google.com/tech-writing/one/active-voice#Footnote1">1</a>^:</p>
+<h2>Distinguish active voice from passive voice in simple sentences</h2>
+<p>In an active voice sentence, an actor acts on a target. That is, an active voice sentence follows this formula:</p>
+<blockquote>
+<p>Active Voice Sentence = actor + verb + target</p>
+</blockquote>
+<p>A passive voice sentence reverses the formula. That is, a passive voice sentence typically follows the following formula:</p>
+<blockquote>
+<p>Passive Voice Sentence = target + verb + actor</p>
+</blockquote>
+<h3>Active voice example</h3>
+<p>For example, here's a short, active voice sentence:</p>
+<blockquote>
+<p>The cat sat on the mat.</p>
+</blockquote>
+<ul>
+<li>actor: The cat</li>
+<li>verb: sat</li>
+<li>target: the mat</li>
+</ul>
+<h3>Passive voice examples</h3>
+<p>By contrast, here's that same sentence in passive voice:</p>
+<blockquote>
+<p>The mat was sat on by the cat.</p>
+</blockquote>
+<ul>
+<li>target: The mat</li>
+<li>passive verb: was sat</li>
+<li>actor: the cat</li>
+</ul>
+<p>Some passive voice sentences omit an actor. For example:</p>
+<blockquote>
+<p>The mat was sat on.</p>
+</blockquote>
+<ul>
+<li>actor: <em>unknown</em></li>
+<li>passive verb: was sat</li>
+<li>target: the mat</li>
+</ul>
+<p>Who or what sat on the mat? A cat? A dog? A T-Rex? Readers can only guess. Good sentences in technical documentation identify who is doing what to whom.</p>
+<h2>Recognize passive verbs</h2>
+<p>Passive verbs typically have the following formula:</p>
+<div class="highlight"><pre><span></span><span class="err">passive verb = form of be + past participle verb</span>
+</pre></div>
+
+
+<p>Although the preceding formula looks daunting, it is actually pretty simple:</p>
+<ul>
+<li>A <strong>form of *be</strong>* in a passive verb is typically one of the following words:<ul>
+<li>is/are</li>
+<li>was/were</li>
+</ul>
+</li>
+<li>A <strong>past participle verb</strong> is typically a plain verb plus the suffix <em>ed</em>. For example, the following are past participle verbs:<ul>
+<li>interpreted</li>
+<li>generated</li>
+<li>formed</li>
+</ul>
+</li>
+</ul>
+<p>Unfortunately, some past participle verbs are irregular; that is, the past participle form does not end with the suffix <em>ed</em>. For example:</p>
+<ul>
+<li>sat</li>
+<li>known</li>
+<li>frozen</li>
+</ul>
+<p>Putting the form of <em>be</em> and the past participle together yields passive verbs, such as the following:</p>
+<ul>
+<li>was interpreted</li>
+<li>is generated</li>
+<li>was formed</li>
+<li>is frozen</li>
+</ul>
+<p>If the phrase contains an actor, a preposition ordinarily follows the passive verb. (That preposition is often a key clue to help you spot passive voice.) The following examples combine the passive verb and the preposition:</p>
+<ul>
+<li>was interpreted as</li>
+<li>is generated by</li>
+<li>was formed by</li>
+<li>is frozen by</li>
+</ul>
+<h3>Imperative verbs are typically active</h3>
+<p>It is easy to mistakenly classify sentences starting with an imperative verb as passive. An <strong>imperative verb</strong> is a command. Many items in numbered lists start with imperative verbs. For example, <em>Open</em> and <em>Set</em> in the following list are both imperative verbs:</p>
+<ol>
+<li>Open the configuration file.</li>
+<li>Set the <code>Frombus</code> variable to <code>False</code>.</li>
+</ol>
+<p>Sentences that start with an imperative verb are typically in active voice, even though they do not explicitly mention an actor. Instead, sentences that start with an imperative verb <em>imply</em> an actor. The implied actor is <strong>you</strong>.</p>
+<h3>Exercise</h3>
+<p>Mark each of the following sentences as either <strong>Passive</strong> or <strong>Active</strong>:</p>
+<ol>
+<li><code>MutableInput</code> provides read-only access.</li>
+<li>Read-only access is provided by <code>MutableInput</code>.</li>
+<li>Performance was measured.</li>
+<li>Python was invented by Guido van Rossum in the twentieth century.</li>
+<li>David Korn discovered the KornShell quite by accident.</li>
+<li>This information is used by the policy enforcement team.</li>
+<li>Click the Submit button.</li>
+<li>The orbit was calculated by Katherine Johnson.</li>
+</ol>
+<h4>Click the icon to see the answer.</h4>
+<ol>
+<li><strong>Active</strong>. MutableInput provides read-only access.</li>
+<li><strong>Passive</strong>. Read-only access is provided by MutableInput.</li>
+<li><strong>Passive</strong>. Performance was measured.</li>
+<li><strong>Passive</strong>. Python was invented by Guido van Rossum in the twentieth century.</li>
+<li><strong>Active</strong>. David Korn discovered the KornShell quite by accident.</li>
+<li><strong>Passive</strong>. This information is used by the policy enforcement team.</li>
+<li><strong>Active</strong>. Click the Submit button. (<em>Click</em> is an imperative verb.)</li>
+<li><strong>Passive</strong>. The orbit was calculated by Katherine Johnson.</li>
+</ol>
+<hr>
+<h2>Distinguish active voice from passive voice in more complex sentences</h2>
+<p>Many sentences contain multiple verbs, some of which are active and some of which are passive. For example, the following sentence contains two verbs, both of which are in passive voice:</p>
+<p><img alt="A diagram of the following sentence: Code is interpreted by
+          Python, but code is compiled by C++.  The first half of the sentence
+          (Code is interpreted by Python) is in active voice, where a target
+          (Code) is acted on (is interpreted) by the actor (Python).
+          The second half of the sentence (code is compiled by C++) is also in
+          passive voice, where the target (code) is acted on (is compiled)
+          by the actor (C++)." src="../images/passive-passive.svg"></p>
+<p>Here is that same sentence, partially converted to active voice:</p>
+<p><img alt="A diagram of the following sentence: Python interprets code,
+          but code is compiled by C++.  The first half of the sentence
+          (Python interprets code) is in active voice, where an actor
+          (Python) acts on (interprets) a target (code). The second half
+          of the sentence (code is compiled by C++) is in passive voice,
+          where the target (code) is acted on (is compiled) by the
+          actor (C++)." src="../images/active-passive.svg"></p>
+<p>And here is that same sentence, now fully converted to active voice:</p>
+<p><img alt="A diagram of the following sentence: Python interprets code,
+          but C++ compiles code.  The first half of the sentence
+          (Python interprets code) is in active voice, where an actor
+          (Python) acts on (interprets) a target (code). The second half
+          of the sentence (C++ compiles code) is also in active voice,
+          where the actor (C++) acts on (compiles) the target (code)." src="../images/all-active.svg"></p>
+<h3>Exercise</h3>
+<p>Each of the following sentences contains two verbs. Categorize each of the verbs in the following sentences as either active or passive. For example, if the first verb is active and the second is passive, write <strong>Active, Passive</strong>.</p>
+<ol>
+<li>The QA team loves ice cream, but their managers prefer sorbet.</li>
+<li>Performance metrics are required by the team, though I prefer wild guesses.</li>
+<li>When software engineers attempt something new and innovative, a reward should be given.</li>
+</ol>
+<h4>Click the icon to see the answer.</h4>
+<ol>
+<li><strong>Active, Active.</strong> The QA team loves ice cream, but their managers prefer sorbet.</li>
+<li><strong>Passive, Active.</strong> Performance metrics are required by the team, though I prefer wild guesses.</li>
+<li><strong>Active, Passive.</strong> When software engineers attempt something new and innovative, a reward should be given.</li>
+</ol>
+<h2>Prefer active voice to passive voice</h2>
+<p>Use the active voice most of the time. Use the passive voice sparingly. Active voice provides the following advantages:</p>
+<ul>
+<li>Most readers mentally convert passive voice to active voice. Why subject your readers to extra processing time? By sticking to active voice, readers can skip the preprocessor stage and go straight to compilation.</li>
+<li>Passive voice obfuscates your ideas, turning sentences on their head. Passive voice reports action indirectly.</li>
+<li>Some passive voice sentences omit an actor altogether, which forces the reader to guess the actor's identity.</li>
+<li>Active voice is generally shorter than passive voice.</li>
+</ul>
+<p>Be bold---be active.</p>
+<h3>Scientific research reports (optional material)</h3>
+<p>The writing in research reports tends to be understated. Here, for example, is one of the most famous passages in twentieth century science writing, from Crick and Watson's 1953 paper in <em>Nature</em> entitled, <em>Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid</em>:</p>
+<blockquote>
+<p>It has not escaped our notice that the specific pairing we have postulated immediately suggests a possible copying mechanism for the genetic material.</p>
+</blockquote>
+<p>The authors are so excited about their discovery that they're whispering it from the rooftops.</p>
+<p>Passive voice thrives in a tentative landscape. In research reports, experimenters and their equipment often disappear, leading to passive sentences that start off as follows:</p>
+<ul>
+<li>It has been suggested that...</li>
+<li>Data was taken...</li>
+<li>Statistics were calculated...</li>
+<li>Results were evaluated.</li>
+</ul>
+<p>Do we know who is doing what to whom? No. Does the passive voice somehow make the information more objective? No.</p>
+<p>Many scientific journals have embraced active voice. We encourage the remainder to join the quest for clarity.</p>
+<h3>Exercise</h3>
+<p>Rewrite the following passive voice sentences as active voice. Only part of certain sentences are in passive voice; ensure that all parts end up as active voice:</p>
+<ol>
+<li>The flags were not parsed by the Mungifier.</li>
+<li>A wrapper is generated by the Op registration process.</li>
+<li>Only one experiment per layer is selected by the Frombus system.</li>
+<li>Quality metrics are identified by asterisks; ampersands identify bad metrics.</li>
+</ol>
+<h4>Click the icon to see the answer.</h4>
+<ol>
+<li>The Mungifier did not parse the flags.</li>
+<li>The Op registration process generates a wrapper.</li>
+<li>The Frombus system selects only one experiment per layer.</li>
+<li>Asterisks identify quality metrics; ampersands identify bad metrics.</li>
+</ol>
+
+
+             
+ 
+            
+            
+            
+
+
+
+
+
+
+
+<section>
+    <h6 style="display:none;">Comments</h6>
+    <p id="comment-message"> </p>
+
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle disqus-comment-count comment-count collapsed"
+                   data-toggle="collapse"
+                   data-parent="#accordion2"
+                   data-disqus-identifier="./active-voice-vs-passive-voice.html"
+                   href="./active-voice-vs-passive-voice.html#comment_thread"
+                   id="comment-accordion-toggle">
+                    Comments
+                </a>
+            </div>
+            <div id="comment_thread" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="comments">
+                        <div id="disqus_thread"></div>
+                        <script>
+    var disqus_shortname = 'https-hazelement-github-io.disqus.com';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+
+    var disqus_identifier = './active-voice-vs-passive-voice.html';
+    var disqus_url = './active-voice-vs-passive-voice.html';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+            <hr/>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2020-04-15T00:00:00-06:00">Wed 15 April 2020</time>
+
+            <h4>Category</h4>
+            <a class="category-link" href="./categories.html#writing-ref">Writing</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="./tags.html#writing-ref">writing
+                    <span class="superscript">14</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="https://github.com/hazelement" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1B1817"/><path fill="#fff" d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+    </a>
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="./theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>
