@@ -100,7 +100,7 @@
 <h2>Code base solutions</h2>
 <h3>Git setup</h3>
 <p>Let's assume there are 2 git repos, one for <code>Producer</code> and one for <code>Consumer</code>. In order to shared <code>Task</code> definition, along with celery configuration, between <code>Producer</code> and <code>Consumer</code>, we create a 3rd git repo and add it as submodule for <code>Producer</code> and <code>Consumer</code>. So the setup looks like this. </p>
-<div class="highlight"><pre><span></span><span class="o">#</span> <span class="n">producer</span> <span class="n">git</span> <span class="n">repo</span>
+<div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="n">producer</span> <span class="n">git</span> <span class="n">repo</span>
 <span class="n">producer</span><span class="o">/</span>
     <span class="n">src</span><span class="o">/</span>
         <span class="p">...</span>
@@ -128,11 +128,11 @@
     <span class="n">tasks</span><span class="p">.</span><span class="n">py</span>
     <span class="n">utils</span><span class="p">.</span><span class="n">py</span>
     <span class="p">...</span>
-</pre></div>
+</code></pre></div>
 
 
 <p><code>celery_config.py</code> contains celery worker configurations which we will use to create celery app object. For example</p>
-<div class="highlight"><pre><span></span><span class="c1"># celery_config.py</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># celery_config.py</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">celery_tasks.rabbitmq_config</span> <span class="kn">import</span> <span class="n">RABBITMQ_PORT</span><span class="p">,</span> <span class="n">RABBITMQ_PWD</span><span class="p">,</span> <span class="n">RABBITMQ_USER</span><span class="p">,</span> <span class="n">RABBITMQ_HOST</span>
@@ -140,13 +140,13 @@
 <span class="c1">## Broker settings.</span>
 <span class="n">broker_url</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;pyamqp://{RABBITMQ_USER}:{RABBITMQ_PWD}@{RABBITMQ_HOST}:{RABBITMQ_PORT}&#39;</span>
 <span class="n">result_backend</span> <span class="o">=</span> <span class="s1">&#39;rpc://&#39;</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Shared Task definition</h3>
 <p><code>celery_tasks</code> repo contains dummy task class definitions. These classes needs to define class name, unique name of the task, run method and its arguments. These classes are defined in <code>tasks.py</code>. </p>
 <p>For example,</p>
-<div class="highlight"><pre><span></span><span class="c1"># tasks.py</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># tasks.py</span>
 
 <span class="kn">import</span> <span class="nn">celery</span>
 
@@ -166,29 +166,29 @@
 <span class="sd">        :rtype: str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Consumers will inherit these classes and provide actual implementations, the <code>run</code> method, which enables it to perform real computations. Producers will utilize these dummy method to send tasks to celery backend. </p>
 <p>For example, in consumer code base, inherit <code>MagicCeleryTask</code> and implement actual computation. </p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">celery_tasks.tasks</span> <span class="kn">import</span> <span class="n">MagicCeleryTask</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">celery_tasks.tasks</span> <span class="kn">import</span> <span class="n">MagicCeleryTask</span>
 
 <span class="k">class</span> <span class="nc">ActualMagicCeleryTask</span><span class="p">(</span><span class="n">MagicCeleryTask</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="n">arg3</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; actual implementation &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">arg1</span> <span class="o">+</span> <span class="n">arg2</span> <span class="o">+</span> <span class="n">arg3</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>In producer, we can import the class directly. </p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">celery_tasks.tasks</span> <span class="kn">import</span> <span class="n">MagicCeleryTask</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">celery_tasks.tasks</span> <span class="kn">import</span> <span class="n">MagicCeleryTask</span>
+</code></pre></div>
 
 
 <h3>Celery app queue configuration</h3>
 <p>Queue is configured based on task name to avoid worker conflicts. In <code>celery_tasks</code>, we created a <code>create_worker_from</code> method defined in <code>utils.py</code>. </p>
-<div class="highlight"><pre><span></span><span class="o">#</span> <span class="n">utils</span><span class="p">.</span><span class="n">py</span>
+<div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="n">utils</span><span class="p">.</span><span class="n">py</span>
 
 <span class="n">def</span> <span class="n">create_worker_from</span><span class="p">(</span><span class="n">WorkerClass</span><span class="p">,</span> <span class="n">celery_config</span><span class="o">=</span><span class="s1">&#39;celery_tasks.celery_config&#39;</span><span class="p">):</span>
     <span class="ss">&quot;&quot;&quot;</span>
@@ -208,12 +208,12 @@
     <span class="n">worker_task</span> <span class="o">=</span> <span class="n">app</span><span class="p">.</span><span class="n">register_task</span><span class="p">(</span><span class="n">WorkerClass</span><span class="p">())</span>
 
     <span class="k">return</span> <span class="n">app</span><span class="p">,</span> <span class="n">worker_task</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>In producer and consumer, we use this method and task class to create celery app and worker class instances for each task. Worker class instances are used to produce and consume tasks. </p>
 <p>For example, in consumer, </p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">celery_tasks.tasks</span> <span class="kn">import</span> <span class="n">MagicCeleryTask</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">celery_tasks.tasks</span> <span class="kn">import</span> <span class="n">MagicCeleryTask</span>
 <span class="kn">from</span> <span class="nn">celery_tasks.utils</span> <span class="kn">import</span> <span class="n">create_worker_from</span>
 
 <span class="k">class</span> <span class="nc">ActualMagicCeleryTask</span><span class="p">(</span><span class="n">MagicCeleryTask</span><span class="p">):</span>
@@ -233,11 +233,11 @@
 
 <span class="p">]</span>
 <span class="n">app</span><span class="o">.</span><span class="n">worker_main</span><span class="p">(</span><span class="n">argv</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>For example, in producer,</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">celery_tasks.tasks</span> <span class="kn">import</span> <span class="n">MagicCeleryTask</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">celery_tasks.tasks</span> <span class="kn">import</span> <span class="n">MagicCeleryTask</span>
 <span class="kn">from</span> <span class="nn">celery_tasks.utils</span> <span class="kn">import</span> <span class="n">create_worker_from</span>
 
 <span class="c1"># create worker</span>
@@ -245,12 +245,17 @@
 
 <span class="c1"># send task to queue and get result</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">worker</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
              
  
-            
+                <p id="post-share-links">
+    Share on:
+      <a href="https://twitter.com/intent/tweet?text=Distributed%20Task%20with%20Celery&url=https%3A//hazelement.github.io/distributed-task-with-celery.html&hashtags=celery,distributed-task" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//hazelement.github.io/distributed-task-with-celery.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=Distributed%20Task%20with%20Celery&amp;body=https%3A//hazelement.github.io/distributed-task-with-celery.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+
             
             
 
@@ -313,6 +318,14 @@
 </section>
 
             <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="./use-pihole-to-prevent-windows-10-auto-update.html" title="Previous: Use Pihole to Prevent Windows 10 Auto Update">Use Pihole to Prevent Windows 10 Auto Update</a></li>
+                <li class="next-article"><a href="./coronavirus-2019-analysis.html" title="Next: Coronavirus 2019 Analysis">Coronavirus 2019 Analysis</a> »</li>
+            </ul>
+            </nav>
+            </aside>
         </div>
         <section id="article-sidebar" class="span2">
             <h4>Published</h4>

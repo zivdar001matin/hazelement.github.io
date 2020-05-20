@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Coding Digests" />
 <meta property="og:article:author" content="Harry Zheng" />
 <meta property="og:article:published_time" content="2020-03-15T00:00:00-07:00" />
-<meta property="og:article:modified_time" content="2020-03-15T00:00:00-07:00" />
+<meta property="og:article:modified_time" content="2020-05-12T00:00:00-06:00" />
 <meta name="twitter:title" content="Coronavirus 2019 Analysis ">
 <meta name="twitter:description" content="Analysis on current coronavirus situation.">
 
@@ -88,17 +88,23 @@
             
             <h1>Country to country comparison</h1>
 <p>Here we put several country together and highlight significant events happened in each country. </p>
-<p>Related source code and data can be found here, https://github.com/hazelement/wuhan-virus-study. </p>
-<h2>Country incrementals</h2>
-<p><img alt="alt text" src="../images/country_incrementals.png"></p>
-<h2>Country accumulatives</h2>
+<p>Related source code and data can be found <a href="https://github.com/hazelement/wuhan-virus-study">here</a>.</p>
+<h2>Country incremental</h2>
+<p>Daily updated chart. On x axis we plot number of days since first 100 accumulative cases. On y axis, we show daily incremental cases in log scale. With this chart, we can easily tell whether the virus is spreading exponentially or it's slowing down. </p>
+<p><img alt="alt text" src="https://s3-us-west-2.amazonaws.com/covid-19-plots/public/country_incrementals.png"></p>
+<p>Static chart.
+<img alt="alt text" src="../images/country_incrementals.png"></p>
+<h2>Country accumulative</h2>
 <p><img alt="alt text" src="../images/country_totals.png"></p>
 <h2>Interesting spots:</h2>
+<h3>May 12</h3>
+<p>Canada, US and Italy have plateaued. However, we do see South Korea is struggling in the last few days. It's a good indication that the virus can easily bounce back if people don't follow social distancing properly. </p>
+<p>Both US and Canada has started easing virus lock down rules last week. So we will how the curve trends in 2 weeks. </p>
 <h3>March 24</h3>
 <ul>
-<li>US has taken over Italy on daily incrementals.</li>
+<li>US has taken over Italy on daily incremental.</li>
 <li>Both US and Italy will have more cases than China</li>
-<li>Italy has seen effective results from the lock down. Their daily incrementals is flattening out. </li>
+<li>Italy has seen effective results from the lock down. Their daily incremental is flattening out. </li>
 </ul>
 <h3>March 15</h3>
 <ul>
@@ -130,7 +136,12 @@
 
              
  
-            
+                <p id="post-share-links">
+    Share on:
+      <a href="https://twitter.com/intent/tweet?text=Coronavirus%202019%20Analysis&url=https%3A//hazelement.github.io/coronavirus-2019-analysis.html&hashtags=data-analysis,coronavirus" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//hazelement.github.io/coronavirus-2019-analysis.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=Coronavirus%202019%20Analysis&amp;body=https%3A//hazelement.github.io/coronavirus-2019-analysis.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+
             
             
 
@@ -193,10 +204,20 @@
 </section>
 
             <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="./distributed-task-with-celery.html" title="Previous: Distributed Task with Celery">Distributed Task with Celery</a></li>
+                <li class="next-article"><a href="./words.html" title="Next: Words">Words</a> »</li>
+            </ul>
+            </nav>
+            </aside>
         </div>
         <section id="article-sidebar" class="span2">
             <h4>Published</h4>
             <time itemprop="dateCreated" datetime="2020-03-15T00:00:00-07:00">Sun 15 March 2020</time>
+<h4>Last Updated</h4>
+<time datetime="2020-05-12T00:00:00-06:00">May 12, 2020</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#data_analysis-ref">data_analysis</a>

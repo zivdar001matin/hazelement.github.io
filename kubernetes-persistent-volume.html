@@ -97,22 +97,22 @@
 <h2>Create a Secret for MySQL Password</h2>
 <p>A <strong>Secret</strong> is an object that stores a piece of senstive information like a password or a key. Once a <strong>Secret</strong> is created, it can be refer to in manifest files like an environment variable. </p>
 <p>Create a Secret object using the following command, replacing <strong>YOUR_PASSWORD</strong> with your own password. </p>
-<div class="highlight"><pre><span></span>$ kubectl create secret generic mysql-pass --from-literal<span class="o">=</span><span class="nv">password</span><span class="o">=</span>YOUR_PASSWORD
-</pre></div>
+<div class="highlight"><pre><span></span><code>$ kubectl create secret generic mysql-pass --from-literal<span class="o">=</span><span class="nv">password</span><span class="o">=</span>YOUR_PASSWORD
+</code></pre></div>
 
 
 <p>This creates a <code>mysql-pass</code> object with key value pair <code>password</code> and <code>YOUR_PASSWORD</code>. </p>
 <p>Verify the Secret exists using the following command, </p>
-<div class="highlight"><pre><span></span>$ kubectl get secrets
+<div class="highlight"><pre><span></span><code>$ kubectl get secrets
 NAME                  TYPE                    DATA      AGE
 mysql-pass            Opaque                  <span class="m">1</span>         42s
-</pre></div>
+</code></pre></div>
 
 
 <p>Notice that the content is not shown. </p>
 <h2>Deploy MySQl</h2>
 <p>The following manifest, <code>mysql-deployment.yaml</code>, describes a single-instance MySQL Deployment. The MySQL container mounts the PersistentVolume at /var/lib/mysql. The <strong>MYSQL_ROOT_PASSWORD</strong> environment variable sets the database password from the Secret.</p>
-<div class="highlight"><pre><span></span><span class="n">apiVersion</span><span class="o">:</span> <span class="n">v1</span>
+<div class="highlight"><pre><span></span><code><span class="n">apiVersion</span><span class="o">:</span> <span class="n">v1</span>
 <span class="n">kind</span><span class="o">:</span> <span class="n">Service</span>
 <span class="n">metadata</span><span class="o">:</span>
   <span class="n">name</span><span class="o">:</span> <span class="n">wordpress</span><span class="o">-</span><span class="n">mysql</span>
@@ -177,31 +177,31 @@ mysql-pass            Opaque                  <span class="m">1</span>         4
       <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">mysql</span><span class="o">-</span><span class="n">persistent</span><span class="o">-</span><span class="n">storage</span>
         <span class="n">persistentVolumeClaim</span><span class="o">:</span>
           <span class="n">claimName</span><span class="o">:</span> <span class="n">mysql</span><span class="o">-</span><span class="n">pv</span><span class="o">-</span><span class="n">claim</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Deploy MySQL using the yaml file, </p>
-<div class="highlight"><pre><span></span>$ kubectl create -f mysql-deployment.yaml
-</pre></div>
+<div class="highlight"><pre><span></span><code>$ kubectl create -f mysql-deployment.yaml
+</code></pre></div>
 
 
 <p>Verify that a PersistentVolume got dynamically provisioned,</p>
-<div class="highlight"><pre><span></span>$ kubectl get pvc
+<div class="highlight"><pre><span></span><code>$ kubectl get pvc
 NAME             STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
 mysql-pv-claim   Bound     pvc-9ac5609d-4f32-11e9-9123-025000000001   20Gi       RWO            hostpath       8s
-</pre></div>
+</code></pre></div>
 
 
 <p>Verify pods is running,</p>
-<div class="highlight"><pre><span></span>$ kubectl get pods
+<div class="highlight"><pre><span></span><code>$ kubectl get pods
 NAME                              READY     STATUS    RESTARTS   AGE
 wordpress-mysql-bcc89f687-b5vb2   <span class="m">1</span>/1       Running   <span class="m">0</span>          1m
-</pre></div>
+</code></pre></div>
 
 
 <h2>Deploy WordPress</h2>
 <p>The following manifest file, <code>wordpress-deployment.yaml</code>, describes a single-instance WordPress Deployment and Service. It uses PVC for persistent storage and a Secret for password. It also use <code>type: LoadBalancer</code>. This setting exposes WordPress to traffic from outside of the cluter. </p>
-<div class="highlight"><pre><span></span><span class="n">apiVersion</span><span class="o">:</span> <span class="n">v1</span>
+<div class="highlight"><pre><span></span><code><span class="n">apiVersion</span><span class="o">:</span> <span class="n">v1</span>
 <span class="n">kind</span><span class="o">:</span> <span class="n">Service</span>
 <span class="n">metadata</span><span class="o">:</span>
   <span class="n">name</span><span class="o">:</span> <span class="n">wordpress</span>
@@ -268,27 +268,27 @@ wordpress-mysql-bcc89f687-b5vb2   <span class="m">1</span>/1       Running   <sp
       <span class="o">-</span> <span class="n">name</span><span class="o">:</span> <span class="n">wordpress</span><span class="o">-</span><span class="n">persistent</span><span class="o">-</span><span class="n">storage</span>
         <span class="n">persistentVolumeClaim</span><span class="o">:</span>
           <span class="n">claimName</span><span class="o">:</span> <span class="n">wp</span><span class="o">-</span><span class="n">pv</span><span class="o">-</span><span class="n">claim</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Create a WordPress Service and Deployment form the file <code>wordpress-deployment.yaml</code> file, </p>
-<div class="highlight"><pre><span></span>$ kubectl create -f wordpress-deployment.yaml
-</pre></div>
+<div class="highlight"><pre><span></span><code>$ kubectl create -f wordpress-deployment.yaml
+</code></pre></div>
 
 
 <p>Verify that a PersistentVolume got dynamically provisioned, </p>
-<div class="highlight"><pre><span></span>$ kubectl get pvc
+<div class="highlight"><pre><span></span><code>$ kubectl get pvc
 NAME             STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
 mysql-pv-claim   Bound     pvc-9ac5609d-4f32-11e9-9123-025000000001   20Gi       RWO            hostpath       8m
 wp-pv-claim      Bound     pvc-cf4a8bdc-4f33-11e9-9123-025000000001   20Gi       RWO            hostpath       12s
-</pre></div>
+</code></pre></div>
 
 
 <p>Verify that Service is running, </p>
-<div class="highlight"><pre><span></span>$ kubectl get services wordpress
+<div class="highlight"><pre><span></span><code>$ kubectl get services wordpress
 NAME        TYPE           CLUSTER-IP       EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>        AGE
 wordpress   LoadBalancer   <span class="m">10</span>.110.116.160   localhost     <span class="m">80</span>:31111/TCP   50s
-</pre></div>
+</code></pre></div>
 
 
 <p>Check <code>localhost</code> on the browser and a WordPress page should show up. </p>
@@ -302,7 +302,12 @@ wordpress   LoadBalancer   <span class="m">10</span>.110.116.160   localhost    
 
              
  
-            
+                <p id="post-share-links">
+    Share on:
+      <a href="https://twitter.com/intent/tweet?text=Kubernetes%20Persistent%20Volume&url=https%3A//hazelement.github.io/kubernetes-persistent-volume.html&hashtags=kubernetes" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//hazelement.github.io/kubernetes-persistent-volume.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=Kubernetes%20Persistent%20Volume&amp;body=https%3A//hazelement.github.io/kubernetes-persistent-volume.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+
             
             
 
@@ -365,6 +370,24 @@ wordpress   LoadBalancer   <span class="m">10</span>.110.116.160   localhost    
 </section>
 
             <hr/>
+<section>
+    <h2>Related Posts</h2>
+<ul class="related-posts-list">
+<li><a href="./kubernetes-basics.html" title="Kubernetes Basics">Kubernetes Basics</a></li>
+<li><a href="./kubernetes-workflow.html" title="Kubernetes Workflow">Kubernetes Workflow</a></li>
+<li><a href="./kubernetes-stateless-application.html" title="Kubernetes Stateless Application">Kubernetes Stateless Application</a></li>
+<li><a href="./kubernetes-stateful-application.html" title="Kubernetes Stateful Application">Kubernetes Stateful Application</a></li>
+</ul>
+<hr />
+</section>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="./kubernetes-stateful-application.html" title="Previous: Kubernetes Stateful Application">Kubernetes Stateful Application</a></li>
+                <li class="next-article"><a href="./use-pihole-to-prevent-windows-10-auto-update.html" title="Next: Use Pihole to Prevent Windows 10 Auto Update">Use Pihole to Prevent Windows 10 Auto Update</a> »</li>
+            </ul>
+            </nav>
+            </aside>
         </div>
         <section id="article-sidebar" class="span2">
             <h4>Published</h4>

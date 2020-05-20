@@ -90,7 +90,7 @@
 <p>For those who haven't heard about Pihole, it's a light DNS service that can run on a device as small as a raspberry pi. It can be used as a DNS service to block certain unwanted domains. Most popular usage is to block advertisement and online tracking services. The GitHub page is <a href="https://github.com/pi-hole/pi-hole">here</a>. </p>
 <h2>Running a Pihole in docker</h2>
 <p>We will be using docker to run a Pihole service. Pihole has an official docker image that can be found <a href="https://github.com/pi-hole/docker-pi-hole">here</a>. A <code>docker-compose</code> file is also provided on their GitHub page. It's posted here for convenience. </p>
-<div class="highlight"><pre><span></span><span class="k">version</span><span class="p">:</span> <span class="ss">&quot;3&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="k">version</span><span class="p">:</span> <span class="ss">&quot;3&quot;</span>
 
 <span class="o">#</span> <span class="k">More</span> <span class="n">info</span> <span class="k">at</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">pi</span><span class="o">-</span><span class="n">hole</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">pi</span><span class="o">-</span><span class="n">hole</span><span class="o">/</span> <span class="k">and</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">docs</span><span class="p">.</span><span class="n">pi</span><span class="o">-</span><span class="n">hole</span><span class="p">.</span><span class="n">net</span><span class="o">/</span>
 <span class="n">services</span><span class="p">:</span>
@@ -118,7 +118,7 @@
     <span class="n">cap_add</span><span class="p">:</span>
       <span class="o">-</span> <span class="n">NET_ADMIN</span>
     <span class="k">restart</span><span class="p">:</span> <span class="n">unless</span><span class="o">-</span><span class="n">stopped</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Let's assume <code>Pihole</code> is running on a local server with IP address <code>192.168.0.254</code>. On web browser, go to that IP address. A pihole page should show up. Click on <code>Did you mean to go to the admin panel?</code>. This will bring us to the admin page. Click on <code>login in</code> and enter the password defined in the <code>docker-compose.yml</code> file. </p>
@@ -140,7 +140,12 @@
 
              
  
-            
+                <p id="post-share-links">
+    Share on:
+      <a href="https://twitter.com/intent/tweet?text=Use%20Pihole%20to%20Prevent%20Windows%2010%20Auto%20Update&url=https%3A//hazelement.github.io/use-pihole-to-prevent-windows-10-auto-update.html&hashtags=pihole,windows-10-update" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//hazelement.github.io/use-pihole-to-prevent-windows-10-auto-update.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=Use%20Pihole%20to%20Prevent%20Windows%2010%20Auto%20Update&amp;body=https%3A//hazelement.github.io/use-pihole-to-prevent-windows-10-auto-update.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+
             
             
 
@@ -203,6 +208,14 @@
 </section>
 
             <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="./kubernetes-persistent-volume.html" title="Previous: Kubernetes Persistent Volume">Kubernetes Persistent Volume</a></li>
+                <li class="next-article"><a href="./distributed-task-with-celery.html" title="Next: Distributed Task with Celery">Distributed Task with Celery</a> »</li>
+            </ul>
+            </nav>
+            </aside>
         </div>
         <section id="article-sidebar" class="span2">
             <h4>Published</h4>

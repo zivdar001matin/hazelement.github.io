@@ -106,7 +106,7 @@
 </ol>
 <h4>Create redis master deployment</h4>
 <p>To create a redis master deployment, use the following manifest file, <code>redis-master-deployment.yaml</code>. </p>
-<div class="highlight"><pre><span></span><span class="n">apiVersion</span><span class="o">:</span> <span class="n">apps</span><span class="sr">/v1 # for versions before 1.9.0 use apps/</span><span class="n">v1beta2</span>
+<div class="highlight"><pre><span></span><code><span class="n">apiVersion</span><span class="o">:</span> <span class="n">apps</span><span class="sr">/v1 # for versions before 1.9.0 use apps/</span><span class="n">v1beta2</span>
 <span class="n">kind</span><span class="o">:</span> <span class="n">Deployment</span>
 <span class="n">metadata</span><span class="o">:</span>
   <span class="n">name</span><span class="o">:</span> <span class="n">redis</span><span class="o">-</span><span class="n">master</span>
@@ -135,19 +135,19 @@
             <span class="n">memory</span><span class="o">:</span> <span class="mi">100</span><span class="n">Mi</span>
         <span class="n">ports</span><span class="o">:</span>
         <span class="o">-</span> <span class="n">containerPort</span><span class="o">:</span> <span class="mi">6379</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>In terminal, issue this command <code>kubectl apply -f redis-master-deployment.yaml</code>. </p>
 <p>Ensure the deployment is running. </p>
-<div class="highlight"><pre><span></span>$ kubectl get pods
+<div class="highlight"><pre><span></span><code>$ kubectl get pods
 NAME                            READY     STATUS              RESTARTS   AGE
 redis-master-55db5f7567-wmrjk   <span class="m">0</span>/1       ContainerCreating   <span class="m">0</span>          8s
-</pre></div>
+</code></pre></div>
 
 
 <p>To view the logs of the master pod:</p>
-<div class="highlight"><pre><span></span>$ kubectl logs -f redis-master-55db5f7567-wmrjk
+<div class="highlight"><pre><span></span><code>$ kubectl logs -f redis-master-55db5f7567-wmrjk
                 _._
            _.-<span class="sb">``</span>__ <span class="s1">&#39;&#39;</span>-._
       _.-<span class="sb">``</span>    <span class="sb">`</span>.  <span class="sb">`</span>_.  <span class="s1">&#39;&#39;</span>-._           Redis <span class="m">2</span>.8.19 <span class="o">(</span><span class="m">00000000</span>/0<span class="o">)</span> <span class="m">64</span> bit
@@ -170,12 +170,12 @@ redis-master-55db5f7567-wmrjk   <span class="m">0</span>/1       ContainerCreati
 <span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="m">13</span> Mar <span class="m">20</span>:29:20.726 <span class="c1"># WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command &#39;echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled&#39; as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.</span>
 <span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="m">13</span> Mar <span class="m">20</span>:29:20.726 <span class="c1"># WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.</span>
 <span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="m">13</span> Mar <span class="m">20</span>:29:20.726 * The server is now ready to accept connections on port <span class="m">6379</span>
-</pre></div>
+</code></pre></div>
 
 
 <h4>Create redis master service</h4>
 <p>For other applications to communicate with redis master, we need to apply a <code>Service</code> to proxy the traffic to the redis master pod. Use the following manifest file, <code>redis-master-service.yaml</code>, to define a <code>Service</code>. </p>
-<div class="highlight"><pre><span></span><span class="n">apiVersion</span><span class="o">:</span> <span class="n">v1</span>
+<div class="highlight"><pre><span></span><code><span class="n">apiVersion</span><span class="o">:</span> <span class="n">v1</span>
 <span class="n">kind</span><span class="o">:</span> <span class="n">Service</span>
 <span class="n">metadata</span><span class="o">:</span>
   <span class="n">name</span><span class="o">:</span> <span class="n">redis</span><span class="o">-</span><span class="n">master</span>
@@ -191,25 +191,25 @@ redis-master-55db5f7567-wmrjk   <span class="m">0</span>/1       ContainerCreati
     <span class="n">app</span><span class="o">:</span> <span class="n">redis</span>
     <span class="n">role</span><span class="o">:</span> <span class="n">master</span>
     <span class="n">tier</span><span class="o">:</span> <span class="n">backend</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Start the service using the <code>apply</code> method. </p>
-<div class="highlight"><pre><span></span><span class="err">kubectl apply -f redis-master-service.yaml</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">kubectl apply -f redis-master-service.yaml</span>
+</code></pre></div>
 
 
 <p>Make sure the service is running:</p>
-<div class="highlight"><pre><span></span>$ kubectl get service
+<div class="highlight"><pre><span></span><code>$ kubectl get service
 NAME           TYPE        CLUSTER-IP       EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>    AGE
 kubernetes     ClusterIP   <span class="m">10</span>.96.0.1        &lt;none&gt;        <span class="m">443</span>/TCP    19d
 redis-master   ClusterIP   <span class="m">10</span>.110.130.106   &lt;none&gt;        <span class="m">6379</span>/TCP   5s
-</pre></div>
+</code></pre></div>
 
 
 <h4>Create redis slave deployment</h4>
 <p>To create a redis slave deployment, use the following manifest file, <code>redis-slave-deployment.yaml</code>. </p>
-<div class="highlight"><pre><span></span><span class="n">apiVersion</span><span class="o">:</span> <span class="n">apps</span><span class="sr">/v1 # for versions before 1.9.0 use apps/</span><span class="n">v1beta2</span>
+<div class="highlight"><pre><span></span><code><span class="n">apiVersion</span><span class="o">:</span> <span class="n">apps</span><span class="sr">/v1 # for versions before 1.9.0 use apps/</span><span class="n">v1beta2</span>
 <span class="n">kind</span><span class="o">:</span> <span class="n">Deployment</span>
 <span class="n">metadata</span><span class="o">:</span>
   <span class="n">name</span><span class="o">:</span> <span class="n">redis</span><span class="o">-</span><span class="n">slave</span>
@@ -249,26 +249,26 @@ redis-master   ClusterIP   <span class="m">10</span>.110.130.106   &lt;none&gt; 
           <span class="err">#</span> <span class="n">value</span><span class="o">:</span> <span class="n">env</span>
         <span class="n">ports</span><span class="o">:</span>
         <span class="o">-</span> <span class="n">containerPort</span><span class="o">:</span> <span class="mi">6379</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Start up the deployment,</p>
-<div class="highlight"><pre><span></span><span class="err">kubectl apply -f redis-slave-deployment.yaml</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">kubectl apply -f redis-slave-deployment.yaml</span>
+</code></pre></div>
 
 
 <p>Check running pods, </p>
-<div class="highlight"><pre><span></span>$ kubectl get pods
+<div class="highlight"><pre><span></span><code>$ kubectl get pods
 NAME                            READY     STATUS              RESTARTS   AGE
 redis-master-55db5f7567-wmrjk   <span class="m">1</span>/1       Running             <span class="m">0</span>          23m
 redis-slave-584c66c5b5-ghrsz    <span class="m">0</span>/1       ContainerCreating   <span class="m">0</span>          5s
 redis-slave-584c66c5b5-tpd4l    <span class="m">0</span>/1       ContainerCreating   <span class="m">0</span>          5s
-</pre></div>
+</code></pre></div>
 
 
 <h4>Create redis slave service</h4>
 <p>To open up slave deployment for other applications to communicate, we use a <code>Service</code> like the master deployment, <code>redis-slave-service.yaml</code>. </p>
-<div class="highlight"><pre><span></span><span class="n">apiVersion</span><span class="o">:</span> <span class="n">v1</span>
+<div class="highlight"><pre><span></span><code><span class="n">apiVersion</span><span class="o">:</span> <span class="n">v1</span>
 <span class="n">kind</span><span class="o">:</span> <span class="n">Service</span>
 <span class="n">metadata</span><span class="o">:</span>
   <span class="n">name</span><span class="o">:</span> <span class="n">redis</span><span class="o">-</span><span class="n">slave</span>
@@ -283,23 +283,23 @@ redis-slave-584c66c5b5-tpd4l    <span class="m">0</span>/1       ContainerCreati
     <span class="n">app</span><span class="o">:</span> <span class="n">redis</span>
     <span class="n">role</span><span class="o">:</span> <span class="n">slave</span>
     <span class="n">tier</span><span class="o">:</span> <span class="n">backend</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Start the service, <code>kubectl apply -f redis-slave-service.yaml</code>. </p>
 <p>Check running services,</p>
-<div class="highlight"><pre><span></span>$ kubectl get services
+<div class="highlight"><pre><span></span><code>$ kubectl get services
 NAME           TYPE        CLUSTER-IP       EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>    AGE
 kubernetes     ClusterIP   <span class="m">10</span>.96.0.1        &lt;none&gt;        <span class="m">443</span>/TCP    19d
 redis-master   ClusterIP   <span class="m">10</span>.110.130.106   &lt;none&gt;        <span class="m">6379</span>/TCP   3m
 redis-slave    ClusterIP   <span class="m">10</span>.108.183.147   &lt;none&gt;        <span class="m">6379</span>/TCP   7s
-</pre></div>
+</code></pre></div>
 
 
 <h2>PHP guestbook frontend</h2>
 <h3>Create frontend deployment</h3>
 <p>To create a deployment, use the manifest file, <code>frontend-deployment.yaml</code>. </p>
-<div class="highlight"><pre><span></span><span class="n">apiVersion</span><span class="o">:</span> <span class="n">apps</span><span class="sr">/v1 # for versions before 1.9.0 use apps/</span><span class="n">v1beta2</span>
+<div class="highlight"><pre><span></span><code><span class="n">apiVersion</span><span class="o">:</span> <span class="n">apps</span><span class="sr">/v1 # for versions before 1.9.0 use apps/</span><span class="n">v1beta2</span>
 <span class="n">kind</span><span class="o">:</span> <span class="n">Deployment</span>
 <span class="n">metadata</span><span class="o">:</span>
   <span class="n">name</span><span class="o">:</span> <span class="n">frontend</span>
@@ -337,27 +337,27 @@ redis-slave    ClusterIP   <span class="m">10</span>.108.183.147   &lt;none&gt; 
           <span class="err">#</span> <span class="n">value</span><span class="o">:</span> <span class="n">env</span>
         <span class="n">ports</span><span class="o">:</span>
         <span class="o">-</span> <span class="n">containerPort</span><span class="o">:</span> <span class="mi">80</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Start the deployment, </p>
-<div class="highlight"><pre><span></span><span class="err">kubectl apply -f frontend-deployment.yaml</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">kubectl apply -f frontend-deployment.yaml</span>
+</code></pre></div>
 
 
 <p>Quest the list of pods to verify the frontend replicas are running:</p>
-<div class="highlight"><pre><span></span>$ kubectl get pods -l <span class="nv">app</span><span class="o">=</span>guestbook -l <span class="nv">tier</span><span class="o">=</span>frontend
+<div class="highlight"><pre><span></span><code>$ kubectl get pods -l <span class="nv">app</span><span class="o">=</span>guestbook -l <span class="nv">tier</span><span class="o">=</span>frontend
 NAME                        READY     STATUS              RESTARTS   AGE
 frontend-5c548f4769-bsjjv   <span class="m">0</span>/1       ContainerCreating   <span class="m">0</span>          9s
 frontend-5c548f4769-mjq4h   <span class="m">0</span>/1       ContainerCreating   <span class="m">0</span>          9s
 frontend-5c548f4769-sljfb   <span class="m">0</span>/1       ContainerCreating   <span class="m">0</span>          9s
-</pre></div>
+</code></pre></div>
 
 
 <h3>Create frontend service</h3>
 <p>The <code>redis-slave</code> and <code>redis-master</code> services are only accessible within the container cluster because default type for a service is CluterIP. <code>ClusterIP</code> provides a single IP address for the set of Pods the Service is pointing to. This IP address is accessible only within the cluster.</p>
 <p>To allow guests to be able to access the guestbook, we need to configure the frontend service to the external internet. This is achived through <code>type: NodePort</code> or <code>type: LoadBalancer</code>. We use <code>LoadBalancer</code> here as an example. <code>frontend-service.yaml</code>. </p>
-<div class="highlight"><pre><span></span><span class="n">apiVersion</span><span class="o">:</span> <span class="n">v1</span>
+<div class="highlight"><pre><span></span><code><span class="n">apiVersion</span><span class="o">:</span> <span class="n">v1</span>
 <span class="n">kind</span><span class="o">:</span> <span class="n">Service</span>
 <span class="n">metadata</span><span class="o">:</span>
   <span class="n">name</span><span class="o">:</span> <span class="n">frontend</span>
@@ -375,34 +375,34 @@ frontend-5c548f4769-sljfb   <span class="m">0</span>/1       ContainerCreating  
   <span class="n">selector</span><span class="o">:</span>
     <span class="n">app</span><span class="o">:</span> <span class="n">guestbook</span>
     <span class="n">tier</span><span class="o">:</span> <span class="n">frontend</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Start a the service, </p>
-<div class="highlight"><pre><span></span><span class="err">kubectl apply -f frontend-service.yaml</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">kubectl apply -f frontend-service.yaml</span>
+</code></pre></div>
 
 
 <p>List running services to verify, </p>
-<div class="highlight"><pre><span></span>$ kubectl get services
+<div class="highlight"><pre><span></span><code>$ kubectl get services
 NAME           TYPE        CLUSTER-IP       EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>        AGE
 frontend       LoadBalancer    <span class="m">10</span>.100.241.58    localhost        <span class="m">80</span>:31546/TCP   32s
 kubernetes     ClusterIP   <span class="m">10</span>.96.0.1        &lt;none&gt;        <span class="m">443</span>/TCP        19d
 redis-master   ClusterIP   <span class="m">10</span>.110.130.106   &lt;none&gt;        <span class="m">6379</span>/TCP       6m
 redis-slave    ClusterIP   <span class="m">10</span>.108.183.147   &lt;none&gt;        <span class="m">6379</span>/TCP       3m
-</pre></div>
+</code></pre></div>
 
 
 <h2>View the front end</h2>
 <p>To view the frontend, go to <code>localhost:80</code> on the browser and the frontend website should show up. </p>
 <h2>Scale the web frontend</h2>
 <p>Run the following command to scale up the number of frontend Pods,</p>
-<div class="highlight"><pre><span></span><span class="err">kubectl scale deployment frontend --replicas=5</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">kubectl scale deployment frontend --replicas=5</span>
+</code></pre></div>
 
 
 <p>Query the list of Pods to verify the number of frontend Pods running, </p>
-<div class="highlight"><pre><span></span>$ kubectl get pods
+<div class="highlight"><pre><span></span><code>$ kubectl get pods
 NAME                            READY     STATUS    RESTARTS   AGE
 frontend-3823415956-70qj5       <span class="m">1</span>/1       Running   <span class="m">0</span>          5s
 frontend-3823415956-dsvc5       <span class="m">1</span>/1       Running   <span class="m">0</span>          54m
@@ -412,28 +412,28 @@ frontend-3823415956-x2pld       <span class="m">1</span>/1       Running   <span
 redis-master-1068406935-3lswp   <span class="m">1</span>/1       Running   <span class="m">0</span>          56m
 redis-slave-2005841000-fpvqc    <span class="m">1</span>/1       Running   <span class="m">0</span>          55m
 redis-slave-2005841000-phfv9    <span class="m">1</span>/1       Running   <span class="m">0</span>          55m
-</pre></div>
+</code></pre></div>
 
 
 <p>To scale down the number of frontend Pods:</p>
-<div class="highlight"><pre><span></span><span class="err">kubectl scale deployment frontend --replicas=2</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">kubectl scale deployment frontend --replicas=2</span>
+</code></pre></div>
 
 
 <p>To verify,</p>
-<div class="highlight"><pre><span></span>$ kubectl get pods
+<div class="highlight"><pre><span></span><code>$ kubectl get pods
 NAME                            READY     STATUS    RESTARTS   AGE
 frontend-3823415956-k22zn       <span class="m">1</span>/1       Running   <span class="m">0</span>          1h
 frontend-3823415956-w9gbt       <span class="m">1</span>/1       Running   <span class="m">0</span>          1h
 redis-master-1068406935-3lswp   <span class="m">1</span>/1       Running   <span class="m">0</span>          1h
 redis-slave-2005841000-fpvqc    <span class="m">1</span>/1       Running   <span class="m">0</span>          1h
 redis-slave-2005841000-phfv9    <span class="m">1</span>/1       Running   <span class="m">0</span>          1h
-</pre></div>
+</code></pre></div>
 
 
 <h2>Clean up</h2>
 <p>Run the following commands to delete all Pods, Deployments and Services, </p>
-<div class="highlight"><pre><span></span>$ kubectl delete deployment -l <span class="nv">app</span><span class="o">=</span>redis
+<div class="highlight"><pre><span></span><code>$ kubectl delete deployment -l <span class="nv">app</span><span class="o">=</span>redis
 deployment.extensions <span class="s2">&quot;redis-master&quot;</span> deleted
 deployment.extensions <span class="s2">&quot;redis-slave&quot;</span> deleted
 $ kubectl delete service -l <span class="nv">app</span><span class="o">=</span>redis
@@ -443,18 +443,23 @@ $ kubectl delete deployment -l <span class="nv">app</span><span class="o">=</spa
 deployment.extensions <span class="s2">&quot;frontend&quot;</span> deleted
 $ kubectl delete service -l <span class="nv">app</span><span class="o">=</span>guestbook
 service <span class="s2">&quot;frontend&quot;</span> deleted
-</pre></div>
+</code></pre></div>
 
 
 <p>Query the list of Pods to verify all pods are terminated,</p>
-<div class="highlight"><pre><span></span>$ kubectl get pods
+<div class="highlight"><pre><span></span><code>$ kubectl get pods
 No resources found.
-</pre></div>
+</code></pre></div>
 
 
              
  
-            
+                <p id="post-share-links">
+    Share on:
+      <a href="https://twitter.com/intent/tweet?text=Kubernetes%20Stateless%20Application&url=https%3A//hazelement.github.io/kubernetes-stateless-application.html&hashtags=kubernetes,cicd" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//hazelement.github.io/kubernetes-stateless-application.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=Kubernetes%20Stateless%20Application&amp;body=https%3A//hazelement.github.io/kubernetes-stateless-application.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+
             
             
 
@@ -517,6 +522,24 @@ No resources found.
 </section>
 
             <hr/>
+<section>
+    <h2>Related Posts</h2>
+<ul class="related-posts-list">
+<li><a href="./kubernetes-basics.html" title="Kubernetes Basics">Kubernetes Basics</a></li>
+<li><a href="./kubernetes-workflow.html" title="Kubernetes Workflow">Kubernetes Workflow</a></li>
+<li><a href="./kubernetes-stateful-application.html" title="Kubernetes Stateful Application">Kubernetes Stateful Application</a></li>
+<li><a href="./kubernetes-persistent-volume.html" title="Kubernetes Persistent Volume">Kubernetes Persistent Volume</a></li>
+</ul>
+<hr />
+</section>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="./kubernetes-workflow.html" title="Previous: Kubernetes Workflow">Kubernetes Workflow</a></li>
+                <li class="next-article"><a href="./kubernetes-stateful-application.html" title="Next: Kubernetes Stateful Application">Kubernetes Stateful Application</a> »</li>
+            </ul>
+            </nav>
+            </aside>
         </div>
         <section id="article-sidebar" class="span2">
             <h4>Published</h4>

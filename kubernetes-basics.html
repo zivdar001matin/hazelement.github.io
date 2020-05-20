@@ -92,10 +92,10 @@
 <p>A kubernetes <strong>cluster</strong> is consist of <strong>Nodes</strong>. A node can be a VM or a physical machine. </p>
 <p><img alt="Pelican" src="../images/module_02_cluster.svg"></p>
 <p>To check current nodes issue this command:</p>
-<div class="highlight"><pre><span></span>$ kubectl get nodes
+<div class="highlight"><pre><span></span><code>$ kubectl get nodes
 NAME                 STATUS    ROLES     AGE       VERSION
 docker-for-desktop   Ready     master    30m       v1.10.11
-</pre></div>
+</code></pre></div>
 
 
 <p>Each cluster should have one master node with a 0 or a few slave nodes.</p>
@@ -103,10 +103,10 @@ docker-for-desktop   Ready     master    30m       v1.10.11
 <p>A node is consists of one or more <strong>Pods</strong>.  </p>
 <p><img alt="Pelican" src="../images/module_03_nodes.svg"></p>
 <p>To get list of running pods, issue this command:</p>
-<div class="highlight"><pre><span></span>$ kubectl get pods
+<div class="highlight"><pre><span></span><code>$ kubectl get pods
 NAME                                   READY     STATUS    RESTARTS   AGE
 kubernetes-bootcamp-5c69669756-rmxrn   <span class="m">1</span>/1       Running   <span class="m">0</span>          45m
-</pre></div>
+</code></pre></div>
 
 
 <p>A Pod is a Kubernetes abstraction that represents a group of one or more application containers (such as Docker or rkt), and some shared resources for those containers. Those resources include:</p>
@@ -140,10 +140,10 @@ Then we can make a HTTP request to the application in that pod. <code>curl http:
 <p>Get the name of running pod, <code>export POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')</code>. </p>
 <h3>Check application configuration</h3>
 <p>Let’s verify that the application we deployed in the previous scenario is running. We’ll use the kubectl get command and look for existing Pods:</p>
-<div class="highlight"><pre><span></span>$ kubectl get pods
+<div class="highlight"><pre><span></span><code>$ kubectl get pods
 NAME                                   READY     STATUS    RESTARTS   AGE
 kubernetes-bootcamp-5c69669756-rmxrn   <span class="m">1</span>/1       Running   <span class="m">0</span>          1h
-</pre></div>
+</code></pre></div>
 
 
 <p>Next, to view what containers are inside that Pod and what images are used to build those containers we run the describe pods command:
@@ -154,7 +154,7 @@ kubernetes-bootcamp-5c69669756-rmxrn   <span class="m">1</span>/1       Running 
 <p>Note: We don’t need to specify the container name, because we only have one container inside the pod.</p>
 <h3>Executing command on the container</h3>
 <p>We can execute commands directly on the container once the Pod is up and running. For this, we use the exec command and use the name of the Pod as a parameter. Let’s list the environment variables: </p>
-<div class="highlight"><pre><span></span>$ kubectl <span class="nb">exec</span> <span class="nv">$POD_NAME</span> env
+<div class="highlight"><pre><span></span><code>$ kubectl <span class="nb">exec</span> <span class="nv">$POD_NAME</span> env
 <span class="nv">PATH</span><span class="o">=</span>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 <span class="nv">HOSTNAME</span><span class="o">=</span>kubernetes-bootcamp-5c69669756-rmxrn
 <span class="nv">KUBERNETES_PORT</span><span class="o">=</span>tcp://10.96.0.1:443
@@ -168,27 +168,27 @@ kubernetes-bootcamp-5c69669756-rmxrn   <span class="m">1</span>/1       Running 
 <span class="nv">NPM_CONFIG_LOGLEVEL</span><span class="o">=</span>info
 <span class="nv">NODE_VERSION</span><span class="o">=</span><span class="m">6</span>.3.1
 <span class="nv">HOME</span><span class="o">=</span>/root
-</pre></div>
+</code></pre></div>
 
 
 <p>Again, worth mentioning that the name of the container itself can be omitted since we only have a single container in the Pod.</p>
 <p>Next let’s start a bash session in the Pod’s container: <code>kubectl exec -ti $POD_NAME bash</code>.  We have now an open console on the container. To close the console, use <code>exit</code>. </p>
 <h3>Create a new service</h3>
 <p>To list current services in the cluster: </p>
-<div class="highlight"><pre><span></span>$ kubectl get services
+<div class="highlight"><pre><span></span><code>$ kubectl get services
 NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>   AGE
 kubernetes   ClusterIP   <span class="m">10</span>.96.0.1    &lt;none&gt;        <span class="m">443</span>/TCP   1h
-</pre></div>
+</code></pre></div>
 
 
 <p>Cluter services is created by default. </p>
 <p>To create a new service using running pods: <code>kubectl expose deployment/kubernetes-bootcamp --type="NodePort" --port 8080</code></p>
 <p>List services again:</p>
-<div class="highlight"><pre><span></span>$ kubectl get services
+<div class="highlight"><pre><span></span><code>$ kubectl get services
 NAME                  TYPE        CLUSTER-IP      EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>          AGE
 kubernetes            ClusterIP   <span class="m">10</span>.96.0.1       &lt;none&gt;        <span class="m">443</span>/TCP          1h
 kubernetes-bootcamp   NodePort    <span class="m">10</span>.104.156.85   &lt;none&gt;        <span class="m">8080</span>:30527/TCP   2s
-</pre></div>
+</code></pre></div>
 
 
 <p>Notice that the new service <code>kubernetes-bootcamp</code> has a unique cluster-IP <code>10.104.156.85</code>, an internal port <code>30527</code> and an external port <code>8080</code>. </p>
@@ -196,23 +196,23 @@ kubernetes-bootcamp   NodePort    <span class="m">10</span>.104.156.85   &lt;non
 <h3>Using labels</h3>
 <p>The Deployment created automatically a label for our Pod. With describe deployment command you can see the name of the label: <code>kubectl describe deployment</code>. </p>
 <p>This label can be used to query list of Pods:</p>
-<div class="highlight"><pre><span></span>$ kubectl get pods -l <span class="nv">run</span><span class="o">=</span>kubernetes-bootcamp
+<div class="highlight"><pre><span></span><code>$ kubectl get pods -l <span class="nv">run</span><span class="o">=</span>kubernetes-bootcamp
 NAME                                   READY     STATUS    RESTARTS   AGE
 kubernetes-bootcamp-5c69669756-rmxrn   <span class="m">1</span>/1       Running   <span class="m">0</span>          1h
-</pre></div>
+</code></pre></div>
 
 
 <p>The same can be used on services:</p>
-<div class="highlight"><pre><span></span>$ kubectl get services -l <span class="nv">run</span><span class="o">=</span>kubernetes-bootcamp
+<div class="highlight"><pre><span></span><code>$ kubectl get services -l <span class="nv">run</span><span class="o">=</span>kubernetes-bootcamp
 NAME                  TYPE       CLUSTER-IP      EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>          AGE
 kubernetes-bootcamp   NodePort   <span class="m">10</span>.104.156.85   &lt;none&gt;        <span class="m">8080</span>:30527/TCP   24m
-</pre></div>
+</code></pre></div>
 
 
 <p>Get name of the pod: <code>export POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')</code></p>
 <p>Apply a new label to this pod: <code>kubectl label pod $POD_NAME app=v1</code></p>
 <p>And check the pod description: </p>
-<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">kubectl</span> <span class="n">describe</span> <span class="n">pods</span> <span class="err">$</span><span class="n">POD_NAME</span><span class="err">`</span>
+<div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="n">kubectl</span> <span class="n">describe</span> <span class="n">pods</span> <span class="err">$</span><span class="n">POD_NAME</span><span class="err">`</span>
 <span class="n">Name</span><span class="p">:</span>           <span class="n">kubernetes</span><span class="o">-</span><span class="n">bootcamp</span><span class="o">-</span><span class="mi">5</span><span class="n">c69669756</span><span class="o">-</span><span class="n">rmxrn</span>
 <span class="n">Namespace</span><span class="p">:</span>      <span class="k">default</span>
 <span class="n">Node</span><span class="p">:</span>           <span class="n">docker</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">desktop</span><span class="o">/</span><span class="mf">192.168</span><span class="p">.</span><span class="mf">65.3</span>
@@ -221,29 +221,29 @@ kubernetes-bootcamp   NodePort   <span class="m">10</span>.104.156.85   &lt;none
                 <span class="n">pod</span><span class="o">-</span><span class="n">template</span><span class="o">-</span><span class="n">hash</span><span class="o">=</span><span class="mi">1725225312</span>
                 <span class="n">run</span><span class="o">=</span><span class="n">kubernetes</span><span class="o">-</span><span class="n">bootcamp</span>
 <span class="p">...</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>This label can be used to query pods:</p>
-<div class="highlight"><pre><span></span>$ kubectl get pods -l <span class="nv">app</span><span class="o">=</span>v1
+<div class="highlight"><pre><span></span><code>$ kubectl get pods -l <span class="nv">app</span><span class="o">=</span>v1
 NAME                                   READY     STATUS    RESTARTS   AGE
 kubernetes-bootcamp-5c69669756-rmxrn   <span class="m">1</span>/1       Running   <span class="m">0</span>          1h
-</pre></div>
+</code></pre></div>
 
 
 <h3>Delete a service</h3>
 <p>To delete a service, use this command <code>kubectl delete service -l run=kubernetes-bootcamp</code></p>
 <p>Confirm the service is gone:</p>
-<div class="highlight"><pre><span></span>$ kubectl get services
+<div class="highlight"><pre><span></span><code>$ kubectl get services
 NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>   AGE
 kubernetes   ClusterIP   <span class="m">10</span>.96.0.1    &lt;none&gt;        <span class="m">443</span>/TCP   2h
-</pre></div>
+</code></pre></div>
 
 
 <p>But the pod should still be running:</p>
-<div class="highlight"><pre><span></span>$ kubectl <span class="nb">exec</span> -ti <span class="nv">$POD_NAME</span> curl localhost:8080
+<div class="highlight"><pre><span></span><code>$ kubectl <span class="nb">exec</span> -ti <span class="nv">$POD_NAME</span> curl localhost:8080
 Hello Kubernetes bootcamp! <span class="p">|</span> Running on: kubernetes-bootcamp-5c69669756-rmxrn <span class="p">|</span> <span class="nv">v</span><span class="o">=</span><span class="m">1</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Scaling a service</h3>
@@ -254,10 +254,10 @@ Hello Kubernetes bootcamp! <span class="p">|</span> Running on: kubernetes-bootc
 <p><img alt="Pelican" src="../images/module_05_scaling2.svg"></p>
 <p>To scale an existing service, use the following commands. </p>
 <p>List running deployments: </p>
-<div class="highlight"><pre><span></span>$ kubectl get deployments
+<div class="highlight"><pre><span></span><code>$ kubectl get deployments
 NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
 kubernetes-bootcamp   <span class="m">1</span>/1     <span class="m">1</span>            <span class="m">1</span>           37s
-</pre></div>
+</code></pre></div>
 
 
 <ul>
@@ -266,28 +266,28 @@ kubernetes-bootcamp   <span class="m">1</span>/1     <span class="m">1</span>   
 <li>The UP-TO-DATE is the number of replicas that were updated to match the desired (configured) state.</li>
 </ul>
 <p>To scale the deployments to replica of 4:</p>
-<div class="highlight"><pre><span></span>$ kubectl scale deployments/kubernetes-bootcamp --replicas<span class="o">=</span><span class="m">4</span>
+<div class="highlight"><pre><span></span><code>$ kubectl scale deployments/kubernetes-bootcamp --replicas<span class="o">=</span><span class="m">4</span>
 deployment.apps/kubernetes-bootcamp scaled
 $ kubectl get deployments
 NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
 kubernetes-bootcamp   <span class="m">4</span>/4     <span class="m">4</span>            <span class="m">4</span>           100s
-</pre></div>
+</code></pre></div>
 
 
 <p>We can see the available instances and ready instances are now four. </p>
 <p>Check if number of pods changed:</p>
-<div class="highlight"><pre><span></span>$ kubectl get pods -o wide
+<div class="highlight"><pre><span></span><code>$ kubectl get pods -o wide
 NAME                                   READY   STATUS    RESTARTS   AGE   IP           NODE       NOMINATED NODE   READINESS GATES
 kubernetes-bootcamp-6bf84cb898-4jx92   <span class="m">1</span>/1     Running   <span class="m">0</span>          8s    <span class="m">172</span>.18.0.7   minikube   &lt;none&gt;           &lt;none&gt;
 kubernetes-bootcamp-6bf84cb898-mm2g5   <span class="m">1</span>/1     Running   <span class="m">0</span>          8s    <span class="m">172</span>.18.0.5   minikube   &lt;none&gt;           &lt;none&gt;
 kubernetes-bootcamp-6bf84cb898-rsml8   <span class="m">1</span>/1     Running   <span class="m">0</span>          8s    <span class="m">172</span>.18.0.3   minikube   &lt;none&gt;           &lt;none&gt;
 kubernetes-bootcamp-6bf84cb898-wfvkt   <span class="m">1</span>/1     Running   <span class="m">0</span>          8s    <span class="m">172</span>.18.0.6   minikube   &lt;none&gt;           &lt;none&gt;
-</pre></div>
+</code></pre></div>
 
 
 <p>There are 4 pods with different IP now. </p>
 <p>The changes should also register with deployments. </p>
-<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">kubectl</span> <span class="n">describe</span> <span class="n">deployments</span><span class="o">/</span><span class="n">kubernetes</span><span class="o">-</span><span class="n">bootcamp</span>
+<div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="n">kubectl</span> <span class="n">describe</span> <span class="n">deployments</span><span class="o">/</span><span class="n">kubernetes</span><span class="o">-</span><span class="n">bootcamp</span>
 <span class="n">Name</span><span class="p">:</span>                   <span class="n">kubernetes</span><span class="o">-</span><span class="n">bootcamp</span>
 <span class="n">Namespace</span><span class="p">:</span>              <span class="k">default</span>
 <span class="n">CreationTimestamp</span><span class="p">:</span>      <span class="n">Sat</span><span class="p">,</span> <span class="mi">23</span> <span class="n">Feb</span> <span class="mi">2019</span> <span class="mi">17</span><span class="p">:</span><span class="mi">38</span><span class="p">:</span><span class="mi">57</span> <span class="o">+</span><span class="mi">0000</span>
@@ -319,12 +319,12 @@ kubernetes-bootcamp-6bf84cb898-wfvkt   <span class="m">1</span>/1     Running   
   <span class="n">Type</span>    <span class="n">Reason</span>             <span class="n">Age</span>   <span class="n">From</span>                   <span class="n">Message</span>
   <span class="o">----</span>    <span class="o">------</span>             <span class="o">----</span>  <span class="o">----</span>                   <span class="o">-------</span>
   <span class="n">Normal</span>  <span class="n">ScalingReplicaSet</span>  <span class="mi">73s</span>   <span class="n">deployment</span><span class="o">-</span><span class="n">controller</span>  <span class="n">Scaled</span> <span class="n">up</span> <span class="n">replicaset</span> <span class="n">kubernetes</span><span class="o">-</span><span class="n">bootcamp</span><span class="o">-</span><span class="mi">6</span><span class="n">bf84cb898</span> <span class="k">to</span> <span class="mi">4</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Load balancing</h3>
 <p>With replica enabled, load balancing should also automatically enable for this service. </p>
-<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">kubectl</span> <span class="n">describe</span> <span class="n">services</span><span class="o">/</span><span class="n">kubernetes</span><span class="o">-</span><span class="n">bootcamp</span>
+<div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="n">kubectl</span> <span class="n">describe</span> <span class="n">services</span><span class="o">/</span><span class="n">kubernetes</span><span class="o">-</span><span class="n">bootcamp</span>
 <span class="n">Name</span><span class="p">:</span>                     <span class="n">kubernetes</span><span class="o">-</span><span class="n">bootcamp</span>
 <span class="n">Namespace</span><span class="p">:</span>                <span class="k">default</span>
 <span class="n">Labels</span><span class="p">:</span>                   <span class="n">run</span><span class="o">=</span><span class="n">kubernetes</span><span class="o">-</span><span class="n">bootcamp</span>
@@ -339,11 +339,11 @@ kubernetes-bootcamp-6bf84cb898-wfvkt   <span class="m">1</span>/1     Running   
 <span class="n">Session</span> <span class="n">Affinity</span><span class="p">:</span>         <span class="n">None</span>
 <span class="n">External</span> <span class="n">Traffic</span> <span class="n">Policy</span><span class="p">:</span>  <span class="n">Cluster</span>
 <span class="n">Events</span><span class="p">:</span>                   <span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>There are 4 endpoints on this services, each one is one our the replica. To verify the load balancing is working. Let's make request to this service and each time we should be hitting different pods. </p>
-<div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">NODE_PORT</span><span class="o">=</span><span class="k">$(</span>kubectl get services/kubernetes-bootcamp -o go-template<span class="o">=</span><span class="s1">&#39;{{(index .spec.ports 0).nodePort}}&#39;</span><span class="k">)</span>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">export</span> <span class="nv">NODE_PORT</span><span class="o">=</span><span class="k">$(</span>kubectl get services/kubernetes-bootcamp -o go-template<span class="o">=</span><span class="s1">&#39;{{(index .spec.ports 0).nodePort}}&#39;</span><span class="k">)</span>
 $ <span class="nb">echo</span> <span class="nv">NODE_PORT</span><span class="o">=</span><span class="nv">$NODE_PORT</span>
 <span class="nv">NODE_PORT</span><span class="o">=</span><span class="m">32111</span>
 $ curl <span class="k">$(</span>minikube ip<span class="k">)</span>:<span class="nv">$NODE_PORT</span>
@@ -352,13 +352,13 @@ $ curl <span class="k">$(</span>minikube ip<span class="k">)</span>:<span class=
 Hello Kubernetes bootcamp! <span class="p">|</span> Running on: kubernetes-bootcamp-6bf84cb898-4jx92 <span class="p">|</span> <span class="nv">v</span><span class="o">=</span><span class="m">1</span>
 $ curl <span class="k">$(</span>minikube ip<span class="k">)</span>:<span class="nv">$NODE_PORT</span>
 Hello Kubernetes bootcamp! <span class="p">|</span> Running on: kubernetes-bootcamp-6bf84cb898-wfvkt <span class="p">|</span> <span class="nv">v</span><span class="o">=</span><span class="m">1</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>As we can see in the <code>curl</code> printout. Each time we hit a different pod. </p>
 <h3>Scale down</h3>
 <p>To scale down the service, issue the same scale command but with a smaller replica number. </p>
-<div class="highlight"><pre><span></span>$ kubectl scale deployments/kubernetes-bootcamp --replicas<span class="o">=</span><span class="m">2</span>
+<div class="highlight"><pre><span></span><code>$ kubectl scale deployments/kubernetes-bootcamp --replicas<span class="o">=</span><span class="m">2</span>
 deployment.extensions/kubernetes-bootcamp scaled
 $ kubectl get deployments
 NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
@@ -369,7 +369,7 @@ kubernetes-bootcamp-6bf84cb898-4jx92   <span class="m">1</span>/1     Terminatin
 kubernetes-bootcamp-6bf84cb898-mm2g5   <span class="m">1</span>/1     Running       <span class="m">0</span>          6m18s   <span class="m">172</span>.18.0.5   minikube   &lt;none&gt;           &lt;none&gt;
 kubernetes-bootcamp-6bf84cb898-rsml8   <span class="m">1</span>/1     Running       <span class="m">0</span>          6m18s   <span class="m">172</span>.18.0.3   minikube   &lt;none&gt;           &lt;none&gt;
 kubernetes-bootcamp-6bf84cb898-wfvkt   <span class="m">1</span>/1     Terminating   <span class="m">0</span>          6m18s   <span class="m">172</span>.18.0.6   minikube   &lt;none&gt;           &lt;none&gt;
-</pre></div>
+</code></pre></div>
 
 
 <p>This confirms that 2 pods are terminating. </p>
@@ -389,30 +389,30 @@ kubernetes-bootcamp-6bf84cb898-wfvkt   <span class="m">1</span>/1     Terminatin
 </ul>
 <p>To roll out an update, follow these steps:</p>
 <p>List running deployments:</p>
-<div class="highlight"><pre><span></span>$ kubectl get deployments
+<div class="highlight"><pre><span></span><code>$ kubectl get deployments
 NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
 kubernetes-bootcamp   <span class="m">4</span>/4     <span class="m">4</span>            <span class="m">4</span>           24s
-</pre></div>
+</code></pre></div>
 
 
 <p>List running pods:</p>
-<div class="highlight"><pre><span></span>$ kubectl get pods
+<div class="highlight"><pre><span></span><code>$ kubectl get pods
 NAME                                   READY   STATUS    RESTARTS   AGE
 kubernetes-bootcamp-6bf84cb898-dg8zx   <span class="m">1</span>/1     Running   <span class="m">0</span>          25s
 kubernetes-bootcamp-6bf84cb898-fzb22   <span class="m">1</span>/1     Running   <span class="m">0</span>          25s
 kubernetes-bootcamp-6bf84cb898-mfq7l   <span class="m">1</span>/1     Running   <span class="m">0</span>          25s
 kubernetes-bootcamp-6bf84cb898-r8snq   <span class="m">1</span>/1     Running   <span class="m">0</span>          25s
-</pre></div>
+</code></pre></div>
 
 
 <p>To update the image of the application to version 2, use the <code>set image</code> command, followed by the deployment name and the new image version:</p>
-<div class="highlight"><pre><span></span>$ kubectl <span class="nb">set</span> image deployments/kubernetes-bootcamp kubernetes-bootcamp<span class="o">=</span>jocatalin/kubernetes-bootcamp:v2
+<div class="highlight"><pre><span></span><code>$ kubectl <span class="nb">set</span> image deployments/kubernetes-bootcamp kubernetes-bootcamp<span class="o">=</span>jocatalin/kubernetes-bootcamp:v2
 deployment.apps/kubernetes-bootcamp image updated
-</pre></div>
+</code></pre></div>
 
 
 <p>The command notified the Deployment to use a different image for your app and initiated a rolling update. Check the status of the new Pods, and view the old one terminating with the <code>get pods</code> command:</p>
-<div class="highlight"><pre><span></span>$ kubectl get pods
+<div class="highlight"><pre><span></span><code>$ kubectl get pods
 NAME                                   READY   STATUS        RESTARTS   AGE
 kubernetes-bootcamp-5bf4d5689b-4xkmn   <span class="m">1</span>/1     Running       <span class="m">0</span>          10s
 kubernetes-bootcamp-5bf4d5689b-hv6qr   <span class="m">1</span>/1     Running       <span class="m">0</span>          10s
@@ -428,28 +428,28 @@ kubernetes-bootcamp-5bf4d5689b-4xkmn   <span class="m">1</span>/1     Running   
 kubernetes-bootcamp-5bf4d5689b-hv6qr   <span class="m">1</span>/1     Running   <span class="m">0</span>          43s
 kubernetes-bootcamp-5bf4d5689b-jm57j   <span class="m">1</span>/1     Running   <span class="m">0</span>          46s
 kubernetes-bootcamp-5bf4d5689b-qvgkz   <span class="m">1</span>/1     Running   <span class="m">0</span>          46s
-</pre></div>
+</code></pre></div>
 
 
 <p>Old instances are replaced with updated instances eventually. </p>
 <p>The update can be confirmed also by running a rollout status command:</p>
-<div class="highlight"><pre><span></span>$ kubectl rollout status deployments/kubernetes-bootcamp
+<div class="highlight"><pre><span></span><code>$ kubectl rollout status deployments/kubernetes-bootcamp
 deployment <span class="s2">&quot;kubernetes-bootcamp&quot;</span> successfully rolled out
-</pre></div>
+</code></pre></div>
 
 
 <p>To view the current image version of the app, run a describe command against the Pods:</p>
-<div class="highlight"><pre><span></span><span class="err">kubectl describe pods</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">kubectl describe pods</span>
+</code></pre></div>
 
 
 <p>To roll back an update, let's deploy an update with problems:</p>
-<div class="highlight"><pre><span></span><span class="err">kubectl set image deployments/kubernetes-bootcamp kubernetes-bootcamp=gcr.io/google-samples/kubernetes-bootcamp:v10</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">kubectl set image deployments/kubernetes-bootcamp kubernetes-bootcamp=gcr.io/google-samples/kubernetes-bootcamp:v10</span>
+</code></pre></div>
 
 
 <p>And check status:</p>
-<div class="highlight"><pre><span></span>$ kubectl get deployments
+<div class="highlight"><pre><span></span><code>$ kubectl get deployments
 NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
 kubernetes-bootcamp   <span class="m">3</span>/4     <span class="m">2</span>            <span class="m">3</span>           5m29s
 $ kubectl get pods
@@ -459,29 +459,29 @@ kubernetes-bootcamp-597cfc5b76-h6r48   <span class="m">0</span>/1     ErrImagePu
 kubernetes-bootcamp-5bf4d5689b-4xkmn   <span class="m">1</span>/1     Running            <span class="m">0</span> 4m9s
 kubernetes-bootcamp-5bf4d5689b-jm57j   <span class="m">1</span>/1     Running            <span class="m">0</span> 4m12s
 kubernetes-bootcamp-5bf4d5689b-qvgkz   <span class="m">1</span>/1     Running            <span class="m">0</span> 4m12s
-</pre></div>
+</code></pre></div>
 
 
 <p>Something is wrong with the updated images. </p>
 <p>To get more insights, use the <code>describe</code> command:</p>
-<div class="highlight"><pre><span></span><span class="err">kubectl describe pods</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">kubectl describe pods</span>
+</code></pre></div>
 
 
 <p>To roll back the update, issue this command:</p>
-<div class="highlight"><pre><span></span>$ kubectl rollout undo deployments/kubernetes-bootcamp
+<div class="highlight"><pre><span></span><code>$ kubectl rollout undo deployments/kubernetes-bootcamp
 deployment.apps/kubernetes-bootcamp rolled back
-</pre></div>
+</code></pre></div>
 
 
 <p>And we are back to old state:</p>
-<div class="highlight"><pre><span></span>$ kubectl get pods
+<div class="highlight"><pre><span></span><code>$ kubectl get pods
 NAME                                   READY   STATUS    RESTARTS   AGE
 kubernetes-bootcamp-5bf4d5689b-4xkmn   <span class="m">1</span>/1     Running   <span class="m">0</span>          5m41s
 kubernetes-bootcamp-5bf4d5689b-j6kp4   <span class="m">1</span>/1     Running   <span class="m">0</span>          21s
 kubernetes-bootcamp-5bf4d5689b-jm57j   <span class="m">1</span>/1     Running   <span class="m">0</span>          5m44s
 kubernetes-bootcamp-5bf4d5689b-qvgkz   <span class="m">1</span>/1     Running   <span class="m">0</span>          5m44s
-</pre></div>
+</code></pre></div>
 
 
 <h2>Kubernetes Commands</h2>
@@ -498,7 +498,12 @@ kubernetes-bootcamp-5bf4d5689b-qvgkz   <span class="m">1</span>/1     Running   
 
              
  
-            
+                <p id="post-share-links">
+    Share on:
+      <a href="https://twitter.com/intent/tweet?text=Kubernetes%20Basics&url=https%3A//hazelement.github.io/kubernetes-basics.html&hashtags=kubernetes" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//hazelement.github.io/kubernetes-basics.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=Kubernetes%20Basics&amp;body=https%3A//hazelement.github.io/kubernetes-basics.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+
             
             
 
@@ -561,6 +566,24 @@ kubernetes-bootcamp-5bf4d5689b-qvgkz   <span class="m">1</span>/1     Running   
 </section>
 
             <hr/>
+<section>
+    <h2>Related Posts</h2>
+<ul class="related-posts-list">
+<li><a href="./kubernetes-workflow.html" title="Kubernetes Workflow">Kubernetes Workflow</a></li>
+<li><a href="./kubernetes-stateless-application.html" title="Kubernetes Stateless Application">Kubernetes Stateless Application</a></li>
+<li><a href="./kubernetes-stateful-application.html" title="Kubernetes Stateful Application">Kubernetes Stateful Application</a></li>
+<li><a href="./kubernetes-persistent-volume.html" title="Kubernetes Persistent Volume">Kubernetes Persistent Volume</a></li>
+</ul>
+<hr />
+</section>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="./non-transparent-proxy-with-squid-and-docker.html" title="Previous: Non-transparent proxy with Squid and Docker">Non-transparent proxy with Squid and Docker</a></li>
+                <li class="next-article"><a href="./kubernetes-workflow.html" title="Next: Kubernetes Workflow">Kubernetes Workflow</a> »</li>
+            </ul>
+            </nav>
+            </aside>
         </div>
         <section id="article-sidebar" class="span2">
             <h4>Published</h4>

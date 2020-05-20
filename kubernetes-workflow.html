@@ -90,39 +90,39 @@
 <h2>Basic deployment</h2>
 <h3>Run a node</h3>
 <p>To run the node using a an image, run this command </p>
-<div class="highlight"><pre><span></span><span class="err">kubectl run hello-world --replicas=5 --labels=&quot;run=load-balancer-example&quot; --image=gcr.io/google-samples/node-hello:1.0  --port=8080</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">kubectl run hello-world --replicas=5 --labels=&quot;run=load-balancer-example&quot; --image=gcr.io/google-samples/node-hello:1.0  --port=8080</span>
+</code></pre></div>
 
 
 <p>This will create a <code>hello-world</code> <code>Deployment</code> object with 5 replicas. </p>
 <p>Display information about the <code>Deployment</code>. </p>
-<div class="highlight"><pre><span></span><span class="err">kubectl get deployments hello-world</span>
+<div class="highlight"><pre><span></span><code><span class="err">kubectl get deployments hello-world</span>
 <span class="err">kubectl describe deployments hello-world</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Use a service to expose the deployment</h3>
 <p>Create a service to expose the <code>Deployment</code>:</p>
-<div class="highlight"><pre><span></span><span class="err">kubectl expose deployment hello-world --type=LoadBalancer --name=my-service</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">kubectl expose deployment hello-world --type=LoadBalancer --name=my-service</span>
+</code></pre></div>
 
 
 <p>This will create a <code>LoadBalance</code> service that manages the <code>hello-world</code> replicas and expose port <code>8080</code> to outside world. </p>
-<div class="highlight"><pre><span></span><span class="err">kubectl get services my-service</span>
+<div class="highlight"><pre><span></span><code><span class="err">kubectl get services my-service</span>
 <span class="err">NAME         TYPE        CLUSTER-IP     EXTERNAL-IP      PORT(S)    AGE</span>
 <span class="err">my-service   ClusterIP   10.3.245.137   104.198.205.71   8080/TCP   54s</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Try access the service from outside using. </p>
-<div class="highlight"><pre><span></span><span class="err">curl http://&lt;external-ip&gt;:&lt;port&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="err">curl http://&lt;external-ip&gt;:&lt;port&gt;</span>
 <span class="err">Hello Kubernetes!</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Scale deployment</h2>
 <p>To change the number of replicas in the deployment object. use this command:</p>
-<div class="highlight"><pre><span></span>$ kubectl scale deployments/hello-world --replicas<span class="o">=</span><span class="m">8</span>
+<div class="highlight"><pre><span></span><code>$ kubectl scale deployments/hello-world --replicas<span class="o">=</span><span class="m">8</span>
 deployment.extensions <span class="s2">&quot;hello-world&quot;</span> scaled
 $ kubectl get deployments
 NAME          DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
@@ -137,24 +137,29 @@ hello-world-5b446dd74b-jzp9d   <span class="m">1</span>/1       Running   <span 
 hello-world-5b446dd74b-plvrp   <span class="m">1</span>/1       Running   <span class="m">0</span>          9s
 hello-world-5b446dd74b-pxg2w   <span class="m">1</span>/1       Running   <span class="m">0</span>          16m
 hello-world-5b446dd74b-vrm4r   <span class="m">1</span>/1       Running   <span class="m">0</span>          16m
-</pre></div>
+</code></pre></div>
 
 
 <p><code>hello-world</code> is the pod we are running and it's a <code>Deployment</code>, hence <code>deployments/hello-world</code></p>
 <h2>Delete service and deployment</h2>
 <p>To delete the Service, enter this command:</p>
-<div class="highlight"><pre><span></span><span class="err">kubectl delete services my-service</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">kubectl delete services my-service</span>
+</code></pre></div>
 
 
 <p>To delete the Deployment, the ReplicaSet, and the Pods that are running the Hello World application, enter this command:</p>
-<div class="highlight"><pre><span></span><span class="err">kubectl delete deployment hello-world</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">kubectl delete deployment hello-world</span>
+</code></pre></div>
 
 
              
  
-            
+                <p id="post-share-links">
+    Share on:
+      <a href="https://twitter.com/intent/tweet?text=Kubernetes%20Workflow&url=https%3A//hazelement.github.io/kubernetes-workflow.html&hashtags=kubernetes,cicd" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//hazelement.github.io/kubernetes-workflow.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=Kubernetes%20Workflow&amp;body=https%3A//hazelement.github.io/kubernetes-workflow.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+
             
             
 
@@ -217,6 +222,24 @@ hello-world-5b446dd74b-vrm4r   <span class="m">1</span>/1       Running   <span 
 </section>
 
             <hr/>
+<section>
+    <h2>Related Posts</h2>
+<ul class="related-posts-list">
+<li><a href="./kubernetes-basics.html" title="Kubernetes Basics">Kubernetes Basics</a></li>
+<li><a href="./kubernetes-stateless-application.html" title="Kubernetes Stateless Application">Kubernetes Stateless Application</a></li>
+<li><a href="./kubernetes-stateful-application.html" title="Kubernetes Stateful Application">Kubernetes Stateful Application</a></li>
+<li><a href="./kubernetes-persistent-volume.html" title="Kubernetes Persistent Volume">Kubernetes Persistent Volume</a></li>
+</ul>
+<hr />
+</section>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="./kubernetes-basics.html" title="Previous: Kubernetes Basics">Kubernetes Basics</a></li>
+                <li class="next-article"><a href="./kubernetes-stateless-application.html" title="Next: Kubernetes Stateless Application">Kubernetes Stateless Application</a> »</li>
+            </ul>
+            </nav>
+            </aside>
         </div>
         <section id="article-sidebar" class="span2">
             <h4>Published</h4>

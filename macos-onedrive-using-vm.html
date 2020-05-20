@@ -93,8 +93,8 @@
 <p>Install Windows 10 on VM in MacOS and sync OneDrive from Windows. Setup a file sharing system between MacOS and Windows 10 so that MacOS can access these files in Windows 10 VM.  </p>
 <p>User story:</p>
 <ol>
-<li>As a user, I want to be able to access OneDrive folder on my Windows 10 VM from MacOS</li>
-<li>As a user, I want the OneDrive folder to be functioning and available me when I boot into MacOS</li>
+<li>As a user, I want to be able to access OneDrive folder on my Windows 10 VM from MacOS.</li>
+<li>As a user, I want the OneDrive folder to be functioning and available me when I boot into MacOS.</li>
 </ol>
 <h3>Related Work</h3>
 <ul>
@@ -127,7 +127,7 @@
 <p>Next time Windows 10 boots, it will auto login using this user. </p>
 <h3>Configure MacOS to launch Windows 10 on boot and connect to the smb share</h3>
 <p>We use launchagents to start VM in <code>headless</code> mode and connect to the smb share. Save the following file in <code>/Users/xxxx/Library/LaunchAgents/</code> folder with name <code>org.virtualbox.launch.windows10.plist</code>. In the file content, replace <code>xxxx</code> with your user folder name. </p>
-<div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <span class="cp">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span>
 <span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
 <span class="nt">&lt;dict&gt;</span>
@@ -141,11 +141,11 @@
     <span class="nt">&lt;true/&gt;</span>
 <span class="nt">&lt;/dict&gt;</span>
 <span class="nt">&lt;/plist&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Notice it's using <code>/Users/xxxx/.bin/launch_vm</code>. We need to create this file,</p>
-<div class="highlight"><pre><span></span><span class="n">MACHINE</span><span class="o">=</span><span class="n">Windows10</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">MACHINE</span><span class="o">=</span><span class="n">Windows10</span><span class="w"></span>
 
 <span class="o">/</span><span class="n">Applications</span><span class="o">/</span><span class="n">VirtualBox</span><span class="p">.</span><span class="n">app</span><span class="o">/</span><span class="n">Contents</span><span class="o">/</span><span class="n">MacOS</span><span class="o">/</span><span class="n">VBoxManage</span><span class="w"> </span><span class="n">startvm</span><span class="w"> </span><span class="err">$</span><span class="n">MACHINE</span><span class="w"> </span><span class="c1">--type headless</span>
 
@@ -155,7 +155,7 @@
 <span class="w">  </span><span class="n">echo</span><span class="w"> </span><span class="ss">&quot;Waiting for machine to come online&quot;</span><span class="w"></span>
 <span class="w">  </span><span class="n">sleep</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
 <span class="n">done</span><span class="w"></span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Also create <code>OneDrive</code> folder in your MacOS user home folder. </p>
@@ -170,7 +170,12 @@
 
              
  
-            
+                <p id="post-share-links">
+    Share on:
+      <a href="https://twitter.com/intent/tweet?text=MacOS%20OneDrive%20using%20VM&url=https%3A//hazelement.github.io/macos-onedrive-using-vm.html&hashtags=vm,onedrive" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//hazelement.github.io/macos-onedrive-using-vm.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=MacOS%20OneDrive%20using%20VM&amp;body=https%3A//hazelement.github.io/macos-onedrive-using-vm.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+
             
             
 
@@ -233,6 +238,14 @@
 </section>
 
             <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="./active-voice-vs-passive-voice.html" title="Previous: Active voice vs passive voice">Active voice vs passive voice</a></li>
+                <li class="next-article"><a href="./todo-list-for-this-site.html" title="Next: Todo list for this site">Todo list for this site</a> »</li>
+            </ul>
+            </nav>
+            </aside>
         </div>
         <section id="article-sidebar" class="span2">
             <h4>Published</h4>
