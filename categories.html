@@ -34,10 +34,16 @@
 </script>
 
 
+
+        <style>
+            body {
+                padding-top: 60px;
+            }
+        </style>
     </head>
     <body>
         <div id="content">
-            <div class="navbar navbar-static-top">
+            <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="navbar-inner">
                     <div class="container-fluid">
                         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -62,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </nav>
             <div class="container-fluid">
                 <div class="row-fluid">
                     <div class="span1"></div>
@@ -217,12 +223,28 @@
             <div class="accordion-group">
                 <div class="accordion-heading">
                     <a class="accordion-toggle category-title-inside-accordion collapsed" data-toggle="collapse" data-parent="#accordion2" href="#misc-ref">
-                        misc<span class="superscript">1</span>
+                        misc<span class="superscript">3</span>
                     </a>
                 </div>
                 <div id="misc-ref" class="accordion-body collapse">
                     <div class="accordion-inner">
                         <ul class="list-articles-under-tag-category">
+                            <li itemscope>
+                                    <a href="./home-lab.html">
+                                        Home Lab
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2020-07-10T00:00:00-06:00">
+                                    Fri 10 July 2020
+                                </time>
+                            </li>
+                            <li itemscope>
+                                    <a href="./setup-vnc.html">
+                                        Setup VNC
+                                    </a>
+                                <time itemprop="dateCreated" datetime="2020-07-04T00:00:00-06:00">
+                                    Sat 04 July 2020
+                                </time>
+                            </li>
                             <li itemscope>
                                     <a href="./dot-file-management.html">
                                         Dot file Management

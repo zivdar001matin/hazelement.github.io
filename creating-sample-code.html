@@ -39,10 +39,16 @@
 </script>
 
 
+
+        <style>
+            body {
+                padding-top: 60px;
+            }
+        </style>
     </head>
     <body>
         <div id="content">
-            <div class="navbar navbar-static-top">
+            <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="navbar-inner">
                     <div class="container-fluid">
                         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -67,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </nav>
             <div class="container-fluid">
                 <div class="row-fluid">
                     <div class="span1"></div>
@@ -165,12 +171,12 @@
 <p>Having easy-to-understand sample code that's concise and compiles is a great start. If it blows up your reader's app, though, they won't be happy. Therefore, when writing sample code, consider any potential side effects caused by your code being integrated into another program. Nobody wants insecure or grossly inefficient code.</p>
 <h2>The example and the anti-example</h2>
 <p>In addition to showing readers <em>what to do</em>, it is sometimes wise to show readers <em>what not to do</em>. For example, many programming languages permit programmers to place white space on either side of the equals sign. Now suppose that you were writing a tutorial on a language (such as bash) that does not permit white space on either side of the equals sign. In this case, showing both a good example and an anti-example will benefit the reader. For example:</p>
-<div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="n">A</span> <span class="k">valid</span> <span class="n">string</span> <span class="k">assignment</span><span class="p">.</span>
-<span class="n">s</span><span class="o">=</span><span class="ss">&quot;The rain in Maine.&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="p">#</span> <span class="n">A</span> <span class="n">valid</span> <span class="k">string</span> <span class="n">assignment</span><span class="p">.</span>
+<span class="n">s</span><span class="o">=</span><span class="s">&quot;The rain in Maine.&quot;</span>
 
-<span class="o">#</span> <span class="n">An</span> <span class="n">invalid</span> <span class="n">string</span> <span class="k">assignment</span> <span class="n">because</span> <span class="k">of</span> <span class="n">the</span> <span class="n">white</span> <span class="k">space</span> <span class="k">on</span> <span class="n">either</span> <span class="n">side</span> <span class="k">of</span> <span class="n">the</span>
-<span class="o">#</span> <span class="k">equals</span> <span class="n">sign</span><span class="p">.</span>
-<span class="n">s</span> <span class="o">=</span> <span class="ss">&quot;The rain in Maine.&quot;</span>
+<span class="p">#</span> <span class="n">An</span> <span class="n">invalid</span> <span class="k">string</span> <span class="n">assignment</span> <span class="n">because</span> <span class="n">of</span> <span class="n">the</span> <span class="n">white</span> <span class="n">space</span> <span class="n">on</span> <span class="n">either</span> <span class="n">side</span> <span class="n">of</span> <span class="n">the</span>
+<span class="p">#</span> <span class="n">equals</span> <span class="n">sign</span><span class="p">.</span>
+<span class="n">s</span> <span class="o">=</span> <span class="s">&quot;The rain in Maine.&quot;</span>
 </code></pre></div>
 
 
@@ -244,7 +250,7 @@
                     <div class="comments">
                         <div id="disqus_thread"></div>
                         <script>
-    var disqus_shortname = 'https-hazelement-github-io.disqus.com';
+    var disqus_shortname = 'https-hazelement-github-io';
     (function () {
         var s = document.createElement('script'); s.async = true;
         s.type = 'text/javascript';

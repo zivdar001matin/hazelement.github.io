@@ -19,7 +19,7 @@
 <meta property="og:url" content=".." />
 <meta property="og:site_name" content="Coding Digests" />
 <meta property="og:article:author" content="Haze" />
-<meta name="keywords" content=" Android,  Celery,  CI/CD,  Continous Deployment,  Coronavirus,  Data Analysis,  Distributed Task,  Django,  docker,  dot file,  github,  http,  https,  Jenkins,  Kubernetes,  networking,  OneDrive,  Pelican,  Pihole,  proxy,  python,  reStructured text,  rst,  squid,  ssh,  ssl,  tcpdump,  VM,  Windows 10 update,  writing,  Android,  celery,  data_analysis,  Jenkins,  Kubernetes,  misc,  Networking,  Pelican,  pihole,  reStructuredText,  VM,  Writing, " />
+<meta name="keywords" content=" Android,  Celery,  CI/CD,  Continous Deployment,  Coronavirus,  Data Analysis,  Distributed Task,  Django,  docker,  dot file,  github,  http,  https,  Jenkins,  Kubernetes,  network,  networking,  OneDrive,  Pelican,  Pihole,  proxy,  python,  reStructured text,  rst,  server,  squid,  ssh,  ssl,  tcpdump,  VM,  VNC,  Windows 10 update,  writing,  Android,  celery,  data_analysis,  Jenkins,  Kubernetes,  misc,  Networking,  Pelican,  pihole,  reStructuredText,  VM,  Writing, " />
         <title>Coding Digests
 </title>
 <script>
@@ -32,10 +32,16 @@
 </script>
 
 
+
+        <style>
+            body {
+                padding-top: 60px;
+            }
+        </style>
     </head>
     <body>
         <div id="content">
-            <div class="navbar navbar-static-top">
+            <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="navbar-inner">
                     <div class="container-fluid">
                         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -60,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </nav>
             <div class="container-fluid">
                 <div class="row-fluid">
                     <div class="span1"></div>
@@ -85,7 +91,10 @@
 <h1>How to create this site?</h1>
 <p>This site is auto generated from https://github.com/hazelement/hazelement using Pelican. I created a make file to automate the build process. 
 From project folder where <code>Makefile</code> is, using the following command. </p>
-<div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="k">to</span> <span class="n">compile</span> <span class="k">and</span> <span class="n">publish</span> <span class="k">to</span> <span class="n">github</span>
+<div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="k">to</span> <span class="k">prepare</span> <span class="n">dev</span> <span class="n">environment</span>
+<span class="n">make</span> <span class="k">prepare</span><span class="o">-</span><span class="n">dev</span>
+
+<span class="o">#</span> <span class="k">to</span> <span class="n">compile</span> <span class="k">and</span> <span class="n">publish</span> <span class="k">to</span> <span class="n">github</span>
 <span class="n">make</span> <span class="n">github</span>
 
 <span class="o">#</span> <span class="k">to</span> <span class="k">start</span> <span class="n">an</span> <span class="n">auto</span> <span class="n">refresh</span> <span class="k">local</span> <span class="n">dev</span> <span class="n">server</span> <span class="k">on</span> <span class="n">port</span> <span class="mi">8000</span> 

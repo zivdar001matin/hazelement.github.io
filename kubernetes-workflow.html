@@ -39,10 +39,16 @@
 </script>
 
 
+
+        <style>
+            body {
+                padding-top: 60px;
+            }
+        </style>
     </head>
     <body>
         <div id="content">
-            <div class="navbar navbar-static-top">
+            <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="navbar-inner">
                     <div class="container-fluid">
                         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -67,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </nav>
             <div class="container-fluid">
                 <div class="row-fluid">
                     <div class="span1"></div>
@@ -90,7 +96,7 @@
 <h2>Basic deployment</h2>
 <h3>Run a node</h3>
 <p>To run the node using a an image, run this command </p>
-<div class="highlight"><pre><span></span><code><span class="err">kubectl run hello-world --replicas=5 --labels=&quot;run=load-balancer-example&quot; --image=gcr.io/google-samples/node-hello:1.0  --port=8080</span>
+<div class="highlight"><pre><span></span><code><span class="n">kubectl</span> <span class="n">run</span> <span class="n">hello</span><span class="o">-</span><span class="n">world</span> <span class="o">--</span><span class="n">replicas</span><span class="o">=</span><span class="mi">5</span> <span class="o">--</span><span class="n">labels</span><span class="o">=</span><span class="s2">&quot;run=load-balancer-example&quot;</span> <span class="o">--</span><span class="n">image</span><span class="o">=</span><span class="n">gcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">google</span><span class="o">-</span><span class="n">samples</span><span class="o">/</span><span class="n">node</span><span class="o">-</span><span class="n">hello</span><span class="p">:</span><span class="mf">1.0</span>  <span class="o">--</span><span class="n">port</span><span class="o">=</span><span class="mi">8080</span>
 </code></pre></div>
 
 
@@ -190,7 +196,7 @@ hello-world-5b446dd74b-vrm4r   <span class="m">1</span>/1       Running   <span 
                     <div class="comments">
                         <div id="disqus_thread"></div>
                         <script>
-    var disqus_shortname = 'https-hazelement-github-io.disqus.com';
+    var disqus_shortname = 'https-hazelement-github-io';
     (function () {
         var s = document.createElement('script'); s.async = true;
         s.type = 'text/javascript';

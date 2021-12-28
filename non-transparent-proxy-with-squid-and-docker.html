@@ -39,10 +39,16 @@
 </script>
 
 
+
+        <style>
+            body {
+                padding-top: 60px;
+            }
+        </style>
     </head>
     <body>
         <div id="content">
-            <div class="navbar navbar-static-top">
+            <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="navbar-inner">
                     <div class="container-fluid">
                         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -67,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </nav>
             <div class="container-fluid">
                 <div class="row-fluid">
                     <div class="span1"></div>
@@ -94,57 +100,57 @@
 <p>In this project, we will explorer setting up a non-transparent proxy server using squid and containerize it into a docker. This container can later be used with an ICAP service to perform network traffic filtering in the future. </p>
 <h1>Squid docker</h1>
 <p>A popular proxy software, <a href="http://www.squid-cache.org/">link</a>. The <code>Dockerfile</code> is created and the content is as followed.</p>
-<div class="highlight"><pre><span></span><code>FROM ubuntu:18.04
+<div class="highlight"><pre><span></span><code><span class="n">FROM</span> <span class="n">ubuntu</span><span class="p">:</span><span class="mf">18.04</span>
 
-ENV SQUID_VERSION=3.5.27 \
-    SQUID_DIR=/usr/local/squid \
-    SQUID_USER=proxy
+<span class="n">ENV</span> <span class="n">SQUID_VERSION</span><span class="o">=</span><span class="mf">3.5</span><span class="o">.</span><span class="mi">27</span> \
+    <span class="n">SQUID_DIR</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">squid</span> \
+    <span class="n">SQUID_USER</span><span class="o">=</span><span class="n">proxy</span>
 
-RUN apt-get update
-RUN apt-get install build-essential openssl libssl1.0-dev wget -y
+<span class="n">RUN</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
+<span class="n">RUN</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">build</span><span class="o">-</span><span class="n">essential</span> <span class="n">openssl</span> <span class="n">libssl1</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">dev</span> <span class="n">wget</span> <span class="o">-</span><span class="n">y</span>
 
-WORKDIR /tmp
-RUN wget http://www.squid-cache.org/Versions/v3/3.5/squid-<span class="cp">${</span><span class="n">SQUID_VERSION</span><span class="cp">}</span>.tar.gz
-RUN tar -xzf squid-<span class="cp">${</span><span class="n">SQUID_VERSION</span><span class="cp">}</span>.tar.gz
-WORKDIR /tmp/squid-<span class="cp">${</span><span class="n">SQUID_VERSION</span><span class="cp">}</span>
+<span class="n">WORKDIR</span> <span class="o">/</span><span class="n">tmp</span>
+<span class="n">RUN</span> <span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">squid</span><span class="o">-</span><span class="n">cache</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="n">v3</span><span class="o">/</span><span class="mf">3.5</span><span class="o">/</span><span class="n">squid</span><span class="o">-$</span><span class="p">{</span><span class="n">SQUID_VERSION</span><span class="p">}</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">RUN</span> <span class="n">tar</span> <span class="o">-</span><span class="n">xzf</span> <span class="n">squid</span><span class="o">-$</span><span class="p">{</span><span class="n">SQUID_VERSION</span><span class="p">}</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">WORKDIR</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">squid</span><span class="o">-$</span><span class="p">{</span><span class="n">SQUID_VERSION</span><span class="p">}</span>
 
-RUN chmod +x configure
-RUN ./configure \
-        --datadir=/usr/share/squid \
-        --sysconfdir=/etc/squid \
-        --libexecdir=/usr/lib/squid \
-        --with-pidfile=/var/run/squid.pid \
-        --with-filedescriptors=65536 \
-        --with-large-files \
-        --enable-delay-pools \
-        --enable-cache-digests \
-        --enable-icap-client \
-        --enable-ssl \
-        --enable-ssl-crtd \
-        --with-openssl \
-        --enable-follow-x-forwarded-for \
-        --with-default-user=<span class="cp">${</span><span class="n">SQUID_USER</span><span class="cp">}</span>
-RUN make
-RUN make install
+<span class="n">RUN</span> <span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="n">configure</span>
+<span class="n">RUN</span> <span class="o">./</span><span class="n">configure</span> \
+        <span class="o">--</span><span class="n">datadir</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">squid</span> \
+        <span class="o">--</span><span class="n">sysconfdir</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">squid</span> \
+        <span class="o">--</span><span class="n">libexecdir</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">squid</span> \
+        <span class="o">--</span><span class="n">with</span><span class="o">-</span><span class="n">pidfile</span><span class="o">=/</span><span class="k">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">squid</span><span class="o">.</span><span class="n">pid</span> \
+        <span class="o">--</span><span class="n">with</span><span class="o">-</span><span class="n">filedescriptors</span><span class="o">=</span><span class="mi">65536</span> \
+        <span class="o">--</span><span class="n">with</span><span class="o">-</span><span class="n">large</span><span class="o">-</span><span class="n">files</span> \
+        <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">delay</span><span class="o">-</span><span class="n">pools</span> \
+        <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">cache</span><span class="o">-</span><span class="n">digests</span> \
+        <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">icap</span><span class="o">-</span><span class="n">client</span> \
+        <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">ssl</span> \
+        <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">ssl</span><span class="o">-</span><span class="n">crtd</span> \
+        <span class="o">--</span><span class="n">with</span><span class="o">-</span><span class="n">openssl</span> \
+        <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">follow</span><span class="o">-</span><span class="n">x</span><span class="o">-</span><span class="n">forwarded</span><span class="o">-</span><span class="k">for</span> \
+        <span class="o">--</span><span class="n">with</span><span class="o">-</span><span class="n">default</span><span class="o">-</span><span class="n">user</span><span class="o">=$</span><span class="p">{</span><span class="n">SQUID_USER</span><span class="p">}</span>
+<span class="n">RUN</span> <span class="n">make</span>
+<span class="n">RUN</span> <span class="n">make</span> <span class="n">install</span>
 
-ENV PATH=<span class="nv">$PATH</span>:/usr/local/squid/sbin
-RUN /usr/lib/squid/ssl_crtd -c -s /var/lib/ssl_db # SSL certificate database directory
+<span class="n">ENV</span> <span class="n">PATH</span><span class="o">=$</span><span class="n">PATH</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="n">sbin</span>
+<span class="n">RUN</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="n">ssl_crtd</span> <span class="o">-</span><span class="n">c</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">ssl_db</span> <span class="c1"># SSL certificate database directory</span>
 
-RUN mkdir -p <span class="cp">${</span><span class="n">SQUID_DIR</span><span class="cp">}</span>
-RUN chmod -R 755 <span class="cp">${</span><span class="n">SQUID_DIR</span><span class="cp">}</span>
-RUN chown -R <span class="cp">${</span><span class="n">SQUID_USER</span><span class="cp">}</span>:<span class="cp">${</span><span class="n">SQUID_USER</span><span class="cp">}</span> <span class="cp">${</span><span class="n">SQUID_DIR</span><span class="cp">}</span>
-RUN chown -R <span class="cp">${</span><span class="n">SQUID_USER</span><span class="cp">}</span>:<span class="cp">${</span><span class="n">SQUID_USER</span><span class="cp">}</span> /usr/lib/squid/ssl_crtd
+<span class="n">RUN</span> <span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">$</span><span class="p">{</span><span class="n">SQUID_DIR</span><span class="p">}</span>
+<span class="n">RUN</span> <span class="n">chmod</span> <span class="o">-</span><span class="n">R</span> <span class="mi">755</span> <span class="o">$</span><span class="p">{</span><span class="n">SQUID_DIR</span><span class="p">}</span>
+<span class="n">RUN</span> <span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="o">$</span><span class="p">{</span><span class="n">SQUID_USER</span><span class="p">}:</span><span class="o">$</span><span class="p">{</span><span class="n">SQUID_USER</span><span class="p">}</span> <span class="o">$</span><span class="p">{</span><span class="n">SQUID_DIR</span><span class="p">}</span>
+<span class="n">RUN</span> <span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="o">$</span><span class="p">{</span><span class="n">SQUID_USER</span><span class="p">}:</span><span class="o">$</span><span class="p">{</span><span class="n">SQUID_USER</span><span class="p">}</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="n">ssl_crtd</span>
 
-EXPOSE 3128/tcp
+<span class="n">EXPOSE</span> <span class="mi">3128</span><span class="o">/</span><span class="n">tcp</span>
 </code></pre></div>
 
 
 <p>In addition to the <code>Dockerfile</code>, there are 5 more files that are important. </p>
-<div class="highlight"><pre><span></span><code><span class="err">/usr/local/squid/var/cache  # cache</span>
-<span class="err">/usr/local/squid/var/logs   # logs</span>
-<span class="err">/etc/squid/squid.conf       # squid configuration file</span>
-<span class="err">/usr/local/squid/ca.crt     # ssl certificate</span>
-<span class="err">/usr/local/squid/ca.key     # ssl private key</span>
+<div class="highlight"><pre><span></span><code><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">cache</span>  <span class="c1"># cache</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">logs</span>   <span class="c1"># logs</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="n">squid</span><span class="o">.</span><span class="n">conf</span>       <span class="c1"># squid configuration file</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="n">ca</span><span class="o">.</span><span class="n">crt</span>     <span class="c1"># ssl certificate</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="n">ca</span><span class="o">.</span><span class="n">key</span>     <span class="c1"># ssl private key</span>
 </code></pre></div>
 
 
@@ -164,10 +170,10 @@ openssl genrsa -out cert.key <span class="m">2048</span>
 
 <p>Replace <code>XXXXX</code> with the name at your choice. </p>
 <p><code>squid.conf</code> is squid configuration file. Here is an example</p>
-<div class="highlight"><pre><span></span><code><span class="o">#</span><span class="k">defaults</span>
-<span class="n">acl</span> <span class="n">localnet</span> <span class="n">src</span> <span class="mi">10</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">8</span>
-<span class="n">acl</span> <span class="n">localnet</span> <span class="n">src</span> <span class="mi">172</span><span class="p">.</span><span class="mi">16</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">12</span>
-<span class="n">acl</span> <span class="n">localnet</span> <span class="n">src</span> <span class="mi">192</span><span class="p">.</span><span class="mi">168</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">16</span>
+<div class="highlight"><pre><span></span><code><span class="c1">#defaults</span>
+<span class="n">acl</span> <span class="n">localnet</span> <span class="n">src</span> <span class="mf">10.0</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">8</span>
+<span class="n">acl</span> <span class="n">localnet</span> <span class="n">src</span> <span class="mf">172.16</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">12</span>
+<span class="n">acl</span> <span class="n">localnet</span> <span class="n">src</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">16</span>
 <span class="n">acl</span> <span class="n">localnet</span> <span class="n">src</span> <span class="n">fc00</span><span class="p">::</span><span class="o">/</span><span class="mi">7</span>
 <span class="n">acl</span> <span class="n">localnet</span> <span class="n">src</span> <span class="n">fe80</span><span class="p">::</span><span class="o">/</span><span class="mi">10</span>
 <span class="n">acl</span> <span class="n">SSL_ports</span> <span class="n">port</span> <span class="mi">443</span>
@@ -181,82 +187,82 @@ openssl genrsa -out cert.key <span class="m">2048</span>
 <span class="n">acl</span> <span class="n">Safe_ports</span> <span class="n">port</span> <span class="mi">488</span>
 <span class="n">acl</span> <span class="n">Safe_ports</span> <span class="n">port</span> <span class="mi">591</span>
 <span class="n">acl</span> <span class="n">Safe_ports</span> <span class="n">port</span> <span class="mi">777</span>
-<span class="n">acl</span> <span class="k">CONNECT</span> <span class="k">method</span> <span class="k">CONNECT</span>
+<span class="n">acl</span> <span class="n">CONNECT</span> <span class="n">method</span> <span class="n">CONNECT</span>
 
 <span class="n">http_access</span> <span class="n">allow</span> <span class="n">manager</span> <span class="n">localhost</span>
 <span class="n">http_access</span> <span class="n">deny</span> <span class="n">manager</span>
 <span class="n">http_access</span> <span class="n">deny</span> <span class="o">!</span><span class="n">Safe_ports</span>
-<span class="n">http_access</span> <span class="n">deny</span> <span class="k">CONNECT</span> <span class="o">!</span><span class="n">SSL_ports</span>
+<span class="n">http_access</span> <span class="n">deny</span> <span class="n">CONNECT</span> <span class="o">!</span><span class="n">SSL_ports</span>
 <span class="n">http_access</span> <span class="n">allow</span> <span class="n">localnet</span>
-<span class="n">http_access</span> <span class="n">allow</span> <span class="n">localhost</span>     <span class="o">#</span> <span class="n">allow</span> <span class="n">traffic</span> <span class="k">from</span> <span class="n">localhost</span>
+<span class="n">http_access</span> <span class="n">allow</span> <span class="n">localhost</span>     <span class="c1"># allow traffic from localhost</span>
 
 
-<span class="o">#</span> <span class="k">to</span> <span class="n">allow</span> <span class="n">other</span> <span class="n">client</span> <span class="n">IP</span><span class="p">,</span> <span class="k">set</span> <span class="n">them</span> <span class="n">up</span> <span class="n">above</span>
-<span class="n">http_access</span> <span class="n">deny</span> <span class="k">all</span>
+<span class="c1"># to allow other client IP, set them up above</span>
+<span class="n">http_access</span> <span class="n">deny</span> <span class="n">all</span>
 
 
-<span class="o">#</span>
-<span class="o">#</span> <span class="k">INSERT</span> <span class="n">YOUR</span> <span class="n">OWN</span> <span class="k">RULE</span><span class="p">(</span><span class="n">S</span><span class="p">)</span> <span class="n">HERE</span> <span class="k">TO</span> <span class="n">ALLOW</span> <span class="k">ACCESS</span> <span class="k">FROM</span> <span class="n">YOUR</span> <span class="n">CLIENTS</span>
-<span class="o">#</span>
+<span class="c1">#</span>
+<span class="c1"># INSERT YOUR OWN RULE(S) HERE TO ALLOW ACCESS FROM YOUR CLIENTS</span>
+<span class="c1">#</span>
 
 <span class="n">cache_effective_user</span> <span class="n">proxy</span>
 <span class="n">cache_effective_group</span> <span class="n">proxy</span>
 
-<span class="o">#</span> <span class="n">this</span> <span class="k">work</span> <span class="k">for</span> <span class="k">both</span> <span class="n">http</span> <span class="k">and</span> <span class="n">https</span> <span class="n">traffic</span>
-<span class="n">http_port</span> <span class="mi">3128</span> <span class="n">ssl</span><span class="o">-</span><span class="n">bump</span> <span class="n">generate</span><span class="o">-</span><span class="k">host</span><span class="o">-</span><span class="n">certificates</span><span class="o">=</span><span class="k">on</span> <span class="err">\</span>
-    <span class="n">dynamic_cert_mem_cache_size</span><span class="o">=</span><span class="mi">4</span><span class="n">MB</span> <span class="err">\</span>
-    <span class="n">cert</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="n">ca</span><span class="p">.</span><span class="n">crt</span> <span class="err">\</span>
-    <span class="k">key</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="n">ca</span><span class="p">.</span><span class="k">key</span>
+<span class="c1"># this work for both http and https traffic</span>
+<span class="n">http_port</span> <span class="mi">3128</span> <span class="n">ssl</span><span class="o">-</span><span class="n">bump</span> <span class="n">generate</span><span class="o">-</span><span class="n">host</span><span class="o">-</span><span class="n">certificates</span><span class="o">=</span><span class="n">on</span> \
+    <span class="n">dynamic_cert_mem_cache_size</span><span class="o">=</span><span class="mi">4</span><span class="n">MB</span> \
+    <span class="n">cert</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="n">ca</span><span class="o">.</span><span class="n">crt</span> \
+    <span class="n">key</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="n">ca</span><span class="o">.</span><span class="n">key</span>
 
-<span class="o">#</span><span class="n">always_direct</span> <span class="n">allow</span> <span class="k">all</span>
-<span class="n">ssl_bump</span> <span class="n">server</span><span class="o">-</span><span class="k">first</span> <span class="k">all</span>
+<span class="c1">#always_direct allow all</span>
+<span class="n">ssl_bump</span> <span class="n">server</span><span class="o">-</span><span class="n">first</span> <span class="n">all</span>
 
-<span class="o">#</span><span class="n">sslproxy_cert_error</span> <span class="n">deny</span> <span class="k">all</span>
+<span class="c1">#sslproxy_cert_error deny all</span>
 <span class="n">sslproxy_flags</span> <span class="n">DONT_VERIFY_PEER</span>
 
-<span class="n">sslcrtd_program</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="n">ssl_crtd</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">ssl_db</span> <span class="o">-</span><span class="n">M</span> <span class="mi">4</span><span class="n">MB</span>
+<span class="n">sslcrtd_program</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="n">ssl_crtd</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">ssl_db</span> <span class="o">-</span><span class="n">M</span> <span class="mi">4</span><span class="n">MB</span>
 <span class="n">sslcrtd_children</span> <span class="mi">8</span> <span class="n">startup</span><span class="o">=</span><span class="mi">1</span> <span class="n">idle</span><span class="o">=</span><span class="mi">1</span>
 
-<span class="o">#</span> <span class="n">icap</span> <span class="n">filtering</span> <span class="n">service</span>
-<span class="n">icap_enable</span> <span class="k">on</span>
-<span class="n">icap_preview_enable</span> <span class="k">on</span>
+<span class="c1"># icap filtering service</span>
+<span class="n">icap_enable</span> <span class="n">on</span>
+<span class="n">icap_preview_enable</span> <span class="n">on</span>
 
-<span class="o">#</span> <span class="n">request</span> <span class="n">filtering</span><span class="p">,</span> <span class="k">set</span> <span class="n">bypass</span> <span class="k">to</span> <span class="mi">0</span> <span class="k">to</span> <span class="n">enforce</span>
+<span class="c1"># request filtering, set bypass to 0 to enforce</span>
 <span class="n">icap_service</span> <span class="n">service_req</span> <span class="n">reqmod_precache</span> <span class="n">bypass</span><span class="o">=</span><span class="mi">1</span> <span class="n">icap</span><span class="p">:</span><span class="o">//</span><span class="n">icap</span><span class="p">:</span><span class="mi">1344</span>
-<span class="n">adaptation_access</span> <span class="n">service_req</span> <span class="n">allow</span> <span class="k">all</span>
+<span class="n">adaptation_access</span> <span class="n">service_req</span> <span class="n">allow</span> <span class="n">all</span>
 
-<span class="o">#</span> <span class="n">response</span> <span class="n">filtering</span><span class="p">,</span> <span class="k">set</span> <span class="n">bypass</span> <span class="k">to</span> <span class="mi">0</span> <span class="k">to</span> <span class="n">enforce</span>
+<span class="c1"># response filtering, set bypass to 0 to enforce</span>
 <span class="n">icap_service</span> <span class="n">service_resp</span> <span class="n">respmod_precache</span> <span class="n">bypass</span><span class="o">=</span><span class="mi">1</span> <span class="n">icap</span><span class="p">:</span><span class="o">//</span><span class="n">icap</span><span class="p">:</span><span class="mi">1344</span>
-<span class="n">adaptation_access</span> <span class="n">service_resp</span> <span class="n">allow</span> <span class="k">all</span>
+<span class="n">adaptation_access</span> <span class="n">service_resp</span> <span class="n">allow</span> <span class="n">all</span>
 
-<span class="o">#</span>
-<span class="o">#</span> <span class="k">Add</span> <span class="k">any</span> <span class="k">of</span> <span class="n">your</span> <span class="n">own</span> <span class="n">refresh_pattern</span> <span class="n">entries</span> <span class="n">above</span> <span class="n">these</span><span class="p">.</span>
-<span class="o">#</span>
+<span class="c1">#</span>
+<span class="c1"># Add any of your own refresh_pattern entries above these.</span>
+<span class="c1">#</span>
 <span class="n">refresh_pattern</span> <span class="o">^</span><span class="n">ftp</span><span class="p">:</span>       <span class="mi">1440</span>    <span class="mi">20</span><span class="o">%</span> <span class="mi">10080</span>
 <span class="n">refresh_pattern</span> <span class="o">^</span><span class="n">gopher</span><span class="p">:</span>    <span class="mi">1440</span>    <span class="mi">0</span><span class="o">%</span>  <span class="mi">1440</span>
-<span class="n">refresh_pattern</span> <span class="o">-</span><span class="n">i</span> <span class="p">(</span><span class="o">/</span><span class="n">cgi</span><span class="o">-</span><span class="n">bin</span><span class="o">/|</span><span class="err">\</span><span class="o">?</span><span class="p">)</span> <span class="mi">0</span> <span class="mi">0</span><span class="o">%</span>  <span class="mi">0</span>
-<span class="n">refresh_pattern</span> <span class="p">.</span>       <span class="mi">0</span>   <span class="mi">20</span><span class="o">%</span> <span class="mi">4320</span>
+<span class="n">refresh_pattern</span> <span class="o">-</span><span class="n">i</span> <span class="p">(</span><span class="o">/</span><span class="n">cgi</span><span class="o">-</span><span class="n">bin</span><span class="o">/|</span>\<span class="err">?</span><span class="p">)</span> <span class="mi">0</span> <span class="mi">0</span><span class="o">%</span>  <span class="mi">0</span>
+<span class="n">refresh_pattern</span> <span class="o">.</span>       <span class="mi">0</span>   <span class="mi">20</span><span class="o">%</span> <span class="mi">4320</span>
 
-<span class="n">shutdown_lifetime</span> <span class="mi">1</span> <span class="k">second</span>
+<span class="n">shutdown_lifetime</span> <span class="mi">1</span> <span class="n">second</span>
 </code></pre></div>
 
 
 <p>At last, the <code>docker-compose.yml</code> that puts everything together. </p>
-<div class="highlight"><pre><span></span><code><span class="k">version</span><span class="p">:</span> <span class="s1">&#39;3&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">version</span><span class="p">:</span> <span class="s1">&#39;3&#39;</span>
 
 <span class="n">services</span><span class="p">:</span>
   <span class="n">squid</span><span class="p">:</span>
-    <span class="n">build</span><span class="p">:</span> <span class="p">.</span><span class="o">/</span>
+    <span class="n">build</span><span class="p">:</span> <span class="o">./</span>
     <span class="n">ports</span><span class="p">:</span>
-      <span class="o">-</span> <span class="ss">&quot;8888:3128&quot;</span>
+      <span class="o">-</span> <span class="s2">&quot;8888:3128&quot;</span>
     <span class="n">volumes</span><span class="p">:</span>
-      <span class="o">-</span> <span class="p">.</span><span class="o">/</span><span class="k">cache</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="k">cache</span>
-      <span class="o">-</span> <span class="p">.</span><span class="o">/</span><span class="n">logs</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">logs</span>
-      <span class="o">-</span> <span class="p">.</span><span class="o">/</span><span class="n">squid</span><span class="p">.</span><span class="n">conf</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="n">squid</span><span class="p">.</span><span class="n">conf</span>
-      <span class="o">-</span> <span class="p">.</span><span class="o">/</span><span class="n">ca</span><span class="p">.</span><span class="n">crt</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="n">ca</span><span class="p">.</span><span class="n">crt</span>
-      <span class="o">-</span> <span class="p">.</span><span class="o">/</span><span class="n">ca</span><span class="p">.</span><span class="k">key</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="n">ca</span><span class="p">.</span><span class="k">key</span>
-    <span class="k">restart</span><span class="p">:</span> <span class="n">always</span>
-    <span class="n">command</span><span class="p">:</span> <span class="n">squid</span> <span class="o">-</span><span class="n">f</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="n">squid</span><span class="p">.</span><span class="n">conf</span> <span class="o">-</span><span class="n">NYCd</span> <span class="mi">1</span>
+      <span class="o">-</span> <span class="o">./</span><span class="n">cache</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">cache</span>
+      <span class="o">-</span> <span class="o">./</span><span class="n">logs</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">logs</span>
+      <span class="o">-</span> <span class="o">./</span><span class="n">squid</span><span class="o">.</span><span class="n">conf</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="n">squid</span><span class="o">.</span><span class="n">conf</span>
+      <span class="o">-</span> <span class="o">./</span><span class="n">ca</span><span class="o">.</span><span class="n">crt</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="n">ca</span><span class="o">.</span><span class="n">crt</span>
+      <span class="o">-</span> <span class="o">./</span><span class="n">ca</span><span class="o">.</span><span class="n">key</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="n">ca</span><span class="o">.</span><span class="n">key</span>
+    <span class="n">restart</span><span class="p">:</span> <span class="n">always</span>
+    <span class="n">command</span><span class="p">:</span> <span class="n">squid</span> <span class="o">-</span><span class="n">f</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="n">squid</span><span class="o">.</span><span class="n">conf</span> <span class="o">-</span><span class="n">NYCd</span> <span class="mi">1</span>
 </code></pre></div>
 
 
@@ -274,37 +280,37 @@ openssl genrsa -out cert.key <span class="m">2048</span>
 
 
 <p>Start the squid docker by running <code>docker-compose up</code>. Docker should start building the docker image. At the very end, the console should have a print out like this. </p>
-<div class="highlight"><pre><span></span><code><span class="err">Creating squid_squid_1 ... done                                                                                                        </span>
-<span class="err">Attaching to squid_squid_1                                                                                                             </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| Current Directory is /tmp/squid-3.5.27                                                                 </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| Starting Squid Cache version 3.5.27 for x86_64-pc-linux-gnu...                                         </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| Service Name: squid                                                                                    </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| Process ID 1                                                                                           </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| Process Roles: master worker                                                                           </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| With 1048576 file descriptors available                                                                </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| Initializing IP Cache...                                                                               </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| DNS Socket created at [::], FD 9                                                                       </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| DNS Socket created at 0.0.0.0, FD 10                                                                   </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| Adding nameserver 127.0.0.11 from /etc/resolv.conf                                                     </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| Adding ndots 1 from /etc/resolv.conf                                                                   </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| helperOpenServers: Starting 1/8 &#39;ssl_crtd&#39; processes                                                   </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| Logfile: opening log daemon:/usr/local/squid/var/logs/access.log                                       </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| Logfile Daemon: opening log /usr/local/squid/var/logs/access.log                                       </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| Local cache digest enabled; rebuild/rewrite every 3600/3600 sec                                        </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| Store logging disabled                                                                                 </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| Swap maxSize 0 + 262144 KB, estimated 20164 objects                                                    </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| Target number of buckets: 1008                                                                         </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| Using 8192 Store buckets                                                                               </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| Max Mem  size: 262144 KB                                                                               </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| Max Swap size: 0 KB                                                                                    </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| Using Least Load store dir selection                                                                   </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| Current Directory is /tmp/squid-3.5.27                                                                 </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| Finished loading MIME types and icons.                                                                 </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| HTCP Disabled.                                                                                         </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| Squid plugin modules loaded: 0                                                                         </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| Adaptation support is on                                                                               </span>
-<span class="err">squid_1  | 2018/09/01 02:33:39| Accepting SSL bumped HTTP Socket connections at local=[::]:3128 remote=[::] FD 16 flags=9              </span>
-<span class="err">squid_1  | 2018/09/01 02:33:40| storeLateRelease: released 0 objects                                                                   </span>
+<div class="highlight"><pre><span></span><code><span class="n">Creating</span> <span class="n">squid_squid_1</span> <span class="o">...</span> <span class="n">done</span>                                                                                                        
+<span class="n">Attaching</span> <span class="n">to</span> <span class="n">squid_squid_1</span>                                                                                                             
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">Current</span> <span class="n">Directory</span> <span class="k">is</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">squid</span><span class="o">-</span><span class="mf">3.5</span><span class="o">.</span><span class="mi">27</span>                                                                 
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">Starting</span> <span class="n">Squid</span> <span class="n">Cache</span> <span class="n">version</span> <span class="mf">3.5</span><span class="o">.</span><span class="mi">27</span> <span class="k">for</span> <span class="n">x86_64</span><span class="o">-</span><span class="n">pc</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">...</span>                                         
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">Service</span> <span class="n">Name</span><span class="p">:</span> <span class="n">squid</span>                                                                                    
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">Process</span> <span class="n">ID</span> <span class="mi">1</span>                                                                                           
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">Process</span> <span class="n">Roles</span><span class="p">:</span> <span class="k">master</span> <span class="n">worker</span>                                                                           
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">With</span> <span class="mi">1048576</span> <span class="n">file</span> <span class="n">descriptors</span> <span class="n">available</span>                                                                
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">Initializing</span> <span class="n">IP</span> <span class="n">Cache</span><span class="o">...</span>                                                                               
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">DNS</span> <span class="n">Socket</span> <span class="n">created</span> <span class="n">at</span> <span class="p">[::],</span> <span class="n">FD</span> <span class="mi">9</span>                                                                       
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">DNS</span> <span class="n">Socket</span> <span class="n">created</span> <span class="n">at</span> <span class="mf">0.0</span><span class="o">.</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">FD</span> <span class="mi">10</span>                                                                   
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">Adding</span> <span class="n">nameserver</span> <span class="mf">127.0</span><span class="o">.</span><span class="mf">0.11</span> <span class="n">from</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">resolv</span><span class="o">.</span><span class="n">conf</span>                                                     
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">Adding</span> <span class="n">ndots</span> <span class="mi">1</span> <span class="n">from</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">resolv</span><span class="o">.</span><span class="n">conf</span>                                                                   
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">helperOpenServers</span><span class="p">:</span> <span class="n">Starting</span> <span class="mi">1</span><span class="o">/</span><span class="mi">8</span> <span class="s1">&#39;ssl_crtd&#39;</span> <span class="n">processes</span>                                                   
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">Logfile</span><span class="p">:</span> <span class="n">opening</span> <span class="nb">log</span> <span class="n">daemon</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">logs</span><span class="o">/</span><span class="n">access</span><span class="o">.</span><span class="n">log</span>                                       
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">Logfile</span> <span class="n">Daemon</span><span class="p">:</span> <span class="n">opening</span> <span class="nb">log</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">squid</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">logs</span><span class="o">/</span><span class="n">access</span><span class="o">.</span><span class="n">log</span>                                       
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">Local</span> <span class="n">cache</span> <span class="n">digest</span> <span class="n">enabled</span><span class="p">;</span> <span class="n">rebuild</span><span class="o">/</span><span class="n">rewrite</span> <span class="n">every</span> <span class="mi">3600</span><span class="o">/</span><span class="mi">3600</span> <span class="n">sec</span>                                        
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">Store</span> <span class="n">logging</span> <span class="n">disabled</span>                                                                                 
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">Swap</span> <span class="n">maxSize</span> <span class="mi">0</span> <span class="o">+</span> <span class="mi">262144</span> <span class="n">KB</span><span class="p">,</span> <span class="n">estimated</span> <span class="mi">20164</span> <span class="n">objects</span>                                                    
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">Target</span> <span class="n">number</span> <span class="n">of</span> <span class="n">buckets</span><span class="p">:</span> <span class="mi">1008</span>                                                                         
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">Using</span> <span class="mi">8192</span> <span class="n">Store</span> <span class="n">buckets</span>                                                                               
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">Max</span> <span class="n">Mem</span>  <span class="n">size</span><span class="p">:</span> <span class="mi">262144</span> <span class="n">KB</span>                                                                               
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">Max</span> <span class="n">Swap</span> <span class="n">size</span><span class="p">:</span> <span class="mi">0</span> <span class="n">KB</span>                                                                                    
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">Using</span> <span class="n">Least</span> <span class="n">Load</span> <span class="n">store</span> <span class="n">dir</span> <span class="n">selection</span>                                                                   
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">Current</span> <span class="n">Directory</span> <span class="k">is</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">squid</span><span class="o">-</span><span class="mf">3.5</span><span class="o">.</span><span class="mi">27</span>                                                                 
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">Finished</span> <span class="n">loading</span> <span class="n">MIME</span> <span class="n">types</span> <span class="ow">and</span> <span class="n">icons</span><span class="o">.</span>                                                                 
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">HTCP</span> <span class="n">Disabled</span><span class="o">.</span>                                                                                         
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">Squid</span> <span class="n">plugin</span> <span class="n">modules</span> <span class="n">loaded</span><span class="p">:</span> <span class="mi">0</span>                                                                         
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">Adaptation</span> <span class="n">support</span> <span class="k">is</span> <span class="n">on</span>                                                                               
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">39</span><span class="o">|</span> <span class="n">Accepting</span> <span class="n">SSL</span> <span class="n">bumped</span> <span class="n">HTTP</span> <span class="n">Socket</span> <span class="n">connections</span> <span class="n">at</span> <span class="n">local</span><span class="o">=</span><span class="p">[::]:</span><span class="mi">3128</span> <span class="k">remote</span><span class="o">=</span><span class="p">[::]</span> <span class="n">FD</span> <span class="mi">16</span> <span class="n">flags</span><span class="o">=</span><span class="mi">9</span>              
+<span class="n">squid_1</span>  <span class="o">|</span> <span class="mi">2018</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">01</span> <span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">40</span><span class="o">|</span> <span class="n">storeLateRelease</span><span class="p">:</span> <span class="n">released</span> <span class="mi">0</span> <span class="n">objects</span>                                                                   
 </code></pre></div>
 
 
@@ -352,7 +358,7 @@ openssl genrsa -out cert.key <span class="m">2048</span>
                     <div class="comments">
                         <div id="disqus_thread"></div>
                         <script>
-    var disqus_shortname = 'https-hazelement-github-io.disqus.com';
+    var disqus_shortname = 'https-hazelement-github-io';
     (function () {
         var s = document.createElement('script'); s.async = true;
         s.type = 'text/javascript';

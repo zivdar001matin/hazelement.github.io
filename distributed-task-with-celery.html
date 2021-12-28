@@ -39,10 +39,16 @@
 </script>
 
 
+
+        <style>
+            body {
+                padding-top: 60px;
+            }
+        </style>
     </head>
     <body>
         <div id="content">
-            <div class="navbar navbar-static-top">
+            <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="navbar-inner">
                     <div class="container-fluid">
                         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -67,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </nav>
             <div class="container-fluid">
                 <div class="row-fluid">
                     <div class="span1"></div>
@@ -188,23 +194,23 @@
 
 <h3>Celery app queue configuration</h3>
 <p>Queue is configured based on task name to avoid worker conflicts. In <code>celery_tasks</code>, we created a <code>create_worker_from</code> method defined in <code>utils.py</code>. </p>
-<div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="n">utils</span><span class="p">.</span><span class="n">py</span>
+<div class="highlight"><pre><span></span><code><span class="p">#</span> <span class="n">utils</span><span class="p">.</span><span class="n">py</span>
 
-<span class="n">def</span> <span class="n">create_worker_from</span><span class="p">(</span><span class="n">WorkerClass</span><span class="p">,</span> <span class="n">celery_config</span><span class="o">=</span><span class="s1">&#39;celery_tasks.celery_config&#39;</span><span class="p">):</span>
-    <span class="ss">&quot;&quot;&quot;</span>
-<span class="ss">    Create worker instance given WorkerClass</span>
-<span class="ss">    :param WorkerClass: WorkerClass to perform task</span>
-<span class="ss">    :type WorkerClass: subclass of celery.Task</span>
-<span class="ss">    :param celery_config: celery config module, default &#39;celery_tasks.celery_config&#39;. This depends on</span>
-<span class="ss">                            project path</span>
-<span class="ss">    :type celery_config: str</span>
-<span class="ss">    :return: celery app instance and worker task instance</span>
-<span class="ss">    :rtype: tuple of (app, worker_task)</span>
-<span class="ss">    &quot;&quot;&quot;</span>
+<span class="n">def</span> <span class="n">create_worker_from</span><span class="p">(</span><span class="n">WorkerClass</span><span class="p">,</span> <span class="n">celery_config</span><span class="o">=</span><span class="p">&#39;</span><span class="n">celery_tasks</span><span class="p">.</span><span class="n">celery_config</span><span class="p">&#39;)</span><span class="o">:</span>
+    <span class="s">&quot;&quot;&quot;</span>
+    <span class="n">Create</span> <span class="n">worker</span> <span class="n">instance</span> <span class="n">given</span> <span class="n">WorkerClass</span>
+    <span class="o">:</span><span class="n">param</span> <span class="nl">WorkerClass:</span> <span class="n">WorkerClass</span> <span class="n">to</span> <span class="n">perform</span> <span class="k">task</span>
+    <span class="o">:</span><span class="k">type</span> <span class="nl">WorkerClass:</span> <span class="n">subclass</span> <span class="n">of</span> <span class="n">celery</span><span class="p">.</span><span class="n">Task</span>
+    <span class="o">:</span><span class="n">param</span> <span class="nl">celery_config:</span> <span class="n">celery</span> <span class="n">config</span> <span class="k">module</span><span class="p">,</span> <span class="k">default</span> <span class="p">&#39;</span><span class="n">celery_tasks</span><span class="p">.</span><span class="n">celery_config</span><span class="p">&#39;.</span> <span class="n">This</span> <span class="n">depends</span> <span class="n">on</span>
+                            <span class="n">project</span> <span class="n">path</span>
+    <span class="o">:</span><span class="k">type</span> <span class="nl">celery_config:</span> <span class="n">str</span>
+    <span class="o">:</span><span class="k">return</span><span class="o">:</span> <span class="n">celery</span> <span class="n">app</span> <span class="n">instance</span> <span class="k">and</span> <span class="n">worker</span> <span class="k">task</span> <span class="n">instance</span>
+    <span class="o">:</span><span class="nl">rtype:</span> <span class="n">tuple</span> <span class="n">of</span> <span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">worker_task</span><span class="p">)</span>
+    <span class="s">&quot;&quot;&quot;</span>
     <span class="n">assert</span> <span class="n">issubclass</span><span class="p">(</span><span class="n">WorkerClass</span><span class="p">,</span> <span class="n">celery</span><span class="p">.</span><span class="n">Task</span><span class="p">)</span>
     <span class="n">app</span> <span class="o">=</span> <span class="n">celery</span><span class="p">.</span><span class="n">Celery</span><span class="p">()</span>
     <span class="n">app</span><span class="p">.</span><span class="n">config_from_object</span><span class="p">(</span><span class="n">celery_config</span><span class="p">)</span>
-    <span class="n">app</span><span class="p">.</span><span class="n">conf</span><span class="p">.</span><span class="k">update</span><span class="p">(</span><span class="n">task_default_queue</span><span class="o">=</span><span class="n">WorkerClass</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>  <span class="o">#</span> <span class="k">update</span> <span class="n">worker</span> <span class="n">queue</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">conf</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">task_default_queue</span><span class="o">=</span><span class="n">WorkerClass</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>  <span class="p">#</span> <span class="n">update</span> <span class="n">worker</span> <span class="n">queue</span>
     <span class="n">worker_task</span> <span class="o">=</span> <span class="n">app</span><span class="p">.</span><span class="n">register_task</span><span class="p">(</span><span class="n">WorkerClass</span><span class="p">())</span>
 
     <span class="k">return</span> <span class="n">app</span><span class="p">,</span> <span class="n">worker_task</span>
@@ -286,7 +292,7 @@
                     <div class="comments">
                         <div id="disqus_thread"></div>
                         <script>
-    var disqus_shortname = 'https-hazelement-github-io.disqus.com';
+    var disqus_shortname = 'https-hazelement-github-io';
     (function () {
         var s = document.createElement('script'); s.async = true;
         s.type = 'text/javascript';

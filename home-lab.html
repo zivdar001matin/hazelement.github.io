@@ -15,19 +15,19 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="dot file, misc, " />
+<meta name="keywords" content="server, network, misc, " />
 
-<meta property="og:title" content="Dot file Management "/>
-<meta property="og:url" content="./dot-file-management.html" />
-<meta property="og:description" content="Backup and Restore dot files" />
+<meta property="og:title" content="Home Lab "/>
+<meta property="og:url" content="./home-lab.html" />
+<meta property="og:description" content="Servers at home for entertainment and learning" />
 <meta property="og:site_name" content="Coding Digests" />
 <meta property="og:article:author" content="Harry Zheng" />
-<meta property="og:article:published_time" content="2020-05-03T00:00:00-06:00" />
-<meta property="og:article:modified_time" content="2020-05-03T00:00:00-06:00" />
-<meta name="twitter:title" content="Dot file Management ">
-<meta name="twitter:description" content="Backup and Restore dot files">
+<meta property="og:article:published_time" content="2020-07-10T00:00:00-06:00" />
+<meta property="og:article:modified_time" content="2020-07-10T00:00:00-06:00" />
+<meta name="twitter:title" content="Home Lab ">
+<meta name="twitter:description" content="Servers at home for entertainment and learning">
 
-        <title>Dot file Management  · Coding Digests
+        <title>Home Lab  · Coding Digests
 </title>
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -82,8 +82,8 @@
 <div class="row-fluid">
     <header class="page-header span10 offset2">
         <h1>
-            <a href="./dot-file-management.html">
-                Dot file Management
+            <a href="./home-lab.html">
+                Home Lab
             </a>
         </h1>
     </header>
@@ -93,67 +93,54 @@
         <div class="span8 offset2 article-content">
             
             <h1>Introduction</h1>
-<p>Developers have a lot of personalized configuration files, from shell profile, git configuration to IDE configurations. A lot of times, when we get a new machine, we need to configure the machine to our likes using this dot files. However, managing these files could be a pain. </p>
-<p><code>yadm</code> is a project aim to solve this problem, https://yadm.io/. It's built onto of git so it has our favorite version control system. </p>
-<h1>Using <code>yadm</code></h1>
-<h2>Installing <code>yadm</code></h2>
-<p>On MacOS, we can install <code>yadm</code> using <code>brew</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="err">brew instsall yadm</span>
-</code></pre></div>
-
-
-<p>On Ubuntu/Debian, we install <code>yadm</code> using <code>apt-get</code>. </p>
-<h2>Configure <code>yadm</code></h2>
-<h3>Start fresh without a remote repository</h3>
-<p>Start with an empty local repository, </p>
-<div class="highlight"><pre><span></span><code><span class="err">yadm init</span>
-<span class="err">yadm add &lt;important file&gt;</span>
-<span class="err">yadm commits</span>
-</code></pre></div>
-
-
-<p>It works the same as git because it's built on top of git. Eventually, we want to back up everything to a remote repository. </p>
-<p>Create a git repository of your choice, for example, Github. Push local repo to this remote. </p>
-<div class="highlight"><pre><span></span><code><span class="err">yadm remote add origin &lt;url to git repo&gt;</span>
-<span class="err">yadm push -u origin master</span>
-</code></pre></div>
-
-
-<p>Next time to push an update, just do <code>yadm push</code>. </p>
-<h3>Using an existing remote repository</h3>
-<p>If you already has an remote repository that stores your dot files. Simply clone it to your current machine. </p>
-<div class="highlight"><pre><span></span><code><span class="err">yadm clone &lt;url to git repo&gt;</span>
-<span class="err">yadm status</span>
-</code></pre></div>
-
-
-<h2>Common commands</h2>
-<p>We list some common commands below. </p>
-<h3><code>yadm status</code></h3>
-<p>Show current local repo status, similar to <code>git status</code>.</p>
-<h3><code>yadm commit</code></h3>
-<p>Commit local changes. </p>
-<h3><code>yadm add &lt;path to file&gt;</code></h3>
-<p>Track a new file. </p>
-<h3><code>yadm push, pull, clone</code></h3>
-<p>Push to, pull or clone from remote repo.</p>
-<h3><code>yadm remote add origin &lt;remote rpo&gt;</code></h3>
-<p>Add a remote repo. </p>
-<h2>Advanced topics</h2>
-<p>There are most advanced features in <code>yadm</code>. You can find them at https://yadm.io/docs/bootstrap. Some notable features are. </p>
+<p>This article summarizes my home lab setup. I used the setup to server entertainment and to support software development in my free time. The entire set runs on an laptop with 32GB of memory with Ubuntu 18.04 installed.</p>
+<p>This is just a premliminary setup as I add more stuff over the years. I might switch to a proper hypervisor installation in the future. </p>
+<p><img alt="home-network" src="../images/home-network.png"></p>
+<h1>Docker, Virtual Box and Server itself</h1>
+<p>I divide my services into 3 partitions. </p>
 <ul>
-<li><strong>Bootstrap</strong>, setting up a bootstrap script that automatically configures machine for you</li>
-<li><strong>Encryption</strong>, encrypt sensitive files such as SSH keys. It has symmetric and asymmetric encryption option. </li>
+<li>[Host] support services that run on the host system. These are the crucial services that I always need, such as Nginx and bind DNS server. </li>
+<li>[Docker] Services that can be containerized. and sometimes are one off experiments. </li>
+<li>[VirtualBox] Services that might interfere with host network and I want to keep it separated. So services that host OS doesn't support. </li>
 </ul>
+<h1>Host services</h1>
+<p>In host, I installed <a href="http://www.webmin.com/">webmin</a> for each remote management on the host itself. This way, I can directly get system information on the host. </p>
+<p>Through webmin, I installed nginx and bind DNS. </p>
+<h2>bind DNS</h2>
+<p>It runs as a DNS resolver for my home network. Rather than accessing my other services using IP addresses, I create DNS entires for these services' IP in bind DNS. So that I can access them using a URL. </p>
+<h2>Nginx</h2>
+<p>Reverse proxy for services. It redirects requests to services. </p>
+<h2>Plex</h2>
+<p>Home entertainment services. Plex looks at my data volume where I stored all my movies and TV shows. I'm able to acess my library on my phone using Plex's app. There is also a web UI available. I can also cast my media to TV through Chromecast. </p>
+<p>I installed Plex on host to avoid file permission issues on my data volume. I have other services adding content to the data volume in docker and it's tricky to setup Plex in docker to share the same user. </p>
+<h1>Docker</h1>
+<h2>Nextcloud</h2>
+<p>Nextcloud server cloud storage services to my home network. I persist its data by mounting a folder in the data volume into the docker. </p>
+<h2>OpenVPN</h2>
+<p>To allow connect to home network from outside, I run a OpenVPN inside a docker. </p>
+<h2>Watchtower</h2>
+<p>Watchtower automatically updates all docker containers to their latest images. </p>
+<h2>Portainer</h2>
+<p>An admin web UI to see and mamange running containers. </p>
+<h2>Pihole</h2>
+<p>DNS based ad blocker</p>
+<h1>VirtualBox</h1>
+<h2>OneDrive</h2>
+<p>I have a windows machine running in VirtualBox. It syncs my Onedrive and share the Onedrive folder over samba in my home network. I don't need to map static IP to this machine because windows machines are dicoverable in local network. </p>
+<h2>GameServers</h2>
+<p>I also have some VMs running as game servers. </p>
+<h1>DNS resolution</h1>
+<p>To resolve local DNS name and perform add filtering using pihole. I've set ISP's modem to use bind DNS as look up server. Bind DNS resolves local DNS names and forward the rest to pihole. </p>
+<p>Pihole filter out blacklisted ad domains and forward the rest to <code>1.1.1.1</code>and <code>1.0.0.1</code>. </p>
 
 
              
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Dot%20file%20Management&url=https%3A//hazelement.github.io/dot-file-management.html&hashtags=dot-file" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
- ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//hazelement.github.io/dot-file-management.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Dot%20file%20Management&amp;body=https%3A//hazelement.github.io/dot-file-management.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+      <a href="https://twitter.com/intent/tweet?text=Home%20Lab&url=https%3A//hazelement.github.io/home-lab.html&hashtags=server,network" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//hazelement.github.io/home-lab.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=Home%20Lab&amp;body=https%3A//hazelement.github.io/home-lab.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -174,8 +161,8 @@
                 <a class="accordion-toggle disqus-comment-count comment-count collapsed"
                    data-toggle="collapse"
                    data-parent="#accordion2"
-                   data-disqus-identifier="./dot-file-management.html"
-                   href="./dot-file-management.html#comment_thread"
+                   data-disqus-identifier="./home-lab.html"
+                   href="./home-lab.html#comment_thread"
                    id="comment-accordion-toggle">
                     Comments
                 </a>
@@ -193,8 +180,8 @@
         (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
     }());
 
-    var disqus_identifier = './dot-file-management.html';
-    var disqus_url = './dot-file-management.html';
+    var disqus_identifier = './home-lab.html';
+    var disqus_url = './home-lab.html';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -220,21 +207,23 @@
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="./todo-list-for-this-site.html" title="Previous: Todo list for this site">Todo list for this site</a></li>
-                <li class="next-article"><a href="./setup-vnc.html" title="Next: Setup VNC">Setup VNC</a> »</li>
+                <li class="previous-article">« <a href="./setup-vnc.html" title="Previous: Setup VNC">Setup VNC</a></li>
             </ul>
             </nav>
             </aside>
         </div>
         <section id="article-sidebar" class="span2">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2020-05-03T00:00:00-06:00">Sun 03 May 2020</time>
+            <time itemprop="dateCreated" datetime="2020-07-10T00:00:00-06:00">Fri 10 July 2020</time>
 
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#misc-ref">misc</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="./tags.html#dot-file-ref">dot file
+                <li><a href="./tags.html#network-ref">network
+                    <span class="superscript">1</span>
+</a></li>
+                <li><a href="./tags.html#server-ref">server
                     <span class="superscript">1</span>
 </a></li>
             </ul>
