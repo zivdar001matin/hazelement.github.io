@@ -15,19 +15,18 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="server, network, misc, " />
+<meta name="keywords" content="work efficiency, reading_notes, " />
 
-<meta property="og:title" content="Home Lab "/>
-<meta property="og:url" content="./home-lab.html" />
-<meta property="og:description" content="Servers at home for entertainment and learning" />
+<meta property="og:title" content="Prioritize, Automate, Parallize (PAP) "/>
+<meta property="og:url" content="./prioritize-automate-parallize-pap.html" />
+<meta property="og:description" content="Use PAP to improve work efficiency" />
 <meta property="og:site_name" content="Coding Digests" />
 <meta property="og:article:author" content="Harry Zheng" />
-<meta property="og:article:published_time" content="2020-07-10T00:00:00-06:00" />
-<meta property="og:article:modified_time" content="2020-07-10T00:00:00-06:00" />
-<meta name="twitter:title" content="Home Lab ">
-<meta name="twitter:description" content="Servers at home for entertainment and learning">
+<meta property="og:article:published_time" content="2022-02-07T00:00:00-07:00" />
+<meta name="twitter:title" content="Prioritize, Automate, Parallize (PAP) ">
+<meta name="twitter:description" content="Use PAP to improve work efficiency">
 
-        <title>Home Lab  · Coding Digests
+        <title>Prioritize, Automate, Parallize (PAP)  · Coding Digests
 </title>
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -82,8 +81,8 @@
 <div class="row-fluid">
     <header class="page-header span10 offset2">
         <h1>
-            <a href="./home-lab.html">
-                Home Lab
+            <a href="./prioritize-automate-parallize-pap.html">
+                Prioritize, Automate, Parallize (PAP)
             </a>
         </h1>
     </header>
@@ -92,55 +91,40 @@
 <div class="row-fluid">
         <div class="span8 offset2 article-content">
             
-            <h1>Introduction</h1>
-<p>This article summarizes my home lab setup. I used the setup to server entertainment and to support software development in my free time. The entire set runs on an laptop with 32GB of memory with Ubuntu 18.04 installed.</p>
-<p>This is just a premliminary setup as I add more stuff over the years. I might switch to a proper hypervisor installation in the future. </p>
-<p><img alt="home-network" src="../images/home-network.png"></p>
-<h1>Docker, Virtual Box and Server itself</h1>
-<p>I divide my services into 3 partitions. </p>
+            <h1>Prioritize</h1>
+<h2>Kanban board</h2>
+<p>Use Kanban board to manage tasks and backlogs. Boards are organized into following columns</p>
 <ul>
-<li>[Host] support services that run on the host system. These are the crucial services that I always need, such as Nginx and bind DNS server. </li>
-<li>[Docker] Services that can be containerized. and sometimes are one off experiments. </li>
-<li>[VirtualBox] Services that might interfere with host network and I want to keep it separated. So services that host OS doesn't support. </li>
+<li>Backlog</li>
+<li>Weekly todo</li>
+<li>Today todo</li>
+<li>Completed</li>
 </ul>
-<h1>Host services</h1>
-<p>In host, I installed <a href="http://www.webmin.com/">webmin</a> for each remote management on the host itself. This way, I can directly get system information on the host. </p>
-<p>Through webmin, I installed nginx and bind DNS. </p>
-<h2>bind DNS</h2>
-<p>It runs as a DNS resolver for my home network. Rather than accessing my other services using IP addresses, I create DNS entires for these services' IP in bind DNS. So that I can access them using a URL. </p>
-<h2>Nginx</h2>
-<p>Reverse proxy for services. It redirects requests to services. </p>
-<h2>Plex</h2>
-<p>Home entertainment services. Plex looks at my data volume where I stored all my movies and TV shows. I'm able to acess my library on my phone using Plex's app. There is also a web UI available. I can also cast my media to TV through Chromecast. </p>
-<p>I installed Plex on host to avoid file permission issues on my data volume. I have other services adding content to the data volume in docker and it's tricky to setup Plex in docker to share the same user. </p>
-<h1>Docker</h1>
-<h2>Nextcloud</h2>
-<p>Nextcloud server cloud storage services to my home network. I persist its data by mounting a folder in the data volume into the docker. </p>
-<h2>OpenVPN</h2>
-<p>To allow connect to home network from outside, I run a OpenVPN inside a docker. </p>
-<h2>Watchtower</h2>
-<p>Watchtower automatically updates all docker containers to their latest images. </p>
-<h2>Portainer</h2>
-<p>An admin web UI to see and mamange running containers. </p>
-<h2>Pihole</h2>
-<p>DNS based ad blocker</p>
-<h1>VirtualBox</h1>
-<h2>OneDrive</h2>
-<p>I have a windows machine running in VirtualBox. It syncs my Onedrive and share the Onedrive folder over samba in my home network. I don't need to map static IP to this machine because windows machines are dicoverable in local network. </p>
-<h2>GameServers</h2>
-<p>I also have some VMs running as game servers. </p>
-<h1>DNS resolution</h1>
-<p>To resolve local DNS name and perform add filtering using pihole. I've set ISP's modem to use bind DNS as look up server. Bind DNS resolves local DNS names and forward the rest to pihole. </p>
-<p>Pihole filter out blacklisted ad domains and forward the rest to <code>1.1.1.1</code>and <code>1.0.0.1</code>. </p>
+<p>New tasks are put into backlog and waiting for pick up. </p>
+<p>At beginning of the week, pick items from backlog and put them into this week's todo column. </p>
+<p>During the day, move item you finished into completed column. At end of each day, move items you want to do next day from weekly todo into today's todo so that you can pick them up next day. </p>
+<h2>Blocked time</h2>
+<p>Each day, block a certan amount of time to avoid meetings so that you can focus on work. </p>
+<p>For other things like checking emails or IM, set aside some slots during the day. Remember to turn off notification from these commnication channels. </p>
+<h2>Pomodoro?</h2>
+<h1>Automate</h1>
+<p>Use automations on computer to simplify and reduce repetive tasks. Alfred is a good tool to automate things on mac. </p>
+<h1>Parallize</h1>
+<p>Some tasks can be handled in parallel. </p>
+<p>Some examples</p>
+<ul>
+<li>CR reviews, these usually take a long time and requires waiting for other's comment. Several CRs that don't affect each other can run in parallel. </li>
+<li>long build tasks, some tasks take a long time to build or see results. These tasks can run in parallel in conjunction with other tasks. </li>
+</ul>
 
 
              
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Home%20Lab&url=https%3A//hazelement.github.io/home-lab.html&hashtags=server,network" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
- ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//hazelement.github.io/home-lab.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Home%20Lab&amp;body=https%3A//hazelement.github.io/home-lab.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+      <a href="https://twitter.com/intent/tweet?text=Prioritize%2C%20Automate%2C%20Parallize%20%28PAP%29&url=https%3A//hazelement.github.io/prioritize-automate-parallize-pap.html&hashtags=work-efficiency" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//hazelement.github.io/prioritize-automate-parallize-pap.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=Prioritize%2C%20Automate%2C%20Parallize%20%28PAP%29&amp;body=https%3A//hazelement.github.io/prioritize-automate-parallize-pap.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -161,8 +145,8 @@
                 <a class="accordion-toggle disqus-comment-count comment-count collapsed"
                    data-toggle="collapse"
                    data-parent="#accordion2"
-                   data-disqus-identifier="./home-lab.html"
-                   href="./home-lab.html#comment_thread"
+                   data-disqus-identifier="./prioritize-automate-parallize-pap.html"
+                   href="./prioritize-automate-parallize-pap.html#comment_thread"
                    id="comment-accordion-toggle">
                     Comments
                 </a>
@@ -180,8 +164,8 @@
         (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
     }());
 
-    var disqus_identifier = './home-lab.html';
-    var disqus_url = './home-lab.html';
+    var disqus_identifier = './prioritize-automate-parallize-pap.html';
+    var disqus_url = './prioritize-automate-parallize-pap.html';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -207,24 +191,19 @@
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="./setup-vnc.html" title="Previous: Setup VNC">Setup VNC</a></li>
-                <li class="next-article"><a href="./prioritize-automate-parallize-pap.html" title="Next: Prioritize, Automate, Parallize (PAP)">Prioritize, Automate, Parallize (PAP)</a> »</li>
+                <li class="previous-article">« <a href="./home-lab.html" title="Previous: Home Lab">Home Lab</a></li>
             </ul>
             </nav>
             </aside>
         </div>
         <section id="article-sidebar" class="span2">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2020-07-10T00:00:00-06:00">Fri 10 July 2020</time>
-
+            <time itemprop="dateCreated" datetime="2022-02-07T00:00:00-07:00">Mon 07 February 2022</time>
             <h4>Category</h4>
-            <a class="category-link" href="./categories.html#misc-ref">misc</a>
+            <a class="category-link" href="./categories.html#reading_notes-ref">reading_notes</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="./tags.html#network-ref">network
-                    <span class="superscript">1</span>
-</a></li>
-                <li><a href="./tags.html#server-ref">server
+                <li><a href="./tags.html#work-efficiency-ref">work efficiency
                     <span class="superscript">1</span>
 </a></li>
             </ul>
