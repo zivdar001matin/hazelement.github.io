@@ -15,19 +15,18 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="server, network, misc, " />
+<meta name="keywords" content="work efficiency, reading_notes, " />
 
-<meta property="og:title" content="Home Lab "/>
-<meta property="og:url" content="./home-lab.html" />
-<meta property="og:description" content="Servers at home for entertainment and learning" />
+<meta property="og:title" content="The Effective Engineer - Reading notes "/>
+<meta property="og:url" content="./the-effective-engineer-reading-notes.html" />
+<meta property="og:description" content="Reading notes for The Effective Engineer Book" />
 <meta property="og:site_name" content="Coding Digests" />
 <meta property="og:article:author" content="Harry Zheng" />
-<meta property="og:article:published_time" content="2020-07-10T00:00:00-06:00" />
-<meta property="og:article:modified_time" content="2020-07-10T00:00:00-06:00" />
-<meta name="twitter:title" content="Home Lab ">
-<meta name="twitter:description" content="Servers at home for entertainment and learning">
+<meta property="og:article:published_time" content="2022-02-07T00:00:00-07:00" />
+<meta name="twitter:title" content="The Effective Engineer - Reading notes ">
+<meta name="twitter:description" content="Reading notes for The Effective Engineer Book">
 
-        <title>Home Lab  · Coding Digests
+        <title>The Effective Engineer - Reading notes  · Coding Digests
 </title>
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -82,8 +81,8 @@
 <div class="row-fluid">
     <header class="page-header span10 offset2">
         <h1>
-            <a href="./home-lab.html">
-                Home Lab
+            <a href="./the-effective-engineer-reading-notes.html">
+                The Effective Engineer - Reading notes
             </a>
         </h1>
     </header>
@@ -92,55 +91,30 @@
 <div class="row-fluid">
         <div class="span8 offset2 article-content">
             
-            <h1>Introduction</h1>
-<p>This article summarizes my home lab setup. I used the setup to server entertainment and to support software development in my free time. The entire set runs on an laptop with 32GB of memory with Ubuntu 18.04 installed.</p>
-<p>This is just a premliminary setup as I add more stuff over the years. I might switch to a proper hypervisor installation in the future. </p>
-<p><img alt="home-network" src="../images/home-network.png"></p>
-<h1>Docker, Virtual Box and Server itself</h1>
-<p>I divide my services into 3 partitions. </p>
-<ul>
-<li>[Host] support services that run on the host system. These are the crucial services that I always need, such as Nginx and bind DNS server. </li>
-<li>[Docker] Services that can be containerized. and sometimes are one off experiments. </li>
-<li>[VirtualBox] Services that might interfere with host network and I want to keep it separated. So services that host OS doesn't support. </li>
-</ul>
-<h1>Host services</h1>
-<p>In host, I installed <a href="http://www.webmin.com/">webmin</a> for each remote management on the host itself. This way, I can directly get system information on the host. </p>
-<p>Through webmin, I installed nginx and bind DNS. </p>
-<h2>bind DNS</h2>
-<p>It runs as a DNS resolver for my home network. Rather than accessing my other services using IP addresses, I create DNS entires for these services' IP in bind DNS. So that I can access them using a URL. </p>
-<h2>Nginx</h2>
-<p>Reverse proxy for services. It redirects requests to services. </p>
-<h2>Plex</h2>
-<p>Home entertainment services. Plex looks at my data volume where I stored all my movies and TV shows. I'm able to acess my library on my phone using Plex's app. There is also a web UI available. I can also cast my media to TV through Chromecast. </p>
-<p>I installed Plex on host to avoid file permission issues on my data volume. I have other services adding content to the data volume in docker and it's tricky to setup Plex in docker to share the same user. </p>
-<h1>Docker</h1>
-<h2>Nextcloud</h2>
-<p>Nextcloud server cloud storage services to my home network. I persist its data by mounting a folder in the data volume into the docker. </p>
-<h2>OpenVPN</h2>
-<p>To allow connect to home network from outside, I run a OpenVPN inside a docker. </p>
-<h2>Watchtower</h2>
-<p>Watchtower automatically updates all docker containers to their latest images. </p>
-<h2>Portainer</h2>
-<p>An admin web UI to see and mamange running containers. </p>
-<h2>Pihole</h2>
-<p>DNS based ad blocker</p>
-<h1>VirtualBox</h1>
-<h2>OneDrive</h2>
-<p>I have a windows machine running in VirtualBox. It syncs my Onedrive and share the Onedrive folder over samba in my home network. I don't need to map static IP to this machine because windows machines are dicoverable in local network. </p>
-<h2>GameServers</h2>
-<p>I also have some VMs running as game servers. </p>
-<h1>DNS resolution</h1>
-<p>To resolve local DNS name and perform add filtering using pihole. I've set ISP's modem to use bind DNS as look up server. Bind DNS resolves local DNS names and forward the rest to pihole. </p>
-<p>Pihole filter out blacklisted ad domains and forward the rest to <code>1.1.1.1</code>and <code>1.0.0.1</code>. </p>
+            <p>Link to book, https://www.amazon.ca/Effective-Engineer-Engineering-Disproportionate-Meaningful/dp/0996128107</p>
+<h1>Foreword</h1>
+<blockquote>
+<p>Intead of trying to solve impossible problmes, he would more often challenge the assumptions so we could simply work around then. "How should we do this?" -&gt; "Why do we need to do it at all?"</p>
+</blockquote>
+<p>Ask questions often before take actions. This can help us avoid unnecessary tasks/work. </p>
+<h1>Introduction</h1>
+<blockquote>
+<p>To be effective engineers, we need to be able to identify which activities produce more impact with smaller time investments. Not all work is created equal, not all efforst translate into impact. </p>
+<p>An effective engineer, therefore, is defined by the rate at which he or she produces value per unit of time worked. </p>
+</blockquote>
+<p>A prime example is over engineering. There is no need to build something that can support millions of users when only a handful of people will use it. </p>
+<blockquote>
+<p>a useful framework, leverage, for analyzing the effectivenss of different activities</p>
+</blockquote>
 
 
              
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Home%20Lab&url=https%3A//hazelement.github.io/home-lab.html&hashtags=server,network" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
- ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//hazelement.github.io/home-lab.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Home%20Lab&amp;body=https%3A//hazelement.github.io/home-lab.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+      <a href="https://twitter.com/intent/tweet?text=The%20Effective%20Engineer%20-%20Reading%20notes&url=https%3A//hazelement.github.io/the-effective-engineer-reading-notes.html&hashtags=work-efficiency" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//hazelement.github.io/the-effective-engineer-reading-notes.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=The%20Effective%20Engineer%20-%20Reading%20notes&amp;body=https%3A//hazelement.github.io/the-effective-engineer-reading-notes.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -161,8 +135,8 @@
                 <a class="accordion-toggle disqus-comment-count comment-count collapsed"
                    data-toggle="collapse"
                    data-parent="#accordion2"
-                   data-disqus-identifier="./home-lab.html"
-                   href="./home-lab.html#comment_thread"
+                   data-disqus-identifier="./the-effective-engineer-reading-notes.html"
+                   href="./the-effective-engineer-reading-notes.html#comment_thread"
                    id="comment-accordion-toggle">
                     Comments
                 </a>
@@ -180,8 +154,8 @@
         (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
     }());
 
-    var disqus_identifier = './home-lab.html';
-    var disqus_url = './home-lab.html';
+    var disqus_identifier = './the-effective-engineer-reading-notes.html';
+    var disqus_url = './the-effective-engineer-reading-notes.html';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -204,28 +178,31 @@
 </section>
 
             <hr/>
+<section>
+    <h2>Related Posts</h2>
+<ul class="related-posts-list">
+<li><a href="./prioritize-automate-parallize-pap.html" title="Prioritize, Automate, Parallize (PAP)">Prioritize, Automate, Parallize (PAP)</a></li>
+</ul>
+<hr />
+</section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="./setup-vnc.html" title="Previous: Setup VNC">Setup VNC</a></li>
-                <li class="next-article"><a href="./the-effective-engineer-reading-notes.html" title="Next: The Effective Engineer - Reading notes">The Effective Engineer - Reading notes</a> »</li>
+                <li class="previous-article">« <a href="./home-lab.html" title="Previous: Home Lab">Home Lab</a></li>
+                <li class="next-article"><a href="./prioritize-automate-parallize-pap.html" title="Next: Prioritize, Automate, Parallize (PAP)">Prioritize, Automate, Parallize (PAP)</a> »</li>
             </ul>
             </nav>
             </aside>
         </div>
         <section id="article-sidebar" class="span2">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2020-07-10T00:00:00-06:00">Fri 10 July 2020</time>
-
+            <time itemprop="dateCreated" datetime="2022-02-07T00:00:00-07:00">Mon 07 February 2022</time>
             <h4>Category</h4>
-            <a class="category-link" href="./categories.html#misc-ref">misc</a>
+            <a class="category-link" href="./categories.html#reading_notes-ref">reading_notes</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="./tags.html#network-ref">network
-                    <span class="superscript">1</span>
-</a></li>
-                <li><a href="./tags.html#server-ref">server
-                    <span class="superscript">1</span>
+                <li><a href="./tags.html#work-efficiency-ref">work efficiency
+                    <span class="superscript">2</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
