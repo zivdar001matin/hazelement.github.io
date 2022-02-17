@@ -15,18 +15,18 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="work efficiency, kanban, Pomodoro, reading_notes, " />
+<meta name="keywords" content="work efficiency, reading_notes, " />
 
-<meta property="og:title" content="Prioritize, Automate, Parallize (PAP) "/>
-<meta property="og:url" content="./prioritize-automate-parallize-pap.html" />
-<meta property="og:description" content="Use PAP to improve work efficiency" />
+<meta property="og:title" content="Lesson learned from work "/>
+<meta property="og:url" content="./lesson-learned-from-work.html" />
+<meta property="og:description" content="A journal to record lesson learned from work" />
 <meta property="og:site_name" content="Coding Digests" />
 <meta property="og:article:author" content="Harry Zheng" />
-<meta property="og:article:published_time" content="2022-02-07T00:00:00-07:00" />
-<meta name="twitter:title" content="Prioritize, Automate, Parallize (PAP) ">
-<meta name="twitter:description" content="Use PAP to improve work efficiency">
+<meta property="og:article:published_time" content="2022-02-17T00:00:00-07:00" />
+<meta name="twitter:title" content="Lesson learned from work ">
+<meta name="twitter:description" content="A journal to record lesson learned from work">
 
-        <title>Prioritize, Automate, Parallize (PAP)  · Coding Digests
+        <title>Lesson learned from work  · Coding Digests
 </title>
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -81,8 +81,8 @@
 <div class="row-fluid">
     <header class="page-header span10 offset2">
         <h1>
-            <a href="./prioritize-automate-parallize-pap.html">
-                Prioritize, Automate, Parallize (PAP)
+            <a href="./lesson-learned-from-work.html">
+                Lesson learned from work
             </a>
         </h1>
     </header>
@@ -91,46 +91,98 @@
 <div class="row-fluid">
         <div class="span8 offset2 article-content">
             
-            <p>Notes and inspirations from, https://www.youtube.com/watch?v=An95XjT7r6Y. It talks about a framework to improve work efficiency and stay focused. </p>
-<h1 id="prioritize">Prioritize</h1>
-<h2 id="kanban-board">Kanban board</h2>
-<p>Use Kanban board to manage tasks and backlogs. Boards are organized into following columns</p>
-<ul>
-<li>Backlog</li>
-<li>Weekly todo</li>
-<li>Today todo</li>
-<li>Completed</li>
-</ul>
-<p>New tasks are put into backlog and waiting for pick up. </p>
-<p>At beginning of the week, pick items from backlog and put them into this week's todo column. </p>
-<p>During the day, move item you finished into completed column. At end of each day, move items you want to do next day from weekly todo into today's todo so that you can pick them up next day. </p>
-<h2 id="blocked-time">Blocked time</h2>
-<p>Each day, block a certan amount of time to avoid meetings so that you can focus on work. </p>
-<p>For other things like checking emails or IM, set aside some slots during the day. Remember to turn off notification from these commnication channels. </p>
-<h2 id="pomodoro">Pomodoro?</h2>
-<h1 id="automate">Automate</h1>
-<p>Use automations on computer to simplify and reduce repetive tasks. Alfred is a good tool to automate things on mac. </p>
-<h1 id="parallize">Parallize</h1>
-<h2 id="parallize-tasks">Parallize tasks</h2>
-<p>Some tasks can be handled in parallel. </p>
-<p>Some examples</p>
-<ul>
-<li>CR reviews, these usually take a long time and requires waiting for other's comment. Several CRs that don't affect each other can run in parallel. </li>
-<li>long build tasks, some tasks take a long time to build or see results. These tasks can run in parallel in conjunction with other tasks. </li>
-</ul>
-<h2 id="delegate">Delegate</h2>
-<p>As you gain more knowledge on certain domain, you becomes the SME and you can delegate certain tasks to other engineers. It's a good learning opportunity to them, and it frees you to take on more challenging and interesting tasks. </p>
-<h2 id="knowledge-sharing">Knowledge sharing</h2>
-<p>Wiki page is a great resources for others to look up instructions. FAQ section is a great place to answer popular questions. It allows others to unblock themselves without reaching out to you. It saves you a lot of time from responding to others and unblock them. </p>
+            <h1 id="a-typical-scrum-process">A typical scrum process</h1>
+<ol>
+<li>daily stand ups</li>
+<li>biweekly sprint planning (1 hr) to assign tasks to make sure everyone has capacity fulfilled. For biweekly, spare one day for meetings (varies)</li>
+<li>biweekly backlog grooming (1 hr), alternates with sprint planning. The team get together to look at backlog. <ol>
+<li>make sure new added tasks all have estimates (story point and time estimation)</li>
+<li>make sure high priority items at top</li>
+<li>make sure top items are enough for team to work on for 2 sprints (4 weeks for biweekly sprints)</li>
+</ol>
+</li>
+<li>monthly retrospective meetings<ol>
+<li>kudos</li>
+<li>what went well</li>
+<li>what needs improvement</li>
+<li>action items</li>
+</ol>
+</li>
+</ol>
+<h1 id="task-estimation">Task estimation</h1>
+<p>When estimating time required to finish a task. Make estimation based on engineering effort, then apply 1.4 factor to account for code reviews and discussions etc. </p>
+<h1 id="design-review">Design review</h1>
+<h2 id="design-doc-template">Design doc template</h2>
+<div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="n">Title</span>
+<span class="n">one</span> <span class="n">sentence</span> <span class="k">to</span> <span class="k">explain</span> <span class="n">what</span> <span class="n">this</span> <span class="n">doc</span> <span class="k">is</span> <span class="n">about</span><span class="p">.</span> 
+
+<span class="o">##</span> <span class="n">Background</span>
+<span class="n">Why</span> <span class="k">are</span> <span class="n">we</span> <span class="n">doing</span> <span class="n">this</span> <span class="n">design</span><span class="p">,</span> <span class="n">what</span> <span class="n">problem</span> <span class="k">are</span> <span class="n">we</span> <span class="n">trying</span> <span class="k">to</span> <span class="n">solve</span><span class="p">.</span> <span class="n">tables</span><span class="p">,</span> <span class="n">diagram</span><span class="p">,</span> <span class="k">data</span> <span class="n">etc</span><span class="p">.</span>
+
+<span class="o">##</span> <span class="k">User</span> <span class="n">story</span>
+<span class="n">Summarize</span> <span class="n">high</span> <span class="k">level</span> <span class="n">requirement</span> <span class="k">as</span> <span class="k">user</span> <span class="n">story</span>
+
+<span class="o">##</span> <span class="n">Goal</span> 
+<span class="o">-</span> <span class="n">goal</span>
+<span class="o">-</span> <span class="n">non</span><span class="o">-</span><span class="n">goal</span>
+
+<span class="o">##</span> <span class="n">High</span> <span class="k">level</span> <span class="n">design</span>
+
+<span class="o">###</span> <span class="k">Option</span> <span class="mi">1</span> <span class="p">(</span><span class="n">preferred</span><span class="p">)</span>
+<span class="k">add</span> <span class="n">details</span> <span class="n">here</span><span class="p">,</span> <span class="n">tables</span><span class="p">,</span> <span class="n">diagram</span><span class="p">,</span> <span class="k">data</span> <span class="n">etc</span><span class="p">.</span> 
+
+<span class="n">pros</span><span class="p">:</span>
+
+<span class="n">cons</span><span class="p">:</span>
+
+<span class="o">###</span> <span class="k">Option</span> <span class="mi">2</span> 
+
+<span class="n">details</span> <span class="n">here</span>
+
+<span class="n">pros</span><span class="p">:</span>
+
+<span class="n">cons</span><span class="p">:</span>
+
+<span class="o">##</span> <span class="n">Detailed</span> <span class="n">design</span>
+
+<span class="o">###</span> <span class="n">Item</span> <span class="mi">1</span>
+
+<span class="o">####</span> <span class="k">Option</span> <span class="mi">1</span>
+
+<span class="n">pros</span>
+
+<span class="n">cons</span>
+
+<span class="o">####</span> <span class="k">Option</span> <span class="mi">2</span>
+
+<span class="o">###</span> <span class="n">Item</span> <span class="mi">2</span>
+<span class="p">...</span>
+
+
+<span class="o">##</span> <span class="n">Appendices</span>
+</code></pre></div>
+
+
+<h2 id="design-review-process">Design review process</h2>
+<ol>
+<li>send out document before meeting so that others can take a look before time and leave comments</li>
+<li>at review meeting, spend first 10-15 mins (depending on length) for others to read the doc and leave comments. </li>
+<li>while waiting, address small comments while they come in by responding in the doc</li>
+<li>after everyone finish reading, start conversation by asking general questions or feedbacks before diving into comments</li>
+<li>This usually leads to more in depth conversations</li>
+<li>After all conversations are addressed, dive into documented comments in the doc and go over them all</li>
+<li>Answer additional comments if they are not addressed. </li>
+</ol>
+<p>Tip: before the meeting, delegate a person to take note for you. Spare a section at end of document for note taking, with date, at attendees etc. </p>
 
 
              
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Prioritize%2C%20Automate%2C%20Parallize%20%28PAP%29&url=https%3A//hazelement.github.io/prioritize-automate-parallize-pap.html&hashtags=work-efficiency,kanban,pomodoro" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
- ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//hazelement.github.io/prioritize-automate-parallize-pap.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Prioritize%2C%20Automate%2C%20Parallize%20%28PAP%29&amp;body=https%3A//hazelement.github.io/prioritize-automate-parallize-pap.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+      <a href="https://twitter.com/intent/tweet?text=Lesson%20learned%20from%20work&url=https%3A//hazelement.github.io/lesson-learned-from-work.html&hashtags=work-efficiency" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//hazelement.github.io/lesson-learned-from-work.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=Lesson%20learned%20from%20work&amp;body=https%3A//hazelement.github.io/lesson-learned-from-work.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -151,8 +203,8 @@
                 <a class="accordion-toggle disqus-comment-count comment-count collapsed"
                    data-toggle="collapse"
                    data-parent="#accordion2"
-                   data-disqus-identifier="./prioritize-automate-parallize-pap.html"
-                   href="./prioritize-automate-parallize-pap.html#comment_thread"
+                   data-disqus-identifier="./lesson-learned-from-work.html"
+                   href="./lesson-learned-from-work.html#comment_thread"
                    id="comment-accordion-toggle">
                     Comments
                 </a>
@@ -170,8 +222,8 @@
         (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
     }());
 
-    var disqus_identifier = './prioritize-automate-parallize-pap.html';
-    var disqus_url = './prioritize-automate-parallize-pap.html';
+    var disqus_identifier = './lesson-learned-from-work.html';
+    var disqus_url = './lesson-learned-from-work.html';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -197,33 +249,26 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
+<li><a href="./prioritize-automate-parallize-pap.html" title="Prioritize, Automate, Parallize (PAP)">Prioritize, Automate, Parallize (PAP)</a></li>
 <li><a href="./the-effective-engineer-reading-notes.html" title="The Effective Engineer - Reading notes">The Effective Engineer - Reading notes</a></li>
-<li><a href="./lesson-learned-from-work.html" title="Lesson learned from work">Lesson learned from work</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="./home-lab.html" title="Previous: Home Lab">Home Lab</a></li>
-                <li class="next-article"><a href="./the-effective-engineer-reading-notes.html" title="Next: The Effective Engineer - Reading notes">The Effective Engineer - Reading notes</a> »</li>
+                <li class="previous-article">« <a href="./the-effective-engineer-reading-notes.html" title="Previous: The Effective Engineer - Reading notes">The Effective Engineer - Reading notes</a></li>
             </ul>
             </nav>
             </aside>
         </div>
         <section id="article-sidebar" class="span2">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2022-02-07T00:00:00-07:00">Mon 07 February 2022</time>
+            <time itemprop="dateCreated" datetime="2022-02-17T00:00:00-07:00">Thu 17 February 2022</time>
             <h4>Category</h4>
             <a class="category-link" href="./categories.html#reading_notes-ref">reading_notes</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="./tags.html#kanban-ref">kanban
-                    <span class="superscript">1</span>
-</a></li>
-                <li><a href="./tags.html#pomodoro-ref">Pomodoro
-                    <span class="superscript">1</span>
-</a></li>
                 <li><a href="./tags.html#work-efficiency-ref">work efficiency
                     <span class="superscript">3</span>
 </a></li>
