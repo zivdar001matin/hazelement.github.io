@@ -92,19 +92,19 @@
 <div class="row-fluid">
         <div class="span8 offset2 article-content">
             
-            <h1>Introduction</h1>
+            <h1 id="introduction">Introduction</h1>
 <p>Developers have a lot of personalized configuration files, from shell profile, git configuration to IDE configurations. A lot of times, when we get a new machine, we need to configure the machine to our likes using this dot files. However, managing these files could be a pain. </p>
 <p><code>yadm</code> is a project aim to solve this problem, https://yadm.io/. It's built onto of git so it has our favorite version control system. </p>
-<h1>Using <code>yadm</code></h1>
-<h2>Installing <code>yadm</code></h2>
+<h1 id="using-yadm">Using <code>yadm</code></h1>
+<h2 id="installing-yadm">Installing <code>yadm</code></h2>
 <p>On MacOS, we can install <code>yadm</code> using <code>brew</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="err">brew instsall yadm</span>
 </code></pre></div>
 
 
 <p>On Ubuntu/Debian, we install <code>yadm</code> using <code>apt-get</code>. </p>
-<h2>Configure <code>yadm</code></h2>
-<h3>Start fresh without a remote repository</h3>
+<h2 id="configure-yadm">Configure <code>yadm</code></h2>
+<h3 id="start-fresh-without-a-remote-repository">Start fresh without a remote repository</h3>
 <p>Start with an empty local repository, </p>
 <div class="highlight"><pre><span></span><code><span class="err">yadm init</span>
 <span class="err">yadm add &lt;important file&gt;</span>
@@ -120,26 +120,26 @@
 
 
 <p>Next time to push an update, just do <code>yadm push</code>. </p>
-<h3>Using an existing remote repository</h3>
+<h3 id="using-an-existing-remote-repository">Using an existing remote repository</h3>
 <p>If you already has an remote repository that stores your dot files. Simply clone it to your current machine. </p>
 <div class="highlight"><pre><span></span><code><span class="err">yadm clone &lt;url to git repo&gt;</span>
 <span class="err">yadm status</span>
 </code></pre></div>
 
 
-<h2>Common commands</h2>
+<h2 id="common-commands">Common commands</h2>
 <p>We list some common commands below. </p>
-<h3><code>yadm status</code></h3>
+<h3 id="yadm-status"><code>yadm status</code></h3>
 <p>Show current local repo status, similar to <code>git status</code>.</p>
-<h3><code>yadm commit</code></h3>
+<h3 id="yadm-commit"><code>yadm commit</code></h3>
 <p>Commit local changes. </p>
-<h3><code>yadm add &lt;path to file&gt;</code></h3>
+<h3 id="yadm-add-ltpath-to-filegt"><code>yadm add &lt;path to file&gt;</code></h3>
 <p>Track a new file. </p>
-<h3><code>yadm push, pull, clone</code></h3>
+<h3 id="yadm-push-pull-clone"><code>yadm push, pull, clone</code></h3>
 <p>Push to, pull or clone from remote repo.</p>
-<h3><code>yadm remote add origin &lt;remote rpo&gt;</code></h3>
+<h3 id="yadm-remote-add-origin-ltremote-rpogt"><code>yadm remote add origin &lt;remote rpo&gt;</code></h3>
 <p>Add a remote repo. </p>
-<h2>Advanced topics</h2>
+<h2 id="advanced-topics">Advanced topics</h2>
 <p>There are most advanced features in <code>yadm</code>. You can find them at https://yadm.io/docs/bootstrap. Some notable features are. </p>
 <ul>
 <li><strong>Bootstrap</strong>, setting up a bootstrap script that automatically configures machine for you</li>

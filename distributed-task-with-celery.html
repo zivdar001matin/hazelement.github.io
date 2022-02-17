@@ -93,18 +93,18 @@
         <div class="span8 offset2 article-content">
             
             <p>This article discusses code base setup and typical worker Nodes configurations for a distributed Celery worker system. </p>
-<h2>Introduction</h2>
+<h2 id="introduction">Introduction</h2>
 <p>Celery is a asynchronous task queue/job queue system that facilitates communications between Producer system and Consumer system. A typical setup can be shown as below. </p>
 <p><img alt="Pelican" src="../images/celery_setup.svg"></p>
 <p>An advantage of this setup is that it enables separation of heavy loading operation from rest of application layers. It's easier to maintain and perform updates without affecting the entire system, essentially decouples system components.</p>
-<h2>Challenges</h2>
-<h3>Task definition</h3>
+<h2 id="challenges">Challenges</h2>
+<h3 id="task-definition">Task definition</h3>
 <p>Task definition must be seen by both producer and consumer. But we would like to separate task implementation from producer to consumer. This is achieved through a shared celery task configuration code base between producer and consumer. </p>
-<h3>Task queue configuration</h3>
+<h3 id="task-queue-configuration">Task queue configuration</h3>
 <p>Different workers needs to be run on different host or queue. Otherwise worker might receive wrong task which were intended for other workers. </p>
 <p>Solution here is to use different queues for different tasks. </p>
-<h2>Code base solutions</h2>
-<h3>Git setup</h3>
+<h2 id="code-base-solutions">Code base solutions</h2>
+<h3 id="git-setup">Git setup</h3>
 <p>Let's assume there are 2 git repos, one for <code>Producer</code> and one for <code>Consumer</code>. In order to shared <code>Task</code> definition, along with celery configuration, between <code>Producer</code> and <code>Consumer</code>, we create a 3rd git repo and add it as submodule for <code>Producer</code> and <code>Consumer</code>. So the setup looks like this. </p>
 <div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="n">producer</span> <span class="n">git</span> <span class="n">repo</span>
 <span class="n">producer</span><span class="o">/</span>
@@ -149,7 +149,7 @@
 </code></pre></div>
 
 
-<h3>Shared Task definition</h3>
+<h3 id="shared-task-definition">Shared Task definition</h3>
 <p><code>celery_tasks</code> repo contains dummy task class definitions. These classes needs to define class name, unique name of the task, run method and its arguments. These classes are defined in <code>tasks.py</code>. </p>
 <p>For example,</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># tasks.py</span>
@@ -192,7 +192,7 @@
 </code></pre></div>
 
 
-<h3>Celery app queue configuration</h3>
+<h3 id="celery-app-queue-configuration">Celery app queue configuration</h3>
 <p>Queue is configured based on task name to avoid worker conflicts. In <code>celery_tasks</code>, we created a <code>create_worker_from</code> method defined in <code>utils.py</code>. </p>
 <div class="highlight"><pre><span></span><code><span class="p">#</span> <span class="n">utils</span><span class="p">.</span><span class="n">py</span>
 

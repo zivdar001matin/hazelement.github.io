@@ -93,8 +93,8 @@
         <div class="span8 offset2 article-content">
             
             <p>This article covers some basic commands and instructions to deploy a kubernetes app. Some notes and images are taken from <code>https://kubernetes.io/docs/tutorials</code>. </p>
-<h2>Basic concept</h2>
-<h3>Nodes</h3>
+<h2 id="basic-concept">Basic concept</h2>
+<h3 id="nodes">Nodes</h3>
 <p>A kubernetes <strong>cluster</strong> is consist of <strong>Nodes</strong>. A node can be a VM or a physical machine. </p>
 <p><img alt="Pelican" src="../images/module_02_cluster.svg"></p>
 <p>To check current nodes issue this command:</p>
@@ -105,7 +105,7 @@ docker-for-desktop   Ready     master    30m       v1.10.11
 
 
 <p>Each cluster should have one master node with a 0 or a few slave nodes.</p>
-<h3>Pods</h3>
+<h3 id="pods">Pods</h3>
 <p>A node is consists of one or more <strong>Pods</strong>.  </p>
 <p><img alt="Pelican" src="../images/module_03_nodes.svg"></p>
 <p>To get list of running pods, issue this command:</p>
@@ -122,7 +122,7 @@ kubernetes-bootcamp-5c69669756-rmxrn   <span class="m">1</span>/1       Running 
 <li>Information about how to run each container, such as the container image version or specific ports to use</li>
 </ul>
 <p><img alt="Pelican" src="../images/module_03_pods.svg"></p>
-<h3>Services</h3>
+<h3 id="services">Services</h3>
 <p>A Service in Kubernetes is an abstraction which defines a logical set of Pods and a policy by which to access them. Services enable a loose coupling between dependent Pods. A Service is defined using YAML (preferred) or JSON, like all Kubernetes objects. </p>
 <p><img alt="Pelican" src="../images/module_04_services.svg"></p>
 <p>A Service routes traffic across a set of Pods. Services are the abstraction that allow pods to die and replicate in Kubernetes without impacting your application. Discovery and routing among dependent Pods (such as the frontend and backend components in an application) is handled by Kubernetes Services.</p>
@@ -133,18 +133,18 @@ kubernetes-bootcamp-5c69669756-rmxrn   <span class="m">1</span>/1       Running 
 <li>Classify an object using tags</li>
 </ul>
 <p><img alt="Pelican" src="../images/module_04_labels.svg"></p>
-<h3>Networking</h3>
+<h3 id="networking">Networking</h3>
 <p>Pods running in side Kubernetes are running on a prviate, isolated network. By default, they are visible from other pods and services within the same cluster, but not outside. To quickly open on communication to outside world, <code>kubectl</code> can create a proxy to foward communications, </p>
 <p><code>kubectl proxy</code> will create a proxy at <code>http://localhost:8001/version</code>. The API server will automatically create an endpoint for each pod, based on the pod name, that is also accessible through the proxy.</p>
 <p>To access each individual pod, we need to get pod name. 
 <code>export POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')</code>. 
 Then we can make a HTTP request to the application in that pod. <code>curl http://localhost:8001/api/v1/namespaces/default/pods/$POD_NAME/proxy/</code></p>
-<h2>Tutorial</h2>
-<h3>Make an deployment</h3>
+<h2 id="tutorial">Tutorial</h2>
+<h3 id="make-an-deployment">Make an deployment</h3>
 <p>Run this commmand to make a new deployment. 
 <code>kubectl run kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1 --port=8080</code></p>
 <p>Get the name of running pod, <code>export POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')</code>. </p>
-<h3>Check application configuration</h3>
+<h3 id="check-application-configuration">Check application configuration</h3>
 <p>Let’s verify that the application we deployed in the previous scenario is running. We’ll use the kubectl get command and look for existing Pods:</p>
 <div class="highlight"><pre><span></span><code>$ kubectl get pods
 NAME                                   READY     STATUS    RESTARTS   AGE
@@ -154,11 +154,11 @@ kubernetes-bootcamp-5c69669756-rmxrn   <span class="m">1</span>/1       Running 
 
 <p>Next, to view what containers are inside that Pod and what images are used to build those containers we run the describe pods command:
 <code>kubectl describe pods</code>.</p>
-<h3>View container logs</h3>
+<h3 id="view-container-logs">View container logs</h3>
 <p>Anything that the application would normally send to STDOUT becomes logs for the container within the Pod. We can retrieve these logs using the kubectl logs command:
 <code>kubectl logs $POD_NAME</code></p>
 <p>Note: We don’t need to specify the container name, because we only have one container inside the pod.</p>
-<h3>Executing command on the container</h3>
+<h3 id="executing-command-on-the-container">Executing command on the container</h3>
 <p>We can execute commands directly on the container once the Pod is up and running. For this, we use the exec command and use the name of the Pod as a parameter. Let’s list the environment variables: </p>
 <div class="highlight"><pre><span></span><code>$ kubectl <span class="nb">exec</span> <span class="nv">$POD_NAME</span> env
 <span class="nv">PATH</span><span class="o">=</span>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -179,7 +179,7 @@ kubernetes-bootcamp-5c69669756-rmxrn   <span class="m">1</span>/1       Running 
 
 <p>Again, worth mentioning that the name of the container itself can be omitted since we only have a single container in the Pod.</p>
 <p>Next let’s start a bash session in the Pod’s container: <code>kubectl exec -ti $POD_NAME bash</code>.  We have now an open console on the container. To close the console, use <code>exit</code>. </p>
-<h3>Create a new service</h3>
+<h3 id="create-a-new-service">Create a new service</h3>
 <p>To list current services in the cluster: </p>
 <div class="highlight"><pre><span></span><code>$ kubectl get services
 NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>   AGE
@@ -199,7 +199,7 @@ kubernetes-bootcamp   NodePort    <span class="m">10</span>.104.156.85   &lt;non
 
 <p>Notice that the new service <code>kubernetes-bootcamp</code> has a unique cluster-IP <code>10.104.156.85</code>, an internal port <code>30527</code> and an external port <code>8080</code>. </p>
 <p>Try access the end point with <code>curl 10.104.156.85:8080</code>. </p>
-<h3>Using labels</h3>
+<h3 id="using-labels">Using labels</h3>
 <p>The Deployment created automatically a label for our Pod. With describe deployment command you can see the name of the label: <code>kubectl describe deployment</code>. </p>
 <p>This label can be used to query list of Pods:</p>
 <div class="highlight"><pre><span></span><code>$ kubectl get pods -l <span class="nv">run</span><span class="o">=</span>kubernetes-bootcamp
@@ -237,7 +237,7 @@ kubernetes-bootcamp-5c69669756-rmxrn   <span class="m">1</span>/1       Running 
 </code></pre></div>
 
 
-<h3>Delete a service</h3>
+<h3 id="delete-a-service">Delete a service</h3>
 <p>To delete a service, use this command <code>kubectl delete service -l run=kubernetes-bootcamp</code></p>
 <p>Confirm the service is gone:</p>
 <div class="highlight"><pre><span></span><code>$ kubectl get services
@@ -252,7 +252,7 @@ Hello Kubernetes bootcamp! <span class="p">|</span> Running on: kubernetes-bootc
 </code></pre></div>
 
 
-<h3>Scaling a service</h3>
+<h3 id="scaling-a-service">Scaling a service</h3>
 <p>Scaling is achieved through number of replica in a deployment. Kubernetes also support auto scaling but it's not covered in this part of the tutorial. </p>
 <p>Running multiple instances of an application will require a way to distribute the traffic to all of them. Services have an integrated load-balancer that will distribute network traffic to all Pods of an exposed Deployment. Services will monitor continuously the running Pods using endpoints, to ensure the traffic is sent only to available Pods.</p>
 <p>Once you have multiple instances of an Application running, you would be able to do Rolling updates without downtime. </p>
@@ -328,7 +328,7 @@ kubernetes-bootcamp-6bf84cb898-wfvkt   <span class="m">1</span>/1     Running   
 </code></pre></div>
 
 
-<h3>Load balancing</h3>
+<h3 id="load-balancing">Load balancing</h3>
 <p>With replica enabled, load balancing should also automatically enable for this service. </p>
 <div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="n">kubectl</span> <span class="n">describe</span> <span class="n">services</span><span class="o">/</span><span class="n">kubernetes</span><span class="o">-</span><span class="n">bootcamp</span>
 <span class="n">Name</span><span class="p">:</span>                     <span class="n">kubernetes</span><span class="o">-</span><span class="n">bootcamp</span>
@@ -362,7 +362,7 @@ Hello Kubernetes bootcamp! <span class="p">|</span> Running on: kubernetes-bootc
 
 
 <p>As we can see in the <code>curl</code> printout. Each time we hit a different pod. </p>
-<h3>Scale down</h3>
+<h3 id="scale-down">Scale down</h3>
 <p>To scale down the service, issue the same scale command but with a smaller replica number. </p>
 <div class="highlight"><pre><span></span><code>$ kubectl scale deployments/kubernetes-bootcamp --replicas<span class="o">=</span><span class="m">2</span>
 deployment.extensions/kubernetes-bootcamp scaled
@@ -379,7 +379,7 @@ kubernetes-bootcamp-6bf84cb898-wfvkt   <span class="m">1</span>/1     Terminatin
 
 
 <p>This confirms that 2 pods are terminating. </p>
-<h3>Rolling updates</h3>
+<h3 id="rolling-updates">Rolling updates</h3>
 <p><strong>Rolling updates</strong> allow Deployments' update to take place with zero downtime by incrementally updating Pods instances with new ones. The new Pods will be scheduled on Nodes with available resources.</p>
 <p>By default, the maximum number of Pods that can be unavailable during the update and the maximum number of new Pods that can be created, is one. Both options can be configured to either numbers or percentages (of Pods). In Kubernetes, updates are versioned and any Deployments update can be rolled back to previous (stable) version. </p>
 <p>Similar to application Scaling, if a Deployment is exposed publicly, the Service will load-balance the traffic only to available Pods during the update. An available Pod is an instance that is available to the users of the application.</p>
@@ -490,7 +490,7 @@ kubernetes-bootcamp-5bf4d5689b-qvgkz   <span class="m">1</span>/1     Running   
 </code></pre></div>
 
 
-<h2>Kubernetes Commands</h2>
+<h2 id="kubernetes-commands">Kubernetes Commands</h2>
 <ul>
 <li>check current version: <code>kubectl version</code></li>
 <li>get cluster info: <code>kubectl cluster-info</code></li>

@@ -93,7 +93,7 @@
         <div class="span8 offset2 article-content">
             
             <p>Copied from, https://developers.google.com/tech-writing. </p>
-<h1>Short sentences</h1>
+<h1 id="short-sentences">Short sentences</h1>
 <p><strong>Estimated Time:</strong> 20 minutes</p>
 <p>Software engineers generally try to minimize the number of lines of code in an implementation for the following reasons:</p>
 <ul>
@@ -108,7 +108,7 @@
 <li>Extra lines of documentation introduce additional points of failure.</li>
 </ul>
 <p>Finding the shortest documentation implementation takes time but is ultimately worthwhile. Short sentences communicate more powerfully than long sentences, and short sentences are usually easier to understand than long sentences.</p>
-<h2>Focus each sentence on a single idea</h2>
+<h2 id="focus-each-sentence-on-a-single-idea">Focus each sentence on a single idea</h2>
 <p>Focus each sentence on a single idea, thought, or concept. Just as statements in a program execute a single task, sentences should execute a single idea. For example, the following very long sentence contains multiple thoughts:</p>
 <blockquote>
 <p>The late 1950s was a key era for programming languages because IBM introduced FORTRAN in 1957 and John McCarthy introduced Lisp the following year, which gave programmers both an iterative way of solving problems and a recursive way.</p>
@@ -117,15 +117,15 @@
 <blockquote>
 <p>The late 1950s was a key era for programming languages. IBM introduced FORTRAN in 1957. John McCarthy invented Lisp the following year. Consequently, by the late 1950s, programmers could solve problems iteratively or recursively.</p>
 </blockquote>
-<h3>Exercise</h3>
+<h3 id="exercise">Exercise</h3>
 <p>Convert the following overly long sentence to a series of shorter sentences. Don't revise too much; just end up with a few sentences instead of only one.</p>
 <blockquote>
 <p>In bash, use the if, then, and fi statements to implement a simple conditional branching block in which the if statement evaluates an expression, the then statement introduces a block of statements to run when the if expression is true, and the fi statement marks the end of the conditional branching block.</p>
 </blockquote>
-<h4>Click the icon to see the answer.</h4>
+<h4 id="click-the-icon-to-see-the-answer">Click the icon to see the answer.</h4>
 <p>In bash, use an <code>if</code>, <code>then</code>, and <code>fi</code> statement to implement a simple conditional branching block. The <code>if</code> statement evaluates an expression. The <code>then</code> statement introduces a block of statements to run when the <code>if</code> expression is true. The <code>fi</code> statement marks the end of the conditional branching block. (The resulting paragraph remains unclear but is still much easier to read than the original sentence.)</p>
 <hr>
-<h2>Convert some long sentences to lists</h2>
+<h2 id="convert-some-long-sentences-to-lists">Convert some long sentences to lists</h2>
 <p>Inside many long technical sentences is a list yearning to break free. For example, consider the following sentence:</p>
 <blockquote>
 <p>To alter the usual flow of a loop, you may use either a <strong>break</strong> statement (which hops you out of the current loop) or a <strong>continue</strong> statement (which skips past the remainder of the current iteration of the current loop).</p>
@@ -140,13 +140,13 @@
 <hr>
 </li>
 </ul>
-<h3>Exercise</h3>
+<h3 id="exercise_1">Exercise</h3>
 <p>Refactor the following sentences into something shorter and clearer. Make sure that your answer contains a list:</p>
 <ol>
 <li>To get started with the Frambus app, you must first find the app at a suitable store, pay for it using a valid credit or debit card, download it, configure it by assigning a value for the <code>Foo</code> variable in the <code>/etc/Frambus</code> file, and then run it by saying the magic word twice.</li>
 <li>KornShell was invented by David Korn in 1983, then a computer scientist at Bell Labs, as a superset of features, enhancements, and improvements over the Bourne Shell (which it was backwards compatible with), which was invented by Stephen Bourne in 1977 who was also a computer scientist at Bell Labs.</li>
 </ol>
-<h4>Click the icon to see the answer.</h4>
+<h4 id="click-the-icon-to-see-the-answer_1">Click the icon to see the answer.</h4>
 <p>Take the following steps to get started with the Frambus app:</p>
 <ol>
 <li>Find the app at a suitable store.</li>
@@ -162,7 +162,7 @@
 </ul>
 <p>The KornShell's features are a backwards-compatible superset of the Bourne Shell's.</p>
 <hr>
-<h2>Eliminate or reduce extraneous words</h2>
+<h2 id="eliminate-or-reduce-extraneous-words">Eliminate or reduce extraneous words</h2>
 <p>Many sentences contain filler---textual junk food that consumes space without nourishing the reader. For example, see if you can spot the unnecessary words in the following sentence:</p>
 <blockquote>
 <p>An input value greater than 100 causes the triggering of logging.</p>
@@ -202,7 +202,7 @@
 </tr>
 </tbody>
 </table>
-<h3>Exercise</h3>
+<h3 id="exercise_2">Exercise</h3>
 <p>Shorten the following sentences without changing their meaning:</p>
 <ol>
 <li>In spite of the fact that Arnold writes buggy code, he writes error-free documentation.</li>
@@ -210,7 +210,7 @@
 <li>Determine whether Rikona is able to write code in COBOL.</li>
 <li>Frambus causes the production of bugs, which will be chronicled in logs by the LogGenerator method.</li>
 </ol>
-<h4>Click the icon to see the answer.</h4>
+<h4 id="click-the-icon-to-see-the-answer_2">Click the icon to see the answer.</h4>
 <p>Here are some possible solutions:</p>
 <ol>
 <li>Although Arnold writes buggy code, he writes error-free documentation.\
@@ -220,7 +220,7 @@
 <li>Frambus produces bugs, which the LogGenerator method logs.</li>
 </ol>
 <hr>
-<h2>Reduce subordinate clauses (optional)</h2>
+<h2 id="reduce-subordinate-clauses-optional">Reduce subordinate clauses (optional)</h2>
 <p>A <strong>clause</strong> is an independent logical fragment of a sentence, which contains an actor and an action. Every sentence contains the following:</p>
 <ul>
 <li>a main clause</li>
@@ -249,7 +249,7 @@
 <p>I prefer to code in C++ because I like strong data typing.</p>
 </blockquote>
 <p>When editing, scrutinize subordinate clauses. Keep the <code>one sentence = one idea</code> formula in mind. Do the subordinate clauses in a sentence <em>extend</em> the single idea or do they <em>branch off</em> into a separate idea? If the latter, consider dividing the offending subordinate clause(s) into separate sentences.</p>
-<h3>Exercise</h3>
+<h3 id="exercise_3">Exercise</h3>
 <p>Determine which of the sentences contain subordinate clauses that should be branched off into separate sentences. (Don't rewrite the sentences, just identify the sentences that should be rewritten.)</p>
 <ol>
 <li>Python is an interpreted language, which means that the language can execute source code directly.</li>
@@ -257,7 +257,7 @@
 <li>Lisp is a programming language that relies on Polish prefix notation, which is one of the systems invented by the Polish logician Jan Łukasiewicz.</li>
 <li>I don't want to say that FORTRAN is old, but only radiocarbon dating can determine its true age.</li>
 </ol>
-<h4>Click the icon to see the answer.</h4>
+<h4 id="click-the-icon-to-see-the-answer_3">Click the icon to see the answer.</h4>
 <p>We've shaded the subordinate clauses.</p>
 <ol>
 <li>Python is an interpreted language, which means that the language can execute source code directly. <strong>The subordinate clause in this sentence extends the main idea, so this sentence is fine as is.</strong></li>
@@ -266,7 +266,7 @@
 <li>I don't want to say that Fortran is old, but only radiocarbon dating can determine its true age. <strong>The subordinate clause is critical to the sentence, so this sentence is fine as is.</strong></li>
 </ol>
 <hr>
-<h2>Distinguish that from which</h2>
+<h2 id="distinguish-that-from-which">Distinguish that from which</h2>
 <p><strong>That</strong> and <strong>which</strong> both introduce subordinate clauses. What's the difference between them? Well, in some countries, the two words are pretty much interchangeable. Inevitably though, alert readers from the United States will angrily announce that you confused the two words again.</p>
 <p>In the United States, reserve <strong>which</strong> for nonessential subordinate clauses, and use <strong>that</strong> for an essential subordinate clause that the sentence can't live without. For example, the key message in the following sentence is that Python is an interpreted language; the sentence can survive without <em>Guide van Rossum invented</em>:</p>
 <blockquote>

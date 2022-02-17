@@ -92,44 +92,44 @@
 <div class="row-fluid">
         <div class="span8 offset2 article-content">
             
-            <h1>Introduction</h1>
+            <h1 id="introduction">Introduction</h1>
 <p>This article summarizes my home lab setup. I used the setup to server entertainment and to support software development in my free time. The entire set runs on an laptop with 32GB of memory with Ubuntu 18.04 installed.</p>
 <p>This is just a premliminary setup as I add more stuff over the years. I might switch to a proper hypervisor installation in the future. </p>
 <p><img alt="home-network" src="../images/home-network.png"></p>
-<h1>Docker, Virtual Box and Server itself</h1>
+<h1 id="docker-virtual-box-and-server-itself">Docker, Virtual Box and Server itself</h1>
 <p>I divide my services into 3 partitions. </p>
 <ul>
 <li>[Host] support services that run on the host system. These are the crucial services that I always need, such as Nginx and bind DNS server. </li>
 <li>[Docker] Services that can be containerized. and sometimes are one off experiments. </li>
 <li>[VirtualBox] Services that might interfere with host network and I want to keep it separated. So services that host OS doesn't support. </li>
 </ul>
-<h1>Host services</h1>
+<h1 id="host-services">Host services</h1>
 <p>In host, I installed <a href="http://www.webmin.com/">webmin</a> for each remote management on the host itself. This way, I can directly get system information on the host. </p>
 <p>Through webmin, I installed nginx and bind DNS. </p>
-<h2>bind DNS</h2>
+<h2 id="bind-dns">bind DNS</h2>
 <p>It runs as a DNS resolver for my home network. Rather than accessing my other services using IP addresses, I create DNS entires for these services' IP in bind DNS. So that I can access them using a URL. </p>
-<h2>Nginx</h2>
+<h2 id="nginx">Nginx</h2>
 <p>Reverse proxy for services. It redirects requests to services. </p>
-<h2>Plex</h2>
+<h2 id="plex">Plex</h2>
 <p>Home entertainment services. Plex looks at my data volume where I stored all my movies and TV shows. I'm able to acess my library on my phone using Plex's app. There is also a web UI available. I can also cast my media to TV through Chromecast. </p>
 <p>I installed Plex on host to avoid file permission issues on my data volume. I have other services adding content to the data volume in docker and it's tricky to setup Plex in docker to share the same user. </p>
-<h1>Docker</h1>
-<h2>Nextcloud</h2>
+<h1 id="docker">Docker</h1>
+<h2 id="nextcloud">Nextcloud</h2>
 <p>Nextcloud server cloud storage services to my home network. I persist its data by mounting a folder in the data volume into the docker. </p>
-<h2>OpenVPN</h2>
+<h2 id="openvpn">OpenVPN</h2>
 <p>To allow connect to home network from outside, I run a OpenVPN inside a docker. </p>
-<h2>Watchtower</h2>
+<h2 id="watchtower">Watchtower</h2>
 <p>Watchtower automatically updates all docker containers to their latest images. </p>
-<h2>Portainer</h2>
+<h2 id="portainer">Portainer</h2>
 <p>An admin web UI to see and mamange running containers. </p>
-<h2>Pihole</h2>
+<h2 id="pihole">Pihole</h2>
 <p>DNS based ad blocker</p>
-<h1>VirtualBox</h1>
-<h2>OneDrive</h2>
+<h1 id="virtualbox">VirtualBox</h1>
+<h2 id="onedrive">OneDrive</h2>
 <p>I have a windows machine running in VirtualBox. It syncs my Onedrive and share the Onedrive folder over samba in my home network. I don't need to map static IP to this machine because windows machines are dicoverable in local network. </p>
-<h2>GameServers</h2>
+<h2 id="gameservers">GameServers</h2>
 <p>I also have some VMs running as game servers. </p>
-<h1>DNS resolution</h1>
+<h1 id="dns-resolution">DNS resolution</h1>
 <p>To resolve local DNS name and perform add filtering using pihole. I've set ISP's modem to use bind DNS as look up server. Bind DNS resolves local DNS names and forward the rest to pihole. </p>
 <p>Pihole filter out blacklisted ad domains and forward the rest to <code>1.1.1.1</code>and <code>1.0.0.1</code>. </p>
 

@@ -94,7 +94,7 @@
             
             <p>This article is a summary of the <a href="https://kubernetes.io/docs/tutorials/stateless-application/guestbook/">tutorial</a>. It utilizes manifest file to create deployments and services. </p>
 <p>A stateless application doesn't save its data to hard drive, thus every time the application is restarted. It returns back to its original state. </p>
-<h2>Objective</h2>
+<h2 id="objective">Objective</h2>
 <p>This tutorial covers basic steps to setup a guest book in stateless manner. It's a guest book application with redis backend.</p>
 <ol>
 <li>Start up redis master. </li>
@@ -103,14 +103,14 @@
 <li>Expose and view the Frontend service. </li>
 <li>Clean up.</li>
 </ol>
-<h2>redis backend service</h2>
-<h3>Redis master</h3>
+<h2 id="redis-backend-service">redis backend service</h2>
+<h3 id="redis-master">Redis master</h3>
 <p>Create a redis master service has 2 steps.</p>
 <ol>
 <li>Create redis master deployment</li>
 <li>Create redis master service based on the deployment in step 1. </li>
 </ol>
-<h4>Create redis master deployment</h4>
+<h4 id="create-redis-master-deployment">Create redis master deployment</h4>
 <p>To create a redis master deployment, use the following manifest file, <code>redis-master-deployment.yaml</code>. </p>
 <div class="highlight"><pre><span></span><code><span class="n">apiVersion</span><span class="o">:</span> <span class="n">apps</span><span class="sr">/v1 # for versions before 1.9.0 use apps/</span><span class="n">v1beta2</span>
 <span class="n">kind</span><span class="o">:</span> <span class="n">Deployment</span>
@@ -179,7 +179,7 @@ redis-master-55db5f7567-wmrjk   <span class="m">0</span>/1       ContainerCreati
 </code></pre></div>
 
 
-<h4>Create redis master service</h4>
+<h4 id="create-redis-master-service">Create redis master service</h4>
 <p>For other applications to communicate with redis master, we need to apply a <code>Service</code> to proxy the traffic to the redis master pod. Use the following manifest file, <code>redis-master-service.yaml</code>, to define a <code>Service</code>. </p>
 <div class="highlight"><pre><span></span><code><span class="n">apiVersion</span><span class="o">:</span> <span class="n">v1</span>
 <span class="n">kind</span><span class="o">:</span> <span class="n">Service</span>
@@ -213,7 +213,7 @@ redis-master   ClusterIP   <span class="m">10</span>.110.130.106   &lt;none&gt; 
 </code></pre></div>
 
 
-<h4>Create redis slave deployment</h4>
+<h4 id="create-redis-slave-deployment">Create redis slave deployment</h4>
 <p>To create a redis slave deployment, use the following manifest file, <code>redis-slave-deployment.yaml</code>. </p>
 <div class="highlight"><pre><span></span><code><span class="n">apiVersion</span><span class="o">:</span> <span class="n">apps</span><span class="sr">/v1 # for versions before 1.9.0 use apps/</span><span class="n">v1beta2</span>
 <span class="n">kind</span><span class="o">:</span> <span class="n">Deployment</span>
@@ -272,7 +272,7 @@ redis-slave-584c66c5b5-tpd4l    <span class="m">0</span>/1       ContainerCreati
 </code></pre></div>
 
 
-<h4>Create redis slave service</h4>
+<h4 id="create-redis-slave-service">Create redis slave service</h4>
 <p>To open up slave deployment for other applications to communicate, we use a <code>Service</code> like the master deployment, <code>redis-slave-service.yaml</code>. </p>
 <div class="highlight"><pre><span></span><code><span class="n">apiVersion</span><span class="o">:</span> <span class="n">v1</span>
 <span class="n">kind</span><span class="o">:</span> <span class="n">Service</span>
@@ -302,8 +302,8 @@ redis-slave    ClusterIP   <span class="m">10</span>.108.183.147   &lt;none&gt; 
 </code></pre></div>
 
 
-<h2>PHP guestbook frontend</h2>
-<h3>Create frontend deployment</h3>
+<h2 id="php-guestbook-frontend">PHP guestbook frontend</h2>
+<h3 id="create-frontend-deployment">Create frontend deployment</h3>
 <p>To create a deployment, use the manifest file, <code>frontend-deployment.yaml</code>. </p>
 <div class="highlight"><pre><span></span><code><span class="n">apiVersion</span><span class="o">:</span> <span class="n">apps</span><span class="sr">/v1 # for versions before 1.9.0 use apps/</span><span class="n">v1beta2</span>
 <span class="n">kind</span><span class="o">:</span> <span class="n">Deployment</span>
@@ -360,7 +360,7 @@ frontend-5c548f4769-sljfb   <span class="m">0</span>/1       ContainerCreating  
 </code></pre></div>
 
 
-<h3>Create frontend service</h3>
+<h3 id="create-frontend-service">Create frontend service</h3>
 <p>The <code>redis-slave</code> and <code>redis-master</code> services are only accessible within the container cluster because default type for a service is CluterIP. <code>ClusterIP</code> provides a single IP address for the set of Pods the Service is pointing to. This IP address is accessible only within the cluster.</p>
 <p>To allow guests to be able to access the guestbook, we need to configure the frontend service to the external internet. This is achived through <code>type: NodePort</code> or <code>type: LoadBalancer</code>. We use <code>LoadBalancer</code> here as an example. <code>frontend-service.yaml</code>. </p>
 <div class="highlight"><pre><span></span><code><span class="n">apiVersion</span><span class="p">:</span> <span class="n">v1</span>
@@ -399,9 +399,9 @@ redis-slave    ClusterIP   <span class="m">10</span>.108.183.147   &lt;none&gt; 
 </code></pre></div>
 
 
-<h2>View the front end</h2>
+<h2 id="view-the-front-end">View the front end</h2>
 <p>To view the frontend, go to <code>localhost:80</code> on the browser and the frontend website should show up. </p>
-<h2>Scale the web frontend</h2>
+<h2 id="scale-the-web-frontend">Scale the web frontend</h2>
 <p>Run the following command to scale up the number of frontend Pods,</p>
 <div class="highlight"><pre><span></span><code><span class="err">kubectl scale deployment frontend --replicas=5</span>
 </code></pre></div>
@@ -437,7 +437,7 @@ redis-slave-2005841000-phfv9    <span class="m">1</span>/1       Running   <span
 </code></pre></div>
 
 
-<h2>Clean up</h2>
+<h2 id="clean-up">Clean up</h2>
 <p>Run the following commands to delete all Pods, Deployments and Services, </p>
 <div class="highlight"><pre><span></span><code>$ kubectl delete deployment -l <span class="nv">app</span><span class="o">=</span>redis
 deployment.extensions <span class="s2">&quot;redis-master&quot;</span> deleted

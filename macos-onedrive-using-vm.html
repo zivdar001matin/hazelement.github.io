@@ -92,34 +92,34 @@
 <div class="row-fluid">
         <div class="span8 offset2 article-content">
             
-            <h2>Introduction</h2>
+            <h2 id="introduction">Introduction</h2>
 <p>I have been struggling on OneDrive's performance on my MacOS. It's constantly updating and whenever I reboot the machine. It will try to update the entire OneDrive folder again. I have a lot of files in OneDrive. One scan can easily take 10+ hours. </p>
 <p>OneDrive on my Windows 10 seems to perform well. So I thought, maybe I can install Windows 10 VM on my MacOS and let it sync OneDrive files for me. </p>
-<h3>Goal</h3>
+<h3 id="goal">Goal</h3>
 <p>Install Windows 10 on VM in MacOS and sync OneDrive from Windows. Setup a file sharing system between MacOS and Windows 10 so that MacOS can access these files in Windows 10 VM.  </p>
 <p>User story:</p>
 <ol>
 <li>As a user, I want to be able to access OneDrive folder on my Windows 10 VM from MacOS.</li>
 <li>As a user, I want the OneDrive folder to be functioning and available me when I boot into MacOS.</li>
 </ol>
-<h3>Related Work</h3>
+<h3 id="related-work">Related Work</h3>
 <ul>
 <li>VirtualBox, https://www.virtualbox.org/, VirtualBox is a powerful x86 and AMD64/Intel64 virtualization product for enterprise as well as home use. </li>
 <li><code>mount_smbfs</code>, a command to mount smb share on MacOS</li>
 </ul>
-<h2>Solution</h2>
-<h3>Install VM and Windows 10</h3>
+<h2 id="solution">Solution</h2>
+<h3 id="install-vm-and-windows-10">Install VM and Windows 10</h3>
 <p>First step is to setup VM and install Windows 10 on there.  </p>
 <ul>
 <li>Download VirtualBox installer for MacOS from https://www.virtualbox.org/. Intall VirtualBox by double clicking the installer.</li>
 <li>Download Windows 10 installer ISO from https://www.microsoft.com/en-ca/software-download/windows10. </li>
 </ul>
 <p>Launch VirtualBox and create a new VM. Configure all settings to your preference, it doesn't matter. The goal is to have a functioning Windows 10 installation. In Network selection, make sure to select <code>Bridged Adapter</code>. This is crucial for MacOS to detect Windows samba share. </p>
-<h3>Configure Windows 10 VM</h3>
+<h3 id="configure-windows-10-vm">Configure Windows 10 VM</h3>
 <p>Now we have a Windows 10 running, go ahead and configure OneDrive to sync. Once OneDrive folder is created in your home folder. Right click the folder and choose <code>Properties</code>. Enable sharing in the folder using current user. Make sure your configured your network to private network so that your computer is discoverable as well. </p>
 <p>Now we have the folder shared on the network, you can confirm that from MacOS. </p>
 <p>Go to Finder on Mac and go to <code>Shared</code>, you should see a shared computer like <code>desktop-xxxx</code>, which is your Windows VM's desktop name. You can try connect to it by double clicking and enter your Windows 10's login. </p>
-<h3>Auto login Windows 10 VM</h3>
+<h3 id="auto-login-windows-10-vm">Auto login Windows 10 VM</h3>
 <p>To allow OneDrive sharing when we boot Windows 10 VM, we need to auto login. On Windows 10 VM,   </p>
 <ol>
 <li>Right click Start and select <code>Run</code>
@@ -131,7 +131,7 @@
 <li>Enter in your user name and the password you use to log into your system twice and <strong>click</strong> OK.</li>
 </ol>
 <p>Next time Windows 10 boots, it will auto login using this user. </p>
-<h3>Configure MacOS to launch Windows 10 on boot and connect to the smb share</h3>
+<h3 id="configure-macos-to-launch-windows-10-on-boot-and-connect-to-the-smb-share">Configure MacOS to launch Windows 10 on boot and connect to the smb share</h3>
 <p>We use launchagents to start VM in <code>headless</code> mode and connect to the smb share. Save the following file in <code>/Users/xxxx/Library/LaunchAgents/</code> folder with name <code>org.virtualbox.launch.windows10.plist</code>. In the file content, replace <code>xxxx</code> with your user folder name. </p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <span class="cp">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span>
@@ -165,12 +165,12 @@
 
 
 <p>Also create <code>OneDrive</code> folder in your MacOS user home folder. </p>
-<h3>Testing</h3>
+<h3 id="testing">Testing</h3>
 <p>That's everything. To test the setup, shutdown Windows 10 VM. Wait for Windows 10 to shut down. </p>
 <p>To test everything, using this command <code>launchctl load org.virtualbox.launch.windows10.plist</code> in terminal. This will start Windows 10 in headless mode and you won't see it show up. It will also mount the smb drive to OneDrive folder in your MacOS home directory. </p>
-<h3>Final test</h3>
+<h3 id="final-test">Final test</h3>
 <p>Reboot MacOS and make sure OneDrive is mounted automatically and you can see files in your MacOS's OneDrive folder. </p>
-<h2>Alternative Solution</h2>
+<h2 id="alternative-solution">Alternative Solution</h2>
 <p>I've also tried Parallel Desktop as it allows to share from guest to host. But Parallel is having performance issues in latest Windows 10 and the VM constantly freezes. </p>
 
 

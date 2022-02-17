@@ -93,7 +93,7 @@
         <div class="span8 offset2 article-content">
             
             <p>Copied from, https://developers.google.com/tech-writing. </p>
-<h1>Audience</h1>
+<h1 id="audience">Audience</h1>
 <p><strong>Estimated Time:</strong> 10 minutes</p>
 <p>The course designers believe that you are probably comfortable with mathematics. Therefore, this unit begins with an equation:</p>
 <blockquote>
@@ -106,7 +106,7 @@
 <li>Fit documentation to your audience.</li>
 </ul>
 <p>As the following video suggests, targeting the <em>wrong</em> audience can be messy:</p>
-<h2>Define your audience</h2>
+<h2 id="define-your-audience">Define your audience</h2>
 <p>Serious documentation efforts spend considerable time and energy on defining their audience. These efforts might involve surveys, user experience studies, focus groups, and documentation testing. You probably don't have that much time, so this unit takes a simpler approach.</p>
 <p>Begin by identifying your audience's <strong>role</strong>(s). Sample roles include:</p>
 <ul>
@@ -127,7 +127,7 @@
 <p>Writing would be so much easier if everyone in the same role shared exactly the same knowledge. Unfortunately, knowledge within the same role quickly diverges. Amal is an expert in Python, Sharon's expertise is C++, and Micah's is in Java. Kara loves Linux, but David only knows iOS.</p>
 <p>Roles, by themselves, are insufficient for defining an audience. That is, you must also consider your audience's <em>proximity</em> to the knowledge. The software engineers in Project Frombus know something about related Project Dingus but nothing about unrelated Project Carambola. The average heart specialist knows more about ear problems than the average software engineer but far less than an audiologist.</p>
 <p>Time also affects proximity. Almost all software engineers, for example, studied calculus. However, most software engineers don't use calculus in their jobs, so their knowledge of calculus gradually fades. Conversely, experienced engineers typically know vastly more about their current project than new engineers on the same project.</p>
-<h3>Sample audience analysis</h3>
+<h3 id="sample-audience-analysis">Sample audience analysis</h3>
 <p>The following is a sample audience analysis for fictitious Project Zylmon:</p>
 <blockquote>
 <p>The target audience for Project Zylmon falls into the following roles:</p>
@@ -142,7 +142,7 @@
 <li>My target audience took linear algebra in university, but many members of the team need a refresher on matrix multiplication.</li>
 </ul>
 </blockquote>
-<h2>Determine what your audience needs to learn</h2>
+<h2 id="determine-what-your-audience-needs-to-learn">Determine what your audience needs to learn</h2>
 <p>Write down a list of everything your target audience needs to learn to accomplish goals. In some cases, the list should hold tasks that the target audience needs to <em>perform</em>. For example:</p>
 <blockquote>
 <p>After reading the documentation, the audience will know how to do the following tasks:</p>
@@ -161,16 +161,16 @@
 <li>Five reasons why Zylmon consumed 5.25 engineering years to develop.</li>
 </ul>
 </blockquote>
-<h2>Fit documentation to your audience</h2>
+<h2 id="fit-documentation-to-your-audience">Fit documentation to your audience</h2>
 <p>Writing to meet your audience's needs requires unselfish empathy. You must create explanations that satisfy your audience's curiosity rather than your own. How do you step out of yourself in order to fit documentation to the audience? Unfortunately, we can offer no easy answers. We can, however, offer a few parameters to focus on.</p>
-<h3>Vocabulary and concepts</h3>
+<h3 id="vocabulary-and-concepts">Vocabulary and concepts</h3>
 <p>Match your vocabulary to your audience. See <a href="https://developers.google.com/tech-writing/one/words">Words</a> for help.</p>
 <p>Be mindful of proximity. The people on your team probably understand your team's abbreviations, but do people on other teams understand those same abbreviations? As your target audience widens, assume that you must explain more.</p>
 <p>Similarly, experienced people on your software team probably understand the implementation details and data structures of your team's project, but nearly everyone else (including new members of your team) does not. Unless you are writing specifically for other experienced members of your team, you typically must explain more than you expect.</p>
-<h3>Curse of knowledge</h3>
+<h3 id="curse-of-knowledge">Curse of knowledge</h3>
 <p>Experts often suffer from <strong>the curse of knowledge</strong>, which means that their expert understanding of a topic ruins their explanations to newcomers. As experts, it is easy to forget that novices don't know what you already know. Novices might not understand explanations that make passing reference to subtle interactions and deep systems that the expert doesn't stop to explain.</p>
 <p>From the novice's point of view, the curse of knowledge is a "File not found" linker error due to a module not yet compiled.</p>
-<h3>Exercise</h3>
+<h3 id="exercise">Exercise</h3>
 <ol>
 <li>
 <p>Assume that the following paragraph is the start of a paper aimed at physicians who have never programmed before. Identify the aspects of the paragraph that suffer from the curse of knowledge:</p>
@@ -182,7 +182,7 @@
 <p>Suppose the preceding paragraph was aimed at undergraduate computer science students new to C but comfortable with Python. Does the paragraph still suffer from the curse of knowledge?</p>
 </li>
 </ol>
-<h4>Click the icon to see the answer.</h4>
+<h4 id="click-the-icon-to-see-the-answer">Click the icon to see the answer.</h4>
 <ol>
 <li>This paragraph suffers immensely from the curse of knowledge. The target audience has never programmed before, so the following terms are inappropriate or unfamiliar:<ul>
 <li>language</li>
@@ -199,9 +199,9 @@
 <li>This paragraph also suffers from the curse of knowledge for the alternative audience. The average Python programmer is unaware of manipulating memory or pointers. A better introductory paragraph would compare and contrast C with Python.</li>
 </ol>
 <hr>
-<h3>Simple words</h3>
+<h3 id="simple-words">Simple words</h3>
 <p>English has become the dominant language for technical communication worldwide. However, English is not the native language of a significant percentage of technical readers. Therefore, prefer simple words over complex words. Avoid using arcane, obsolete, or overly-complex English words; <a href="https://www.google.com/search?q=sesquipedalian">sesquipedalian</a> and rare words repel most readers.</p>
-<h3>Cultural neutrality and idioms</h3>
+<h3 id="cultural-neutrality-and-idioms">Cultural neutrality and idioms</h3>
 <p>Keep your writing culturally neutral. Do not require readers to understand the intricacies of NASCAR, cricket, or sumo in order to understand how a piece of software works. For example, the following sentence---packed with baseball metaphors as American as apple pie---might puzzle some Parisian readers:</p>
 <blockquote>
 <p>If Frambus 5.0 was a solid single, Frambus 6.0 is a stand-up double.</p>
@@ -214,14 +214,14 @@
 <p>Cake? Bob? Most American readers recognize the first idiom; most British readers recognize the second idiom. If you are writing strictly for a British audience, then <em>Bob's your uncle</em> can be fine. However, if you are writing for an international audience, then replace that idiom with <em>this task is easy</em>.</p>
 <p>Idioms are so deeply ingrained in our speech that the special nonliteral meaning of idioms becomes invisible to us. That is, idioms are another form of the curse of knowledge.</p>
 <p>Note that some people in your audience use translation software to read your documentation. Translation software tends to struggle more with cultural references and idioms than with plain, simple English.</p>
-<h3>Exercise</h3>
+<h3 id="exercise_1">Exercise</h3>
 <p>Identify the problems with the following sentences:</p>
 <ol>
 <li>As of Version 3.0, it was still kosher to call the Frambus method.</li>
 <li>Deciding which BorgResourceSpec constraints/preferences are combinable is a sticky wicket.</li>
 <li>Be that as it may, you still have to write unit tests.</li>
 </ol>
-<h4>Click the icon to see the answer.</h4>
+<h4 id="click-the-icon-to-see-the-answer_1">Click the icon to see the answer.</h4>
 <ol>
 <li>In some places in the world, <strong>kosher</strong> has become slang for "acceptable usage." Many readers, however, will wonder how religious dietary laws pertain to software.</li>
 <li>A <strong>sticky wicket</strong> is British slang, which does not travel well. Substituting the phrase <strong>challenging problem</strong> will fix this issue.</li>

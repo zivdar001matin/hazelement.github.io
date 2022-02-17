@@ -93,8 +93,8 @@
         <div class="span8 offset2 article-content">
             
             <p>This article summarizes the basic workflow when working with a kubernetes cluster</p>
-<h2>Basic deployment</h2>
-<h3>Run a node</h3>
+<h2 id="basic-deployment">Basic deployment</h2>
+<h3 id="run-a-node">Run a node</h3>
 <p>To run the node using a an image, run this command </p>
 <div class="highlight"><pre><span></span><code><span class="n">kubectl</span> <span class="n">run</span> <span class="n">hello</span><span class="o">-</span><span class="n">world</span> <span class="o">--</span><span class="n">replicas</span><span class="o">=</span><span class="mi">5</span> <span class="o">--</span><span class="n">labels</span><span class="o">=</span><span class="s2">&quot;run=load-balancer-example&quot;</span> <span class="o">--</span><span class="n">image</span><span class="o">=</span><span class="n">gcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">google</span><span class="o">-</span><span class="n">samples</span><span class="o">/</span><span class="n">node</span><span class="o">-</span><span class="n">hello</span><span class="p">:</span><span class="mf">1.0</span>  <span class="o">--</span><span class="n">port</span><span class="o">=</span><span class="mi">8080</span>
 </code></pre></div>
@@ -107,7 +107,7 @@
 </code></pre></div>
 
 
-<h3>Use a service to expose the deployment</h3>
+<h3 id="use-a-service-to-expose-the-deployment">Use a service to expose the deployment</h3>
 <p>Create a service to expose the <code>Deployment</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="err">kubectl expose deployment hello-world --type=LoadBalancer --name=my-service</span>
 </code></pre></div>
@@ -126,7 +126,7 @@
 </code></pre></div>
 
 
-<h2>Scale deployment</h2>
+<h2 id="scale-deployment">Scale deployment</h2>
 <p>To change the number of replicas in the deployment object. use this command:</p>
 <div class="highlight"><pre><span></span><code>$ kubectl scale deployments/hello-world --replicas<span class="o">=</span><span class="m">8</span>
 deployment.extensions <span class="s2">&quot;hello-world&quot;</span> scaled
@@ -147,7 +147,7 @@ hello-world-5b446dd74b-vrm4r   <span class="m">1</span>/1       Running   <span 
 
 
 <p><code>hello-world</code> is the pod we are running and it's a <code>Deployment</code>, hence <code>deployments/hello-world</code></p>
-<h2>Delete service and deployment</h2>
+<h2 id="delete-service-and-deployment">Delete service and deployment</h2>
 <p>To delete the Service, enter this command:</p>
 <div class="highlight"><pre><span></span><code><span class="err">kubectl delete services my-service</span>
 </code></pre></div>

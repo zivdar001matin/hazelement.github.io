@@ -93,16 +93,16 @@
         <div class="span8 offset2 article-content">
             
             <p>Copied from, https://developers.google.com/tech-writing. </p>
-<h1>Words</h1>
+<h1 id="words">Words</h1>
 <p><strong>Estimated Time:</strong> 10 minutes</p>
 <p>We researched documentation extensively, and it turns out that the best sentences in the world consist primarily of words.</p>
-<h2>Define new or unfamiliar terms</h2>
+<h2 id="define-new-or-unfamiliar-terms">Define new or unfamiliar terms</h2>
 <p>When writing or editing, learn to recognize terms that might be unfamiliar to some or all of your target audience. When you spot such a term, take one of the following two tactics:</p>
 <ul>
 <li>If the term already exists, link to a good existing explanation. (Don't reinvent the wheel.)</li>
 <li>If your document is introducing the term, define the term. If your document is introducing many terms, collect the definitions into a glossary.</li>
 </ul>
-<h2>Use terms consistently</h2>
+<h2 id="use-terms-consistently">Use terms consistently</h2>
 <p>If you change the name of a variable midway through a method, your code won't compile. Similarly, if you rename a term in the middle of a document, your ideas won't compile (in your users' heads).</p>
 <p>The moral: apply the same unambiguous word or term consistently throughout your document. Once you've named a component <strong>thingy</strong>, don't rename it <strong>thingamabob</strong>. For example, the following paragraph mistakenly renames <strong>Protocol Buffers</strong> to <strong>protobufs</strong>:</p>
 <blockquote>
@@ -112,7 +112,7 @@
 <blockquote>
 <p><strong>Protocol Buffers</strong> (or <strong>protobufs</strong> for short) provide their own definition language. Blah, blah, blah. And that's why protobufs have won so many county fairs.</p>
 </blockquote>
-<h2>Use acronyms properly</h2>
+<h2 id="use-acronyms-properly">Use acronyms properly</h2>
 <p>On the initial use of an unfamiliar acronym within a document or a section, spell out the full term, and then put the acronym in parentheses. Put both the spelled-out version and the acronym in boldface. For example:</p>
 <blockquote>
 <p>This document is for engineers who are new to the <strong>Telekinetic Tactile Network</strong> (<strong>TTN</strong>) or need to understand how to order TTN replacement parts through finger motions.</p>
@@ -122,7 +122,7 @@
 <p>If no cache entry exists, the Mixer calls the <strong>OttoGroup Server</strong> (<strong>OGS</strong>) to fetch Ottos for the request. The OGS is a repository that holds all servable Ottos. The OGS is organized in a logical tree structure, with a root node and two levels of leaf nodes. The OGS root forwards the request to the leaves and collects the responses.</p>
 </blockquote>
 <p>Do not cycle back-and-forth between the acronym and the expanded version in the same document.</p>
-<h3>Use the acronym or the full term?</h3>
+<h3 id="use-the-acronym-or-the-full-term">Use the acronym or the full term?</h3>
 <p>Sure, you can introduce and use acronyms properly, but <em>should</em> you use acronyms? Well, acronyms do reduce sentence size. For example, <em>TTN</em> is two words shorter than <em>Telekinetic Tactile Network</em>. However, acronyms are really just a layer of abstraction; readers must mentally expand recently learned acronyms to the full term. For example, readers convert <em>TTN</em> to <em>Telekinetic Tactile Network</em> in their heads, so the "shorter" acronym actually takes a little longer to process than the full term.</p>
 <p>Heavily used acronyms develop their own identity. After a number of occurrences, readers generally stop expanding acronyms into the full term. Many Web developers, for example, have forgotten what <em>HTML</em> expands to.</p>
 <p>Here are the guidelines for acronyms:</p>
@@ -134,12 +134,12 @@
 </ul>
 </li>
 </ul>
-<h3>Exercise</h3>
+<h3 id="exercise">Exercise</h3>
 <p>Fix the following passage. Assume that this passage is the initial instance of the term <strong>MapReduce</strong> in the document and that <strong>MR</strong> is the best abbreviation:</p>
 <blockquote>
 <p>Jeff Dean invented MapReduce in 1693, implementing the algorithm on a silicon-based computer fabricated from beach sand, wax-paper, a quill pen, and a toaster oven. This version of MR held several world performance records until 2014.</p>
 </blockquote>
-<h4>Click the icon to see the answer.</h4>
+<h4 id="click-the-icon-to-see-the-answer">Click the icon to see the answer.</h4>
 <p>You could take a few different approaches here. One approach is to associate the acronym <em>MR</em> with the full term and then use that acronym:</p>
 <blockquote>
 <p>Jeff Dean invented <strong>MapReduce</strong> (<strong>MR</strong>) in... This version of MR held several...</p>
@@ -150,7 +150,7 @@
 </blockquote>
 <p>Incidentally, a more thorough technical writer would also convert "beach sand, wax-paper, a quill pen, and a toaster oven" into a bulleted list. However, that's another story for another lesson.</p>
 <hr>
-<h2>Disambiguate pronouns</h2>
+<h2 id="disambiguate-pronouns">Disambiguate pronouns</h2>
 <p>Many pronouns point to a previously introduced noun. Such pronouns are analogous to pointers in programming. Like pointers in programming, pronouns tend to introduce errors. Improperly using pronouns causes the cognitive equivalent of a null pointer error in your readers' heads. In many cases, you should simply avoid the pronoun and just reuse the noun. However, the utility of a pronoun sometimes outweighs its risk (as in this sentence).</p>
 <p>Consider the following pronoun guidelines:</p>
 <ul>
@@ -158,7 +158,7 @@
 <li>Place the pronoun as close as possible to the referring noun. As a rule of thumb, if more than five words separate your noun from your pronoun, consider repeating the noun instead of using the pronoun.</li>
 <li>If you introduce a second noun between your noun and your pronoun, reuse your noun instead of using a pronoun.</li>
 </ul>
-<h3>It and they</h3>
+<h3 id="it-and-they">It and they</h3>
 <p>The following pronouns cause the most confusion in technical documentation:</p>
 <ul>
 <li>it</li>
@@ -172,7 +172,7 @@
 <blockquote>
 <p>Be careful when using Frambus or Carambola with HoobyScooby or BoiseFram because a bug in <strong>their</strong> core may cause accidental mass unfriending.</p>
 </blockquote>
-<h3>This and that</h3>
+<h3 id="this-and-that">This and that</h3>
 <p>Consider two additional problem pronouns:</p>
 <ul>
 <li>this</li>
@@ -192,7 +192,7 @@
 <p><strong>Overlapping functionality</strong> is not optimal.</p>
 <p><strong>This overlapping functionality</strong> is not optimal.</p>
 </blockquote>
-<h3>Exercise</h3>
+<h3 id="exercise_1">Exercise</h3>
 <p>Identify all possible meanings for the ambiguous pronouns in each of the following passages:</p>
 <ol>
 <li>
@@ -202,7 +202,7 @@
 <p>You may import Carambola data via your configuration file or dynamically at run time. This may be a security risk.</p>
 </li>
 </ol>
-<h4>Click the icon to see the answer.</h4>
+<h4 id="click-the-icon-to-see-the-answer_1">Click the icon to see the answer.</h4>
 <ol>
 <li>The pronoun <strong>they</strong> could refer to any of the following:<ul>
 <li>Aparna and Phil</li>

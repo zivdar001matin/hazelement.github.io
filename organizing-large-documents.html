@@ -93,7 +93,7 @@
         <div class="span8 offset2 article-content">
             
             <p>Copied from, https://developers.google.com/tech-writing. </p>
-<h1>Organizing large documents</h1>
+<h1 id="organizing-large-documents">Organizing large documents</h1>
 <p><strong>Estimated Time:</strong> 20 minutes</p>
 <p>How do you organize a large collection of information into a cohesive document or website? Alternatively, how do you reorganize an existing messy document or website into something approachable and useful? The following tactics can help:</p>
 <ul>
@@ -101,7 +101,7 @@
 <li>Adding navigation</li>
 <li>Disclosing information progressively</li>
 </ul>
-<h2>When to write large documents</h2>
+<h2 id="when-to-write-large-documents">When to write large documents</h2>
 <p>You can organize a collection of information into longer standalone documents or a set of shorter interconnected documents. A set of shorter interconnected documents is often published as a website, wiki, or similar structured format.</p>
 <p>Some readers respond more positively than others to longer documents. Consider the following perspectives from two hypothetical readers you're writing documentation for:</p>
 <ul>
@@ -116,9 +116,9 @@
 <li>Many longer documents aren't designed to be read in one sitting. For example, users typically scan through a reference page to search for an explanation of a command or flag.</li>
 </ul>
 <p>The remainder of this unit covers techniques that can be useful for writing longer documents, such as tutorials and some conceptual guides.</p>
-<h2>Organize a document</h2>
+<h2 id="organize-a-document">Organize a document</h2>
 <p>This section suggests some techniques for planning a longer document, including creating an outline and drafting an introduction. After you've completed the first draft of a document, you can review it against your outline and introduction to make sure you haven't missed anything you originally intended to cover.</p>
-<h3>Outline a document</h3>
+<h3 id="outline-a-document">Outline a document</h3>
 <p>Starting with a structured, high-level outline can help you group topics and determine where more detail is needed. The outline helps you move topics around before you get down to writing.</p>
 <p>You might find it useful to think of an outline as the narrative for your document. There is no standard approach to writing an outline, but the following guidelines provide practical tips you might find useful:</p>
 <ul>
@@ -132,7 +132,7 @@
 <li>Documents that alternate between conceptual information and practical steps can be a particularly engaging way to learn. Consider explaining a concept and then demonstrating how the reader can apply it in either a sample project or in their own work.</li>
 <li>Outlines are especially useful if you're working with a team of contributors who are going to review and test your document. Before you start drafting, share your outline with your contributors to check if they have any suggestions.</li>
 </ul>
-<h3>Outline exercise</h3>
+<h3 id="outline-exercise">Outline exercise</h3>
 <p>For this exercise, review and update the following high-level outline of an introduction to a long tutorial. You can rearrange, add, and remove topics.</p>
 <div class="highlight"><pre><span></span><code><span class="o">##</span> <span class="n">The</span> <span class="n">history</span> <span class="k">of</span> <span class="n">the</span> <span class="n">project</span>
 
@@ -167,7 +167,7 @@
 </code></pre></div>
 
 
-<h4>Click the icon to see the answer.</h4>
+<h4 id="click-the-icon-to-see-the-answer">Click the icon to see the answer.</h4>
 <p>The following is one possible solution:</p>
 <div class="highlight"><pre><span></span><code><span class="o">##</span> <span class="n">Audience</span>
 
@@ -190,7 +190,7 @@
 
 
 <hr>
-<h3>Introduce a document</h3>
+<h3 id="introduce-a-document">Introduce a document</h3>
 <p>If readers of your documentation can't find relevance in the subject, they are likely to ignore it. To set the ground rules for your users, we recommend providing an introduction that includes the following information:</p>
 <ul>
 <li>What the document covers.</li>
@@ -211,7 +211,7 @@
 
 
 <p>After you've completed the first draft, check your entire document against the expectations you set in your overview. Does your introduction provide an accurate overview of the topics you cover? You might find it useful to think of this review as a form of documentation quality assurance (QA).</p>
-<h3>Introduction exercise</h3>
+<h3 id="introduction-exercise">Introduction exercise</h3>
 <p>For this exercise, review and revise the following introduction for a best practices guide for a hypothetical programming language called F@. Remove any information you feel is irrelevant in this context and add any information you feel is missing.</p>
 <div class="highlight"><pre><span></span><code><span class="err">This guide lists best practices for working with the F@ programming language.</span>
 <span class="err">F@ was developed in 2011 as an open source community project. This guide</span>
@@ -223,7 +223,7 @@
 </code></pre></div>
 
 
-<h4>Click the icon to see the answer.</h4>
+<h4 id="click-the-icon-to-see-the-answer_1">Click the icon to see the answer.</h4>
 <p>The following is one possible solution:</p>
 <div class="highlight"><pre><span></span><code><span class="err">This guide lists best practices for working with the F@ programming language.</span>
 <span class="err">Before you review this guide, complete the introductory tutorial for new F@</span>
@@ -235,7 +235,7 @@
 
 
 <hr>
-<h2>Add navigation</h2>
+<h2 id="add-navigation">Add navigation</h2>
 <p>Providing navigation and signposting for your readers ensures they can find what they are looking for and the information they need to get unstuck.</p>
 <p>Clear navigation includes:</p>
 <ul>
@@ -248,14 +248,14 @@
 <li>links to what to learn next</li>
 </ul>
 <p>The tips in the following sections can help you plan the headings in your documentation.</p>
-<h3>Prefer task-based headings</h3>
+<h3 id="prefer-task-based-headings">Prefer task-based headings</h3>
 <p>Choose a heading that describes the task your reader is working on. Avoid headings that rely on unfamiliar terminology or tools. For example, suppose you are documenting the process for creating a new website. To create the site, the reader must initialize the Froobus framework. To initialize the Froobus framework, the reader must run the <code>carambola</code> command-line tool. At first glance, it might seem logical to add either of the following headings to the instructions:</p>
 <ul>
 <li>Running the carambola command</li>
 <li>Initializing the Froobus framework</li>
 </ul>
 <p>Unless your readers are already very experienced with the terminology and concepts for this topic, a more familiar heading might be preferable, such as <em>Creating the site</em>.</p>
-<h3>Provide text under each heading</h3>
+<h3 id="provide-text-under-each-heading">Provide text under each heading</h3>
 <p>Most readers appreciate at least a brief introduction under each heading to provide some context. Avoid placing a level three heading immediately after a level two heading, as in the following example:</p>
 <div class="highlight"><pre><span></span><code><span class="err">## Creating the site</span>
 <span class="err">### Running the carambola command</span>
@@ -272,7 +272,7 @@
 </code></pre></div>
 
 
-<h3>Heading exercise</h3>
+<h3 id="heading-exercise">Heading exercise</h3>
 <p>Helping readers navigate through your documentation helps them find the information they need to successfully use your tool. Often, a clear and well-organized table of contents or outline acts like a map that helps your users navigate the functionality of your tool.</p>
 <p>For this exercise, improve the following outline. You can rearrange, add, and delete topics and create secondary entries too.</p>
 <div class="highlight"><pre><span></span><code><span class="err">About this tutorial</span>
@@ -295,7 +295,7 @@
 </code></pre></div>
 
 
-<h4>Click the icon to see the answer.</h4>
+<h4 id="click-the-icon-to-see-the-answer_2">Click the icon to see the answer.</h4>
 <p>The following is one possible solution:</p>
 <div class="highlight"><pre><span></span><code><span class="o">##</span> <span class="n">About</span> <span class="n">this</span> <span class="n">tutorial</span>
 
@@ -354,7 +354,7 @@
 
 
 <hr>
-<h2>Disclose information progressively</h2>
+<h2 id="disclose-information-progressively">Disclose information progressively</h2>
 <p>Learning new concepts, ideas, and techniques can be a rewarding experience for many readers who are comfortable reading through documentation at their own pace. However, being confronted with too many new concepts and instructions too quickly can be overwhelming. Readers are more likely to be receptive to longer documents that progressively disclose new information to them when they need it. The following techniques can help you incorporate progressive disclosure in your documents:</p>
 <ul>
 <li>Where possible, try introducing new terminology and concepts near to the instructions that rely on them.</li>

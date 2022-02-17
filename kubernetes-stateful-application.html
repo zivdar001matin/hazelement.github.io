@@ -94,7 +94,7 @@
             
             <p>This article is a summary of the <a href="https://kubernetes.io/docs/tutorials/stateful-application/basic-stateful-set/">tutorial</a>. It utilizes manifest file to create deployments and services. </p>
 <p>Most of the time, we need to have persistent data saved at a location and when the service is restarted, the data was saved and can be loaded to restore its latest state. This is achived through stateful application in Kubernetes. </p>
-<h2>Objective</h2>
+<h2 id="objective">Objective</h2>
 <p>This tutorial covers basic steps deploy a simple web application using <code>StatefulSet</code>. The website is served in a html file by nginx. </p>
 <ol>
 <li>Create a StatefulSet</li>
@@ -103,7 +103,7 @@
 <li>Scale a StatefulSet</li>
 <li>Update a StatefulSet's Pods</li>
 </ol>
-<h2>Creating a StatefulSet</h2>
+<h2 id="creating-a-statefulset">Creating a StatefulSet</h2>
 <p>Using the <code>yaml</code> file below, we create a headless service, <code>nginx</code>, to publish the IP addresses of Pods in the StatefulSet, <code>web</code>. The manifest file <code>web.yaml</code>. </p>
 <div class="highlight"><pre><span></span><code><span class="n">apiVersion</span><span class="o">:</span> <span class="n">v1</span>
 <span class="n">kind</span><span class="o">:</span> <span class="n">Service</span>
@@ -195,9 +195,9 @@ web-1     <span class="m">1</span>/1       Running   <span class="m">0</span>   
 </code></pre></div>
 
 
-<h2>Pods in a StatefulSet</h2>
+<h2 id="pods-in-a-statefulset">Pods in a StatefulSet</h2>
 <p>Pods in a StatefulSet have a unique ordinal index and a stable network identity.</p>
-<h3>Examping the Pod's Ordinal Index</h3>
+<h3 id="examping-the-pods-ordinal-index">Examping the Pod's Ordinal Index</h3>
 <p>Get the StatefulSet’s Pods.</p>
 <div class="highlight"><pre><span></span><code>$ kubectl get pods -l <span class="nv">app</span><span class="o">=</span>nginx
 NAME      READY     STATUS    RESTARTS   AGE
@@ -229,7 +229,7 @@ web-1     <span class="m">1</span>/1       Running   <span class="m">0</span>   
 </code></pre></div>
 
 
-<h3>Manage Pods in StatefulSet</h3>
+<h3 id="manage-pods-in-statefulset">Manage Pods in StatefulSet</h3>
 <p>In second terminal, use <code>kubectl delete</code> to delete all Pods in the StatefulSet. </p>
 <div class="highlight"><pre><span></span><code>$ kubectl delete pod -l <span class="nv">app</span><span class="o">=</span>nginx
 pod <span class="s2">&quot;web-0&quot;</span> deleted
@@ -273,7 +273,7 @@ web-1     <span class="m">1</span>/1       Running   <span class="m">0</span>   
 
 
 <p>The hostname persists, but IP addresses associated with the Pods maybe change. This is why it is important not to configure other applications to connect to Pods in a StatefulSet by IP address.</p>
-<h3>Writing to stable storage</h3>
+<h3 id="writing-to-stable-storage">Writing to stable storage</h3>
 <p>We will be writing a text to the index page in the persistent volume. </p>
 <p>Get the PersistentVolumeClaims for <code>web-0</code> and <code>web-1</code>.</p>
 <div class="highlight"><pre><span></span><code>$ kubectl get pvc -l <span class="nv">app</span><span class="o">=</span>nginx
@@ -308,8 +308,8 @@ pod <span class="s2">&quot;web-1&quot;</span> deleted
 </code></pre></div>
 
 
-<h2>Scaling a StatefulSet</h2>
-<h3>Scaling up</h3>
+<h2 id="scaling-a-statefulset">Scaling a StatefulSet</h2>
+<h3 id="scaling-up">Scaling up</h3>
 <p>In terminal 2, user <code>kubectl scale</code> to scale the number of replicas to 5. </p>
 <div class="highlight"><pre><span></span><code>$ kubectl scale sts web --replicas<span class="o">=</span><span class="m">5</span>
 statefulset.apps/web scaled
@@ -337,7 +337,7 @@ statefulset.apps/web scaled
 </code></pre></div>
 
 
-<h3>Scaling down</h3>
+<h3 id="scaling-down">Scaling down</h3>
 <p>Use <code>kubectl patch</code> to scale the StatefulSet back down to three replicas. </p>
 <div class="highlight"><pre><span></span><code>$ kubectl patch sts web -p <span class="s1">&#39;{&quot;spec&quot;:{&quot;replicas&quot;:3}}&#39;</span>
 statefulset.apps/web patched
@@ -372,9 +372,9 @@ www-web-4   Bound     pvc-e11bb5f8-b508-11e6-932f-42010a800002   1Gi
 </code></pre></div>
 
 
-<h2>Updating StatefulSets</h2>
+<h2 id="updating-statefulsets">Updating StatefulSets</h2>
 <p>The update strategy is determined by the <code>spec.updateStrategy</code> field of the StatefulSet API object. This feature can be used to upgrade the container images, resource requests and/or limits, labels, and annotations of the Pods in a StatefulSet. There are two valid update strategies, <code>RollingUpdate</code> and <code>OnDelete</code>. <code>RollingUpdate</code> strategy is the default for StatefulSets. </p>
-<h3>Rollin gupdate</h3>
+<h3 id="rollin-gupdate">Rollin gupdate</h3>
 <p><code>RollingUpdate</code> strategy update all Pods in a StatefulSet, in reverse ordinal order, while respecting the StatefulSet guarantees. </p>
 <p>Patch the <code>web</code> StatefulSet to apply the strategy, </p>
 <div class="highlight"><pre><span></span><code>$ kubectl patch statefulset web -p <span class="s1">&#39;{&quot;spec&quot;:{&quot;updateStrategy&quot;:{&quot;type&quot;:&quot;RollingUpdate&quot;}}}&#39;</span>
@@ -435,7 +435,7 @@ statefulset.apps/web patched
 
 
 <p><code>kubectl rollout status sts/&lt;name&gt;</code> can also view the status of a rolling update. </p>
-<h3>Staging an update</h3>
+<h3 id="staging-an-update">Staging an update</h3>
 <p>Staging an update can be achived by using the <code>partition</code> parameter of the <code>RollingUpdate</code> update strategy. It will keep all of the Pods in the StatefulSet at the current version while allowing mutation to the StatefulSet's <code>.spec.template</code>. </p>
 <p>Use the following command to issue the patch. </p>
 <div class="highlight"><pre><span></span><code><span class="err">kubectl patch statefulset web -p &#39;{&quot;spec&quot;:{&quot;updateStrategy&quot;:{&quot;type&quot;:&quot;RollingUpdate&quot;,&quot;rollingUpdate&quot;:{&quot;partition&quot;:3}}}}&#39;</span>
@@ -463,7 +463,7 @@ statefulset.apps/web patched
 
 
 <p>Notice that it's still on version <code>0.8</code>. StatefulSet controller restored the Pod with its original container. This is because the ordinal of the Pod is less than the <code>partition</code> specified by the <code>updateStrategy</code>.</p>
-<h3>Rolling out a Canary</h3>
+<h3 id="rolling-out-a-canary">Rolling out a Canary</h3>
 <p>To roll out a canary to test, we can dcrementing the <code>partition</code> number. </p>
 <div class="highlight"><pre><span></span><code>$ kubectl patch statefulset web -p <span class="s1">&#39;{&quot;spec&quot;:{&quot;updateStrategy&quot;:{&quot;type&quot;:&quot;RollingUpdate&quot;,&quot;rollingUpdate&quot;:{&quot;partition&quot;:2}}}}&#39;</span>
 statefulset.apps/web patched
@@ -517,7 +517,7 @@ web-2     <span class="m">1</span>/1       Running   <span class="m">0</span>   
 
 <p><code>web-1</code> was restored to original configuration because the Pod's ordinal was less than the parition. All Pods with an ordinal that is greater than or equial to the partiion will be updated when the Statefulset's <code>.spec.template</code> is updated. </p>
 <p>If a Pod that has an ordinal less than the partition is deleted or otherwise terminated, it will be restored to its original configuration.</p>
-<h3>Phased roll outs</h3>
+<h3 id="phased-roll-outs">Phased roll outs</h3>
 <p>Now that we've tesd the canary update on web-2, it's time to roll it out to all other Pods. The perform the phased roll out, update the <code>partition</code> to <code>0</code>. This means none of the Pods are covered under <code>partition</code>. </p>
 <div class="highlight"><pre><span></span><code>$ kubectl patch statefulset web -p <span class="s1">&#39;{&quot;spec&quot;:{&quot;updateStrategy&quot;:{&quot;type&quot;:&quot;RollingUpdate&quot;,&quot;rollingUpdate&quot;:{&quot;partition&quot;:0}}}}&#39;</span>
 statefulset.apps/web patched
@@ -553,9 +553,9 @@ statefulset.apps/web patched
 
 
 <p>Now all Pods are updated. </p>
-<h2>Deleting StatefulSets</h2>
+<h2 id="deleting-statefulsets">Deleting StatefulSets</h2>
 <p>StatefulSet supports both Non-Cascading and Cascading deletion. In a Non-Cascading Delete, the StatefulSet’s Pods are not deleted when the StatefulSet is deleted. In a Cascading Delete, both the StatefulSet and its Pods are deleted.</p>
-<h3>Non-Cascading Delete</h3>
+<h3 id="non-cascading-delete">Non-Cascading Delete</h3>
 <p>Use <code>kubectl delete</code> to delete the StatefulSet. Make sure to supply the <code>--cascade=false</code> paramter to the command. </p>
 <div class="highlight"><pre><span></span><code>$ kubectl delete statefulset web --cascade<span class="o">=</span><span class="nb">false</span>
 statefulset.apps <span class="s2">&quot;web&quot;</span> deleted
@@ -619,7 +619,7 @@ web-2     <span class="m">0</span>/1       Terminating   <span class="m">0</span
 
 
 <p>Notice the hostname in <code>index.html</code> still persists. </p>
-<h3>Cascade delete</h3>
+<h3 id="cascade-delete">Cascade delete</h3>
 <p>Use the same delete command but without <code>--cascade=false</code>. </p>
 <div class="highlight"><pre><span></span><code>$ kubectl delete statefulset web
 statefulset.apps <span class="s2">&quot;web&quot;</span> deleted
@@ -650,11 +650,11 @@ service <span class="s2">&quot;nginx&quot;</span> deleted
 </code></pre></div>
 
 
-<h2>Pod management policy</h2>
+<h2 id="pod-management-policy">Pod management policy</h2>
 <p>For some distributed systems, the StatefulSet ordering guarantees are unnecessary and/or undesierable. This can be changed using <code>.spec.podManagementPolicy</code> in the StatefulSet API object. </p>
-<h3>OrderedReady Pod Management</h3>
+<h3 id="orderedready-pod-management">OrderedReady Pod Management</h3>
 <p><code>OrderedReady</code> pod management is the default for StatefulSets. It tells the StatefulSet controller to respect the ordering guarantees demonstrated above.</p>
-<h3>Parallel Pod Management</h3>
+<h3 id="parallel-pod-management">Parallel Pod Management</h3>
 <p><code>Parallel</code> pod management tells the StatefulSet controller to launch or terminate all Pods in parallel, and not to wait for Pods to become Running and Ready or completely terminated prior to launching or terminating another Pod.</p>
 <p>For example, </p>
 <div class="highlight"><pre><span></span><code><span class="n">apiVersion</span><span class="o">:</span> <span class="n">v1</span>

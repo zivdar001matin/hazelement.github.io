@@ -93,14 +93,14 @@
         <div class="span8 offset2 article-content">
             
             <p>This article is a summary of the <a href="https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/">tutorial</a>. It utilizes manifest file to create deployments and services. </p>
-<h2>Objectives</h2>
+<h2 id="objectives">Objectives</h2>
 <p>In this tutorial, we will deploy a WordPress and MySQL service using persistent volumes for data storage.  </p>
 <p>A <strong>PersistentVolume (PV)</strong> is a piece of storage in the cluster that has been manually provisioned by an administrator, or dynamically provisioned by Kubernetes using a <strong>StorageClass</strong>. A <strong>PersistentVolumeClaim</strong> (PVC) is a request for storage by a user that can be fulfilled by a PV. PersistentVolumes and PersistentVolumeClaims are independent from Pod lifecycles and preserve data through restarting, rescheduling, and even deleting Pods.</p>
-<h2>Create PersistentVolumeClaims and PersistentVolumes</h2>
+<h2 id="create-persistentvolumeclaims-and-persistentvolumes">Create PersistentVolumeClaims and PersistentVolumes</h2>
 <p>MySQL and Wordpress each require a PersistentVolume to store data. Their PersistentVolumeClaims will be created at the deployment step.</p>
 <p>Many cluster environments have a default StorageClass installed. When a StorageClass is not specified in the PersistentVolumeClaim, the cluster’s default StorageClass is used instead.</p>
 <p>When a PersistentVolumeClaim is created, a PersistentVolume is dynamically provisioned based on the StorageClass configuration.</p>
-<h2>Create a Secret for MySQL Password</h2>
+<h2 id="create-a-secret-for-mysql-password">Create a Secret for MySQL Password</h2>
 <p>A <strong>Secret</strong> is an object that stores a piece of senstive information like a password or a key. Once a <strong>Secret</strong> is created, it can be refer to in manifest files like an environment variable. </p>
 <p>Create a Secret object using the following command, replacing <strong>YOUR_PASSWORD</strong> with your own password. </p>
 <div class="highlight"><pre><span></span><code>$ kubectl create secret generic mysql-pass --from-literal<span class="o">=</span><span class="nv">password</span><span class="o">=</span>YOUR_PASSWORD
@@ -116,7 +116,7 @@ mysql-pass            Opaque                  <span class="m">1</span>         4
 
 
 <p>Notice that the content is not shown. </p>
-<h2>Deploy MySQl</h2>
+<h2 id="deploy-mysql">Deploy MySQl</h2>
 <p>The following manifest, <code>mysql-deployment.yaml</code>, describes a single-instance MySQL Deployment. The MySQL container mounts the PersistentVolume at /var/lib/mysql. The <strong>MYSQL_ROOT_PASSWORD</strong> environment variable sets the database password from the Secret.</p>
 <div class="highlight"><pre><span></span><code><span class="n">apiVersion</span><span class="o">:</span> <span class="n">v1</span>
 <span class="n">kind</span><span class="o">:</span> <span class="n">Service</span>
@@ -205,7 +205,7 @@ wordpress-mysql-bcc89f687-b5vb2   <span class="m">1</span>/1       Running   <sp
 </code></pre></div>
 
 
-<h2>Deploy WordPress</h2>
+<h2 id="deploy-wordpress">Deploy WordPress</h2>
 <p>The following manifest file, <code>wordpress-deployment.yaml</code>, describes a single-instance WordPress Deployment and Service. It uses PVC for persistent storage and a Secret for password. It also use <code>type: LoadBalancer</code>. This setting exposes WordPress to traffic from outside of the cluter. </p>
 <div class="highlight"><pre><span></span><code><span class="n">apiVersion</span><span class="o">:</span> <span class="n">v1</span>
 <span class="n">kind</span><span class="o">:</span> <span class="n">Service</span>
@@ -298,7 +298,7 @@ wordpress   LoadBalancer   <span class="m">10</span>.110.116.160   localhost    
 
 
 <p>Check <code>localhost</code> on the browser and a WordPress page should show up. </p>
-<h2>Cleaning up</h2>
+<h2 id="cleaning-up">Cleaning up</h2>
 <ol>
 <li>Run the following command to delete Secret, <code>kubectl delete secret mysql-pass</code></li>
 <li>Run following command to delete all Deployments and Services, <code>kubectl delete deployment -l app=wordpress; kubectl delete service -l app=wordpress</code></li>

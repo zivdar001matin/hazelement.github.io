@@ -92,22 +92,22 @@
 <div class="row-fluid">
         <div class="span8 offset2 article-content">
             
-            <h1>Introduction</h1>
+            <h1 id="introduction">Introduction</h1>
 <p>There a lot of times we need to remote access a server. VNC is one of the commonly used tools. I have a lot of troubles setting up VNC server before. Here are the notes I've collected to setup a functioning VNC server. </p>
-<h1>Glossary</h1>
+<h1 id="glossary">Glossary</h1>
 <ul>
 <li>TightVNC, VNC server. </li>
 <li>xfce, a light desktop environment. </li>
 </ul>
-<h1>Intallation</h1>
-<h2>Install desktop environment</h2>
+<h1 id="intallation">Intallation</h1>
+<h2 id="install-desktop-environment">Install desktop environment</h2>
 <p>In order to remote into server's desktop environment, we need to install a desktop environment first. We use <code>xfce</code> here. </p>
 <p>Install <code>xfce</code> and related components using following commands.</p>
 <div class="highlight"><pre><span></span><code><span class="err">sudo apt updatesudo apt install xfce4 xfce4-goodies</span>
 </code></pre></div>
 
 
-<h2>Install <code>TightVNC</code></h2>
+<h2 id="install-tightvnc">Install <code>TightVNC</code></h2>
 <p>We use <code>TightVNC</code> as VNC server. </p>
 <div class="highlight"><pre><span></span><code><span class="err">sudo apt install tightvncserver</span>
 </code></pre></div>
@@ -127,7 +127,7 @@
 
 
 <p>After this, select <code>n</code> to not create a view-only password. </p>
-<h2>Configure <code>TightVNC</code></h2>
+<h2 id="configure-tightvnc">Configure <code>TightVNC</code></h2>
 <p>First stop the <code>vncserver</code> that is running using default configuraiton file. </p>
 <div class="highlight"><pre><span></span><code><span class="err">&gt; vncserver -kill :1</span>
 <span class="err">Killing Xtightvnc process ID 17648</span>
@@ -172,7 +172,7 @@ startxfce4 <span class="p">&amp;</span>
 </code></pre></div>
 
 
-<h2>Run VNC as a system service</h2>
+<h2 id="run-vnc-as-a-system-service">Run VNC as a system service</h2>
 <p>To setup VNC server to run automatically when system boots, we setup a system service. </p>
 <p>Create a new service unit file, <code>/etc/systemd/system/vncserver@.service</code>. Replace <code>&lt;vnc_user&gt;</code> with your remote user. </p>
 <div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">systemd</span><span class="o">/</span><span class="k">system</span><span class="o">/</span><span class="n">vncserver</span><span class="err">@</span><span class="p">.</span><span class="n">service</span><span class="w"></span>
@@ -217,7 +217,7 @@ startxfce4 <span class="p">&amp;</span>
 
 
 <p>It should show the service is running. </p>
-<h2>Connect to VNC securely</h2>
+<h2 id="connect-to-vnc-securely">Connect to VNC securely</h2>
 <p>VNC connect is not secured by default. We can secure it using SSH tunnel. </p>
 <div class="highlight"><pre><span></span><code><span class="err">ssh -L &lt;local_port&gt;:127.0.0.1:5901 -C -N -L &lt;vnc_user&gt; &lt;server_ip&gt;</span>
 </code></pre></div>

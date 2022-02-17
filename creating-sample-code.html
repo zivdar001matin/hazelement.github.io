@@ -93,11 +93,11 @@
         <div class="span8 offset2 article-content">
             
             <p>Copied from, https://developers.google.com/tech-writing. </p>
-<h1>Creating sample code</h1>
+<h1 id="creating-sample-code">Creating sample code</h1>
 <p><strong>Estimated Time:</strong> 10 minutes</p>
 <p>Good sample code is often the best documentation. Even if your paragraphs and lists are as clear as blue water, programmers still prefer good sample code. After all, text is a different language than code, and it is code that the reader ultimately cares about. Trying to describe code with text is like trying to explain an Italian poem in English.</p>
 <p>Good samples are <strong>correct</strong> and <strong>concise</strong> code that your readers can <strong>quickly understand</strong> and <strong>easily reuse</strong> with <strong>minimal side effects</strong>.</p>
-<h2>Correct</h2>
+<h2 id="correct">Correct</h2>
 <p>Sample code should meet the following criteria:</p>
 <ul>
 <li>Build without errors.</li>
@@ -109,7 +109,7 @@
 <p>Always test your sample code. Over time, systems change and your sample code may break. Be prepared to test and maintain sample code as you would any other code.</p>
 <p>Many teams reuse their unit tests as sample programs, which is sometimes a bad idea. The primary goal of a unit test is to test; the only goal of a sample program is to educate.</p>
 <p>A <strong>snippet</strong> is a piece of a sample program, possibly only one or a few lines long. Snippet-heavy documentation often degrades over time because teams tend not to test snippets as rigorously as full sample programs.</p>
-<h3>Running sample code</h3>
+<h3 id="running-sample-code">Running sample code</h3>
 <p>Good documents explain how to run sample code. For example, your document might need to tell users to perform activities such as the following prior to running the samples:</p>
 <ul>
 <li>Install a certain library.</li>
@@ -118,9 +118,9 @@
 </ul>
 <p>Users don't always perform the preceding activities properly. In some situations, users prefer to run or (experiment with) sample code directly in the documentation. ("Click here to run this code.")</p>
 <p>Writers should consider describing the expected output or result of sample code, especially for sample code that is difficult to run.</p>
-<h2>Concise</h2>
+<h2 id="concise">Concise</h2>
 <p>Sample code should be short, including only essential components. When a novice C programmer wants to learn how to call the <code>malloc</code> function, give that programmer a brief snippet, not the entire Linux source tree. Irrelevant code can distract and confuse your audience. That said, never use bad practices to shorten your code; always prefer correctness over conciseness.</p>
-<h2>Understandable</h2>
+<h2 id="understandable">Understandable</h2>
 <p>Follow these recommendations to create clear sample code:</p>
 <ul>
 <li>Pick descriptive class, method, and variable names.</li>
@@ -128,17 +128,17 @@
 <li>Avoid deeply nested code.</li>
 <li>Optional: Use bold or colored font to draw the reader's attention to a specific section of your sample code. However, use highlighting judiciously---too much highlighting means the reader won't focus on anything in particular.</li>
 </ul>
-<h3>Exercise</h3>
+<h3 id="exercise">Exercise</h3>
 <p>Which of the following would be a more helpful line of code in a sample program? Assume that the target audience consists of software engineers new to the <code>go.so</code> API.</p>
 <ol>
 <li><code>MyLevel = go.so.Level(5, 28, 48)</code></li>
 <li><code>MyLevel = go.so.Level(rank=5, 28, 48)</code></li>
 <li><code>MyLevel = go.so.Level(rank=5, dimension=28, opacity=48)</code></li>
 </ol>
-<h4>Click the icon to see the answer.</h4>
+<h4 id="click-the-icon-to-see-the-answer">Click the icon to see the answer.</h4>
 <p>Answer <strong>3</strong> is the best choice here. Although it is tempting to keep sample code as short as possible, omitting parameter names makes it harder for novices to learn.</p>
 <hr>
-<h2>Commented</h2>
+<h2 id="commented">Commented</h2>
 <p>Consider the following recommendations about comments in sample code:</p>
 <ul>
 <li>Keep comments short, but always prefer clarity over brevity.</li>
@@ -148,28 +148,28 @@
 </ul>
 <p>Should you place descriptions of code inside code comments or in text (paragraphs or lists) outside of the sample code? Note that readers who copy-and-paste a snippet gather not only the code but also any embedded comments. So, put any descriptions that belong in the pasted code into the code comments. By contrast, when you must explain a lengthy or tricky concept, you should typically place the text before the sample program.</p>
 <p><strong>Note:</strong> If you must sacrifice production readiness in order to make the code shorter and easier to understand, explain your decisions in the comments.</p>
-<h3>Exercise</h3>
+<h3 id="exercise_1">Exercise</h3>
 <p>What problems do you see in the comments within the following snippet? Assume that the code is aimed at programmers who are new to the <code>br</code> API but who have some experience with the concept of streams:</p>
 <div class="highlight"><pre><span></span><code><span class="err">/* Create a stream from the text file at pathname /tmp/myfile. */\</span>
 <span class="err">mystream = br.openstream(pathname=&quot;/tmp/myfile&quot;, mode=&quot;z&quot;)</span>
 </code></pre></div>
 
 
-<h4>Click the icon to see the answer.</h4>
+<h4 id="click-the-icon-to-see-the-answer_1">Click the icon to see the answer.</h4>
 <p>The comments contain the following flaws:</p>
 <ul>
 <li>The comment elaborates on a fairly obvious part of the code.</li>
 <li>The snippet doesn't explain the non-obvious portion of the code. Namely, what is the <code>mode</code> parameter and what does a value of <code>z</code> mean?</li>
 </ul>
 <hr>
-<h2>Reusable</h2>
+<h2 id="reusable">Reusable</h2>
 <p>For your reader to easily reuse your sample code, provide the following:</p>
 <ul>
 <li>All information necessary to run the sample code, including any dependencies and setup.</li>
 <li>Code that can be extended or customized in useful ways.</li>
 </ul>
 <p>Having easy-to-understand sample code that's concise and compiles is a great start. If it blows up your reader's app, though, they won't be happy. Therefore, when writing sample code, consider any potential side effects caused by your code being integrated into another program. Nobody wants insecure or grossly inefficient code.</p>
-<h2>The example and the anti-example</h2>
+<h2 id="the-example-and-the-anti-example">The example and the anti-example</h2>
 <p>In addition to showing readers <em>what to do</em>, it is sometimes wise to show readers <em>what not to do</em>. For example, many programming languages permit programmers to place white space on either side of the equals sign. Now suppose that you were writing a tutorial on a language (such as bash) that does not permit white space on either side of the equals sign. In this case, showing both a good example and an anti-example will benefit the reader. For example:</p>
 <div class="highlight"><pre><span></span><code><span class="p">#</span> <span class="n">A</span> <span class="n">valid</span> <span class="k">string</span> <span class="n">assignment</span><span class="p">.</span>
 <span class="n">s</span><span class="o">=</span><span class="s">&quot;The rain in Maine.&quot;</span>
@@ -180,10 +180,10 @@
 </code></pre></div>
 
 
-<h2>Sequenced</h2>
+<h2 id="sequenced">Sequenced</h2>
 <p>A good sample code set demonstrates <strong>a range of complexity</strong>.</p>
 <p>Readers completely unfamiliar with a certain technology typically crave simple examples to get started. The first and most basic example in a sample code set is usually termed a <a href="https://wikipedia.org/wiki/%22Hello,_World!%22_program">Hello World program</a>. After mastering the basics, engineers want more complex programs. A good set of sample code provides a healthy range of simple, moderate, and complex sample programs.</p>
-<h3>Exercise</h3>
+<h3 id="exercise_2">Exercise</h3>
 <p>Which of the following would be a good set of sample functions to support a tutorial introducing newcomers to the concept of functions?</p>
 <ol>
 <li>The following set of functions:<ol>
@@ -203,10 +203,10 @@
 </ol>
 </li>
 </ol>
-<h4>Click the icon to see the answer.</h4>
+<h4 id="click-the-icon-to-see-the-answer_2">Click the icon to see the answer.</h4>
 <p>The best answer is <strong>1</strong>. Providing samples that cover a range of complexity is usually the wisest choice---particularly for newcomers. Resist the temptation to <em>rush</em> towards very complex sample programs, bypassing the beginner and intermediate sample programs that newcomers crave.</p>
 <hr>
-<h2>What's next?</h2>
+<h2 id="whats-next">What's next?</h2>
 <p>Congratulations: you've completed the pre-class work for Technical Writing Two.</p>
 <p>If the in-class portion of Technical Writing Two is available in your organization, please take it. If you'd like to facilitate the in-class portion of Technical Writing Two, see the <a href="https://developers.google.com/tech-writing/for-instructors/two/instructors-guide">facilitator's guide</a>.</p>
 <p>A quick compilation of the topics covered in Technical Writing Two is available on the <a href="https://developers.google.com/tech-writing/two/summary">Summary</a> page.</p>
