@@ -137,6 +137,9 @@
 <li><a href="#use-metrics-to-drive-process">Use metrics to drive process</a></li>
 <li><a href="#pick-the-right-metrics-to-incentivize-the-behavior-your-want">Pick the right metrics to incentivize the behavior your want</a></li>
 <li><a href="#instrument-everything-to-understand-whats-going-on">Instrument everything to understand what's going on</a></li>
+<li><a href="#internalize-useful-numbers">Internalize Useful Numbers</a></li>
+<li><a href="#be-skeptical-about-data-integrity">Be skeptical about data integrity</a></li>
+<li><a href="#key-takeaways-3">Key takeaways</a></li>
 </ol>
 </li>
 </ol>
@@ -551,6 +554,127 @@ At beginning of each week, move tasks from <strong>4</strong> into <strong>3</st
 2. are actionable, the moments can be casually explained by the team
 3. are responsive yet robust, update quickly enough to give feedback about whether a given change was positive or negative</p>
 <h3 id="instrument-everything-to-understand-whats-going-on">Instrument everything to understand what's going on</h3>
+<blockquote>
+<p>Adopting a mindset of instrumentation means ensuring we have a set of dashboards that surface key health metrics and that enable us to drill down to the relevant data. </p>
+<p>We often don't know everything that we want to measure ahead of time. Therefore, we need to build flexible tools and abstractions that make it easy to track additional metrics. </p>
+</blockquote>
+<p>Metrics and monitoring are key to identify issue early on and accurately, rather than flying blind and taking guesses when things go wrong. </p>
+<p>Some open source tools: Graphite, StatsD, InfluxDB, Ganglia, Nagios and Munin. 
+Enterprise solutions: New Relic or AppDynamics</p>
+<h3 id="internalize-useful-numbers">Internalize Useful Numbers</h3>
+<p>Basically develop a rule of thumb on some common numbers. They don't need to be accurate.  </p>
+<ol>
+<li>They are very useful to narrow down the problem. </li>
+<li>They can be used to quickly estimate performance properties of a design without actually building it</li>
+<li>They can be used to clarify both areas ans scope of improvement. (current performance vs usual performances)</li>
+</ol>
+<p>Some useful numbers to keep in mind </p>
+<table>
+<thead>
+<tr>
+<th><strong>Access Type </strong></th>
+<th><strong>Latency</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L1 cache reference</td>
+<td>0.5 ns</td>
+</tr>
+<tr>
+<td>Branch mispredict</td>
+<td>5 ns</td>
+</tr>
+<tr>
+<td>L2 cache reference</td>
+<td>7 ns</td>
+</tr>
+<tr>
+<td>Mutex lock/unlock</td>
+<td>100 ns</td>
+</tr>
+<tr>
+<td>Main memory reference</td>
+<td>100 ns</td>
+</tr>
+<tr>
+<td>Compress 1K bytes with Snappy</td>
+<td>10,000 ns = 10 us</td>
+</tr>
+<tr>
+<td>Send 2K bytes over 1Gps network</td>
+<td>20,000 ns = 20 us</td>
+</tr>
+<tr>
+<td>Read 1 MB sequentially from memory</td>
+<td>250,000 ns = 250 us</td>
+</tr>
+<tr>
+<td>Round trip within same datacenter</td>
+<td>500,000 ns 500 us</td>
+</tr>
+<tr>
+<td>Disk seek</td>
+<td>10,000,000 ns = 10 ms</td>
+</tr>
+<tr>
+<td>Read 1 MB sequentially from network</td>
+<td>10,000,000 ns = 10 ms</td>
+</tr>
+<tr>
+<td>Read 1 MB sequentially from disk</td>
+<td>30,000,000 ns = 30 ms</td>
+</tr>
+<tr>
+<td>Send packet CA -&gt; Netherlands -&gt; CA (cross continent round trip)</td>
+<td>150,000,000 ns = 150 ms</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Some other useful numbers that should be useful at hand</p>
+<ul>
+<li>the number of registered users, weekly active users, and monthly users</li>
+<li>the number of requests per second</li>
+<li>the amount and total capacity of data stored</li>
+<li>the amount of data written and accessed daily</li>
+<li>the number of servers needed to support a given service</li>
+<li>the throughput of different services or endpoints</li>
+<li>the growth rate of traffic</li>
+<li>the average page load time</li>
+<li>the distribution of traffic across different parts of a product</li>
+<li>the distribution of traffic across web browers, mobile devices, and operating system versions</li>
+</ul>
+<h3 id="be-skeptical-about-data-integrity">Be skeptical about data integrity</h3>
+<blockquote>
+<p>Bad math students - they get to the end of the problem, and they're just done. Good math students get to the end of the problem, look at their answer and say, "Does that roughly make sense?"</p>
+</blockquote>
+<p>Sanity checks:</p>
+<ul>
+<li>Compare the metric numbers with your intuition to see if they align. </li>
+<li>Try to arrive at the same data from a different direction and see if the metrics still make sense</li>
+</ul>
+<p>Metrics is hard to test and problems usually happen at system level unnoticed. 
+Some strategy to increase data interity</p>
+<ul>
+<li>log data liberally, in case it turns out to be useful later on</li>
+<li>build tools to iterate on data accuracy sooner. (real-time analytics address this issue)</li>
+<li>write end-to-end integration tests to validate your entire analytics pipeline</li>
+<li>examine collected data sooner</li>
+<li>cross-validate data accuracy by computing the same metrics in multiple ways</li>
+<li>when a number does look off, dig into it early</li>
+</ul>
+<h3 id="key-takeaways_3">Key takeaways</h3>
+<ul>
+<li>measure your progress</li>
+<li>carefully choose your top-level metric</li>
+<li>instrument your system</li>
+<li>know your numbers</li>
+<li>prioritize data integrity</li>
+</ul>
 <h1 id="appendices">Appendices</h1>
 <p>todo</p>
 <ul>
