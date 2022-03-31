@@ -153,6 +153,9 @@
 <li><a href="#improve-your-project-estimation-skills">Improve your project estimation skills</a><ol>
 <li><a href="#use-accurate-estimate-to-drive-project-planning">Use accurate estimate to drive project planning</a></li>
 <li><a href="#budget-for-the-unknown">Budget for the unknown</a></li>
+<li><a href="#define-specific-project-goals-and-measurable-milestones">Define specific project goals and measurable milestones</a></li>
+<li><a href="#reduce-risk-early">Reduce risk early</a></li>
+<li><a href="#approach-rewrite-projects-with-extreme-caution">Approach rewrite projects with extreme caution</a></li>
 </ol>
 </li>
 </ol>
@@ -777,6 +780,49 @@ Some strategy to increase data interity</p>
 <li>measure the time it took vs estimation, and learn whether we tend to under estimate or overestimate</li>
 </ul>
 <h3 id="budget-for-the-unknown">Budget for the unknown</h3>
+<p>Typical issues that we don't estimate or account for:</p>
+<ul>
+<li>developing a unit test harness for new codebase, writing our own mocking and assertion libraries for testing</li>
+<li>develop a set of style guidelines before writing so much code</li>
+<li>get interrupted by a few high-priority ondemand deals</li>
+<li>firefighting scalability problems as more user gets onboard</li>
+<li>lose an early engineer mid-project, necessitating a large amount of knowledge transfer and work redistribution</li>
+<li>organization priority change</li>
+</ul>
+<p>Distractions like them delays project in the long term.</p>
+<p>Separate estimated work time from calendar time. A month of estimated work takes longer than one calendar month to complete. </p>
+<p>When setting schedules, build in buffer time for the unexpected interruptions. </p>
+<h3 id="define-specific-project-goals-and-measurable-milestones">Define specific project goals and measurable milestones</h3>
+<blockquote>
+<p>What frequently causes a project tos lip is a fuzzy understanding of what constitutes success
+Define specific goals for a project based on the problem you're working to solve, and then use milestones to measure progress on those goals</p>
+</blockquote>
+<p>A well-defined goals has 2 concrete benefits</p>
+<ul>
+<li>provides an important filter for separating the must-haves from the nice-to-haves in the task list. it helps defined against feature creep. </li>
+<li>build clarity and alignment across key stakeholders</li>
+<li>helps team members be more accountable for local tradeoffs that might hurt global goals, eg. adding more test coverage. Is this necessary for us to deliver the project? can it be done afterwards?</li>
+</ul>
+<p>Set milestones along the project. They act as checkpoints for evaluating the progress of a project and as channels for communicating the team's progress to the rest of the organization. </p>
+<blockquote>
+<p>If we fall behind, they provides opportunities to revise our plan, either by extending the deadline or by cutting tasks. </p>
+</blockquote>
+<h3 id="reduce-risk-early">Reduce risk early</h3>
+<blockquote>
+<p>Effectively executing on a project means minimizing the risk that a deadline might slip and surfacing unexpected issues as early as possible. </p>
+</blockquote>
+<p>Tackling the riskiest areas first helps us identify any estimation errors associated with them. It's better to find them out earlier and plan accordingly than later.</p>
+<blockquote>
+<p>The goal from beginning of project planning should be to maximize learning and minimize risk. </p>
+</blockquote>
+<p>Another risk is system integration towards end of project, which always takes longer than planned. One effective strategy is to build end-to-end scafolding and do system testing earlier. </p>
+<p>A few benefits</p>
+<ul>
+<li>force you to think more about the necessary glue between systems, which can help redefine the integration estimates</li>
+<li>if something breaks the end-to-end system during development, you can fix it along the way, rather than scrambling to tackle it at the end</li>
+<li>amortizes the cost of integration throughout the development process. It helps build a stronger awareness of how much integration work is actually left</li>
+</ul>
+<h3 id="approach-rewrite-projects-with-extreme-caution">Approach rewrite projects with extreme caution</h3>
 <h1 id="appendices">Appendices</h1>
 <p>todo</p>
 <ul>
