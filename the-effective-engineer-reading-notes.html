@@ -163,7 +163,12 @@
 </ol>
 </li>
 <li><a href="#part-3-build-long-term-value">Part 3: build long-term value</a><ol>
-<li><a href="#balance-quality-with-pragmatism">Balance quality with pragmatism</a></li>
+<li><a href="#balance-quality-with-pragmatism">Balance quality with pragmatism</a><ol>
+<li><a href="#establish-a-sustainable-code-review-process">Establish a sustainable code review process</a></li>
+<li><a href="#manage-complexity-through-abstraction">Manage complexity through abstraction</a></li>
+<li><a href="#automate-testing">Automate testing</a></li>
+</ol>
+</li>
 </ol>
 </li>
 <li><a href="#appendices">Appendices</a></li>
@@ -871,6 +876,46 @@ Define specific goals for a project based on the problem you're working to solve
 </ul>
 <h1 id="part-3-build-long-term-value">Part 3: build long-term value</h1>
 <h2 id="balance-quality-with-pragmatism">Balance quality with pragmatism</h2>
+<p>A trade off between high quality vs move fast, deliver and react to changes. </p>
+<h3 id="establish-a-sustainable-code-review-process">Establish a sustainable code review process</h3>
+<p>the benefits of code reviews</p>
+<ul>
+<li>catching bugs or design shortcomings early</li>
+<li>increasing accountability for code changes</li>
+<li>positive modeling of how to write good code</li>
+<li>sharing working knowledge of the codebase</li>
+<li>increasing long-term agility</li>
+</ul>
+<p>Code review is not binary. Think of as being on continuum. We might want to focus review on</p>
+<ol>
+<li>core code of the system</li>
+<li>new hires to make sure they are meeting our coding standards</li>
+</ol>
+<h3 id="manage-complexity-through-abstraction">Manage complexity through abstraction</h3>
+<p>right abstraction increase engineering productivity</p>
+<ul>
+<li>reduces the complexity of the original problem into easier-to-understand primitives</li>
+<li>reduces future application maintenance and makes it easier to apply future improvements</li>
+<li>solves the hard problems once and enables the solutions to be used multiple times</li>
+</ul>
+<p>Abstraction trade offs, time saved by abstraction for future engineers needs to outweigh the time invested. Focus on core functions that the team heavily relies on, such as logging, authentication etc. </p>
+<p>Good abstractions should be</p>
+<ul>
+<li>easy to learn</li>
+<li>easy to use even without documentation</li>
+<li>hard to misuse</li>
+<li>sufficiently powerful to satisfy requirements</li>
+<li>easy to extend</li>
+<li>appropriate to the audience</li>
+</ul>
+<p>Designing good abstractions take work, study other good ones to learn</p>
+<ul>
+<li>find popular abstractions in your codebase at work or from public repositories</li>
+<li>look through the open source projects at big tech. Learn why abstractions like Protocol Buffers, Thrift, Hive, and MapReduce have been indispensible to their growth</li>
+<li>Study the interfaces of popular APIs developed by Parse, Strip, Dropbox, Facebook, and Amazon Web Services. </li>
+<li>Also reflect on APIs that you or the rest of the community don't like and understand why</li>
+</ul>
+<h3 id="automate-testing">Automate testing</h3>
 <h1 id="appendices">Appendices</h1>
 <p>todo</p>
 <ul>
