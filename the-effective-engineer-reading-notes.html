@@ -167,6 +167,15 @@
 <li><a href="#establish-a-sustainable-code-review-process">Establish a sustainable code review process</a></li>
 <li><a href="#manage-complexity-through-abstraction">Manage complexity through abstraction</a></li>
 <li><a href="#automate-testing">Automate testing</a></li>
+<li><a href="#repay-technical-debt">Repay technical debt</a></li>
+<li><a href="#key-takeaways-6">Key takeaways</a></li>
+</ol>
+</li>
+<li><a href="#minimize-operational-burden">Minimize operational burden</a><ol>
+<li><a href="#embrace-operational-simplicity">Embrace operational simplicity</a></li>
+<li><a href="#build-systems-to-fail-fast">Build systems to fail fast</a></li>
+<li><a href="#relentlessly-automate-mechanical-tasks">Relentlessly automate mechanical tasks</a></li>
+<li><a href="#make-batch-process-idempotent">Make batch process idempotent</a></li>
 </ol>
 </li>
 </ol>
@@ -177,13 +186,13 @@
 <blockquote>
 <p>Instead of trying to solve impossible problems, he would more often challenge the assumptions so we could simply work around then. "How should we do this?" -&gt; "Why do we need to do it at all?"</p>
 </blockquote>
-<p>Ask questions often before take actions. This can help us avoid unnecessary tasks/work. </p>
+<p>Ask questions often before take actions. This can help us avoid unnecessary tasks/work.</p>
 <h1 id="introduction">Introduction</h1>
 <blockquote>
-<p>To be effective engineers, we need to be able to identify which activities produce more impact with smaller time investments. Not all work is created equal, not all efforts translate into impact. </p>
-<p>An effective engineer, therefore, is defined by the rate at which he or she produces value per unit of time worked. </p>
+<p>To be effective engineers, we need to be able to identify which activities produce more impact with smaller time investments. Not all work is created equal, not all efforts translate into impact.</p>
+<p>An effective engineer, therefore, is defined by the rate at which he or she produces value per unit of time worked.</p>
 </blockquote>
-<p>A prime example is over engineering. There is no need to build something that can support millions of users when only a handful of people will use it. </p>
+<p>A prime example is over engineering. There is no need to build something that can support millions of users when only a handful of people will use it.</p>
 <blockquote>
 <p>a useful framework, leverage, for analyzing the effectiveness of different activities</p>
 </blockquote>
@@ -191,14 +200,14 @@
 <h2 id="focus-on-high-leverage-activities">Focus on high-leverage activities</h2>
 <p><span class="math">\(Leverage = Impact Produced / Time Invested\)</span></p>
 <blockquote>
-<p>Pareto principle (80-20 rule). For many activities, 80% of the impact comes from 20% of the work. That 20% comprises the high leverage activities, activities that produce a disproportionately high impact for a relatively small time investment. </p>
-<p>Investing in programs to ramp up new engineers as quickly and as seamlessly as possible was one of the highest-leverage activities that we could have done. </p>
+<p>Pareto principle (80-20 rule). For many activities, 80% of the impact comes from 20% of the work. That 20% comprises the high leverage activities, activities that produce a disproportionately high impact for a relatively small time investment.</p>
+<p>Investing in programs to ramp up new engineers as quickly and as seamlessly as possible was one of the highest-leverage activities that we could have done.</p>
 </blockquote>
-<p>Have a place to organize your tricks and lesson learned. Invest time to write up wiki how a software is designed at high level. </p>
-<p>Debugging is important and allows new engineers to step through the code and understand it's execution. And more importantly, it helps them to find root cause of problems on their own. </p>
-<p>There are 2 ways to provide instructions for debugging. A text based wiki page with command and code examples, or a video recording. </p>
+<p>Have a place to organize your tricks and lesson learned. Invest time to write up wiki how a software is designed at high level.</p>
+<p>Debugging is important and allows new engineers to step through the code and understand it's execution. And more importantly, it helps them to find root cause of problems on their own.</p>
+<p>There are 2 ways to provide instructions for debugging. A text based wiki page with command and code examples, or a video recording.</p>
 <h3 id="increase-leverage-in-3-ways">Increase leverage in 3 ways</h3>
-<p>Leverage can only be increased in three different ways. </p>
+<p>Leverage can only be increased in three different ways.</p>
 <blockquote>
 <ol>
 <li>By reducing the time it takes to complete a certain activity</li>
@@ -219,56 +228,58 @@
 <ol>
 <li>
 <p>How can I complete this activity in a shorter amount of time?
-Defaulting to a half hour meeting in stead of a 1-hour meeting to get the same amount done in less time. </p>
+Defaulting to a half hour meeting in stead of a 1-hour meeting to get the same amount done in less time.</p>
 </li>
 <li>
 <p>How can I increase the value produced by this activity?
-    Prepare an agenda and a set of goals for the meeting and circulating them to attendees beforehand so that the meeting is focused and more productive. </p>
+    Prepare an agenda and a set of goals for the meeting and circulating them to attendees beforehand so that the meeting is focused and more productive.</p>
 </li>
 <li>Is there something else that I could spend my time on that would produce more value?
-    If an in-person discussion isn't necessary, replacing the meeting with an email discussion and spending the time building an important feature instead. </li>
+    If an in-person discussion isn't necessary, replacing the meeting with an email discussion and spending the time building an important feature instead.</li>
 </ol>
-<p>When you successfully 
-1. shorten the time required for an activity
-2. increase its impact
-3. shift to a higher-leverage activity</p>
-<p>You become a more effective engineer. </p>
+<p>When you successfully</p>
+<ol>
+<li>shorten the time required for an activity</li>
+<li>increase its impact</li>
+<li>shift to a higher-leverage activity</li>
+</ol>
+<p>You become a more effective engineer.</p>
 <h3 id="direct-energy-towards-leverage-points-not-just-easy-wins">Direct energy towards leverage points, not just easy wins</h3>
-<p>Don't confuse high-leverage activities with easy wins. </p>
+<p>Don't confuse high-leverage activities with easy wins.</p>
 <blockquote>
-<p>Just as a lever lets you apply a small amount of force over a long distance to generate a much larger force, so too do many high-leverage activities requires consistent applications of effort over long time periods to achieve high impact. </p>
+<p>Just as a lever lets you apply a small amount of force over a long distance to generate a much larger force, so too do many high-leverage activities requires consistent applications of effort over long time periods to achieve high impact.</p>
 </blockquote>
 <h3 id="key-takeaways">Key takeaways</h3>
 <ul>
-<li><strong>User leverage to measure your engineering effectiveness.</strong> focus on what generates the highest return on investment for your time spent. </li>
-<li><strong>System magically increase the leverage of your time.</strong> Find ways to get an activity done more quickly, to increase the impact of an activity, or to shift to activities with higher leverage. 
--<strong>Focus your effort on leverage points.</strong> Time is your most limited asset. Identify the habits that produce disproportionately high impact for the time you invest. </li>
+<li><strong>User leverage to measure your engineering effectiveness.</strong> focus on what generates the highest return on investment for your time spent.</li>
+<li><strong>System magically increase the leverage of your time.</strong> Find ways to get an activity done more quickly, to increase the impact of an activity, or to shift to activities with higher leverage.
+-<strong>Focus your effort on leverage points.</strong> Time is your most limited asset. Identify the habits that produce disproportionately high impact for the time you invest.</li>
 </ul>
 <h2 id="optimize-for-learning">Optimize for learning</h2>
 <h3 id="adopt-a-growth-mindset">Adopt a growth mindset</h3>
 <blockquote>
-<p>How we view our own effectiveness impacts how much effort we invest in improving it. </p>
-<p>People with a <em>fixed mindset</em> believe that "human qualities are carved in stone" and they're born with a predetermined amount of intelligence. 
+<p>How we view our own effectiveness impacts how much effort we invest in improving it.</p>
+<p>People with a <em>fixed mindset</em> believe that "human qualities are carved in stone" and they're born with a predetermined amount of intelligence.
 People with a <em>growth mindset</em> believe that they can cultivate and grow their intelligence and skills through effort.</p>
-<p>They may initially lack aptitude in certain ares, but they view challenges and failures as opportunities to learn. These mind set influences whether people take advantage of opportunities to improve their skills. </p>
+<p>They may initially lack aptitude in certain ares, but they view challenges and failures as opportunities to learn. These mind set influences whether people take advantage of opportunities to improve their skills.</p>
 </blockquote>
-<p>It's like leveling up in a games. These challenges and difficulties help you to gain experience in life. And you level up from them. </p>
+<p>It's like leveling up in a games. These challenges and difficulties help you to gain experience in life. And you level up from them.</p>
 <blockquote>
-<p>A growth mindset means accepting responsibilities for each aspect of a situation that you can change - anything from improving your conversational skills to mastering a new engineering focus - rather than blaming failures and shortcomings on things outside your control. It means taking control of your own story. </p>
+<p>A growth mindset means accepting responsibilities for each aspect of a situation that you can change - anything from improving your conversational skills to mastering a new engineering focus - rather than blaming failures and shortcomings on things outside your control. It means taking control of your own story.</p>
 </blockquote>
 <h3 id="invest-in-your-rate-of-learning">Invest in your rate of learning</h3>
-<p>Compounding leads to exponential growth. </p>
+<p>Compounding leads to exponential growth.</p>
 <blockquote>
 <ol>
 <li>Learning follows an exponential growth</li>
 <li>The earlier that you optimize for learning, the more time your learning has to compound</li>
-<li>Due to compounding, even small deltas in your own learning rate make a big difference over the long time. </li>
+<li>Due to compounding, even small deltas in your own learning rate make a big difference over the long time.</li>
 </ol>
 </blockquote>
 <p>About easy daily jobs</p>
 <blockquote>
-<p>When companies pay you for cushy and challenging 9-to-5 jobs, what they are actually doing is paying you to accept a much lower intellectual growth rate. 
-When you realize that intelligence is compounding, the cost of that missing long-term compounding is enormous. You get complacent and stall. </p>
+<p>When companies pay you for cushy and challenging 9-to-5 jobs, what they are actually doing is paying you to accept a much lower intellectual growth rate.
+When you realize that intelligence is compounding, the cost of that missing long-term compounding is enormous. You get complacent and stall.</p>
 </blockquote>
 <p>Ever feel boring and you are wasting your life at a boring/safe company. That's exactly this. and your brain is warning you.</p>
 <h3 id="seek-work-environments-conducive-to-learning">Seek work environments conducive to learning</h3>
@@ -284,7 +295,7 @@ When you realize that intelligence is compounding, the cost of that missing long
 </ol>
 </li>
 <li>Training<ol>
-<li>does new member have formal mentorship? </li>
+<li>does new member have formal mentorship?</li>
 <li>what does the company do to ensure team members continue to learn and grow</li>
 </ol>
 </li>
@@ -315,9 +326,9 @@ When you realize that intelligence is compounding, the cost of that missing long
 </li>
 </ol>
 <h3 id="dedicate-time-on-the-jobs-to-develop-new-skills">Dedicate time on the jobs to develop new skills</h3>
-<p>20% time from google: dedicate 30 min or 1 hour everyday to invest into your own growth. Make investments to make you more effective in the long run. </p>
+<p>20% time from google: dedicate 30 min or 1 hour everyday to invest into your own growth. Make investments to make you more effective in the long run.</p>
 <ul>
-<li>Develop a deeper understanding of ares you're already working on. </li>
+<li>Develop a deeper understanding of ares you're already working on.</li>
 <li>Attend training sessions (or adhoc training videos)</li>
 <li>Read other team's design docs</li>
 <li>Implement scripts to help your daily work</li>
@@ -336,13 +347,13 @@ When you realize that intelligence is compounding, the cost of that missing long
 <li>Enroll in classes on areas where you want to improve</li>
 <li>Participate in design discussion of projects you're interested in. (Don't wait for an invitation, ask for it)</li>
 <li>Work on a diversity of projects</li>
-<li>Make sure you're on a team with at least a few senior engineers whom you can learn from. </li>
-<li>Jump fearlessly into code you don't know. </li>
+<li>Make sure you're on a team with at least a few senior engineers whom you can learn from.</li>
+<li>Jump fearlessly into code you don't know.</li>
 </ul>
 <h3 id="always-be-learning">Always be learning</h3>
 <blockquote>
 <p>How can I improve? How could I have done this better? What should I learn next to best prepare me for the future?
-Continual learning is inextricably linked with increased happiness. </p>
+Continual learning is inextricably linked with increased happiness.</p>
 </blockquote>
 <p>10 starting points to help inspire a habit of learning outside of the workplace:</p>
 <ul>
@@ -372,31 +383,31 @@ Continual learning is inextricably linked with increased happiness. </p>
 </blockquote>
 <p>Don't try to rank all items in the list with a priority value. There are 2 reasons</p>
 <ol>
-<li>We don't have perfect information at time of evaluation. These evaluations will be off. </li>
-<li>As we start evaluating, there will be new information available and new tasks added. This will invalidate our previous evaluation and we need to fix them. This will never end the evaluation. </li>
+<li>We don't have perfect information at time of evaluation. These evaluations will be off.</li>
+<li>As we start evaluating, there will be new information available and new tasks added. This will invalidate our previous evaluation and we need to fix them. This will never end the evaluation.</li>
 </ol>
-<p>The <strong>proper</strong> way to prioritize is to compare what you are doing right now vs other items in the list. and ask yourself this question, <em>Is there something else I could be doing that's higher leverage?</em>. If not, continue on your current path. If yes, it's time to rethink what you're doing. </p>
+<p>The <strong>proper</strong> way to prioritize is to compare what you are doing right now vs other items in the list. and ask yourself this question, <em>Is there something else I could be doing that's higher leverage?</em>. If not, continue on your current path. If yes, it's time to rethink what you're doing.</p>
 <blockquote>
-<p>The goa isn't to establish a total ordering of all your priorities, since any ordering you make will be based on imperfect information; instead, it's to continuously shift your top priorities toward the ones with the highest leverage, given the information you have. </p>
+<p>The goa isn't to establish a total ordering of all your priorities, since any ordering you make will be based on imperfect information; instead, it's to continuously shift your top priorities toward the ones with the highest leverage, given the information you have.</p>
 </blockquote>
 <p>So how do you determine if something else has higher leverage than what you're doing?</p>
 <h3 id="focus-on-what-directly-produces-value">Focus on what directly produces value</h3>
-<p>At end of the day, what matters is how much value you've created. </p>
+<p>At end of the day, what matters is how much value you've created.</p>
 <blockquote>
-<p>Focus on tasks that directly bring a product closer to launch; that directs increase the number of users, customers or sales; or that directly impact the core business metrics your team is responsible for. 
-When you get the important things right, the small things often don't matter. </p>
+<p>Focus on tasks that directly bring a product closer to launch; that directs increase the number of users, customers or sales; or that directly impact the core business metrics your team is responsible for.
+When you get the important things right, the small things often don't matter.</p>
 </blockquote>
 <p>Would you spend time to save $1 on grocery shopping vs searching for cheaper plane tickets and saving a few hundred dollars on your next trip?</p>
 <blockquote>
-<p>Prioritize the ones that produce the most value with the least amount of effort. </p>
-<p>The corollary to focusing on the activities that directly produce value is to defer and ignore the ones that don't. </p>
+<p>Prioritize the ones that produce the most value with the least amount of effort.</p>
+<p>The corollary to focusing on the activities that directly produce value is to defer and ignore the ones that don't.</p>
 </blockquote>
-<p>Learn to say know when co-worker schedules you for an unnecessary meeting, a manager assigns you a small bug. Explain how these things will detract from your other tasks and explain why the other tasks have higher priority. </p>
+<p>Learn to say know when co-worker schedules you for an unnecessary meeting, a manager assigns you a small bug. Explain how these things will detract from your other tasks and explain why the other tasks have higher priority.</p>
 <blockquote>
-<p>Don't try to get everything done. Focus on what matters-and what matters is what produces value. </p>
+<p>Don't try to get everything done. Focus on what matters-and what matters is what produces value.</p>
 </blockquote>
 <h3 id="focus-on-the-important-and-non-urgent">Focus on the important and non-urgent</h3>
-<p>Urgent doesn't mean important. </p>
+<p>Urgent doesn't mean important.</p>
 <p>Partitioning of activities based on urgency and importance</p>
 <table>
 <thead>
@@ -429,29 +440,29 @@ When you get the important things right, the small things often don't matter. </
 </tr>
 </tbody>
 </table>
-<p>Items in Quadrant 2 are very important to scale in the long term but always ignored. Because they usually don't have a deadline and there is no urgency. </p>
+<p>Items in Quadrant 2 are very important to scale in the long term but always ignored. Because they usually don't have a deadline and there is no urgency.</p>
 <p>A good practice:</p>
 <ol>
 <li>When add items to your todo list, assign them a Quadrant number</li>
 <li>De-prioritize Quadrant 3 and 4 activities that aren't important</li>
-<li>Be wary of spending too much time on Quadrant 1. They usually means under investment in Quadrant 2. </li>
+<li>Be wary of spending too much time on Quadrant 1. They usually means under investment in Quadrant 2.</li>
 </ol>
 <h3 id="protect-your-makers-schedule">Protect Your Maker's Schedule</h3>
 <ol>
 <li>Protect your focused time</li>
-<li>Book meetings back to back </li>
+<li>Book meetings back to back</li>
 <li>Block hours off on your calendar</li>
 </ol>
 <h3 id="limit-the-amount-of-work-in-progress">Limit the amount of work in progress</h3>
 <blockquote>
-<p>There is a limit to how many thing we can work on at once. "The closer you get to reaching your capacity, the more stress taxes your brain's resources and impacts your performance. </p>
+<p>There is a limit to how many thing we can work on at once. "The closer you get to reaching your capacity, the more stress taxes your brain's resources and impacts your performance.</p>
 </blockquote>
 <h3 id="first-procrastination-with-if-then-plans">First procrastination with if-then plans</h3>
 <blockquote>
-<p><em>if-then</em> plan, in which we identify ahead of time a situation where we plan to do a certain task. Possible scenarios could be "if it's after my 3 pm meeting, then I'll investigate this long-standing bug". </p>
+<p><em>if-then</em> plan, in which we identify ahead of time a situation where we plan to do a certain task. Possible scenarios could be "if it's after my 3 pm meeting, then I'll investigate this long-standing bug".</p>
 </blockquote>
 <p>It doesn't have to be a specific time. It could also be when I have 20 mins free time, I will do xxx - maintain a list of tasks that can be finished within 20 mins, and that don't require a big chunk of uninterrupted time</p>
-<p>For example, </p>
+<p>For example,</p>
 <ol>
 <li>finishing a code review</li>
 <li>writing interview feedback</li>
@@ -459,7 +470,7 @@ When you get the important things right, the small things often don't matter. </
 <li>investigating a small bug</li>
 <li>writing an isolated unit test</li>
 </ol>
-<p>Here are some thoughts on approaching this, we can break down our TODO list into these sections. </p>
+<p>Here are some thoughts on approaching this, we can break down our TODO list into these sections.</p>
 <ol>
 <li>Today's item<ol>
 <li>todo<ol>
@@ -474,36 +485,36 @@ When you get the important things right, the small things often don't matter. </
 <li>This week's tasks</li>
 <li>Quadrant tasks 1 - 4 (backlog)</li>
 </ol>
-<p>At beginning of each day, we can move items from <strong>3</strong> into <strong>1</strong> and <strong>2</strong>. 
-At beginning of each week, move tasks from <strong>4</strong> into <strong>3</strong>. </p>
-<p>Each day, make a copy of the file and name it today's date. </p>
+<p>At beginning of each day, we can move items from <strong>3</strong> into <strong>1</strong> and <strong>2</strong>.
+At beginning of each week, move tasks from <strong>4</strong> into <strong>3</strong>.</p>
+<p>Each day, make a copy of the file and name it today's date.</p>
 <h3 id="make-a-routine-of-prioritization">Make a routine of prioritization</h3>
-<p>Being agile and re-prioritize as needed. Experiment to find out a good workflow. Eg. spend first 15 min in the morning to plan today's tasks, or using 25-min pomodoros. </p>
+<p>Being agile and re-prioritize as needed. Experiment to find out a good workflow. Eg. spend first 15 min in the morning to plan today's tasks, or using 25-min pomodoros.</p>
 <h1 id="part-2-execute-execute-execute">Part 2: Execute, Execute, Execute</h1>
 <h2 id="invest-in-iteration-speed">Invest in iteration speed</h2>
 <p>We can build more and learn faster.</p>
 <h3 id="move-fast-to-learn-fast">Move fast to learn fast</h3>
 <blockquote>
-<p>If you never break anything, you're probably not moving fast enough. </p>
-<p>because learning compounds, the sooner you accelearate your iteration speed, the faster your learning rate will be. </p>
+<p>If you never break anything, you're probably not moving fast enough.</p>
+<p>because learning compounds, the sooner you accelearate your iteration speed, the faster your learning rate will be.</p>
 </blockquote>
 <h3 id="invest-in-time-saving-tools">Invest in time saving tools</h3>
 <blockquote>
-<p>A very good indicator of uture success is if the first thing someone did on a problem was to write a tool. </p>
+<p>A very good indicator of uture success is if the first thing someone did on a problem was to write a tool.</p>
 </blockquote>
-<p>Time-saving tools pay off large dividends. </p>
-<p>Faster tools also get used more often, and they also enables new workflows that aren't possible without these tools. The positive effects compound. </p>
+<p>Time-saving tools pay off large dividends.</p>
+<p>Faster tools also get used more often, and they also enables new workflows that aren't possible without these tools. The positive effects compound.</p>
 <blockquote>
-<p>It's not sufficient to find or build a time-saving tool. To maximize its benefits, you also need to increase its adoption across your team. The best way to accomplish that is by proving that the tool actually saves time. </p>
+<p>It's not sufficient to find or build a time-saving tool. To maximize its benefits, you also need to increase its adoption across your team. The best way to accomplish that is by proving that the tool actually saves time.</p>
 </blockquote>
-<p>Sometimes, it will be costly for others to pick up the new tool because they need to learn it. In these cases, it's worth to invest in additional effort to lower the switching cost and make it easier for others to use. </p>
-<p>Proving to people that your tools saves time can also earn your leeway with your manager and your peers to explore ideas in the future. </p>
-<p>Start small, iterate and demonstrate its value. </p>
+<p>Sometimes, it will be costly for others to pick up the new tool because they need to learn it. In these cases, it's worth to invest in additional effort to lower the switching cost and make it easier for others to use.</p>
+<p>Proving to people that your tools saves time can also earn your leeway with your manager and your peers to explore ideas in the future.</p>
+<p>Start small, iterate and demonstrate its value.</p>
 <h3 id="shorten-your-debugging-and-validation-loops">Shorten your debugging and validation loops</h3>
 <blockquote>
-<p>WHen you're already using a workflow that works, albeit with a few extra steps, it's easy to get complacent and not expend the mental cycles on devising a shorter one. Don't fall into this trap! The extra investment in setting up a minimal debugging workflow can help you fix an annoying bug sooner and with less headache. </p>
+<p>WHen you're already using a workflow that works, albeit with a few extra steps, it's easy to get complacent and not expend the mental cycles on devising a shorter one. Don't fall into this trap! The extra investment in setting up a minimal debugging workflow can help you fix an annoying bug sooner and with less headache.</p>
 </blockquote>
-<p>When you find yourself repeated going through the same motions when you're fixing a bug or iterating on a feature, pause. Take a moment to think whether you can tighten that testing loop. it could save you time in the long run. </p>
+<p>When you find yourself repeated going through the same motions when you're fixing a bug or iterating on a feature, pause. Take a moment to think whether you can tighten that testing loop. it could save you time in the long run.</p>
 <h3 id="master-your-programming-environment">Master your programming environment</h3>
 <p>Some areas to master</p>
 <ul>
@@ -530,7 +541,7 @@ At beginning of each week, move tasks from <strong>4</strong> into <strong>3</st
 <li>navigating to a specific place within a file</li>
 </ul>
 <h3 id="dont-ignore-your-non-engineering-bottlenecks">Don't ignore your non-engineering bottlenecks</h3>
-<p>Misalignment of priorities among teams. The sooner you acknowledge that you need to personally address this bottleneck, the more likely you'll be able to either adapt your goals or establish consensus on the functionality's priority. </p>
+<p>Misalignment of priorities among teams. The sooner you acknowledge that you need to personally address this bottleneck, the more likely you'll be able to either adapt your goals or establish consensus on the functionality's priority.</p>
 <ul>
 <li>ask for updates and commitments from team members at meetings or daily standups</li>
 <li>periodically check in with that product manager to make sure what you need hasn't gotten dropped</li>
@@ -539,18 +550,18 @@ At beginning of each week, move tasks from <strong>4</strong> into <strong>3</st
 <blockquote>
 <p>Projects fail from under-communicating, not over-communicating</p>
 </blockquote>
-<p>Obtaining approval from key decision maker, typically an executive at the company. There are usually less frequent communication channels. Best we can do is to work around them. Focus on securing buy-in as soon as possible. Organize reoccurring/weekly meetings to solicit early and frequent feedback. </p>
+<p>Obtaining approval from key decision maker, typically an executive at the company. There are usually less frequent communication channels. Best we can do is to work around them. Focus on securing buy-in as soon as possible. Organize reoccurring/weekly meetings to solicit early and frequent feedback.</p>
 <blockquote>
-<p>Don't wait till after you've invested massive amounts of engineering time to seek final project approval. </p>
+<p>Don't wait till after you've invested massive amounts of engineering time to seek final project approval.</p>
 </blockquote>
 <ul>
 <li>prioritize bulding prototypes, collecting early data, conducting user studies</li>
 <li>explicitly ask the decision makers what they care about the most</li>
-<li>if meeting with decision makers isn't possible, talk with the product mangers, designers or other leaders who have worked closely with them and who might be able to provide insight into their thought process. </li>
+<li>if meeting with decision makers isn't possible, talk with the product mangers, designers or other leaders who have worked closely with them and who might be able to provide insight into their thought process.</li>
 </ul>
-<p>Cross team review process. (quality assurance review, scalability or reliability review, security review etc). Start early and iterate. </p>
+<p>Cross team review process. (quality assurance review, scalability or reliability review, security review etc). Start early and iterate.</p>
 <blockquote>
-<p>Premature optimization is the root of all evil. </p>
+<p>Premature optimization is the root of all evil.</p>
 </blockquote>
 <h3 id="key-takeaways_2">Key Takeaways</h3>
 <ul>
@@ -563,7 +574,7 @@ At beginning of each week, move tasks from <strong>4</strong> into <strong>3</st
 <h2 id="measure-what-you-want-to-improve">Measure what you want to improve</h2>
 <h3 id="use-metrics-to-drive-process">Use metrics to drive process</h3>
 <blockquote>
-<p>If you can't measure it, you can't improve it. </p>
+<p>If you can't measure it, you can't improve it.</p>
 </blockquote>
 <p>Good metrics</p>
 <ul>
@@ -576,30 +587,32 @@ At beginning of each week, move tasks from <strong>4</strong> into <strong>3</st
 <blockquote>
 <p>The metric you choose influences your decisions and behavior</p>
 </blockquote>
-<p>Choose metrics that are
-1. maximize impact
-2. are actionable, the moments can be casually explained by the team
-3. are responsive yet robust, update quickly enough to give feedback about whether a given change was positive or negative</p>
+<p>Choose metrics that are</p>
+<ol>
+<li>maximize impact</li>
+<li>are actionable, the moments can be casually explained by the team</li>
+<li>are responsive yet robust, update quickly enough to give feedback about whether a given change was positive or negative</li>
+</ol>
 <h3 id="instrument-everything-to-understand-whats-going-on">Instrument everything to understand what's going on</h3>
 <blockquote>
-<p>Adopting a mindset of instrumentation means ensuring we have a set of dashboards that surface key health metrics and that enable us to drill down to the relevant data. </p>
-<p>We often don't know everything that we want to measure ahead of time. Therefore, we need to build flexible tools and abstractions that make it easy to track additional metrics. </p>
+<p>Adopting a mindset of instrumentation means ensuring we have a set of dashboards that surface key health metrics and that enable us to drill down to the relevant data.</p>
+<p>We often don't know everything that we want to measure ahead of time. Therefore, we need to build flexible tools and abstractions that make it easy to track additional metrics.</p>
 </blockquote>
-<p>Metrics and monitoring are key to identify issue early on and accurately, rather than flying blind and taking guesses when things go wrong. </p>
-<p>Some open source tools: Graphite, StatsD, InfluxDB, Ganglia, Nagios and Munin. 
+<p>Metrics and monitoring are key to identify issue early on and accurately, rather than flying blind and taking guesses when things go wrong.</p>
+<p>Some open source tools: Graphite, StatsD, InfluxDB, Ganglia, Nagios and Munin.
 Enterprise solutions: New Relic or AppDynamics</p>
 <h3 id="internalize-useful-numbers">Internalize Useful Numbers</h3>
 <p>Basically develop a rule of thumb on some common numbers. They don't need to be accurate.  </p>
 <ol>
-<li>They are very useful to narrow down the problem. </li>
+<li>They are very useful to narrow down the problem.</li>
 <li>They can be used to quickly estimate performance properties of a design without actually building it</li>
 <li>They can be used to clarify both areas ans scope of improvement. (current performance vs usual performances)</li>
 </ol>
-<p>Some useful numbers to keep in mind </p>
+<p>Some useful numbers to keep in mind</p>
 <table>
 <thead>
 <tr>
-<th><strong>Access Type </strong></th>
+<th><strong>Access Type</strong></th>
 <th><strong>Latency</strong></th>
 </tr>
 </thead>
@@ -681,10 +694,10 @@ Enterprise solutions: New Relic or AppDynamics</p>
 </blockquote>
 <p>Sanity checks:</p>
 <ul>
-<li>Compare the metric numbers with your intuition to see if they align. </li>
+<li>Compare the metric numbers with your intuition to see if they align.</li>
 <li>Try to arrive at the same data from a different direction and see if the metrics still make sense</li>
 </ul>
-<p>Metrics is hard to test and problems usually happen at system level unnoticed. 
+<p>Metrics is hard to test and problems usually happen at system level unnoticed.
 Some strategy to increase data interity</p>
 <ul>
 <li>log data liberally, in case it turns out to be useful later on</li>
@@ -704,12 +717,12 @@ Some strategy to increase data interity</p>
 </ul>
 <h2 id="validate-your-ideas-early-and-often">Validate your ideas early and often</h2>
 <blockquote>
-<p>Understanding what customers actually want early and then iterating on that feedback. </p>
+<p>Understanding what customers actually want early and then iterating on that feedback.</p>
 </blockquote>
 <h3 id="find-low-effort-ways-to-validate-your-work">Find low-effort ways to validate your work</h3>
-<p>Invest a small amount of work to gather data to validate your project assumptions and goals. In the long run, you'll save yourself a lot of wasted effort. </p>
+<p>Invest a small amount of work to gather data to validate your project assumptions and goals. In the long run, you'll save yourself a lot of wasted effort.</p>
 <h3 id="continuously-validate-product-changes-with-ab-testing">Continuously validate product changes with A/B testing</h3>
-<p>A/B testing enables us to </p>
+<p>A/B testing enables us to</p>
 <ul>
 <li>validate our product ideas</li>
 <li>transform an otherwise-baffling black box of user data into understandable and actionable knowledge</li>
@@ -742,10 +755,10 @@ Some strategy to increase data interity</p>
 <li>If possible, structure ongoing projects so that there is some shared context with your team mates</li>
 <li>Solicit buy-in for controversial features before investing too much time</li>
 </ul>
-<p>The goal is to overcome the friction of collecting feedback when you're working alone so that you can validate your ideas earlier and more often. </p>
+<p>The goal is to overcome the friction of collecting feedback when you're working alone so that you can validate your ideas earlier and more often.</p>
 <h3 id="build-feedback-loops-for-your-decisions">Build feedback loops for your decisions</h3>
 <blockquote>
-<p>Validation means formulating a hypothesis about what might work, designing an experiment to test it, understanding what good and bad outcomes look like, running the experiment, and learning from the results. </p>
+<p>Validation means formulating a hypothesis about what might work, designing an experiment to test it, understanding what good and bad outcomes look like, running the experiment, and learning from the results.</p>
 </blockquote>
 <h3 id="key-takeaways_4">Key takeaways</h3>
 <ul>
@@ -764,13 +777,13 @@ Some strategy to increase data interity</p>
 <h3 id="use-accurate-estimate-to-drive-project-planning">Use accurate estimate to drive project planning</h3>
 <ul>
 <li>An estimate, reflects our best guess about how long or how much work a project will take</li>
-<li>A target, captures a desired business goal. </li>
+<li>A target, captures a desired business goal.</li>
 </ul>
 <blockquote>
 <p>Engineers create estimates, and managers and business leaders specify target</p>
 <p>Project schedules often slip because we allow target to alter the estimate</p>
 </blockquote>
-<p>Instead, we should use estimates to inform project planning. </p>
+<p>Instead, we should use estimates to inform project planning.</p>
 <ul>
 <li>is it more important to hold the date constant and deliver what is possible?</li>
 <li>or to hold the feature set constant and push back the date until all features can be delivered?</li>
@@ -782,11 +795,11 @@ Some strategy to increase data interity</p>
 <li>estimate based on how long tasks will take, not on how long you or someone else wants the to take</li>
 <li>think of estimates as probability distributions, not best-case scenarios</li>
 <li>let the person doing the actual task make the estimate</li>
-<li>beware of anchoring bias, a low initial estimate can set an initial anchor that makes it hard to establish a more accurate estimate later on. </li>
+<li>beware of anchoring bias, a low initial estimate can set an initial anchor that makes it hard to establish a more accurate estimate later on.</li>
 <li>use multiple approaches to estimate the task, bottom up estimation vs past similar project estimations</li>
 <li>beware the mythical man-month, don't assume that adding more people will shorten a project timeline</li>
 <li>validate estimates against historical data</li>
-<li>use time boxing to constrain tasks that can grow in scope. Plan to allocate a fixed amount of time, or a time box, to open-ended activities. </li>
+<li>use time boxing to constrain tasks that can grow in scope. Plan to allocate a fixed amount of time, or a time box, to open-ended activities.</li>
 <li>Allow others to challenge estimates</li>
 <li>measure the time it took vs estimation, and learn whether we tend to under estimate or overestimate</li>
 </ul>
@@ -801,8 +814,8 @@ Some strategy to increase data interity</p>
 <li>organization priority change</li>
 </ul>
 <p>Distractions like them delays project in the long term.</p>
-<p>Separate estimated work time from calendar time. A month of estimated work takes longer than one calendar month to complete. </p>
-<p>When setting schedules, build in buffer time for the unexpected interruptions. </p>
+<p>Separate estimated work time from calendar time. A month of estimated work takes longer than one calendar month to complete.</p>
+<p>When setting schedules, build in buffer time for the unexpected interruptions.</p>
 <h3 id="define-specific-project-goals-and-measurable-milestones">Define specific project goals and measurable milestones</h3>
 <blockquote>
 <p>What frequently causes a project tos lip is a fuzzy understanding of what constitutes success
@@ -810,23 +823,23 @@ Define specific goals for a project based on the problem you're working to solve
 </blockquote>
 <p>A well-defined goals has 2 concrete benefits</p>
 <ul>
-<li>provides an important filter for separating the must-haves from the nice-to-haves in the task list. it helps defined against feature creep. </li>
+<li>provides an important filter for separating the must-haves from the nice-to-haves in the task list. it helps defined against feature creep.</li>
 <li>build clarity and alignment across key stakeholders</li>
 <li>helps team members be more accountable for local tradeoffs that might hurt global goals, eg. adding more test coverage. Is this necessary for us to deliver the project? can it be done afterwards?</li>
 </ul>
-<p>Set milestones along the project. They act as checkpoints for evaluating the progress of a project and as channels for communicating the team's progress to the rest of the organization. </p>
+<p>Set milestones along the project. They act as checkpoints for evaluating the progress of a project and as channels for communicating the team's progress to the rest of the organization.</p>
 <blockquote>
-<p>If we fall behind, they provides opportunities to revise our plan, either by extending the deadline or by cutting tasks. </p>
+<p>If we fall behind, they provides opportunities to revise our plan, either by extending the deadline or by cutting tasks.</p>
 </blockquote>
 <h3 id="reduce-risk-early">Reduce risk early</h3>
 <blockquote>
-<p>Effectively executing on a project means minimizing the risk that a deadline might slip and surfacing unexpected issues as early as possible. </p>
+<p>Effectively executing on a project means minimizing the risk that a deadline might slip and surfacing unexpected issues as early as possible.</p>
 </blockquote>
 <p>Tackling the riskiest areas first helps us identify any estimation errors associated with them. It's better to find them out earlier and plan accordingly than later.</p>
 <blockquote>
-<p>The goal from beginning of project planning should be to maximize learning and minimize risk. </p>
+<p>The goal from beginning of project planning should be to maximize learning and minimize risk.</p>
 </blockquote>
-<p>Another risk is system integration towards end of project, which always takes longer than planned. One effective strategy is to build end-to-end scafolding and do system testing earlier. </p>
+<p>Another risk is system integration towards end of project, which always takes longer than planned. One effective strategy is to build end-to-end scafolding and do system testing earlier.</p>
 <p>A few benefits</p>
 <ul>
 <li>force you to think more about the necessary glue between systems, which can help redefine the integration estimates</li>
@@ -842,13 +855,13 @@ Define specific goals for a project based on the problem you're working to solve
 <li>any new features added must be duplicated across existing version and new versions</li>
 </ul>
 <blockquote>
-<p>Second system effect. The general tendency is to over design, using all the ideas and frills that were cautiously sidetracked on the first one. </p>
+<p>Second system effect. The general tendency is to over design, using all the ideas and frills that were cautiously sidetracked on the first one.</p>
 </blockquote>
-<p>We increase the project complexity in this case. These second systems are susceptible to schedule delays as a result of over confidence. </p>
+<p>We increase the project complexity in this case. These second systems are susceptible to schedule delays as a result of over confidence.</p>
 <p>2 optios to handle it:</p>
 <ol>
-<li>rewrite system incrementally - refactoring. It may increase overall amount of work but the reduced risk is often worth it. </li>
-<li>Rewrite system in phases - eg. Phase 1, pure refactor into new language. Phase 2, fixing bugs after new service is running in new language. Set specific goals. </li>
+<li>rewrite system incrementally - refactoring. It may increase overall amount of work but the reduced risk is often worth it.</li>
+<li>Rewrite system in phases - eg. Phase 1, pure refactor into new language. Phase 2, fixing bugs after new service is running in new language. Set specific goals.</li>
 </ol>
 <h3 id="dont-sprint-in-the-middle-of-a-marathon">Don't sprint in the middle of a marathon</h3>
 <p>why sprint won't help to deliver a delayed project</p>
@@ -860,11 +873,11 @@ Define specific goals for a project based on the problem you're working to solve
 <li>communication overhead increases as the deadline looms</li>
 <li>the sprint toward the deadline incentives technical debt</li>
 </ul>
-<p>When a small dose of ovetime is necessary to hit a key deadline, we need to secure buy-in from everyone on the team. </p>
+<p>When a small dose of ovetime is necessary to hit a key deadline, we need to secure buy-in from everyone on the team.</p>
 <ul>
 <li>making sure everyone understands the primary causes for why the timeline has slipped thus far</li>
 <li>developing a realistic and revised version of the project plan and timeline, define milestones to detect whether the new plan falls behind</li>
-<li>being ready to abandon the sprint if you slip even further from the revised timeline. Cut your losses. </li>
+<li>being ready to abandon the sprint if you slip even further from the revised timeline. Cut your losses.</li>
 </ul>
 <h3 id="key-takeaways_5">Key takeaways</h3>
 <ul>
@@ -876,7 +889,7 @@ Define specific goals for a project based on the problem you're working to solve
 </ul>
 <h1 id="part-3-build-long-term-value">Part 3: build long-term value</h1>
 <h2 id="balance-quality-with-pragmatism">Balance quality with pragmatism</h2>
-<p>A trade off between high quality vs move fast, deliver and react to changes. </p>
+<p>A trade off between high quality vs move fast, deliver and react to changes.</p>
 <h3 id="establish-a-sustainable-code-review-process">Establish a sustainable code review process</h3>
 <p>the benefits of code reviews</p>
 <ul>
@@ -898,7 +911,7 @@ Define specific goals for a project based on the problem you're working to solve
 <li>reduces future application maintenance and makes it easier to apply future improvements</li>
 <li>solves the hard problems once and enables the solutions to be used multiple times</li>
 </ul>
-<p>Abstraction trade offs, time saved by abstraction for future engineers needs to outweigh the time invested. Focus on core functions that the team heavily relies on, such as logging, authentication etc. </p>
+<p>Abstraction trade offs, time saved by abstraction for future engineers needs to outweigh the time invested. Focus on core functions that the team heavily relies on, such as logging, authentication etc.</p>
 <p>Good abstractions should be</p>
 <ul>
 <li>easy to learn</li>
@@ -912,10 +925,120 @@ Define specific goals for a project based on the problem you're working to solve
 <ul>
 <li>find popular abstractions in your codebase at work or from public repositories</li>
 <li>look through the open source projects at big tech. Learn why abstractions like Protocol Buffers, Thrift, Hive, and MapReduce have been indispensible to their growth</li>
-<li>Study the interfaces of popular APIs developed by Parse, Strip, Dropbox, Facebook, and Amazon Web Services. </li>
+<li>Study the interfaces of popular APIs developed by Parse, Strip, Dropbox, Facebook, and Amazon Web Services.</li>
 <li>Also reflect on APIs that you or the rest of the community don't like and understand why</li>
 </ul>
 <h3 id="automate-testing">Automate testing</h3>
+<ul>
+<li>Reduces bugs and errors during development, espeically new release.</li>
+<li>replaces repetitive work/manual testing</li>
+<li>ensure engineers are more accountable for the quality of their work</li>
+<li>allows making large changes/refactoring with significantly higher confidence</li>
+<li>it takes shorter time to discover broken code, and find out who broke the code</li>
+<li>offers executable documentation of edge cases and how the code is invoked</li>
+</ul>
+<p>Writing test is a trade off, between 0% to 100% coverage.</p>
+<ul>
+<li>some code might not even go into production</li>
+<li>when new feature implementation is more important</li>
+<li>focus on high leverage tests</li>
+</ul>
+<h3 id="repay-technical-debt">Repay technical debt</h3>
+<p>All the deferred work that's necessary to improve the health and quality of the codebase and that would slow us down if left unaddressed.</p>
+<blockquote>
+<p>Debt-ridden code is hard to understand and even harder to modify, slowing down iteration speed</p>
+</blockquote>
+<p>A more effective engineer incur debt when necessary to get things done, but to pay of that debt periodically.</p>
+<p>Tackle debt with highest leverage - code in highly-trafficed parts of the codebase that takes the least time to fix up.</p>
+<h3 id="key-takeaways_6">Key takeaways</h3>
+<ul>
+<li>establish a culture of reviewing code</li>
+<li>invest in good software abstractions to simply difficult problems</li>
+<li>scale code quality with automated testing</li>
+<li>manage your technical debt</li>
+</ul>
+<h2 id="minimize-operational-burden">Minimize operational burden</h2>
+<ul>
+<li>pick proven and solid technologies instead of shiny or sexy new ones. tried and true options that are stable, easy to manage and simple to understand</li>
+<li>avoid re-inventing the wheel and writing unnecessary custom software</li>
+</ul>
+<h3 id="embrace-operational-simplicity">Embrace operational simplicity</h3>
+<p>Simple solutions impose a lower operational burden because they are easier to understand, maintain and modify. </p>
+<blockquote>
+<p>When you first start off trying to solve a problem, the first solutions you come up with are very complex, and most people stop there. But if you keep going and
+live wih the problem and peel more layers of the onion off, you can oftentimes arrive at some very elegant and simple solutions. Most people just don't put in the time or energy to get there. 
+- Steve Jobs</p>
+</blockquote>
+<p>A complex system imposes maintenance cost in a few ways</p>
+<ul>
+<li>engineering expertise gets splintered across multiple systems</li>
+<li>increased complexity introduces more potential single point of failure</li>
+<li>new engineers face a steeper learning curve when learning and understanding the new systems</li>
+<li>effort towards improving abstractions, libraries, and tools gets diluted across the different systems</li>
+</ul>
+<blockquote>
+<p>less is more. </p>
+<p>what's the simplest solution that can get job done while also reducing our future operation burden?
+revisit sources of complexity, and find opportunities to trim them away</p>
+</blockquote>
+<h3 id="build-systems-to-fail-fast">Build systems to fail fast</h3>
+<p>These things cause software to fail slowly</p>
+<ul>
+<li>workarounds to automatically handle software errors so that their programs can continue to function</li>
+<li>include setting misconfigured parameters to default values</li>
+<li>adding catch-all exception handler to deal with unexpected issues</li>
+<li>swallowing unexpected return values</li>
+</ul>
+<blockquote>
+<p>The software may continue to run after an error, but this is often in exchange for less decipherable bugs further down the road.
+Slowly failing systems muddy the source of code errors, making it difficult for us to discover what went wrong</p>
+<p>In a system that fails fast ..., when a problem occurs, it fails immediately and visibly. Failing fast is a nonintuitive technique: "failing immediately and visibl" sounds like it would make your software more fragile, but it actually makes it more robust. Bugs are easier to find and fix, so fewer go into production. </p>
+</blockquote>
+<p>Example of failing fast</p>
+<ul>
+<li>crashing at startup time when encountering configuration errors</li>
+<li>validating software inputs, particularly if they won't be consumed until much later</li>
+<li>bubbling up an error from an external service that you don't know how to handle, rather than swallow it</li>
+<li>throwing an exception as soon as possible when certain modifications to a data structure, like a collection, would render dependent data structures, like an iterator, unusable. </li>
+<li>throwing an exception if key data structures have been corrupted rather than propagating that corruption further within the system</li>
+<li>asserting that ke invariants hold before or after complex logic flows and attaching sufficiently description failures messages</li>
+<li>alerting engineers about any invalid or inconsistent program state as early as possible</li>
+</ul>
+<p>Failing fast doesn't necessary mean crashing your programs for users. </p>
+<p>A hybrid approach
+- use fail-fast to surface issues immedidicate and as close to the actual source of error as possible
+- complement them with a global exception handler that reports the error to engineers while failing gracefully to the end user</p>
+<h3 id="relentlessly-automate-mechanical-tasks">Relentlessly automate mechanical tasks</h3>
+<blockquote>
+<p>Will I save more time overall by manually doing a particular task or by paying the upfront cost of automating the process?</p>
+</blockquote>
+<p>Engineer automate less frequently than they should for a few reasons</p>
+<ul>
+<li>don't have the time right now</li>
+<li>suffer from the tragedy of the commons</li>
+<li>lack familiarity with automation tools</li>
+<li>underestimate the future frequency of the task</li>
+<li>don't internalize the time savings over a long time horizon</li>
+</ul>
+<p>Activities where automation can help include</p>
+<ul>
+<li>validating that a piece of code, an interaction, or a system behaves as expected</li>
+<li>extracting, transforming, and summarizing data</li>
+<li>detecting spikes in the error rate</li>
+<li>building and deploying software to new machines</li>
+<li>capturing and restoring database snapshots</li>
+<li>periodically running batch computations</li>
+<li>restarting a web service</li>
+<li>checking code to ensure it conforms to style guidelines</li>
+<li>training a machine learning model</li>
+<li>managing user accounts or user data</li>
+<li>adding or removing a server to or from a group of services</li>
+</ul>
+<p>2 types of automation
+1. automating mechanics, automating the mechanics of a sequence of steps tend to be straight forward and testable
+2. automating decision-making, automating the right decisions to make, particularly in the context of building systems that can heal and repair themselves when things go wrong, turns out to be much more challenging. </p>
+<p>Automation can produce dimishing returns as you move from automating mechanics to automating decision making. Given finite time, focus on automating mechanics first. </p>
+<h3 id="make-batch-process-idempotent">Make batch process idempotent</h3>
 <h1 id="appendices">Appendices</h1>
 <p>todo</p>
 <ul>
