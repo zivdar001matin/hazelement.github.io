@@ -176,8 +176,11 @@
 <li><a href="#build-systems-to-fail-fast">Build systems to fail fast</a></li>
 <li><a href="#relentlessly-automate-mechanical-tasks">Relentlessly automate mechanical tasks</a></li>
 <li><a href="#make-batch-process-idempotent">Make batch process idempotent</a></li>
+<li><a href="#hone-your-ability-to-respond-and-recover-quickly">Hone your ability to respond and recover quickly</a></li>
+<li><a href="#key-takeaways-7">Key takeaways</a></li>
 </ol>
 </li>
+<li><a href="#invest-in-your-teams-growth">Invest in your team's growth</a></li>
 </ol>
 </li>
 <li><a href="#appendices">Appendices</a></li>
@@ -1039,6 +1042,48 @@ Slowly failing systems muddy the source of code errors, making it difficult for 
 2. automating decision-making, automating the right decisions to make, particularly in the context of building systems that can heal and repair themselves when things go wrong, turns out to be much more challenging. </p>
 <p>Automation can produce dimishing returns as you move from automating mechanics to automating decision making. Given finite time, focus on automating mechanics first. </p>
 <h3 id="make-batch-process-idempotent">Make batch process idempotent</h3>
+<p>As you automate more operations, the probability that some of the automation will fail increases. </p>
+<p>Some of these automation might take a long time to retry or recover when fail. The time required to maintain the automation will climb. </p>
+<p>2 approaches</p>
+<ol>
+<li>make the automation idempotent, produces the same results regardless of whether it's run once or multiple times</li>
+<li>a batch process so tat at least retryable or reentrant, is able to complete successfully after a previous interrupted call. <ol>
+<li>a proces that's not reentrant typically leaves side effects on some global state that prevents it from successfully completing on a retry. </li>
+</ol>
+</li>
+</ol>
+<p>Idempotency also allows us to run infrequent processes at a more frequent rate than strictly necessary, to expose problems sooner. </p>
+<h3 id="hone-your-ability-to-respond-and-recover-quickly">Hone your ability to respond and recover quickly</h3>
+<blockquote>
+<p>The best defense against major unexpected failures is to fail often. </p>
+</blockquote>
+<p>Sometimes, it becomes higher leverage to focus our time and energy on our ability to recover quickly than on preventing failures in the first place. "script for success", practice failure scenarios, and work on our ability to recover quickly. </p>
+<p>Simulate failures and disasters, preparing themselves for the unexpected. </p>
+<p>Scripted contingency plans and shift our decision-making away from high-stakes and high-pressure situations and into more controlled environments. </p>
+<p>Ask what if questions and work through contingency plans for handling different situations. </p>
+<ul>
+<li>what if a critical bug gets deployed as part of a release? How quickly can we roll it back or respond with a fix, and can we shorten that window?</li>
+<li>what if a database server fails? How do we fail over to another machine and recover any lost data?</li>
+<li>what if our servers get overloaded? how can we scale up to handle the increased traffic or shed load so that we respond correctly to at least some of the requests</li>
+<li>what if our testing or staging environments get corrupted?  how would we bring up a new one?</li>
+<li>what if a customer reports an urgent issue? how long would it take customer support to notify engineering? how long for engineering to follow up with a fix?</li>
+</ul>
+<p>This applies to other aspects of software engineering as well, </p>
+<ul>
+<li>what if a manager or other stakeholder at an infrequent review meeting raises objections about the product plan? what questions might they ask, and how might we respond?</li>
+<li>what if a critical team member gets sick or injured, or leaves? how can we share knowledge so that the team continue to function?</li>
+<li>what if users revolt over a new and controversial feature? what is our stance and how quickly can we respond?</li>
+<li>what if a project slips past a promised deadline? how might we predict the slippage early, recover and respond?</li>
+</ul>
+<h3 id="key-takeaways_7">Key takeaways</h3>
+<ul>
+<li>do the simple thing first</li>
+<li>fail fast to pinpoint the source of errors</li>
+<li>automate mechanics over decision making</li>
+<li>aim for idempotency and reentrancy</li>
+<li>plan and practice failure modes</li>
+</ul>
+<h2 id="invest-in-your-teams-growth">Invest in your team's growth</h2>
 <h1 id="appendices">Appendices</h1>
 <p>todo</p>
 <ul>
