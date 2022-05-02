@@ -182,6 +182,9 @@
 </li>
 <li><a href="#invest-in-your-teams-growth">Invest in your team's growth</a><ol>
 <li><a href="#making-hiring-everyones-responsibility">Making hiring everyone's responsibility</a></li>
+<li><a href="#designing-a-good-onboarding-process">Designing a good onboarding process</a></li>
+<li><a href="#share-ownership-of-code">Share ownership of code</a></li>
+<li><a href="#build-collective-wisdom-through-post-mortems">Build collective wisdom through post-mortems</a></li>
 </ol>
 </li>
 </ol>
@@ -969,11 +972,13 @@ Define specific goals for a project based on the problem you're working to solve
 <li>avoid re-inventing the wheel and writing unnecessary custom software</li>
 </ul>
 <h3 id="embrace-operational-simplicity">Embrace operational simplicity</h3>
-<p>Simple solutions impose a lower operational burden because they are easier to understand, maintain and modify. </p>
+<p>Simple solutions impose a lower operational burden because they are easier to understand, maintain and modify.</p>
 <blockquote>
 <p>When you first start off trying to solve a problem, the first solutions you come up with are very complex, and most people stop there. But if you keep going and
-live wih the problem and peel more layers of the onion off, you can oftentimes arrive at some very elegant and simple solutions. Most people just don't put in the time or energy to get there. 
-- Steve Jobs</p>
+live wih the problem and peel more layers of the onion off, you can oftentimes arrive at some very elegant and simple solutions. Most people just don't put in the time or energy to get there.</p>
+<ul>
+<li>Steve Jobs</li>
+</ul>
 </blockquote>
 <p>A complex system imposes maintenance cost in a few ways</p>
 <ul>
@@ -983,7 +988,7 @@ live wih the problem and peel more layers of the onion off, you can oftentimes a
 <li>effort towards improving abstractions, libraries, and tools gets diluted across the different systems</li>
 </ul>
 <blockquote>
-<p>less is more. </p>
+<p>less is more.</p>
 <p>what's the simplest solution that can get job done while also reducing our future operation burden?
 revisit sources of complexity, and find opportunities to trim them away</p>
 </blockquote>
@@ -998,22 +1003,24 @@ revisit sources of complexity, and find opportunities to trim them away</p>
 <blockquote>
 <p>The software may continue to run after an error, but this is often in exchange for less decipherable bugs further down the road.
 Slowly failing systems muddy the source of code errors, making it difficult for us to discover what went wrong</p>
-<p>In a system that fails fast ..., when a problem occurs, it fails immediately and visibly. Failing fast is a nonintuitive technique: "failing immediately and visibl" sounds like it would make your software more fragile, but it actually makes it more robust. Bugs are easier to find and fix, so fewer go into production. </p>
+<p>In a system that fails fast ..., when a problem occurs, it fails immediately and visibly. Failing fast is a nonintuitive technique: "failing immediately and visibl" sounds like it would make your software more fragile, but it actually makes it more robust. Bugs are easier to find and fix, so fewer go into production.</p>
 </blockquote>
 <p>Example of failing fast</p>
 <ul>
 <li>crashing at startup time when encountering configuration errors</li>
 <li>validating software inputs, particularly if they won't be consumed until much later</li>
 <li>bubbling up an error from an external service that you don't know how to handle, rather than swallow it</li>
-<li>throwing an exception as soon as possible when certain modifications to a data structure, like a collection, would render dependent data structures, like an iterator, unusable. </li>
+<li>throwing an exception as soon as possible when certain modifications to a data structure, like a collection, would render dependent data structures, like an iterator, unusable.</li>
 <li>throwing an exception if key data structures have been corrupted rather than propagating that corruption further within the system</li>
 <li>asserting that ke invariants hold before or after complex logic flows and attaching sufficiently description failures messages</li>
 <li>alerting engineers about any invalid or inconsistent program state as early as possible</li>
 </ul>
-<p>Failing fast doesn't necessary mean crashing your programs for users. </p>
-<p>A hybrid approach
-- use fail-fast to surface issues immedidicate and as close to the actual source of error as possible
-- complement them with a global exception handler that reports the error to engineers while failing gracefully to the end user</p>
+<p>Failing fast doesn't necessary mean crashing your programs for users.</p>
+<p>A hybrid approach</p>
+<ul>
+<li>use fail-fast to surface issues immedidicate and as close to the actual source of error as possible</li>
+<li>complement them with a global exception handler that reports the error to engineers while failing gracefully to the end user</li>
+</ul>
 <h3 id="relentlessly-automate-mechanical-tasks">Relentlessly automate mechanical tasks</h3>
 <blockquote>
 <p>Will I save more time overall by manually doing a particular task or by paying the upfront cost of automating the process?</p>
@@ -1040,30 +1047,32 @@ Slowly failing systems muddy the source of code errors, making it difficult for 
 <li>managing user accounts or user data</li>
 <li>adding or removing a server to or from a group of services</li>
 </ul>
-<p>2 types of automation
-1. automating mechanics, automating the mechanics of a sequence of steps tend to be straight forward and testable
-2. automating decision-making, automating the right decisions to make, particularly in the context of building systems that can heal and repair themselves when things go wrong, turns out to be much more challenging. </p>
-<p>Automation can produce dimishing returns as you move from automating mechanics to automating decision making. Given finite time, focus on automating mechanics first. </p>
+<p>2 types of automation</p>
+<ol>
+<li>automating mechanics, automating the mechanics of a sequence of steps tend to be straight forward and testable</li>
+<li>automating decision-making, automating the right decisions to make, particularly in the context of building systems that can heal and repair themselves when things go wrong, turns out to be much more challenging.</li>
+</ol>
+<p>Automation can produce dimishing returns as you move from automating mechanics to automating decision making. Given finite time, focus on automating mechanics first.</p>
 <h3 id="make-batch-process-idempotent">Make batch process idempotent</h3>
-<p>As you automate more operations, the probability that some of the automation will fail increases. </p>
-<p>Some of these automation might take a long time to retry or recover when fail. The time required to maintain the automation will climb. </p>
+<p>As you automate more operations, the probability that some of the automation will fail increases.</p>
+<p>Some of these automation might take a long time to retry or recover when fail. The time required to maintain the automation will climb.</p>
 <p>2 approaches</p>
 <ol>
 <li>make the automation idempotent, produces the same results regardless of whether it's run once or multiple times</li>
-<li>a batch process so tat at least retryable or reentrant, is able to complete successfully after a previous interrupted call. <ol>
-<li>a proces that's not reentrant typically leaves side effects on some global state that prevents it from successfully completing on a retry. </li>
+<li>a batch process so tat at least retryable or reentrant, is able to complete successfully after a previous interrupted call.<ol>
+<li>a proces that's not reentrant typically leaves side effects on some global state that prevents it from successfully completing on a retry.</li>
 </ol>
 </li>
 </ol>
-<p>Idempotency also allows us to run infrequent processes at a more frequent rate than strictly necessary, to expose problems sooner. </p>
+<p>Idempotency also allows us to run infrequent processes at a more frequent rate than strictly necessary, to expose problems sooner.</p>
 <h3 id="hone-your-ability-to-respond-and-recover-quickly">Hone your ability to respond and recover quickly</h3>
 <blockquote>
-<p>The best defense against major unexpected failures is to fail often. </p>
+<p>The best defense against major unexpected failures is to fail often.</p>
 </blockquote>
-<p>Sometimes, it becomes higher leverage to focus our time and energy on our ability to recover quickly than on preventing failures in the first place. "script for success", practice failure scenarios, and work on our ability to recover quickly. </p>
-<p>Simulate failures and disasters, preparing themselves for the unexpected. </p>
-<p>Scripted contingency plans and shift our decision-making away from high-stakes and high-pressure situations and into more controlled environments. </p>
-<p>Ask what if questions and work through contingency plans for handling different situations. </p>
+<p>Sometimes, it becomes higher leverage to focus our time and energy on our ability to recover quickly than on preventing failures in the first place. "script for success", practice failure scenarios, and work on our ability to recover quickly.</p>
+<p>Simulate failures and disasters, preparing themselves for the unexpected.</p>
+<p>Scripted contingency plans and shift our decision-making away from high-stakes and high-pressure situations and into more controlled environments.</p>
+<p>Ask what if questions and work through contingency plans for handling different situations.</p>
 <ul>
 <li>what if a critical bug gets deployed as part of a release? How quickly can we roll it back or respond with a fix, and can we shorten that window?</li>
 <li>what if a database server fails? How do we fail over to another machine and recover any lost data?</li>
@@ -1071,7 +1080,7 @@ Slowly failing systems muddy the source of code errors, making it difficult for 
 <li>what if our testing or staging environments get corrupted?  how would we bring up a new one?</li>
 <li>what if a customer reports an urgent issue? how long would it take customer support to notify engineering? how long for engineering to follow up with a fix?</li>
 </ul>
-<p>This applies to other aspects of software engineering as well, </p>
+<p>This applies to other aspects of software engineering as well,</p>
 <ul>
 <li>what if a manager or other stakeholder at an infrequent review meeting raises objections about the product plan? what questions might they ask, and how might we respond?</li>
 <li>what if a critical team member gets sick or injured, or leaves? how can we share knowledge so that the team continue to function?</li>
@@ -1087,14 +1096,14 @@ Slowly failing systems muddy the source of code errors, making it difficult for 
 <li>plan and practice failure modes</li>
 </ul>
 <h2 id="invest-in-your-teams-growth">Invest in your team's growth</h2>
-<p>Investing in people around you. </p>
+<p>Investing in people around you.</p>
 <h3 id="making-hiring-everyones-responsibility">Making hiring everyone's responsibility</h3>
 <p>Design an effective interview process. A good interview process achieves 2 goals</p>
 <ol>
 <li>it screens for the type of people likely to do well on the team</li>
 <li>it gets candidates excited about the team, the mission, and the culture</li>
 </ol>
-<p>Optimize for questions with high signal-to-noise ratio - questions that reveal a large amount of useful information (signal) about the candidate per minute spent, with little irrelevant or useless data (noise). </p>
+<p>Optimize for questions with high signal-to-noise ratio - questions that reveal a large amount of useful information (signal) about the candidate per minute spent, with little irrelevant or useless data (noise).</p>
 <p>Iterate on improving the interview process.</p>
 <ul>
 <li>take tme with your team to identify which qualities in a potential teammate you care about the most (coding, algo, data structures, communication, culture fit etc)</li>
@@ -1104,15 +1113,51 @@ Slowly failing systems muddy the source of code errors, making it difficult for 
 <li>scan for red flags by rapidly firing short-answer questions to probe a wide surface area</li>
 <li>periodically shadow or pair with another team member during interviews</li>
 <li>don't be afraid to use unconventional interview approaches</li>
-<li></li>
 </ul>
+<h3 id="designing-a-good-onboarding-process">Designing a good onboarding process</h3>
+<p>Goals for a good onboarding process</p>
+<ol>
+<li>ramp up new engineers as quickly as possible</li>
+<li>impart the team's culture and values</li>
+<li>expose new engineers to the breadth of fundamentals needed to succeed</li>
+<li>socially integrate new engineers onto the team</li>
+</ol>
+<p>4 main pillars for onboarding program</p>
+<ol>
+<li>codelabs</li>
+<li>onboarding talks</li>
+<li>mentorship</li>
+<li>starter tasks</li>
+</ol>
+<p>When designing/improving an onboarding process</p>
+<ol>
+<li>think about your own sexperience and survey others on the team to get a sense of what worked well adn what could use some improvement</li>
+<li>reflect on where new hires struggled and things you can do to help them ramp up more quickly</li>
+<li>enumerate key concepts, tools and values that you wish you had learned earlier</li>
+<li>implement your most valuable ideas, and survey new hires and their mentors to see if the changes helped</li>
+<li>rinse and repeat</li>
+</ol>
+<h3 id="share-ownership-of-code">Share ownership of code</h3>
+<p>It helps you and your team to scale to work on more peojects. You will have more freedom to work on other high-leverage activities.</p>
+<blockquote>
+<p>To increase shared ownership, reduce the friction that other team members might encouter while browsing, understanding, and modifying code that you write or tools that you build. Here are some strategies.</p>
+</blockquote>
+<ol>
+<li>avoid one-person teams</li>
+<li>review each other's code and software designs</li>
+<li>rotate different types of tasks and responsibilities across the team</li>
+<li>keep code readable and code quality high</li>
+<li>present tech talks on software decisions and architectures</li>
+<li>document your software, either through high-level design documents or in code-level comments</li>
+<li>document the complex workflows or non-obvious workarounds necessary for you to get things done</li>
+<li>invest time in teaching and mentoring other team members</li>
+</ol>
+<h3 id="build-collective-wisdom-through-post-mortems">Build collective wisdom through post-mortems</h3>
 <h1 id="appendices">Appendices</h1>
 <p>todo</p>
 <ul>
-<li>[] add a list of recommended books to read<ul>
+<li>[] add a list of recommended books to read</li>
 <li>Gayle Laakmann McDowell's Cracking the Code Interview</li>
-</ul>
-</li>
 <li>[] add a list of recommended blogs to follow</li>
 </ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
