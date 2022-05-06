@@ -186,11 +186,17 @@
 <li><a href="#designing-a-good-onboarding-process">Designing a good onboarding process</a></li>
 <li><a href="#share-ownership-of-code">Share ownership of code</a></li>
 <li><a href="#build-collective-wisdom-through-post-mortems">Build collective wisdom through post-mortems</a></li>
+<li><a href="#build-a-great-engineering-culture">Build a great engineering culture</a></li>
+<li><a href="#key-takeaways-8">Key takeaways</a></li>
 </ol>
 </li>
 </ol>
 </li>
-<li><a href="#appendices">Appendices</a></li>
+<li><a href="#appendices">Appendices</a><ol>
+<li><a href="#10-books-every-effective-engineer-should-read">10 books every effective engineer should read</a></li>
+<li><a href="#recommend-blogs-to-follow">Recommend blogs to follow</a></li>
+</ol>
+</li>
 </ol>
 <h1 id="foreword">Foreword</h1>
 <blockquote>
@@ -1154,12 +1160,73 @@ Slowly failing systems muddy the source of code errors, making it difficult for 
 <li>invest time in teaching and mentoring other team members</li>
 </ol>
 <h3 id="build-collective-wisdom-through-post-mortems">Build collective wisdom through post-mortems</h3>
-<h1 id="appendices">Appendices</h1>
-<p>todo</p>
+<p>After a site outage, a high-priority bug, or some other infra issues. Post-mortem discuss and analyze the event, and write up</p>
+<ol>
+<li>what happened</li>
+<li>how and why it happened</li>
+<li>what they can do to prevent it from happening again in the future</li>
+</ol>
+<p>The goal is not to assign blame.</p>
+<p>The same applies to projects. However, to conduct post-mordtem, we need to define a clear goal or metric for a project launch.</p>
+<blockquote>
+<p>Ask "Five Whys".</p>
+</blockquote>
+<p>For each issue and problem we encoutered, ask 5 whys in series to understand the root cause. For example,</p>
+<p>when the site goes down,</p>
+<ol>
+<li>why did the site crash? because some servers were overloaded</li>
+<li>why were they overloaded? because a disproportionately high fraction of traffic was hitting a few servers</li>
+<li>why wasn't traffic more randomly distributed? because the requests were all coming from the same customer, and their data is only hosted on those machines</li>
+<li>why was customer data is only hosted on those machines? etc</li>
+</ol>
+<h3 id="build-a-great-engineering-culture">Build a great engineering culture</h3>
+<p>A great engineering culture</p>
+<ol>
+<li>optimize for iteration speed</li>
+<li>push relentlessly towards automation</li>
+<li>build the right software abstractions</li>
+<li>focus on high code quality by using code reviews</li>
+<li>maintain a respectiful work environment</li>
+<li>build shared ownership of code</li>
+<li>invest in automated testing</li>
+<li>allot experiementation time, either through 20% time or hackathons</li>
+<li>foster a culture of learning and continuous improvement</li>
+<li>hire the best</li>
+</ol>
+<h3 id="key-takeaways_8">Key takeaways</h3>
 <ul>
-<li>[] add a list of recommended books to read</li>
-<li>Gayle Laakmann McDowell's Cracking the Code Interview</li>
-<li>[] add a list of recommended blogs to follow</li>
+<li>help the people around you to be successful</li>
+<li>make hiring a priority</li>
+<li>invest in onboarding and mentoring</li>
+<li>build shared ownership of code</li>
+<li>debrief and document collective wisdom</li>
+<li>create a great engineering culture</li>
+</ul>
+<h1 id="appendices">Appendices</h1>
+<h2 id="10-books-every-effective-engineer-should-read">10 books every effective engineer should read</h2>
+<ul>
+<li>Peopleware: productive projects and teams by Tom Demarcro and Timothy Lister</li>
+<li>Team geek: a software developer's guide to working well with others by Brian W. Fitzpatrick and Ben Collins-Sussman</li>
+<li>High output management by Andrew S. Grove. Grove</li>
+<li>Getting things done: the art of stress-free productivity by David Allen</li>
+<li>The 4-hour workweek: escape 9-5, live anywhere, and join the new rish by Timothy Ferriss.</li>
+<li>The 7 habits of highly effective people: powerful lessons in personal change by Stephen R. Covey.</li>
+<li>Conscious business: how to build value through values by Fred Kofman.</li>
+<li>Your brain at work: strategies for overcoming distraction, regaining focus, and working smarter all day long by David Rock</li>
+<li>Flow: the psychology of optimal experience by Michaly Csikszentmihalyi</li>
+<li>Succeed: how we can reach our goals by Heidi Grant Halvorson</li>
+</ul>
+<h2 id="recommend-blogs-to-follow">Recommend blogs to follow</h2>
+<ul>
+<li><a href="http://www.theeffectiveengineer.com">http://www.theeffectiveengineer.com</a></li>
+<li><a href="http://www.kalzumeus.com">http://www.kalzumeus.com</a>, long-form articles on career advice, consulting, SEO and software sales by Patrick Mckenzie</li>
+<li><a href="http://www.katemats.com">http://www.katemats.com</a>, Kate shares advice about tech, leadership, and life on her blog</li>
+<li><a href="http://randsinrepose.com">http://randsinrepose.com</a>, tech life and engineering management</li>
+<li><a href="http://softwareleadweekly.com">http://softwareleadweekly.com</a>, high-quality weekly newsletter on engineering leadership and culture</li>
+<li><a href="http://calnewport.com">http://calnewport.com</a>, evidence-based advice for building a successful and fulfilling life</li>
+<li><a href="http://joelonsoftware.com">http://joelonsoftware.com</a>, programming pearls of wisdom</li>
+<li><a href="http://martinfowler.com">http://martinfowler.com</a>, how to maximize the productivity of sotware teams and provides detailed write-ups of common programming patterns</li>
+<li><a href="http://pgbovine.net">http://pgbovine.net</a>, Philip Guo's graduate school and work experience</li>
 </ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
