@@ -152,19 +152,46 @@ use rclone to backup NAS to OneDrive</p>
 </code></pre></div>
 
 
+<h1 id="mount-usb-drive">Mount usb drive</h1>
+<p>put these record in fstab. this will automount the drive to <code>/mnt/usb_drive</code></p>
+<div class="highlight"><pre><span></span><code><span class="err">UUID=4de26c17-1d1e-402f-99e2-ae189515030b /mnt/usb_drive ext4 auto,nofail,rw,exec,user  0 2</span>
+</code></pre></div>
+
+
+<p>Because docker containers use data in this drive, we need to configure docker to wait for the drive to mount.</p>
 <h2 id="service-wait-for-mount-point">Service wait for Mount point</h2>
-<p>to have a serviec wait for mount point to become available</p>
+<p>To have a serviec wait for mount point to become available</p>
 <p><code>systemctl list-units --type=mount</code> to list all mount targets</p>
 <p>and set one of the mountpoint in service file.</p>
 <p>For example, to have docker service reply on mnt-usb_drive.mount.</p>
-<p>```
-[Unit]
-Description=Docker Application Container Engine
-Documentation=https://docs.docker.com
-After=network-online.target firewalld.service containerd.service mnt-usb_drive.mount
-Wants=network-online.target mnt-usb_drive.mount
-Requires=docker.socket containerd.service</p>
-<p>````</p>
+<div class="highlight"><pre><span></span><code><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Docker Application Container Engine</span>
+<span class="na">Documentation</span><span class="o">=</span><span class="s">https://docs.docker.com</span>
+<span class="na">After</span><span class="o">=</span><span class="s">network-online.target firewalld.service containerd.service mnt-usb_drive.mount</span>
+<span class="na">Wants</span><span class="o">=</span><span class="s">network-online.target mnt-usb_drive.mount</span>
+<span class="na">Requires</span><span class="o">=</span><span class="s">docker.socket containerd.service</span>
+</code></pre></div>
+
+
+<h2 id="back-up-usb-drive">Back up usb drive</h2>
+<p>We use rclone to back up USB drive to Onedrive.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+/usr/bin/rclone sync -P --config<span class="o">=</span>/home/harry/.config/rclone/rclone.conf <span class="se">\</span>
+        --create-empty-src-dirs  <span class="se">\</span>
+        --transfers <span class="m">2</span> <span class="se">\</span>
+        /mnt/usb_drive/onedrive MantouOneDrive:
+</code></pre></div>
+</td></tr></table>
+
+<p>Put it into a cronjob that runs daily</p>
+<div class="highlight"><pre><span></span><code><span class="err">0 0 * * * /home/harry/bin/rclone_backup</span>
+</code></pre></div>
 
 
              
