@@ -194,6 +194,63 @@ use rclone to backup NAS to OneDrive</p>
 </code></pre></div>
 
 
+<h3 id="runs-when-file-system-changes">Runs when file system changes</h3>
+<p>new backup script</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+<span class="nv">SRC_DIR</span><span class="o">=</span>/mnt/usb_drive/onedrive
+
+<span class="k">while</span> <span class="o">[[</span> <span class="nb">true</span> <span class="o">]]</span> <span class="p">;</span> <span class="k">do</span>
+
+ <span class="c1"># performs synchronizations / copy</span>
+ /usr/bin/rclone sync -P --config<span class="o">=</span>/home/harry/.config/rclone/rclone.conf <span class="se">\</span>
+  --create-empty-src-dirs  <span class="se">\</span>
+  --transfers <span class="m">2</span> <span class="se">\</span>
+  <span class="nv">$SRC_DIR</span> MantouOneDrive:
+
+ <span class="c1"># waiting for something to change or it will pass 300 seconds</span>
+ inotifywait --recursive --timeout <span class="m">300</span> -e modify,delete,create,move <span class="nv">$SRC_DIR</span>
+
+ <span class="c1"># going back to the beginning</span>
+<span class="k">done</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>Run the script through a system service</p>
+<div class="highlight"><pre><span></span><code><span class="o">-&gt;</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">cat</span><span class="w"> </span><span class="n">rclone_backup</span><span class="p">.</span><span class="n">service</span><span class="w">          </span>
+<span class="o">[</span><span class="n">Unit</span><span class="o">]</span><span class="w"></span>
+<span class="n">Description</span><span class="o">=</span><span class="n">CloudStorage</span><span class="w"> </span><span class="p">(</span><span class="n">rclone</span><span class="w"> </span><span class="n">mantouxifan</span><span class="w"> </span><span class="n">onedrive</span><span class="p">)</span><span class="w"></span>
+<span class="n">AssertPathIsDirectory</span><span class="o">=/</span><span class="n">mnt</span><span class="o">/</span><span class="n">usb_drive</span><span class="o">/</span><span class="n">onedrive</span><span class="w"></span>
+<span class="n">Wants</span><span class="o">=</span><span class="n">network</span><span class="o">-</span><span class="n">online</span><span class="p">.</span><span class="n">target</span><span class="w"> </span><span class="n">mnt</span><span class="o">-</span><span class="n">usb_drive</span><span class="p">.</span><span class="n">mount</span><span class="w"></span>
+<span class="k">After</span><span class="o">=</span><span class="n">network</span><span class="o">-</span><span class="n">online</span><span class="p">.</span><span class="n">target</span><span class="w"> </span><span class="n">mnt</span><span class="o">-</span><span class="n">usb_drive</span><span class="p">.</span><span class="n">mount</span><span class="w"></span>
+
+<span class="o">[</span><span class="n">Service</span><span class="o">]</span><span class="w"></span>
+<span class="n">Type</span><span class="o">=</span><span class="n">simple</span><span class="w"></span>
+<span class="n">ExecStart</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">harry</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">rclone_backup</span><span class="w"></span>
+<span class="n">Restart</span><span class="o">=</span><span class="n">always</span><span class="w"></span>
+<span class="n">RestartSec</span><span class="o">=</span><span class="mi">10</span><span class="w"></span>
+
+<span class="o">[</span><span class="n">Install</span><span class="o">]</span><span class="w"></span>
+<span class="n">WantedBy</span><span class="o">=</span><span class="n">multi</span><span class="o">-</span><span class="k">user</span><span class="p">.</span><span class="n">target</span><span class="w"></span>
+</code></pre></div>
+
+
              
  
                 <p id="post-share-links">
